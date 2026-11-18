@@ -73,3 +73,9 @@ The [Agent State Store](./agent-state-store/) persists workflow JSON state in SQ
 The [Agent Observability utility](./agent-observability/) writes structured local JSONL events and recursively redacts common credential fields before persistence.
 
 **Status: DEMO** — local logs only; key-name redaction is not a guarantee that arbitrary secrets are detected.
+
+## Agent Recovery — Compensating Actions
+
+The [Agent Recovery utility](./agent-recovery/) runs bounded sequential steps and attempts declared compensations in reverse order after failure, reporting complete or partial rollback outcomes.
+
+**Status: DEMO** — compensations are application handlers, not guaranteed transactional rollback.
