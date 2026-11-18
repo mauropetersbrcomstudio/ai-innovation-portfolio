@@ -36,6 +36,13 @@ class WorkspaceServerTests(unittest.TestCase):
         except HTTPError as exc:
             return exc.code, json.loads(exc.read())
 
+    def test_serves_frontend_assets(self):
+        for path, expected in (("/", "Operations Review Workspace"), ("/app.js", "refresh()"), ("/styles.css", ".workspace")):
+            with urlopen(self.base + path, timeout=3) as response:
+                body = response.read().decode("utf-8")
+                self.assertEqual(response.status, 200)
+                self.assertIn(expected, body)
+
     def test_health_and_demo_workflow(self):
         self.assertEqual(self.call("/api/health")[1]["status"], "ok")
         status, data = self.call(f"/api/workflows/{DEMO_WORKFLOW_ID}")
