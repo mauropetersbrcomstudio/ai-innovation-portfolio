@@ -8,9 +8,9 @@ import sys
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[2]
-QUALITY_TOOL = ROOT / "AI Skills & Tooling" / "csv-data-quality"
-ANALYZER_TOOL = ROOT / "Marketing Intelligence & Business Automation" / "campaign-performance-analyzer"
+ROOT = Path(__file__).resolve().parents[3]
+QUALITY_TOOL = ROOT / "Demo Templates" / "AI Skills & Tooling" / "csv-data-quality"
+ANALYZER_TOOL = ROOT / "Demo Templates" / "Marketing Intelligence & Business Automation" / "campaign-performance-analyzer"
 sys.path.insert(0, str(QUALITY_TOOL))
 sys.path.insert(0, str(ANALYZER_TOOL))
 

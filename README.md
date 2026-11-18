@@ -31,7 +31,7 @@ The six technology categories contain 37 independently developed demonstrations 
 | [Resumable Intake Operations Hub](./Demo%20Templates/AI%20Automation%20%26%20Workflows/intake-operations-hub/) | Composes lead and invoice intake with SQLite checkpoints, structured events, and durable human-review decisions | DEMO |
 | [Operations Review Workspace](./Demo%20Templates/AI%20Product%20Development/operations-review-workspace/) | Local web workspace connected to SQLite intake state and durable human-review decisions | DEMO |
 | [Operations Intake & Human Review Template](./Demo%20Templates/AI%20Product%20Development/operations-intake-review/) | Reusable assembly of intake pipelines, durable workflow state, review decisions, and local workspace | DEMO |
-| [Marketing Analytics Pipeline](./Marketing%20Intelligence%20%26%20Business%20Automation/marketing-analytics-pipeline/) | Composes CSV quality preflight with campaign metrics; blocks review findings by default | DEMO |
+| [Marketing Analytics Pipeline](./Demo%20Templates/Marketing%20Intelligence%20%26%20Business%20Automation/marketing-analytics-pipeline/) | Composes CSV quality preflight with campaign metrics; blocks review findings by default | DEMO |
 | [CRM Lead Qualification & Routing](./Demo%20Templates/AI%20Automation%20%26%20Workflows/crm-lead-qualification-routing/) | Configurable qualification rules, territory queues, follow-up dates, and human-review routing | DEMO |
 | [Client Case Publication Gate](./Demo%20Templates/AI%20Skills%20%26%20Tooling/client-case-publication-gate/) | Pre-publication checks for evidence references, attribution permissions, data review, and claim authorization declarations; never authorizes publication | DEMO |
 | [SME Customer Support Automation](./Demo%20Templates/AI%20Automation%20%26%20Workflows/sme-customer-support-automation/) | Support request classification, knowledge-based draft responses, and human escalation | DEMO |
@@ -52,9 +52,9 @@ The six technology categories contain 37 independently developed demonstrations 
 | [Agent Policy Validator](./Demo%20Templates/AI%20Skills%20%26%20Tooling/agent-policy-validator/) | Validate agent risk levels, explicit tool allowlists, approval gates, and execution bounds | DEMO |
 | [Agent Security & Governance](./Demo%20Templates/AI%20Skills%20%26%20Tooling/agent-security-governance/) | Deny-by-default agent/tool authorization with scoped approval verification and audit decisions | DEMO |
 | [SME Workflow Opportunity Mapper](./Demo%20Templates/AI%20Product%20Development/sme-workflow-opportunity-mapper/) | Transparent rubric to prioritize workflows for further discovery | DEMO |
-| [SME KPI Workspace](./Web%20Applications%20%26%20SaaS/sme-kpi-workspace/) | Responsive browser dashboard with KPI calculations and period filtering | DEMO |
-| [Campaign Performance Analyzer](./Marketing%20Intelligence%20%26%20Business%20Automation/campaign-performance-analyzer/) | CSV validation, campaign KPIs, temporal evolution, period comparison, filtered JSON export, and printable executive report | DEMO |
-| [Campaign Launch QA & UTM Builder](./Marketing%20Intelligence%20%26%20Business%20Automation/campaign-launch-qa/) | Pre-launch metadata validation, UTM URL generation, duplicate detection, and exception reporting | DEMO |
+| [SME KPI Workspace](./Demo%20Templates/Web%20Applications%20%26%20SaaS/sme-kpi-workspace/) | Responsive browser dashboard with KPI calculations and period filtering | DEMO |
+| [Campaign Performance Analyzer](./Demo%20Templates/Marketing%20Intelligence%20%26%20Business%20Automation/campaign-performance-analyzer/) | CSV validation, campaign KPIs, temporal evolution, period comparison, filtered JSON export, and printable executive report | DEMO |
+| [Campaign Launch QA & UTM Builder](./Demo%20Templates/Marketing%20Intelligence%20%26%20Business%20Automation/campaign-launch-qa/) | Pre-launch metadata validation, UTM URL generation, duplicate detection, and exception reporting | DEMO |
 
 The included sample records are synthetic. These demonstrations do not imply client engagements or production deployments.
 
@@ -68,8 +68,8 @@ The included sample records are synthetic. These demonstrations do not imply cli
 | [AI Automation & Workflows](./Demo%20Templates/AI%20Automation%20%26%20Workflows/) | Automation examples and workflow tools for business processes |
 | [AI Skills & Tooling](./Demo%20Templates/AI%20Skills%20%26%20Tooling/) | Reusable AI skills, utilities, and tools |
 | [AI Product Development](./Demo%20Templates/AI%20Product%20Development/) | AI product concepts and functional prototypes |
-| [Web Applications & SaaS](./Web%20Applications%20%26%20SaaS/) | Application demonstrations and SaaS prototypes |
-| [Marketing Intelligence & Business Automation](./Marketing%20Intelligence%20%26%20Business%20Automation/) | Tools for marketing intelligence and business automation |
+| [Web Applications & SaaS](./Demo%20Templates/Web%20Applications%20%26%20SaaS/) | Application demonstrations and SaaS prototypes |
+| [Marketing Intelligence & Business Automation](./Demo%20Templates/Marketing%20Intelligence%20%26%20Business%20Automation/) | Tools for marketing intelligence and business automation |
 
 ## Project standards
 

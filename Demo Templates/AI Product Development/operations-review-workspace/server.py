@@ -9,8 +9,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
-ROOT = Path(__file__).resolve().parents[2]
-HUB = ROOT / "AI Automation & Workflows" / "intake-operations-hub"
+ROOT = Path(__file__).resolve().parents[3]
+HUB = ROOT / "Demo Templates" / "AI Automation & Workflows" / "intake-operations-hub"
 sys.path.insert(0, str(HUB))
 from workflow_hub import run_intake_workflow
 from review_decisions import ReviewDecisionStore
