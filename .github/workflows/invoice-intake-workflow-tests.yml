@@ -1,0 +1,24 @@
+name: Invoice Intake Workflow Tests
+
+on:
+  push:
+    paths:
+      - "AI Automation & Workflows/invoice-intake-exception-routing/**"
+      - ".github/workflows/invoice-intake-workflow-tests.yml"
+  pull_request:
+    paths:
+      - "AI Automation & Workflows/invoice-intake-exception-routing/**"
+      - ".github/workflows/invoice-intake-workflow-tests.yml"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run invoice workflow tests
+        working-directory: AI Automation & Workflows/invoice-intake-exception-routing
+        run: python -m unittest discover -s tests -v

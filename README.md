@@ -27,6 +27,7 @@ The projects below are executable demonstrations. Each project README contains i
 | [Durable Workflow Runner](./AI%20Agents%20%26%20Agentic%20Systems/durable-workflow-runner/) | Checkpoints sequential workflows in SQLite and resumes incomplete steps with idempotency keys | DEMO |
 | [Agent Runtime Control Plane](./AI%20Agents%20%26%20Agentic%20Systems/agent-runtime-control-plane/) | Centralizes agent lifecycle, tool permissions, invocation caps, health reports, human escalation, and audit events | DEMO |
 | [Lead Intake Pipeline](./AI%20Automation%20%26%20Workflows/lead-intake-pipeline/) | CSV validation, normalization, duplicate detection, lead scoring, and routing | DEMO |
+| [Invoice Intake & Exception Routing](./AI%20Automation%20%26%20Workflows/invoice-intake-exception-routing/) | Validates synthetic invoices, detects duplicates, and routes missing information, policy exceptions, and approval thresholds | DEMO |
 | [CRM Lead Qualification & Routing](./demo-templates/crm-lead-qualification-routing/) | Configurable qualification rules, territory queues, follow-up dates, and human-review routing | DEMO |
 | [SME Customer Support Automation](./demo-templates/sme-customer-support-automation/) | Support request classification, knowledge-based draft responses, and human escalation | DEMO |
 | [SME Internal Knowledge Assistant](./demo-templates/sme-internal-knowledge-assistant/) | Role-filtered retrieval from approved sample sources, citations, and human escalation | DEMO |

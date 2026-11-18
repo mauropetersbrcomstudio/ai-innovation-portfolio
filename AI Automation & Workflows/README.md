@@ -7,3 +7,9 @@ This section focuses on practical ways to make repeatable business processes mor
 The [Lead Intake Pipeline](./lead-intake-pipeline/) is an executable example. It takes lead records from a CSV file, checks and standardizes the information, identifies duplicate email addresses, applies a transparent scoring rule, and separates records for priority follow-up, standard follow-up, or review.
 
 It runs locally with Python and sample data. It does not connect to a CRM or contact leads.
+
+## Invoice Intake & Exception Routing
+
+The [Invoice Intake & Exception Routing workflow](./invoice-intake-exception-routing/) validates synthetic invoice records, checks supplier/invoice duplicates, verifies dates and amounts, and routes complete records or exceptions to human review queues.
+
+**Status: DEMO** — deterministic rules only. It does not approve invoices, authorize payments, or connect to accounting systems.

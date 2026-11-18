@@ -32,6 +32,7 @@ The folder structure remains unchanged. The execution order below is a developme
 | AI Agents & Agentic Systems | Durable Workflow Runner | DEMO |
 | AI Agents & Agentic Systems | Agent Runtime Control Plane | DEMO |
 | AI Automation & Workflows | Lead Intake Pipeline | DEMO |
+| AI Automation & Workflows | Invoice Intake & Exception Routing | DEMO |
 | Demo Templates | CRM Lead Qualification & Routing | DEMO |
 | Demo Templates | SME Customer Support Automation | DEMO |
 | Demo Templates | SME Internal Knowledge Assistant | DEMO |
@@ -67,6 +68,7 @@ These are independently developed demonstrations. Their sample records are synth
 - [x] Governed execution integration combining policy validation, role/approval checks, tool allowlisting, and bounded orchestration.
 - [x] Durable sequential workflow runner with per-step SQLite checkpoints, JSONL observability, resume behavior, and idempotency-key contract.
 - [x] Agent Runtime Control Plane with lifecycle management, explicit tool authorization, invocation caps, health reporting, human escalation, and audit projection.
+- [x] Invoice Intake & Exception Routing workflow with decimal-safe threshold checks, batch duplicate detection, validation, and human-review routes.
 - [x] Dedicated GitHub Actions workflows for the new reusable components and integration demonstrations.
 - [x] Synthetic sample data, documented limitations, and explicit separation between demos and client engagements.
 
@@ -76,16 +78,14 @@ The new agent-platform components are deterministic reference implementations. T
 
 ## Next implementation priority
 
-**AI Automation & Workflows** is the next build priority. The category currently contains one working pipeline, while the repository now has a substantial set of reusable skills and agent foundations. The next addition should compose those existing components into a distinct, end-to-end business process rather than create another isolated utility.
-
-A suitable candidate is invoice intake and exception routing using synthetic records, deterministic validation, explicit human-review queues, and no payment or ERP actions. This remains a proposed next project, not an implemented capability.
+The AI Automation & Workflows category now contains two working pipelines. The next priority is to compose existing workflow components with the portfolio's SQLite state store, structured observability, and human-review patterns. Focus on resumable execution and traceable exception resolution rather than adding another standalone intake utility. Keep the work local and deterministic, with external actions simulated.
 
 ## Execution sequence and backlog
 
 ### 1. AI Automation & Workflows — next implementation priority
 
-- Build a second end-to-end workflow that composes existing skills, state, observability, and human-review patterns.
-- Choose a business process distinct from lead intake and procurement request triage.
+- Integrate the existing lead and invoice intake examples with reusable state and observability components where this improves traceability.
+- Demonstrate resumable processing and explicit human resolution of exception queues.
 - Test normal, incomplete, duplicate, conflicting, and failure scenarios.
 - Keep external actions simulated unless a real integration is separately configured and verified.
 
