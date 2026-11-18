@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +18,8 @@ def parse_nonnegative_number(value: str, field: str, row_number: int) -> float:
         number = float(value)
     except (TypeError, ValueError):
         raise ValueError(f"row {row_number}: {field} must be numeric") from None
+    if not math.isfinite(number):
+        raise ValueError(f"row {row_number}: {field} must be a finite number")
     if number < 0:
         raise ValueError(f"row {row_number}: {field} cannot be negative")
     return number
