@@ -3,11 +3,11 @@ name: Agent Policy Validator Tests
 on:
   push:
     paths:
-      - "AI Skills & Tooling/agent-policy-validator/**"
+      - "Demo Templates/AI Skills & Tooling/agent-policy-validator/**"
       - ".github/workflows/agent-policy-validator-tests.yml"
   pull_request:
     paths:
-      - "AI Skills & Tooling/agent-policy-validator/**"
+      - "Demo Templates/AI Skills & Tooling/agent-policy-validator/**"
       - ".github/workflows/agent-policy-validator-tests.yml"
   workflow_dispatch:
 
@@ -20,8 +20,8 @@ jobs:
         with:
           python-version: "3.11"
       - name: Run unit tests
-        working-directory: AI Skills & Tooling/agent-policy-validator
+        working-directory: Demo Templates/AI Skills & Tooling/agent-policy-validator
         run: python -m unittest discover -s tests -v
       - name: Validate sample policy
-        working-directory: AI Skills & Tooling/agent-policy-validator
+        working-directory: Demo Templates/AI Skills & Tooling/agent-policy-validator
         run: python validate_policy.py examples/policy.json
