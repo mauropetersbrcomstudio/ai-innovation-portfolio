@@ -3,38 +3,63 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A responsive SME KPI dashboard demo using synthetic business data.">
+  <meta name="description" content="An editorial-style SME KPI dashboard demo using synthetic business data.">
+  <meta name="theme-color" content="#f3f1eb">
   <title>SME KPI Workspace — Demo</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main class="shell">
-    <header class="topbar">
-      <div><p class="eyebrow">BUSINESS INTELLIGENCE / DEMO</p><h1>SME KPI Workspace</h1><p class="subhead">A clear view of business performance, without the spreadsheet sprawl.</p></div>
-      <label class="period-control">Reporting period
+    <header class="masthead">
+      <a class="wordmark" href="./" aria-label="SME KPI Workspace home"><span class="wordmark-mark">K</span><span>FIELDNOTES <i>/ BUSINESS INTELLIGENCE</i></span></a>
+      <span class="edition">INDEPENDENT DEMO <span class="status-dot"></span></span>
+    </header>
+
+    <section class="intro">
+      <div>
+        <p class="eyebrow">OPERATING PERFORMANCE <span> / 2026</span></p>
+        <h1>Clarity in the<br><em>numbers.</em></h1>
+        <p class="subhead">A focused view of the signals behind everyday business performance.</p>
+      </div>
+      <label class="period-control">REPORTING PERIOD
         <select id="period-filter" aria-label="Reporting period">
-          <option value="all">All periods</option>
-          <option value="q1">Q1 2026</option>
-          <option value="q2">Q2 2026</option>
+          <option value="all">All periods · Jan–Jun</option>
+          <option value="q1">Q1 · Jan–Mar</option>
+          <option value="q2">Q2 · Apr–Jun</option>
         </select>
       </label>
-    </header>
-    <div class="notice"><strong>DEMO DATA</strong><span>All figures are synthetic and do not represent a real business.</span></div>
-    <section class="kpis" aria-label="Key performance indicators">
-      <article class="kpi"><span class="kpi-label">Revenue</span><strong id="revenue">$0</strong><small id="revenue-note">Selected period</small></article>
-      <article class="kpi"><span class="kpi-label">Orders</span><strong id="orders">0</strong><small>Completed orders</small></article>
-      <article class="kpi"><span class="kpi-label">Average order value</span><strong id="aov">$0</strong><small>Revenue ÷ orders</small></article>
-      <article class="kpi"><span class="kpi-label">Conversion rate</span><strong id="conversion">0%</strong><small>Orders ÷ visits</small></article>
     </section>
-    <section class="panel chart-panel">
-      <div class="section-heading"><div><p class="eyebrow">PERFORMANCE</p><h2>Monthly revenue</h2></div><span class="unit">USD</span></div>
-      <div id="revenue-chart" class="chart" role="img" aria-label="Monthly revenue bar chart"></div>
+
+    <div class="notice" role="note"><span class="notice-mark">i</span><div><strong>DEMONSTRATION DATA</strong><span>All figures are synthetic examples, not actual company results.</span></div></div>
+
+    <section class="kpi-section" aria-label="Key performance indicators">
+      <div class="section-kicker"><span>01 / PERFORMANCE SNAPSHOT</span><span id="period-label">JANUARY — JUNE 2026</span></div>
+      <div class="kpis">
+        <article class="kpi kpi-primary"><span class="kpi-label">Revenue</span><strong id="revenue">$0</strong><small>Gross revenue · USD</small><span class="kpi-index">01</span></article>
+        <article class="kpi"><span class="kpi-label">Completed orders</span><strong id="orders">0</strong><small>Order volume</small><span class="kpi-index">02</span></article>
+        <article class="kpi"><span class="kpi-label">Average order value</span><strong id="aov">$0</strong><small>Revenue / orders</small><span class="kpi-index">03</span></article>
+        <article class="kpi"><span class="kpi-label">Conversion rate</span><strong id="conversion">0%</strong><small>Orders / visits</small><span class="kpi-index">04</span></article>
+      </div>
     </section>
-    <section class="panel table-panel">
-      <div class="section-heading"><div><p class="eyebrow">DETAIL</p><h2>Monthly breakdown</h2></div><span id="period-count" class="unit">0 months</span></div>
-      <div class="table-wrap"><table><thead><tr><th>Month</th><th>Revenue</th><th>Orders</th><th>Visits</th><th>Conversion</th></tr></thead><tbody id="monthly-rows"></tbody></table></div>
+
+    <section class="panel chart-panel" aria-labelledby="revenue-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">02 / REVENUE TREND</p><h2 id="revenue-title">Monthly revenue</h2><p class="panel-subtitle">Revenue by month · USD</p></div>
+        <span class="unit">2026 <span class="unit-line"></span></span>
+      </div>
+      <div id="revenue-chart" class="chart" role="list" aria-label="Monthly revenue bar chart"></div>
+      <div class="chart-foot"><span>Source: included synthetic dataset</span><span id="peak-month">Highest month: —</span></div>
     </section>
-    <footer><span>SME KPI Workspace · Independent product demo</span><span>Local, static, no external data connections</span></footer>
+
+    <section class="panel table-panel" aria-labelledby="breakdown-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">03 / PERIOD DETAIL</p><h2 id="breakdown-title">Monthly breakdown</h2></div>
+        <span id="period-count" class="unit">0 MONTHS</span>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th scope="col">Month</th><th scope="col">Revenue</th><th scope="col">Orders</th><th scope="col">Visits</th><th scope="col">Conversion</th></tr></thead><tbody id="monthly-rows"></tbody></table></div>
+    </section>
+
+    <footer><span>SME KPI WORKSPACE <b>·</b> PRODUCT DEMONSTRATION</span><span>LOCAL EXPERIENCE / NO LIVE DATA CONNECTION</span></footer>
   </main>
   <script type="module" src="app.js"></script>
 </body>
