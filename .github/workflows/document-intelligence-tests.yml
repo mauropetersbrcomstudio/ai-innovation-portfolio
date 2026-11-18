@@ -3,11 +3,11 @@ name: Document Intelligence Tests
 on:
   push:
     paths:
-      - "AI Skills & Tooling/document-intelligence/**"
+      - "Demo Templates/AI Skills & Tooling/document-intelligence/**"
       - ".github/workflows/document-intelligence-tests.yml"
   pull_request:
     paths:
-      - "AI Skills & Tooling/document-intelligence/**"
+      - "Demo Templates/AI Skills & Tooling/document-intelligence/**"
       - ".github/workflows/document-intelligence-tests.yml"
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: AI Skills & Tooling/document-intelligence
+        working-directory: Demo Templates/AI Skills & Tooling/document-intelligence
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
