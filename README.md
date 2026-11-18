@@ -36,6 +36,10 @@ The included sample records are synthetic. These demonstrations do not imply cli
 | [Web Applications & SaaS](./Web%20Applications%20%26%20SaaS/) | Application demonstrations and SaaS prototypes |
 | [Marketing Intelligence & Business Automation](./Marketing%20Intelligence%20%26%20Business%20Automation/) | Tools for marketing intelligence and business automation |
 
+## Project standards
+
+Use the [Project README Template](./PROJECT-README-TEMPLATE.md) when adding a project and follow the [Project Entry Criteria](./PROJECT-ENTRY-CRITERIA.md) before publishing. These standards keep project descriptions, status labels, execution instructions, evidence, and limitations consistent.
+
 ## Getting started
 
 1. Open a demo's README from the links above.
