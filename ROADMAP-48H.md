@@ -44,11 +44,11 @@ These are independently developed demonstrations. Their sample records are synth
 - [x] Reusable skills for brief-to-task conversion, CSV data quality, document text extraction, JSON contract validation, CSV normalization, and lexical knowledge retrieval.
 - [x] Agent foundations for tool allowlisting, argument contracts, approval gates, bounded orchestration, multi-agent handoffs, scenario evaluation, SQLite state persistence, structured observability, recovery/compensation, and declarative policy validation.
 - [x] Agent demonstrations for bounded support workflows and multi-agent request review.
-- [x] Integrated reference demo connecting orchestration, persistent state, and structured event logging.
+- [x] Integrated reference demo connecting orchestration, persistent state, and structured event logging.\n- [x] Governed execution integration combining policy validation, role/approval checks, tool allowlisting, and bounded orchestration.\n- [x] Durable sequential workflow runner with per-step SQLite checkpoints, JSONL observability, resume behavior, and idempotency-key contract.
 - [x] Dedicated GitHub Actions workflows for the new reusable components and integration demonstrations.
 - [x] Synthetic sample data, documented limitations, and explicit separation between demos and client engagements.
 
-The new agent-platform components are deterministic reference implementations. They do not establish production-grade identity, authorization, tamper-proof auditing, distributed execution, or autonomous LLM behavior.
+The durable runner reduces loss of workflow progress across process restarts, but does not guarantee exactly-once external side effects. Handlers must enforce the supplied idempotency key at their destination.\n\nThe new agent-platform components are deterministic reference implementations. They do not establish production-grade identity, authorization, tamper-proof auditing, distributed execution, or autonomous LLM behavior.
 
 ## Execution sequence and backlog
 
