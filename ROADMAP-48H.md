@@ -1,6 +1,8 @@
 # Portfolio Delivery Roadmap & Status
 
-**Objective:** build a credible, navigable AI Innovation Portfolio in the central GitHub repository. The repository and its agreed folders are the only deliverable. No separate website, homepage, domain, hosting setup, or web deployment is in scope.
+**Objective:** build a reusable foundation of skills, tools, agents, workflows, and product components, then assemble them into credible client-specific demonstrations. The central GitHub repository and its eight agreed folders remain the only deliverable. No separate website, homepage, domain, hosting setup, or web deployment is in scope.
+
+**Strategy:** [Portfolio Development Strategy v2.0](./PORTFOLIO-DEVELOPMENT-STRATEGY-v2.md).
 
 ## Repository structure
 
@@ -15,7 +17,7 @@ The repository contains the eight agreed areas:
 7. Web Applications & SaaS
 8. Marketing Intelligence & Business Automation
 
-Each category has a README describing its purpose and linking to its current contents. The root README is the repository-level index for working demonstrations and category navigation.
+The folder structure remains unchanged. The execution order below is a development priority, not a change to the repository taxonomy.
 
 ## Current working demonstrations
 
@@ -25,6 +27,8 @@ Each category has a README describing its purpose and linking to its current con
 | AI Agents & Agentic Systems | SME Procurement Request Triage Agent | DEMO |
 | AI Automation & Workflows | Lead Intake Pipeline | DEMO |
 | Demo Templates | SME Customer Support Automation | DEMO |
+| Demo Templates | SME Internal Knowledge Assistant | DEMO |
+| Demo Templates | CRM Lead Qualification & Routing | DEMO |
 | AI Skills & Tooling | Brief-to-Task Skill | DEMO |
 | AI Product Development | SME Workflow Opportunity Mapper | DEMO |
 | Web Applications & SaaS | SME KPI Workspace | DEMO |
@@ -35,44 +39,80 @@ These are independently developed demonstrations. Their sample records are synth
 ## Completed foundation
 
 - [x] One central public GitHub repository.
-- [x] Eight agreed portfolio categories.
-- [x] Root README with category navigation and a working-demo index.
-- [x] Category READMEs with scope and project links.
-- [x] Project READMEs documenting status, setup, use, and limitations.
-- [x] Executable demonstrations across the non-client categories.
+- [x] Eight agreed portfolio categories and category navigation.
+- [x] Root README with a working-demo index and portfolio integrity disclosures.
+- [x] Project README template and project entry criteria.
+- [x] Executable demonstrations across multiple non-client categories.
 - [x] Python unit tests for command-line demonstrations.
-- [x] Automated portfolio quality workflow for Python test discovery.
-- [x] Dedicated Node.js test workflow for the SME KPI Workspace.
+- [x] Portfolio Quality Gate for Python test discovery.
+- [x] Dedicated automated workflows for selected projects, including browser-side JavaScript tests.
 - [x] Synthetic sample data and explicit boundaries for demonstrations.
-- [x] No separate portfolio website or deployment in the current scope.
+- [x] Foundation First → Client Demos strategy documented.
+
+## Execution sequence and backlog
+
+### 1. AI Skills & Tooling — highest priority
+
+- Expand the reusable skill library beyond Brief-to-Task.
+- Prioritize narrow capabilities that can support multiple business use cases.
+- Define shared input/output conventions, configuration, error behavior, and tests.
+- Identify overlap before creating new tools.
+
+### 2. AI Agents & Agentic Systems
+
+- Build specialized agents on top of documented skills and tools.
+- Define role, permitted actions, tool boundaries, human escalation, and traceability.
+- Keep deterministic demos accurately described; do not imply LLM reasoning or autonomy where absent.
+
+### 3. AI Automation & Workflows
+
+- Compose skills and agents into repeatable business processes.
+- Add documented sequencing, handoffs, exception handling, retries, and approval points as appropriate.
+- Keep external actions simulated unless a real integration is configured and verified.
+
+### 4. AI Product Development
+
+- Turn reusable capabilities into coherent product modules.
+- Document user journeys, configuration, data models, interfaces, and product limitations.
+
+### 5. Web Applications & SaaS
+
+- Provide practical interfaces for selected reusable capabilities.
+- Prioritize usability, accessibility, responsive behavior, and reproducible local operation.
+
+### 6. Marketing Intelligence & Business Automation
+
+- Extend domain-specific capabilities using the shared foundation.
+- Prefer reusable analytical and operational components over isolated one-off examples.
+
+### 7. Demo Templates
+
+- Package tested combinations of skills, tools, agents, workflows, and interfaces.
+- Make templates configurable and explicit about assumptions and prerequisites.
+
+### 8. Client Demos — after the foundation
+
+- Assemble reusable components for specific client contexts.
+- Require a user-provided case brief, publication authorization, and evidence for all factual claims.
+- Clearly distinguish real engagement material from independently developed illustrative demonstrations.
 
 ## Quality gates
 
-- The Portfolio Quality Gate discovers and runs Python test suites in project folders.
-- The SME KPI Workspace has a separate Node.js 20 test workflow.
-- Project-specific workflows also run tests and, where configured, execute sample demonstrations.
-- A project is labelled **DEMO** only when a limited working implementation and documented scope are present.
-- A passing automated test suite is evidence for the tested behavior only; it does not establish production readiness.
+- Every component documents purpose, scope, inputs/outputs, dependencies, run instructions, tests, limitations, and reuse guidance as applicable.
+- Permissions follow least-privilege principles; uncertain or unsafe actions are escalated.
+- Automated tests cover the behaviors they claim to verify.
+- A passing test suite does not establish production readiness.
+- Status labels (CONCEPT, DEMO, PROTOTYPE, IMPLEMENTED) must match observable evidence.
+- Root and category indexes are updated when projects are added or materially changed.
 
-## Remaining priorities
+## Client demo prerequisites
 
-1. **Expand Demo Templates.** Add a second reusable template, with the Internal Knowledge Assistant as the next candidate. Keep the first version focused on approved-source retrieval, access boundaries, citations, and human escalation.
-2. **Deepen selected demonstrations.** Add edge-case coverage, clearer sample outputs, and cross-project consistency where this improves the usefulness of the portfolio.
-3. **Populate Client Demos when source material is supplied.** Add only real engagements with publication authorization. Do not invent client identities, project details, outcomes, metrics, or testimonials.
-4. **Review the portfolio periodically.** Check links, commands, status labels, test workflows, and disclosure language after substantive changes.
-
-## Project status definitions
-
-- **CONCEPT** — an idea and proposed approach; no working implementation.
-- **DEMO** — a limited working example of a specific capability.
-- **PROTOTYPE** — an implemented proof of concept that is not production-ready.
-- **IMPLEMENTED** — running in a defined environment, with scope and evidence documented.
+Client demos remain intentionally dependent on source material and authorization. Do not invent client identities, projects, outcomes, metrics, testimonials, logos, or past deliveries. Do not publish confidential information, credentials, or personal records.
 
 ## Non-negotiable boundaries
 
 - Preserve existing repository work; do not overwrite unrelated projects.
 - Use synthetic data or data explicitly authorized for publication and testing.
-- Do not publish secrets, credentials, private customer records, or confidential client material.
 - Do not represent independent work as client work.
 - Do not claim results, integrations, tests, or production readiness without evidence.
-- Keep the deliverable GitHub-only: no separate website, domain, hosting setup, or web deployment.
+- Keep the deliverable GitHub-only: no separate website, domain, hosting setup, paid service, or web deployment.
