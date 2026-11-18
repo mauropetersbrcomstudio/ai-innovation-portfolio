@@ -11,3 +11,8 @@ The [Campaign Performance Analyzer](./campaign-performance-analyzer/) is an exec
 The [Marketing Analytics Pipeline](./marketing-analytics-pipeline/) composes the reusable CSV Data Quality Profiler with the Campaign Performance Analyzer. It runs a structural preflight, blocks review-level files by default, and proceeds to metrics only when the preflight passes or an operator explicitly allows review-level input.
 
 Both demonstrations use synthetic sample data and transparent arithmetic. They do not connect to advertising platforms, verify attribution, or claim causal performance results.
+
+
+## Campaign Launch QA & UTM Builder
+
+The [Campaign Launch QA & UTM Builder](./campaign-launch-qa/) checks campaign metadata, date ranges, budgets, duplicate campaign IDs, destination URL structure, and UTM collisions. It generates tracking URLs and separates approved rows from exceptions without changing the source file. It does not publish campaigns or verify live tracking.
