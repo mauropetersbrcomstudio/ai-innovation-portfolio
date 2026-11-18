@@ -1,0 +1,8 @@
+{
+  "status": "COMPLETED",
+  "output_equals": {"queue": "support"},
+  "required_agents": ["intake", "policy_review"],
+  "forbidden_agents": ["external_publisher"],
+  "required_events": ["AGENT_HANDOFF"],
+  "forbidden_events": ["EXTERNAL_ACTION"]
+}
