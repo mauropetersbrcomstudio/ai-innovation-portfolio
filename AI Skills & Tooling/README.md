@@ -25,3 +25,9 @@ The [Document Intelligence skill](./document-intelligence/) extracts headings, s
 The [JSON Contract Validator](./json-contract-validator/) checks JSON data against a documented schema subset, including types, required fields, additional properties, nested arrays, enums, and basic length/range constraints. It is designed for local input/output contract checks in reusable tools and agent workflows.
 
 **Status: DEMO** — Python standard-library implementation; not a full JSON Schema engine.
+
+## Config-Driven CSV Data Normalization
+
+The [CSV Data Normalization skill](./data-normalization/) applies explicit, field-level CSV transformations: trimming, column renaming, case conversion, null-marker handling, and date parsing using configured formats. It writes a separate output file and a change report; it does not infer mappings or modify the source.
+
+**Status: DEMO** — local Python utility with unit tests; CSV only.
