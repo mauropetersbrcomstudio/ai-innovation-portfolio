@@ -1,33 +1,38 @@
 # SME Operations Assistant
 
-<sub>**Status: DEMO** · Deterministic baseline · No external integrations</sub>
+**Status: DEMO**
 
-A small, executable demonstration of a bounded operations assistant for a fictional SME. It classifies an incoming request, checks a strict action allowlist, and returns a traceable proposal. Actions are simulated only.
+A small Python demonstration of an AI-agent pattern for everyday SME operations. It takes a short request, identifies whether it relates to billing, an order, or customer support, checks the proposed action against an allowlist, and returns a result that can be reviewed.
 
-## What it demonstrates
+The demo is deliberately limited: it uses keyword matching rather than a language model, and it simulates actions instead of connecting to live business systems.
 
-- Request classification for billing, order-status, and support triage intents.
-- Explicit allowlist validation.
-- Escalation when intent is ambiguous or unsupported.
-- Rejection of actions outside the allowlist.
-- Structured output with an execution trace.
-- No external side effects.
+## What you can try
 
-## Run
+- Ask about an invoice or payment.
+- Ask for an order or delivery update.
+- Raise a support issue.
+- Submit an unclear request and see it escalated for human review.
+- Request an action that is not allowed and see it rejected.
 
-Requires Python 3.10 or newer. No third-party packages are required.
+Every result includes a trace of the checks performed. A successful classification produces a proposal, not a completed business action.
+
+## Run it
+
+Requires Python 3.10 or newer. No third-party packages are needed.
+
+From this directory, run:
 
 ```bash
 python agent.py
 ```
 
-Run the unit tests from this directory:
+To run the tests:
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-## Example
+## Use it from Python
 
 ```python
 from agent import handle_request
@@ -36,20 +41,8 @@ result = handle_request("Can you check my invoice?")
 print(result.to_dict())
 ```
 
-The result is a proposal, not a completed business action.
+## Boundaries
 
-## Safety and limitations
+The action catalogue is small and hard-coded. Requests that are unclear or match more than one intent are escalated. No customer records, credentials, APIs, or live company data are used, and the program does not send messages or modify business records.
 
-- The classifier is keyword-based, not an LLM.
-- Multiple detected intents are treated as ambiguous and escalated.
-- The action catalogue is intentionally small and hard-coded.
-- No customer records, credentials, APIs, or real company data are used.
-- This demo does not claim a client engagement, deployment, endorsement, or measured business outcome.
-
-## Next increments
-
-1. Add schema validation and multilingual test coverage.
-2. Add configurable synthetic business data.
-3. Add a human-review interface.
-4. Add adapter interfaces behind explicit permission boundaries.
-5. Add integration and security tests before any external connection.
+This is a technical demonstration, not a deployed client solution. A real implementation would need suitable business-system integrations, identity and access controls, human-review paths, and further testing before handling operational requests.
