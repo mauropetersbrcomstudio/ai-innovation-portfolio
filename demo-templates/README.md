@@ -12,7 +12,8 @@ Reusable starting points for presenting AI solutions in the context of common SM
 
 Templates are starting points, not ready-made solutions for every company. Data, business rules, integrations, and approval steps need to be adapted to the organization and the intended use. Examples use synthetic data unless a different source is explicitly authorized.
 
-## Available template
+## Available templates
 
+- [CRM Lead Qualification & Routing](./crm-lead-qualification-routing/) — configurable rule-based qualification, territory team queues, follow-up due dates, duplicate checks, and human-review handling. Local Python demo; no live CRM integration.
 - [SME Customer Support Automation](./sme-customer-support-automation/) — a reusable support workflow with request classification, response-draft guidance, and human escalation. A small local implementation is included; it does not send messages or connect to live systems.
 - [SME Internal Knowledge Assistant](./sme-internal-knowledge-assistant/) — a local approved-source retrieval demo with role filtering, source citations, and escalation. It does not use an LLM or authenticate users.
