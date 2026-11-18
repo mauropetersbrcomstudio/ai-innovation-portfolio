@@ -42,7 +42,13 @@ test("unclosed quoted fields are rejected", () => {
 });
 
 test("summarizes channel ratios from channel totals", () => {
-  const rows = parseCsv("campaign,channel,spend,impressions,clicks,conversions,revenue\\nA,Search,100,1000,100,10,200\\nB,Search,300,9000,90,9,600\\nC,Social,100,1000,100,10,500\\n");
+  const source = [
+    "campaign,channel,spend,impressions,clicks,conversions,revenue",
+    "A,Search,100,1000,100,10,200",
+    "B,Search,300,9000,90,9,600",
+    "C,Social,100,1000,100,10,500"
+  ].join(String.fromCharCode(10));
+  const rows = parseCsv(source);
   const result = analyzeRows(rows);
   const channels = summarizeByChannel(result.valid);
   const search = channels.find(item => item.channel === "Search");
