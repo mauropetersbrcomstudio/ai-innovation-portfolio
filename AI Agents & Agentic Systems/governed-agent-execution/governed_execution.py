@@ -23,7 +23,7 @@ def run_governed_execution(
     policy: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Validate a policy, then execute one allowlisted, approval-gated simulated action."""
-    manifest = policy or {
+    manifest = policy if policy is not None else {
         "agents": [{
             "name": "support-review-agent",
             "risk": "MEDIUM",
