@@ -20,6 +20,29 @@ class ObservabilityTests(unittest.TestCase):
         self.assertEqual(cleaned["items"][0]["refresh-token"], "[REDACTED]")
         self.assertEqual(cleaned["nested"]["safe"], 3)
 
+    def test_redaction_normalizes_common_sensitive_key_variants(self):
+        sensitive = {
+            "apiKey": "one",
+            "API Key": "two",
+            "X-API-Key": "three",
+            "clientSecret": "four",
+            "private.key": "five",
+            "sessionToken": "six",
+            "Set-Cookie": "seven",
+            "JWT": "eight",
+            "auth": "nine",
+        }
+        safe = {"tokenizer": "keep", "secretary": "keep", "monkey": "keep"}
+
+        cleaned = redact({**sensitive, **safe})
+
+        for key in sensitive:
+            with self.subTest(key=key):
+                self.assertEqual(cleaned[key], "[REDACTED]")
+        for key, value in safe.items():
+            with self.subTest(key=key):
+                self.assertEqual(cleaned[key], value)
+
     def test_emit_persists_structured_event(self):
         with tempfile.TemporaryDirectory() as tmp:
             logger = JsonlEventLogger(Path(tmp) / "logs" / "events.jsonl")
@@ -44,6 +67,12 @@ class ObservabilityTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 logger.emit("EVENT", level="TRACE")
 
+    def test_non_string_level_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            logger = JsonlEventLogger(Path(tmp) / "events.jsonl")
+            with self.assertRaisesRegex(ValueError, "level must be a string"):
+                logger.emit("EVENT", level=None)
+
     def test_invalid_event_rejected(self):
         with tempfile.TemporaryDirectory() as tmp:
             logger = JsonlEventLogger(Path(tmp) / "events.jsonl")
@@ -57,7 +86,7 @@ class ObservabilityTests(unittest.TestCase):
     def test_corrupt_jsonl_is_reported(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "events.jsonl"
-            path.write_text("{broken}\n", encoding="utf-8")
+            path.write_text("{broken}\\n", encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "line 1"):
                 JsonlEventLogger(path).read_events()
 
