@@ -3,11 +3,11 @@ name: Campaign Performance Analyzer Tests
 on:
   push:
     paths:
-      - "Marketing Intelligence & Business Automation/campaign-performance-analyzer/**"
+      - "Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer/**"
       - ".github/workflows/campaign-performance-analyzer-tests.yml"
   pull_request:
     paths:
-      - "Marketing Intelligence & Business Automation/campaign-performance-analyzer/**"
+      - "Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer/**"
       - ".github/workflows/campaign-performance-analyzer-tests.yml"
   workflow_dispatch:
 
@@ -23,10 +23,10 @@ jobs:
         with:
           python-version: "3.12"
       - name: Run Python analyzer tests
-        working-directory: Marketing Intelligence & Business Automation/campaign-performance-analyzer
+        working-directory: Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer
         run: python -m unittest discover -s tests -v
       - name: Run sample CSV through the command-line workflow
-        working-directory: Marketing Intelligence & Business Automation/campaign-performance-analyzer
+        working-directory: Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer
         run: |
           python analyzer.py --input sample_campaigns.csv --output-dir output
           test -s output/campaign_metrics.csv
@@ -40,5 +40,5 @@ jobs:
         with:
           node-version: "20"
       - name: Run browser dashboard logic tests
-        working-directory: Marketing Intelligence & Business Automation/campaign-performance-analyzer
+        working-directory: Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer
         run: node --test tests/dashboard-logic.test.js
