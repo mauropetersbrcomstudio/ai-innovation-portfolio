@@ -29,6 +29,7 @@ The projects below are executable demonstrations. Each project README contains i
 | [Document Intelligence — Plain-Text Extraction](./AI%20Skills%20%26%20Tooling/document-intelligence/) | Traceable extraction of headings, key/value pairs, dates, contact details, and currency mentions | DEMO |
 | [JSON Contract Validator](./AI%20Skills%20%26%20Tooling/json-contract-validator/) | Validate JSON structures against a documented schema subset | DEMO |
 | [CSV Data Normalization](./AI%20Skills%20%26%20Tooling/data-normalization/) | Apply explicit, configurable CSV field transformations and report changed cells | DEMO |
+| [Knowledge Retrieval](./AI%20Skills%20%26%20Tooling/knowledge-retrieval/) | Role-filtered lexical retrieval with source excerpts, traceability, and no-match escalation | DEMO |
 | [SME Workflow Opportunity Mapper](./AI%20Product%20Development/sme-workflow-opportunity-mapper/) | Transparent rubric to prioritize workflows for further discovery | DEMO |
 | [SME KPI Workspace](./Web%20Applications%20%26%20SaaS/sme-kpi-workspace/) | Responsive browser dashboard with KPI calculations and period filtering | DEMO |
 | [Campaign Performance Analyzer](./Marketing%20Intelligence%20%26%20Business%20Automation/campaign-performance-analyzer/) | CSV validation and calculation of CTR, conversion rate, CPC, CPA, and ROAS | DEMO |
