@@ -44,10 +44,10 @@ class CampaignAnalyzerTests(unittest.TestCase):
             with self.subTest(value=value):
                 with tempfile.TemporaryDirectory() as tmp:
                     path = Path(tmp) / "input.csv"
-                    path.write_text(
-                        "campaign,channel,spend,impressions,clicks,conversions,revenue\\n"
-                        f"Campaign,Search,{value},100,10,1,20\\n", encoding="utf-8"
-                    )
+                    with path.open("w", newline="", encoding="utf-8") as handle:
+                        writer = csv.writer(handle)
+                        writer.writerow(["campaign", "channel", "spend", "impressions", "clicks", "conversions", "revenue"])
+                        writer.writerow(["Campaign", "Search", value, "100", "10", "1", "20"])
                     valid, errors = load_campaigns(path)
                     self.assertEqual(valid, [])
                     self.assertEqual(len(errors), 1)
