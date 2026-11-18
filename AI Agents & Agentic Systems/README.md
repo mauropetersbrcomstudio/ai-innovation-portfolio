@@ -1,12 +1,9 @@
 # AI Agents & Agentic Systems
 
-This category contains demonstrators for agents that plan bounded tasks, use explicitly defined tools, and return traceable outputs.
+This section explores AI agents that can interpret a request, decide what to do next, and use tools within clearly defined boundaries. The examples focus on practical agent behavior: what the agent can handle, when it should ask for help, and how its decisions can be reviewed.
 
-## Initial demonstration specification: SME Operations Assistant
-**Goal:** classify an incoming operational request, select from a small allowlisted set of actions, and produce an auditable action plan.
+## SME Operations Assistant
 
-**Safety boundaries:** no external side effects in the baseline demo; tool calls are simulated; inputs are treated as untrusted; uncertain requests are escalated rather than guessed.
+The SME Operations Assistant is an executable demonstration in this category. It classifies a small set of business requests, checks whether a proposed action is permitted, and returns a traceable proposal. The actions are simulated; the demo does not connect to business systems or change real records.
 
-**Acceptance checks:** valid request classification, rejection of unknown actions, structured output, and traceable execution steps.
-
-**Status:** DEMO specification documented; executable implementation pending.
+See the [SME Operations Assistant](./sme-operations-assistant/) for the code, usage instructions, and current limitations.
