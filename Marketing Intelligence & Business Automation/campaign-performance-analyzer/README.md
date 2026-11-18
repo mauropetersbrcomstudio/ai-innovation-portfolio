@@ -14,6 +14,12 @@ A local Python tool that reads campaign-level CSV data, validates basic count re
 
 If a denominator is zero, the corresponding metric is written as `null` rather than an invented zero rate. Aggregate rates are calculated from aggregate totals, not by averaging campaign-level rates.
 
+## Interactive dashboard
+
+Open `dashboard.html` in a modern browser, choose a CSV file, and inspect the campaign summary, ROAS comparison, and detailed metrics. The dashboard processes the selected file locally in the browser; it does not upload the data. Download `sample_campaigns.csv` to try the included synthetic records.
+
+The browser dashboard applies the same metric definitions and basic row checks described below. It is an independent front-end demonstration; the Python CLI remains available for repeatable file-based reporting.
+
 ## Run
 
 Requires Python 3.10 or newer; no third-party dependencies.
@@ -21,6 +27,7 @@ Requires Python 3.10 or newer; no third-party dependencies.
 ```bash
 python analyzer.py --input sample_campaigns.csv --output-dir output
 python -m unittest discover -s tests -v
+node --test tests/dashboard-logic.test.js
 ```
 
 ## Outputs
