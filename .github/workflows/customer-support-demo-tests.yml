@@ -3,11 +3,11 @@ name: Customer Support Demo Tests
 on:
   push:
     paths:
-      - "demo-templates/sme-customer-support-automation/**"
+      - "Demo Templates/Demo Templates/AI Automation & Workflows/sme-customer-support-automation/**"
       - ".github/workflows/customer-support-demo-tests.yml"
   pull_request:
     paths:
-      - "demo-templates/sme-customer-support-automation/**"
+      - "Demo Templates/Demo Templates/AI Automation & Workflows/sme-customer-support-automation/**"
       - ".github/workflows/customer-support-demo-tests.yml"
   workflow_dispatch:
 
