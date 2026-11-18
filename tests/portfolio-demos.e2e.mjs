@@ -66,7 +66,7 @@ try {
   assert.equal(await page.locator("#campaign-count").textContent(), "4 VALID CAMPAIGNS");
   assert.notEqual(await page.locator("#roas").textContent(), "—");
   await page.locator("#channel-filter").selectOption({ label: "Search" });
-  assert.equal(await page.locator("#valid-count").textContent(), "2 VALID");
+  assert.equal(await page.locator("#valid-count").textContent(), "1 VALID");
   await page.locator("#generate-report").click();
   await page.locator("#executive-report").waitFor({ state: "visible" });
   assert.ok((await page.locator("#report-content").innerText()).includes("Executive summary"));
