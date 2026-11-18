@@ -18,11 +18,14 @@ async function assertNoHorizontalOverflow(page, label) {
           right: Math.round(rect.right),
           width: Math.round(rect.width),
           scrollWidth: element.scrollWidth,
-          clientWidth: element.clientWidth
+          clientWidth: element.clientWidth,
+          parentClass: element.parentElement?.className || "",
+          parentOverflowX: element.parentElement ? getComputedStyle(element.parentElement).overflowX : ""
         };
       })
       .filter(item => item.right > document.documentElement.clientWidth + 1 || item.left < -1)
-      .slice(0, 12)
+      .sort((a, b) => b.right - a.right)
+      .slice(0, 20)
   }));
   assert.ok(
     dimensions.document <= dimensions.viewport + 1,
