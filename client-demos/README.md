@@ -1,22 +1,16 @@
 # Client Demos
 
-A selection of projects carried out for real clients. This section is reserved for work from actual client engagements, rather than fictional business scenarios or internally developed demo templates.
+This section is reserved for selected projects carried out for real clients. It is intended to show the business context, the work undertaken, and the solutions or deliverables produced during actual client engagements.
 
-Each project should give a clear account of the business context, the challenge addressed, the work undertaken, and the solution or deliverable produced. The level of detail will depend on what can be shared about the engagement.
+Each case will describe only the parts of the engagement that can be shared. Depending on the project, that may include:
 
-## Project information
-
-Where publication is permitted, an individual case may include:
-
-- Client and industry context, with identifying details only when authorized.
-- The business challenge and project objectives.
-- Our role, scope of work, and approach.
+- The client's industry and business context.
+- The challenge or objective.
+- The scope of work and our role.
 - The solution, deliverables, or implementation.
-- Relevant technologies and methods.
-- Outcomes or lessons, using only information that can be substantiated and shared.
+- The technologies and methods used.
+- Outcomes or lessons that can be substantiated and disclosed.
 
-## Confidentiality
+Client names, logos, documents, data, and other identifying details must only be published when the appropriate authorization is in place. Where an engagement is confidential, the case should be described only at a level the client permits. No outcomes, metrics, testimonials, or project details should be invented.
 
-Client names, logos, documents, data, and other identifying details must not be published without the appropriate authorization. Where an engagement is confidential, describe it only at a level the client permits. Do not invent outcomes, metrics, testimonials, or project details.
-
-This section contains real client work. Independently developed demonstrations, reusable templates, tools, and prototypes belong in their respective portfolio categories.
+Independently developed demonstrations, templates, tools, and prototypes belong in their respective portfolio categories.
