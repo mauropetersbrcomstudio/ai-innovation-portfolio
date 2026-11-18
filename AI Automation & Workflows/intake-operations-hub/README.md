@@ -2,44 +2,47 @@
 
 **Status: DEMO**
 
-A deterministic integration demonstration composing the existing Lead Intake Pipeline and Invoice Intake & Exception Routing workflow with the portfolio's SQLite durable runner and structured event logging. It reuses existing business rules instead of duplicating them.
+A deterministic integration demonstration composing the existing Lead Intake Pipeline and Invoice Intake & Exception Routing workflow with the portfolio's SQLite durable runner, structured event logging, and durable human-review decision capture.
 
 ## What it demonstrates
 
-1. Lead validation, normalization, duplicate detection, scoring, and routing through the existing lead implementation.
-2. Invoice validation, duplicate detection, threshold checks, and exception routing through the existing invoice implementation.
-3. SQLite workflow state and per-step checkpoints.
-4. Structured execution events in the SQLite event table and JSONL log.
-5. A consolidated human-review queue from lead exceptions and invoice outcomes.
-6. Resume of completed workflows without repeating completed steps; changed input/configuration is rejected by the persisted plan fingerprint.
+1. Reuses existing lead and invoice validation/routing logic.
+2. Persists per-step workflow checkpoints in SQLite and structured events in SQLite/JSONL.
+3. Prepares a consolidated human-review queue with stable item identifiers.
+4. Records one human decision per review item, including reviewer identifier, outcome, reason, and timestamp, in SQLite.
+5. Writes a corresponding `HUMAN_REVIEW_DECISION_RECORDED` workflow event in the same database transaction as the decision.
+6. Rejects unknown review items, invalid outcomes, empty reasons, and duplicate decisions.
 
-## Run
+## Run intake
 
-Requires Python 3.10+ and the standard library only. Prepare two JSON files, each containing an array. Lead objects use the fields documented by the Lead Intake Pipeline; invoice objects use the fields documented by Invoice Intake & Exception Routing.
+Requires Python 3.10+ and the standard library only. Prepare two JSON files, each containing an array.
 
     python workflow_hub.py --leads leads.json --invoices invoices.json --workflow-id intake-batch-001
 
 Optional flags: --database, --events, and --approval-threshold.
 
-Run tests:
+## Record a human decision
+
+The `reviewer-id` must be supplied by an authenticated host application. The CLI does not authenticate users or verify reviewer identity.
+
+    python review_cli.py --workflow-id intake-batch-001 --item-id lead_intake:2 --reviewer-id reviewer-123 --outcome REQUESTED_INFORMATION --reason "Confirm company details"
+
+Allowed outcomes:
+- `ACCEPTED_FOR_NEXT_STAGE`
+- `REJECTED`
+- `REQUESTED_INFORMATION`
+
+A decision is a review record only. Accepting an invoice for the next stage does not authorize payment, create an accounting entry, or approve a bank transfer.
+
+## Tests
 
     python -m unittest discover -s tests -v
 
-## Human review boundary
+## Trust and operational boundaries
 
-The hub prepares a consolidated queue; it does not approve or reject a lead, approve an invoice, authorize payment, contact a lead or supplier, or write to a CRM/ERP. A queue item is a request for a human decision, not a decision itself. Human decision capture and authenticated reviewer identity are outside this demo's current scope.
-
-## Reliability and security limitations
-
-- The durable runner checkpoints each step and uses a stable idempotency key. Current handlers are deterministic local transformations with no external side effects.
-- If handlers later gain external side effects, the destination must enforce the idempotency key to address the documented crash window.
-- SQLite and JSONL files are local; no multi-host coordination, encryption, backup automation, or tamper-evident audit service is provided.
-- Workflow inputs are included in persisted state. Do not use personal, confidential, or regulated records.
+- Reviewer identity is a host assertion; this demo has no identity provider, login, session validation, role authorization, or cryptographic proof.
+- Decision rows are append-only through the exposed API and duplicate decisions are blocked, but a database administrator or process with direct write access can alter the SQLite file. This is not tamper-proof audit storage.
+- No multi-reviewer quorum, decision reversal, signatures, notifications, or external system actions are implemented.
+- Workflow inputs are stored in SQLite. Use synthetic or explicitly authorized data only.
 - No CRM, accounting, email, payment, or external API integration is performed.
-- This is a reference demo, not a production workflow service or autonomous AI agent.
-
-## Reused components
-
-- Lead Intake Pipeline
-- Invoice Intake & Exception Routing
-- Durable Workflow Runner
+- This remains a deterministic DEMO, not production workflow infrastructure.
