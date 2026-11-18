@@ -1,0 +1,28 @@
+{
+  "title": "Launch a customer onboarding improvement",
+  "objective": "Reduce friction in the first 30 days after a customer signs up.",
+  "context": "The current onboarding journey uses email and manual follow-up. This sample is fictional.",
+  "deliverables": [
+    "Map the current onboarding journey",
+    "Propose an improved onboarding sequence",
+    "Define a measurement plan"
+  ],
+  "constraints": [
+    "Use existing customer communication channels",
+    "Do not include personal customer data in the demonstration"
+  ],
+  "stakeholders": [
+    "Customer Success",
+    "Marketing",
+    "Product"
+  ],
+  "deadline": "Not specified",
+  "success_criteria": [
+    "Journey map reviewed by Customer Success",
+    "Proposed sequence documented",
+    "Measurement plan lists metric definitions"
+  ],
+  "assumptions": [
+    "The existing email platform remains available"
+  ]
+}
