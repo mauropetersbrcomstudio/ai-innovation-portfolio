@@ -1,0 +1,26 @@
+name: Lead Intake Pipeline Tests
+
+on:
+  push:
+    paths:
+      - "AI Automation & Workflows/lead-intake-pipeline/**"
+      - ".github/workflows/lead-intake-pipeline-tests.yml"
+  pull_request:
+    paths:
+      - "AI Automation & Workflows/lead-intake-pipeline/**"
+      - ".github/workflows/lead-intake-pipeline-tests.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run unit tests
+        working-directory: AI Automation & Workflows/lead-intake-pipeline
+        run: python -m unittest discover -s tests -v
+      - name: Run sample pipeline
+        working-directory: AI Automation & Workflows/lead-intake-pipeline
+        run: python pipeline.py --input sample_leads.csv --output-dir output
