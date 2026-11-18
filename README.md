@@ -10,5 +10,5 @@ The repository brings together two kinds of work: projects carried out for real 
 
 | Area | Projects |
 |---|---|
-| Client Demos | Reserved for substantiated, authorized case studies from real client engagements |
-| Demo Templates | Library of reusable demonstrations organized into six technology categories |
+| [Client Demos](./Client%20Demos/) | Reserved for substantiated, authorized case studies from real client engagements |
+| [Demo Templates](./Demo%20Templates/) | Library of reusable demonstrations organized into six technology categories |
