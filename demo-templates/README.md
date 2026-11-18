@@ -19,3 +19,4 @@ Templates are starting points, not ready-made solutions for every company. Data,
 - [SME Internal Knowledge Assistant](./sme-internal-knowledge-assistant/) — a local approved-source retrieval demo with role filtering, source citations, and escalation. It does not use an LLM or authenticate users.
 
 - [Operations Intake & Human Review](./operations-intake-review/) — reusable assembly of lead and invoice intake, durable workflow state, consolidated human review, decision capture, and a local review workspace. Synthetic data; no authentication or external actions.
+- [Client Case Publication Gate](./client-case-publication-gate/) — deterministic preflight for case-evidence references, attribution permissions, data review, and claim-level publication authorization. Its synthetic sample is intentionally blocked; it is not an actual client case and cannot verify authorization.

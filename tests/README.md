@@ -47,3 +47,9 @@ This is a heuristic guard, not a comprehensive secret scanner. It does not inspe
 ## Scope and limitations
 
 These tests use synthetic records and loopback-only local servers. They verify selected workflows, not every visual state or browser/device combination. They do not test authentication, production security, external integrations, live customer data, or production deployment. A passing automated run does not mean a human has completed a local presentation review.
+
+## Client Case Publication Gate
+
+The [Client Case Publication Gate](../demo-templates/client-case-publication-gate/) is a standard-library Python preflight for a future authorized case package. Its dedicated workflow runs unit tests and the synthetic sample manifest.
+
+The sample manifest is intentionally incomplete and must report `BLOCKED`; it does not represent a client, engagement, outcome, or publication approval. A complete manifest can reach only `READY_FOR_HUMAN_REVIEW`. The tool never returns publication authorization and does not verify underlying evidence or legal permissions.

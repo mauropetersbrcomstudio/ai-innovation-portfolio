@@ -59,8 +59,9 @@ Before merging or publishing a project, check:
 7. Limitations and exclusions are visible.
 8. No secrets, credentials, private customer records, or unauthorized third-party materials are present.
 9. Run `python scripts/check_public_content.py` and treat any finding as a publication blocker. The check reports paths and rule IDs only; it never prints matched values.
+10. For a client case, run the [Client Case Publication Gate](./demo-templates/client-case-publication-gate/) with `--require-ready` as a manifest-completeness preflight, then have a responsible human inspect the referenced evidence and authorization records. A `READY_FOR_HUMAN_REVIEW` result is not publication approval.
 
-The public-content check is heuristic. It scans tracked UTF-8 files in the current checkout, not Git history, binary files, every possible credential format, or all forms of confidential information. It does not replace human review or credential rotation.
+The public-content check is heuristic. It scans tracked UTF-8 files in the current checkout, not Git history, binary files, every possible credential format, or all forms of confidential information. It does not replace human review or credential rotation. The client-case preflight checks only manifest declarations and opaque references; it does not inspect evidence, authenticate approvers, or prove publication rights.
 
 ## 6. Maintenance
 

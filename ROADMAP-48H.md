@@ -155,6 +155,17 @@ The initial CI attempt caught a missing `ToolSpec` import in the demo runner. It
 - [Campaign Launch QA Tests — run 44281968628](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44281968628): passed; nine unit tests and sample-output checks passed.
 - The first scan run flagged a credential-shaped URL used as a negative test fixture, not a real credential. The fixture was rewritten to assemble the URL from separate strings; the final repository scan and workflow then passed.
 
+### P2 preparation — Client Case Publication Gate (template only)
+
+- [x] Add a reusable, standard-library preflight under `demo-templates/` without creating or implying a client case.
+- [x] Require an opaque case reference, publication authorization reference, explicit attribution permissions, claim-level evidence declarations, and data-review declarations.
+- [x] Fail closed on missing, malformed, duplicated, unverified, or unauthorized manifest declarations.
+- [x] Keep the output limited to status and finding codes; never echo client names, claim text, evidence references, or matched values.
+- [ ] Confirm the dedicated unit-test and sample-manifest workflow after commit.
+- [ ] Confirm the portfolio-wide quality gate after commit.
+
+**Boundary:** the sample is a synthetic, intentionally blocked intake manifest. The tool does not inspect evidence, authenticate a client or approver, verify legal permissions, or authorize publication. A successful preflight means only that the manifest declarations are complete enough for human review. `client-demos/` remains reserved for real, substantiated, authorized cases.
+
 ### P2 — Client Demos, only when source material is supplied
 
 - [ ] Convert user-provided case briefs into client-specific demonstrations only after the facts, assets, and publication authorization are supplied.

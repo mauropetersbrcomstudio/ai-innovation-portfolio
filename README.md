@@ -33,6 +33,7 @@ The projects below are executable demonstrations. Each project README records it
 | [Operations Intake & Human Review Template](./demo-templates/operations-intake-review/) | Reusable assembly of intake pipelines, durable workflow state, review decisions, and local workspace | DEMO |
 | [Marketing Analytics Pipeline](./Marketing%20Intelligence%20%26%20Business%20Automation/marketing-analytics-pipeline/) | Composes CSV quality preflight with campaign metrics; blocks review findings by default | DEMO |
 | [CRM Lead Qualification & Routing](./demo-templates/crm-lead-qualification-routing/) | Configurable qualification rules, territory queues, follow-up dates, and human-review routing | DEMO |
+| [Client Case Publication Gate](./demo-templates/client-case-publication-gate/) | Pre-publication checks for evidence references, attribution permissions, data review, and claim authorization declarations; never authorizes publication | DEMO |
 | [SME Customer Support Automation](./demo-templates/sme-customer-support-automation/) | Support request classification, knowledge-based draft responses, and human escalation | DEMO |
 | [SME Internal Knowledge Assistant](./demo-templates/sme-internal-knowledge-assistant/) | Role-filtered retrieval from approved sample sources, citations, and human escalation | DEMO |
 | [Brief-to-Task Skill](./AI%20Skills%20%26%20Tooling/brief-to-task/) | Structured business brief converted into a task plan with open questions | DEMO |
