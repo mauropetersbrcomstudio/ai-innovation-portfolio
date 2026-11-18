@@ -1,48 +1,60 @@
 # Operations Review Workspace
 
-**Status: PRODUCT SPECIFICATION / DEMO DESIGN**
+**Status: FUNCTIONAL LOCAL DEMO**
 
-A product-level experience specification for turning the Resumable Intake Operations Hub into a review workspace. The source workflow already performs deterministic lead and invoice intake, persists checkpoints in SQLite, prepares a consolidated review queue, and records one human decision per review item.
+A small local web application connected to the existing Resumable Intake Operations Hub. It loads a synthetic intake workflow from SQLite, displays its review queue, records decisions through the existing `ReviewDecisionStore`, and shows persisted decision and event history.
 
-This folder defines the product boundary, user journeys, data concepts, and interface contract. It is not yet a connected application: no user interface, API service, authentication, or external integrations are implemented here.
+## Run locally
 
-## Product objective
+Requires Python 3.10+; standard library only.
 
-Give an operations reviewer one place to inspect intake exceptions, understand why each item was routed for review, record a decision, and inspect the resulting decision history.
+From this directory:
 
-## Existing implementation reused
+```bash
+python server.py
+```
 
-- [Resumable Intake Operations Hub](../../AI%20Automation%20%26%20Workflows/intake-operations-hub/)
-- SQLite durable workflow state and event records
-- Human-review decision capture with three explicit outcomes
+Open the address printed by the server (default `http://127.0.0.1:8765`). Stop the server with Ctrl+C. The first run creates a synthetic workflow and SQLite database under `output/`. The sample workflow is seeded only when it does not already exist.
 
-The workspace must consume these capabilities rather than duplicate their business rules.
+To use another local port:
 
-## Core capabilities in the intended product
+```bash
+python server.py --port 8766
+```
 
-1. Select a completed intake workflow.
-2. View queue totals and filter review items by source and decision state.
-3. Inspect an item's reference, reason, and available details.
-4. Record one decision: `ACCEPTED_FOR_NEXT_STAGE`, `REJECTED`, or `REQUESTED_INFORMATION`.
-5. Require a reviewer identifier and a non-empty reason.
-6. Show recorded decisions and the corresponding workflow event.
-7. Clearly distinguish pending items from decisions already recorded.
+The server refuses non-loopback binding. No external packages, cloud hosting, or paid services are required.
 
-## Non-goals
+## What works
 
-- No automatic approval, payment, bank transfer, CRM update, outreach, or accounting action.
-- No claim of authenticated reviewer identity until an identity provider and authorization layer exist.
-- No multi-reviewer quorum, signatures, decision reversal, notifications, or tamper-proof audit.
-- No production readiness claim.
+- Reads the persisted workflow and prepared human-review queue.
+- Filters queue items by source and decision status.
+- Displays source reference, routing reason, and item details.
+- Records one of three supported outcomes through the existing decision store.
+- Refreshes the queue from SQLite after a successful write.
+- Displays persisted decisions and workflow event history.
+- Rejects duplicate decisions, unknown items, and unsupported outcomes.
 
-## Product artifacts
+## Product design artifacts
 
 - [Product brief](./PRODUCT-BRIEF.md)
 - [User journeys](./USER-JOURNEYS.md)
 - [Data model and interface contract](./DATA-MODEL-AND-INTERFACE-CONTRACT.md)
 
-## Acceptance boundary
+## Trust and security boundaries
 
-A future connected implementation is acceptable only when it reads the persisted workflow queue, records decisions through the existing decision store, and presents the resulting decision history without reimplementing or bypassing the underlying validation rules. Its tests must cover the complete queue-to-decision path and failure cases.
+- **Local demo only:** the HTTP server binds to loopback and is not designed for LAN or internet exposure.
+- **Synthetic data:** the bundled sample records are fictional. Do not place real customer or invoice data in this demo.
+- **No authentication:** the reviewer identifier is typed into the form and is an unverified assertion, not an authenticated identity. Do not use this to make real operational decisions.
+- **No external side effects:** no CRM, email, accounting, payment, or bank transfer action is performed.
+- **Audit limitations:** decision records are persisted with a matching workflow event in one SQLite transaction, but direct database modification is possible; storage is not tamper-proof.
+- **No production controls:** no identity provider, server-side reviewer roles, CSRF token, TLS, deployment hardening, backups, or operational monitoring.
 
-All demonstrations must use synthetic or explicitly authorized data. This remains a product design artifact, not a deployed application.
+## Tests
+
+From this directory:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+The integration tests exercise the HTTP adapter, real SQLite state, decision persistence, duplicate rejection, invalid input, and loopback binding.
