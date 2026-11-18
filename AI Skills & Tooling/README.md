@@ -85,3 +85,10 @@ The [Agent Recovery utility](./agent-recovery/) runs bounded sequential steps an
 The [Agent Policy Validator](./agent-policy-validator/) checks agent risk labels, explicit tool allowlists, approval gates, and execution bounds in a small declarative policy format.
 
 **Status: DEMO** — configuration validation only; runtime authorization and identity verification remain external responsibilities.
+
+## Agent Security & Governance — Deny-by-Default Authorization
+
+The [Agent Security & Governance engine](./agent-security-governance/) evaluates explicit agent, role, tool, and risk grants. It separates authorization from human approval and fails closed when approval evidence cannot be verified.
+
+**Status: DEMO** — the host must supply a trusted authenticated principal and an authoritative approval verifier. The module itself provides neither identity authentication nor cryptographic approval verification; its audit events are in-memory.
+
