@@ -3,11 +3,11 @@ name: SME Internal Knowledge Assistant Tests
 on:
   push:
     paths:
-      - "demo-templates/sme-internal-knowledge-assistant/**"
+      - "Demo Templates/Demo Templates/AI Agents & Agentic Systems/sme-internal-knowledge-assistant/**"
       - ".github/workflows/internal-knowledge-assistant-tests.yml"
   pull_request:
     paths:
-      - "demo-templates/sme-internal-knowledge-assistant/**"
+      - "Demo Templates/Demo Templates/AI Agents & Agentic Systems/sme-internal-knowledge-assistant/**"
       - ".github/workflows/internal-knowledge-assistant-tests.yml"
   workflow_dispatch:
 
