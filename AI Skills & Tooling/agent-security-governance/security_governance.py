@@ -65,8 +65,8 @@ class SecurityPolicyEngine:
             raise SecurityPolicyError("agents must be a non-empty mapping")
         normalized: dict[str, Any] = {}
         for agent_id, spec in agents.items():
-            if not isinstance(agent_id, str) or not agent_id.strip():
-                raise SecurityPolicyError("agent identifiers must be non-empty strings")
+            if not isinstance(agent_id, str) or not agent_id.strip() or agent_id == "*":
+                raise SecurityPolicyError("agent identifiers must be explicit non-wildcard strings")
             if not isinstance(spec, dict) or set(spec) != {"roles", "tools"}:
                 raise SecurityPolicyError(f"{agent_id}: expected roles and tools only")
             roles, tools = spec["roles"], spec["tools"]
@@ -165,7 +165,9 @@ class SecurityPolicyEngine:
                 or approval.tool != tool
                 or approval.risk != risk
                 or approval.subject_id != principal.subject_id
+                or not isinstance(approval.approval_id, str)
                 or not approval.approval_id.strip()
+                or not isinstance(approval.approver_id, str)
                 or not approval.approver_id.strip()
             ):
                 return "APPROVAL_SCOPE_MISMATCH"
