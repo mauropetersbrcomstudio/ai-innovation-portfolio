@@ -72,6 +72,17 @@ class InvoiceWorkflowTests(unittest.TestCase):
             ["POLICY_HOLD", "POLICY_HOLD", "POLICY_HOLD"],
         )
 
+    def test_missing_amount_and_invalid_amount_take_different_routes(self):
+        records = [
+            invoice(amount=""),
+            invoice(invoice_id="INV-2004", amount="-10.00"),
+        ]
+        result = process_invoices(records)
+        self.assertEqual(
+            [item["status"] for item in result["results"]],
+            ["NEEDS_INFORMATION", "POLICY_HOLD"],
+        )
+
     def test_due_date_before_invoice_date_is_policy_hold(self):
         result = process_invoices([invoice(due_date="2026-10-31")])
         self.assertEqual(result["results"][0]["reasons"], ["DUE_DATE_BEFORE_INVOICE_DATE"])

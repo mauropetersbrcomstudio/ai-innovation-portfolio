@@ -102,6 +102,7 @@ def process_invoices(
             "invoice_date_parsed": invoice_date,
             "due_date_parsed": due_date,
             "amount": format(amount, "f") if amount is not None else None,
+            "amount_present": record.get("amount") is not None and not (isinstance(record.get("amount"), str) and not record.get("amount").strip()),
             "amount_parsed": amount,
             "currency": currency or None,
             "purchase_order": purchase_order or None,
@@ -125,7 +126,7 @@ def process_invoices(
                 "supplier_id": item["supplier_id"],
                 "invoice_date": item["invoice_date"],
                 "due_date": item["due_date"],
-                "amount": item["amount"],
+                "amount": item["amount_present"],
                 "currency": item["currency"],
                 "purchase_order": item["purchase_order"],
             }
