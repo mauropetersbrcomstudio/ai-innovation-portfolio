@@ -3,11 +3,11 @@ name: SME KPI Workspace Tests
 on:
   push:
     paths:
-      - "Web Applications & SaaS/sme-kpi-workspace/**"
+      - "Demo Templates/Web Applications & SaaS/sme-kpi-workspace/**"
       - ".github/workflows/sme-kpi-workspace-tests.yml"
   pull_request:
     paths:
-      - "Web Applications & SaaS/sme-kpi-workspace/**"
+      - "Demo Templates/Web Applications & SaaS/sme-kpi-workspace/**"
       - ".github/workflows/sme-kpi-workspace-tests.yml"
   workflow_dispatch:
 
@@ -23,5 +23,5 @@ jobs:
         with:
           node-version: "20"
       - name: Run KPI calculation tests
-        working-directory: Web Applications & SaaS/sme-kpi-workspace
+        working-directory: Demo Templates/Web Applications & SaaS/sme-kpi-workspace
         run: npm test

@@ -5,9 +5,9 @@ import sys
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 for component in ("agent-orchestration", "agent-state-store", "agent-observability"):
-    sys.path.insert(0, str(ROOT / "AI Skills & Tooling" / component))
+    sys.path.insert(0, str(ROOT / "Demo Templates" / "AI Skills & Tooling" / component))
 
 from orchestrator import Orchestrator, Step, state_to_dict  # noqa: E402
 from state_store import StateStore  # noqa: E402

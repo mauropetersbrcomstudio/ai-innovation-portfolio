@@ -3,11 +3,11 @@ name: Agent Recovery Tests
 on:
   push:
     paths:
-      - "AI Skills & Tooling/agent-recovery/**"
+      - "Demo Templates/AI Skills & Tooling/agent-recovery/**"
       - ".github/workflows/agent-recovery-tests.yml"
   pull_request:
     paths:
-      - "AI Skills & Tooling/agent-recovery/**"
+      - "Demo Templates/AI Skills & Tooling/agent-recovery/**"
       - ".github/workflows/agent-recovery-tests.yml"
   workflow_dispatch:
 
@@ -20,5 +20,5 @@ jobs:
         with:
           python-version: "3.11"
       - name: Run unit tests
-        working-directory: AI Skills & Tooling/agent-recovery
+        working-directory: Demo Templates/AI Skills & Tooling/agent-recovery
         run: python -m unittest discover -s tests -v

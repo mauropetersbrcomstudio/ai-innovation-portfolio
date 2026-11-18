@@ -5,8 +5,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "AI Skills & Tooling" / "agent-coordination"))
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "Demo Templates" / "AI Skills & Tooling" / "agent-coordination"))
 
 from coordinator import AgentCoordinator, AgentSpec  # noqa: E402
 

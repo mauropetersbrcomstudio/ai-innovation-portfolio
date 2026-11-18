@@ -3,11 +3,11 @@ name: CRM Lead Qualification & Routing Tests
 on:
   push:
     paths:
-      - "AI Automation & Workflows/crm-lead-qualification-routing/**"
+      - "Demo Templates/AI Automation & Workflows/crm-lead-qualification-routing/**"
       - ".github/workflows/crm-lead-qualification-routing-tests.yml"
   pull_request:
     paths:
-      - "AI Automation & Workflows/crm-lead-qualification-routing/**"
+      - "Demo Templates/AI Automation & Workflows/crm-lead-qualification-routing/**"
       - ".github/workflows/crm-lead-qualification-routing-tests.yml"
   workflow_dispatch:
 
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: "AI Automation & Workflows/crm-lead-qualification-routing"
+        working-directory: "Demo Templates/AI Automation & Workflows/crm-lead-qualification-routing"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

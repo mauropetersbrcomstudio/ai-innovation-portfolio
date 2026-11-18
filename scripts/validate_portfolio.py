@@ -23,7 +23,7 @@ LINK_PATTERN = re.compile(r"\]\(([^)]+)\)")
 def project_directories() -> set[str]:
     found: set[str] = set()
     for category in CATEGORIES:
-        folder = ROOT / category
+        folder = ROOT / "Demo Templates" / category
         if not folder.is_dir():
             raise RuntimeError(f"Missing agreed category folder: {category}")
         for readme in folder.glob("*/README.md"):
@@ -137,12 +137,12 @@ def main() -> int:
         errors.append(f"Root project index mismatch; missing={missing}; extra={extra}")
 
     for category in CATEGORIES:
-        index = ROOT / category / "README.md"
+        index = ROOT / "Demo Templates" / category / "README.md"
         if not index.is_file():
             errors.append(f"Missing category index: {category}/README.md")
             continue
         text = index.read_text(encoding="utf-8")
-        expected = {project for project in projects if project.startswith(category + "/")}
+        expected = {project for project in projects if project.startswith("Demo Templates/" + category + "/")}
         actual = project_targets(text, index, projects)
         if actual != expected:
             errors.append(
