@@ -1,0 +1,22 @@
+{
+  "order_status": {
+    "draft_response": "Please share your order reference so the support team can check the latest status.",
+    "source": "Approved demonstration FAQ: order-status entry"
+  },
+  "billing": {
+    "draft_response": "Please share your invoice reference so the billing team can help locate the document.",
+    "source": "Approved demonstration FAQ: invoice entry"
+  },
+  "product_information": {
+    "draft_response": "Please tell us which product or service you are asking about so the team can provide the relevant approved information.",
+    "source": "Approved demonstration FAQ: product-information entry"
+  },
+  "technical_support": {
+    "draft_response": "Please describe the issue and include any error message you can share. A support specialist can then review it.",
+    "source": "Approved demonstration FAQ: technical-support entry"
+  },
+  "returns": {
+    "draft_response": "Please share your order reference and a brief description of the issue so the support team can review the applicable return process.",
+    "source": "Approved demonstration FAQ: returns entry"
+  }
+}
