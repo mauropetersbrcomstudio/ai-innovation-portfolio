@@ -1,12 +1,14 @@
-# Portfolio Delivery Roadmap & Status
+# Portfolio Delivery Roadmap — Essential Backlog
 
-**Objective:** build a reusable foundation of skills, tools, agents, workflows, and product components, then assemble them into credible client-specific demonstrations. The central GitHub repository and its eight agreed folders remain the only deliverable. No separate website, homepage, domain, hosting setup, or web deployment is in scope.
+**Objective:** make the existing GitHub portfolio coherent, reliable, easy to demonstrate, and ready to receive substantiated client cases.
 
-**Strategy:** [Portfolio Development Strategy v2.0](./PORTFOLIO-DEVELOPMENT-STRATEGY-v2.md).
+**Only deliverable:** the central GitHub repository and its eight agreed folders. No separate website, domain, hosting, or deployment.
+
+**Execution rule:** stabilize and present what already exists before creating anything new. Do not add projects merely to increase the project count.
 
 ## Repository structure
 
-The repository contains the eight agreed areas:
+The eight agreed areas remain unchanged:
 
 1. Client Demos
 2. Demo Templates
@@ -17,144 +19,67 @@ The repository contains the eight agreed areas:
 7. Web Applications & SaaS
 8. Marketing Intelligence & Business Automation
 
-The folder structure remains unchanged. The execution order below is a development priority, not a change to the repository taxonomy.
+## Current portfolio inventory
 
-## Current working demonstrations
+The repository already contains working demonstrations across the eight areas, including:
 
-| Category | Project | Status |
-|---|---|---|
-| AI Agents & Agentic Systems | SME Operations Assistant | DEMO |
-| AI Agents & Agentic Systems | SME Procurement Request Triage Agent | DEMO |
-| AI Agents & Agentic Systems | Bounded Support Workflow Agent | DEMO |
-| AI Agents & Agentic Systems | Multi-Agent Request Review | DEMO |
-| AI Agents & Agentic Systems | Agent Platform Reference Integration | DEMO |
-| AI Agents & Agentic Systems | Governed Agent Execution | DEMO |
-| AI Agents & Agentic Systems | Durable Workflow Runner | DEMO |
-| AI Agents & Agentic Systems | Agent Runtime Control Plane | DEMO |
-| AI Automation & Workflows | Lead Intake Pipeline | DEMO |
-| AI Automation & Workflows | Invoice Intake & Exception Routing | DEMO |
-| AI Automation & Workflows | Resumable Intake Operations Hub | DEMO |
-| Demo Templates | CRM Lead Qualification & Routing | DEMO |
-| Demo Templates | SME Customer Support Automation | DEMO |
-| Demo Templates | SME Internal Knowledge Assistant | DEMO |
-| AI Skills & Tooling | Brief-to-Task Skill | DEMO |
-| AI Skills & Tooling | CSV Data Quality Profiler | DEMO |
-| AI Skills & Tooling | Document Intelligence — Plain-Text Extraction | DEMO |
-| AI Skills & Tooling | JSON Contract Validator | DEMO |
-| AI Skills & Tooling | CSV Data Normalization | DEMO |
-| AI Skills & Tooling | Knowledge Retrieval | DEMO |
-| AI Skills & Tooling | Agent Tool Gateway | DEMO |
-| AI Skills & Tooling | Agent Execution & Orchestration | DEMO |
-| AI Skills & Tooling | Multi-Agent Coordination | DEMO |
-| AI Skills & Tooling | Agent Evaluation | DEMO |
-| AI Skills & Tooling | Agent State Store | DEMO |
-| AI Skills & Tooling | Agent Observability | DEMO |
-| AI Skills & Tooling | Agent Recovery | DEMO |
-| AI Skills & Tooling | Agent Policy Validator | DEMO |
-| AI Skills & Tooling | Agent Security & Governance | DEMO |
-| AI Product Development | SME Workflow Opportunity Mapper | DEMO |
-| AI Product Development | Operations Review Workspace | FUNCTIONAL LOCAL DEMO |
-| Web Applications & SaaS | SME KPI Workspace | DEMO |
-| Marketing Intelligence & Business Automation | Campaign Performance Analyzer | DEMO |
-| Marketing Intelligence & Business Automation | Marketing Analytics Pipeline | DEMO |\n| Marketing Intelligence & Business Automation | Campaign Launch QA & UTM Builder | DEMO |
+- Agent and workflow demonstrations, including bounded execution, orchestration, coordination, governance, state, observability, and recovery.
+- Lead and invoice intake pipelines, the Resumable Intake Operations Hub, and the Operations Review Workspace.
+- Reusable demo templates for operations intake, CRM lead qualification, customer support, and internal knowledge assistance.
+- Reusable skills and tools for brief-to-task conversion, CSV quality and normalization, document extraction, JSON validation, knowledge retrieval, and agent tooling.
+- SME Workflow Opportunity Mapper and SME KPI Workspace.
+- Campaign Performance Analyzer, Marketing Analytics Pipeline, and Campaign Launch QA & UTM Builder.
 
-These are independently developed demonstrations. Their sample records are synthetic; none is presented as a completed client engagement or a production deployment.
+The root README and individual project READMEs are the authoritative project catalogue and implementation instructions. Sample records are synthetic unless explicitly identified otherwise. Existing demonstrations must not be described as client engagements or production systems without evidence.
 
-## Completed foundation
+## Essential backlog
 
-- [x] One central public GitHub repository and eight agreed categories.
-- [x] Root README, category navigation, project index, project README template, and entry criteria.
-- [x] Foundation First → Client Demos strategy documented.
-- [x] Reusable skills for brief-to-task conversion, CSV data quality, document text extraction, JSON contract validation, CSV normalization, and lexical knowledge retrieval.
-- [x] Agent foundations for tool allowlisting, argument contracts, approval gates, bounded orchestration, multi-agent handoffs, scenario evaluation, SQLite state persistence, structured observability, recovery/compensation, and declarative policy validation.
-- [x] Agent demonstrations for bounded support workflows and multi-agent request review.
-- [x] Integrated reference demo connecting orchestration, persistent state, and structured event logging.
-- [x] Governed execution integration combining policy validation, role/approval checks, tool allowlisting, and bounded orchestration.
-- [x] Durable sequential workflow runner with per-step SQLite checkpoints, JSONL observability, resume behavior, and idempotency-key contract.
-- [x] Agent Runtime Control Plane with lifecycle management, explicit tool authorization, invocation caps, health reporting, human escalation, and audit projection.
-- [x] Agent Security & Governance policy engine with deny-by-default role/tool/risk decisions, scoped approval evidence, and injected approval verification.
-- [x] Secured Runtime Control Plane integration: authorization decisions are checked and recorded before handlers execute; tests cover denied roles, missing principals, and high-risk approval.
-- [x] Invoice Intake & Exception Routing workflow with decimal-safe threshold checks, batch duplicate detection, validation, and human-review routes.
-- [x] Dedicated GitHub Actions workflows for the new reusable components and integration demonstrations.
-- [x] Synthetic sample data, documented limitations, and explicit separation between demos and client engagements.
+### P0 — Portfolio integrity and navigation
 
-The durable runner reduces loss of workflow progress across process restarts, but does not guarantee exactly-once external side effects. Handlers must enforce the supplied idempotency key at their destination.
+- [ ] Reconcile the root README, category indexes, and this roadmap against the actual repository tree.
+- [ ] Ensure every featured project link resolves and every project has a clear status, run instructions, dependencies, tests, and limitations.
+- [ ] Correct only factual inconsistencies, broken links, duplicated entries, and missing essential documentation.
+- [ ] Run the repository's existing automated quality workflows and resolve failures.
 
-The new agent-platform components are deterministic reference implementations. They do not establish production-grade identity, authorization, tamper-proof auditing, distributed execution, or autonomous LLM behavior.
+**Exit criteria:** the repository catalogue matches the files that exist; documented commands and links are usable; applicable CI checks pass.
 
-## Marketing intelligence additions\n\n- [x] Campaign Performance Analyzer with temporal evolution, period comparison, executive report, and browser print-to-PDF workflow.\n- [x] Campaign Launch QA & UTM Builder with metadata validation, tracking URL generation, duplicate detection, and exception reporting.\n\n## Next implementation priority
+### P1 — Demonstration readiness of existing projects
 
-The AI Automation & Workflows category now contains two working pipelines. The Resumable Intake Operations Hub and its Operations Review Workspace now demonstrate a complete local intake-to-human-review path: durable workflow state, a review queue, persisted decisions, and decision/event history. The next priority is packaging this reusable capability as a configurable Demo Template, then adding a second distinct product experience only where it reuses the shared foundation.
+- [ ] Select a small set of strongest existing demos for first presentation; do not build new demos for this step.
+- [ ] Verify each selected demo from its documented setup through its primary user flow using its existing tests and available execution environment.
+- [ ] Ensure synthetic sample data, expected outputs, limitations, and a short demonstration path are clear.
+- [ ] Fix only issues that block setup, the primary flow, or truthful presentation.
 
-## Execution sequence and backlog
+**Exit criteria:** each selected demo can be explained and reproduced from its README, with test evidence and limitations visible.
 
-### 1. AI Automation & Workflows — next implementation priority
+### P2 — Client Demos, only when source material is supplied
 
-- [x] Compose the existing lead and invoice intake examples with the durable runner, SQLite state store, and structured observability.
-- [x] Demonstrate resumable workflow state, plan/input conflict detection, and a consolidated human-review queue; no human decision or external action is performed.
-- [x] Add automated coverage for normal, incomplete, duplicate, conflicting, repeat-run, and failure scenarios.
-- [x] Add durable human decision capture with reviewer identifier, outcome, reason, timestamp, duplicate-decision protection, and a matching workflow audit event.
-- [x] Deliver a loopback-only local web workspace connected to the existing SQLite workflow and decision stores, with queue filters, decision capture, and history; five integration tests passed.
-- [ ] Integrate a real identity provider and enforce reviewer roles; current reviewer identifier is host-supplied and not authenticated by this demo.
-- Keep external actions simulated unless a real integration is separately configured and verified.
+- [ ] Convert user-provided case briefs into client-specific demonstrations only after the facts, assets, and publication authorization are supplied.
+- [ ] Separate verified historical work from newly created illustrative demos.
+- [ ] Do not invent client identities, engagements, outcomes, metrics, testimonials, logos, or prior deliveries.
 
-### 2. AI Skills & Tooling — extend selectively
+**Exit criteria:** every published client claim is supported by supplied evidence and authorized for publication.
 
-- Fourteen reusable skill/tool projects are currently documented in this category.
-- Extend capabilities where a demonstrated gap exists; avoid near-duplicate utilities.
-- Keep shared input/output conventions, configuration, error behavior, and tests consistent.
+## Explicitly deferred — not part of the essential backlog
 
-### 3. AI Agents & Agentic Systems
+- New agents, skills, workflow examples, or standalone utilities that duplicate existing capabilities.
+- A new Marketing Operations Workspace or another dashboard that merely combines existing marketing demos.
+- Generalizing the Operations Review Workspace, adding more sample scenarios, or building a broader product platform.
+- Real identity-provider integration, multi-user authentication, role enforcement, external actions, or production hardening.
+- SaaS conversion, cloud hosting, public deployment, a separate website, domain, or paid services.
+- Additional integrations with CRM, advertising, analytics, accounting, email, or payment platforms.
 
-- Build specialized agents only where a distinct business role or capability is needed.
-- Define permitted actions, tool boundaries, human escalation, and traceability.
-- Keep deterministic demos accurately described; do not imply LLM reasoning or autonomy where absent.
+These items may be reconsidered only when a concrete client requirement or demonstrated gap justifies the cost and scope.
 
-### 4. AI Product Development
+## Quality and integrity gates
 
-- [x] Turn the Intake Operations Hub into a local review workspace with documented user journeys, data model, interface behavior, and explicit security limitations.
-- [ ] Generalize workflow selection and workspace configuration beyond the bundled synthetic example.
-- [ ] Integrate a real identity provider and enforce reviewer roles before any real operational use.
-
-### 5. Web Applications & SaaS
-
-- Provide practical interfaces for selected reusable capabilities.
-- Prioritize usability, accessibility, responsive behavior, and reproducible local operation.
-
-### 6. Marketing Intelligence & Business Automation
-
-- Extend domain-specific capabilities using the shared foundation.
-- Prefer reusable analytical and operational components over isolated one-off examples.
-
-### 7. Demo Templates
-
-- [x] Package the Intake Operations Hub + Operations Review Workspace as a reusable operations-intake template with a component manifest and adaptation checklist.
-- [ ] Add additional distinct sample scenarios and explicit reset instructions.
-- [ ] Make assumptions, prerequisites, synthetic-data boundaries, and security limitations explicit for each template.
-
-### 8. Client Demos — after the foundation
-
-- Assemble reusable components for specific client contexts.
-- Require a user-provided case brief, publication authorization, and evidence for all factual claims.
-- Clearly distinguish real engagement material from independently developed illustrative demonstrations.
-
-## Quality gates
-
-- Every component documents purpose, scope, inputs/outputs, dependencies, run instructions, tests, limitations, and reuse guidance as applicable.
-- Permissions follow least-privilege principles; uncertain or unsafe actions are escalated.
-- Automated tests cover the behaviors they claim to verify.
+- Status labels must match observable evidence: CONCEPT, DEMO, PROTOTYPE, or IMPLEMENTED.
 - A passing test suite does not establish production readiness.
-- Status labels (CONCEPT, DEMO, PROTOTYPE, IMPLEMENTED) must match observable evidence.
-- Root and category indexes are updated when projects are added or materially changed.
+- Document security and operational limitations; do not imply authenticated identity, tamper-proof audit, exactly-once external effects, or autonomous LLM behavior where these are not implemented.
+- Preserve existing repository work and unrelated projects.
+- Use synthetic data unless the user explicitly authorizes other data for the intended use.
+- Keep the implementation reproducible and avoid unnecessary dependencies.
 
-## Client demo prerequisites
+## Working rule
 
-Client demos remain intentionally dependent on source material and authorization. Do not invent client identities, projects, outcomes, metrics, testimonials, logos, or past deliveries. Do not publish confidential information, credentials, or personal records.
-
-## Non-negotiable boundaries
-
-- Preserve existing repository work; do not overwrite unrelated projects.
-- Use synthetic data or data explicitly authorized for publication and testing.
-- Do not represent independent work as client work.
-- Do not claim results, integrations, tests, or production readiness without evidence.
-- Keep the deliverable GitHub-only: no separate website, domain, hosting setup, paid service, or web deployment.
+**No new project until P0 is complete and the selected existing demos meet P1.** Client-specific work starts only when its brief and publication authorization are available.
