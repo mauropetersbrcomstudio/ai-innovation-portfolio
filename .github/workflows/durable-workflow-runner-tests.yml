@@ -1,0 +1,28 @@
+name: Durable Workflow Runner Tests
+
+on:
+  push:
+    paths:
+      - "AI Agents & Agentic Systems/durable-workflow-runner/**"
+      - "AI Skills & Tooling/agent-state-store/**"
+      - "AI Skills & Tooling/agent-observability/**"
+      - ".github/workflows/durable-workflow-runner-tests.yml"
+  pull_request:
+    paths:
+      - "AI Agents & Agentic Systems/durable-workflow-runner/**"
+      - "AI Skills & Tooling/agent-state-store/**"
+      - "AI Skills & Tooling/agent-observability/**"
+      - ".github/workflows/durable-workflow-runner-tests.yml"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run durable runner tests
+        working-directory: AI Agents & Agentic Systems/durable-workflow-runner
+        run: python -m unittest discover -s tests -v
