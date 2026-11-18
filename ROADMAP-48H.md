@@ -53,6 +53,7 @@ The folder structure remains unchanged. The execution order below is a developme
 | AI Skills & Tooling | Agent Policy Validator | DEMO |
 | AI Skills & Tooling | Agent Security & Governance | DEMO |
 | AI Product Development | SME Workflow Opportunity Mapper | DEMO |
+| AI Product Development | Operations Review Workspace | FUNCTIONAL LOCAL DEMO |
 | Web Applications & SaaS | SME KPI Workspace | DEMO |
 | Marketing Intelligence & Business Automation | Campaign Performance Analyzer | DEMO |
 
@@ -82,7 +83,7 @@ The new agent-platform components are deterministic reference implementations. T
 
 ## Next implementation priority
 
-The AI Automation & Workflows category now contains two working pipelines. The next priority is to compose existing workflow components with the portfolio's SQLite state store, structured observability, and human-review patterns. Focus on resumable execution and traceable exception resolution rather than adding another standalone intake utility. Keep the work local and deterministic, with external actions simulated.
+The AI Automation & Workflows category now contains two working pipelines. The Resumable Intake Operations Hub and its Operations Review Workspace now demonstrate a complete local intake-to-human-review path: durable workflow state, a review queue, persisted decisions, and decision/event history. The next priority is packaging this reusable capability as a configurable Demo Template, then adding a second distinct product experience only where it reuses the shared foundation.
 
 ## Execution sequence and backlog
 
@@ -92,6 +93,7 @@ The AI Automation & Workflows category now contains two working pipelines. The n
 - [x] Demonstrate resumable workflow state, plan/input conflict detection, and a consolidated human-review queue; no human decision or external action is performed.
 - [x] Add automated coverage for normal, incomplete, duplicate, conflicting, repeat-run, and failure scenarios.
 - [x] Add durable human decision capture with reviewer identifier, outcome, reason, timestamp, duplicate-decision protection, and a matching workflow audit event.
+- [x] Deliver a loopback-only local web workspace connected to the existing SQLite workflow and decision stores, with queue filters, decision capture, and history; five integration tests passed.
 - [ ] Integrate a real identity provider and enforce reviewer roles; current reviewer identifier is host-supplied and not authenticated by this demo.
 - Keep external actions simulated unless a real integration is separately configured and verified.
 
@@ -109,8 +111,9 @@ The AI Automation & Workflows category now contains two working pipelines. The n
 
 ### 4. AI Product Development
 
-- Turn reusable capabilities into coherent product modules.
-- Document user journeys, configuration, data models, interfaces, and product limitations.
+- [x] Turn the Intake Operations Hub into a local review workspace with documented user journeys, data model, interface behavior, and explicit security limitations.
+- [ ] Generalize workflow selection and workspace configuration beyond the bundled synthetic example.
+- [ ] Integrate a real identity provider and enforce reviewer roles before any real operational use.
 
 ### 5. Web Applications & SaaS
 
@@ -122,10 +125,11 @@ The AI Automation & Workflows category now contains two working pipelines. The n
 - Extend domain-specific capabilities using the shared foundation.
 - Prefer reusable analytical and operational components over isolated one-off examples.
 
-### 7. Demo Templates
+### 7. Demo Templates — next fast-track priority
 
-- Package tested combinations of skills, tools, agents, workflows, and interfaces.
-- Make templates configurable and explicit about assumptions and prerequisites.
+- [ ] Package the Intake Operations Hub + Operations Review Workspace as a reusable, configurable operations-intake template.
+- [ ] Add documented sample scenarios, setup defaults, and reset instructions.
+- [ ] Make assumptions, prerequisites, synthetic-data boundaries, and security limitations explicit.
 
 ### 8. Client Demos — after the foundation
 
