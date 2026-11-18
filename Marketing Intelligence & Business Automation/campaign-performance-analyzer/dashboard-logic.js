@@ -118,3 +118,17 @@ export function summarizeByChannel(validRows) {
     };
   }).sort((a, b) => a.channel.localeCompare(b.channel));
 }
+
+
+export function summarizeTimeline(validRows) {
+  const groups = new Map();
+  validRows.forEach(item => {
+    if (!item.date || !isIsoDate(item.date)) return;
+    if (!groups.has(item.date)) groups.set(item.date, []);
+    groups.get(item.date).push(item);
+  });
+  return [...groups.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([date, items]) => ({
+    date,
+    ...summarizeCampaigns(items)
+  }));
+}
