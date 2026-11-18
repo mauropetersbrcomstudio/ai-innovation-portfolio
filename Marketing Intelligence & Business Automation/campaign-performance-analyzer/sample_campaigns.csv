@@ -1,5 +1,5 @@
-campaign,channel,spend,impressions,clicks,conversions,revenue
-Spring Launch,Search,2400,120000,3600,180,9600
-Brand Awareness,Social,1800,210000,2940,42,2100
-Product Education,Email,600,45000,5400,324,5400
-Retargeting,Display,900,80000,1600,96,3600
+campaign,channel,date,spend,impressions,clicks,conversions,revenue
+Spring Launch,Search,2026-11-01,2400,120000,3600,180,9600
+Brand Awareness,Social,2026-11-02,1800,210000,2940,42,2100
+Product Education,Email,2026-11-03,600,45000,5400,324,5400
+Retargeting,Display,2026-11-04,900,80000,1600,96,3600
