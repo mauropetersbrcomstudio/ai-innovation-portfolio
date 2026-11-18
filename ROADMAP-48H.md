@@ -115,6 +115,12 @@ The cross-project Chromium workflow now checks persisted review state, 375-pixel
 **Boundary:** the adapter does not authenticate users or approvers; the host must supply a trusted principal and an authoritative approval verifier. Session bindings, invocation counts, consumed approval IDs, and audit events are in memory, reset on process restart, and are not concurrency-safe or shared across processes. Handler effects are not transactional, and audit records are not durable or tamper-evident. The gateway, policy engine, and host adapter remain DEMOs.
 
 **Verification evidence (2026-11-18):**
+- [Governed Agent Execution Tests — run 44264628146](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44264628146): 18 tests passed, including 14 new host-adapter regression tests.
+- [Portfolio Quality Gate — run 44264628058](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44264628058): portfolio validation passed for 36 project READMEs, eight category indexes, and root index coverage; 244 Python tests passed across 35 suites.
+
+The initial CI attempt caught a missing `ToolSpec` import in the demo runner. It was corrected in commit [c376b19](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/commit/c376b19c16224f35a8abd0fdb0eb66657ecf8fb5), and the final dedicated and portfolio-wide runs above passed. The initial failed runs remain visible in Actions history.
+
+**Verification evidence (2026-11-18):**
 - [Agent Tool Gateway Tests — run 44255991317](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44255991317): 10 tests passed, including output-free audit records and failed-handler attempt limits.
 - [Agent Security Governance Tests — run 44255991438](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44255991438): 11 tests passed, including malformed risk values in requests and policy manifests.
 - [Portfolio Quality Gate — run 44255991376](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44255991376): portfolio validator passed for 36 project READMEs and eight category indexes; 230 Python tests passed across 35 suites.

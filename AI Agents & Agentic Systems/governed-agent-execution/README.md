@@ -58,6 +58,13 @@ The adapter also rejects reuse of a consumed approval ID within the same host in
 - Handler output is returned to the caller but excluded from the host, policy, and gateway audit records.
 - Invalid arguments are rejected before the handler runs and do not consume the approval ID or invocation quota.
 
+## Verification evidence
+
+- [Governed Agent Execution Tests — run 44264628146](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44264628146): 18 tests passed, including the new host-adapter regression suite.
+- [Portfolio Quality Gate — run 44264628058](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44264628058): portfolio documentation validation passed for 36 project READMEs and eight category indexes; 244 Python tests passed across 35 test suites.
+
+The first CI attempt exposed a missing `ToolSpec` import in the demo runner. It was corrected in commit [c376b19](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/commit/c376b19c16224f35a8abd0fdb0eb66657ecf8fb5); the final runs above passed. The failed initial runs remain visible in Actions history.
+
 ## Boundaries and limitations
 
 - This is a deterministic integration DEMO, not an LLM-powered agent or production security service.
