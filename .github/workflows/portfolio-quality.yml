@@ -2,7 +2,7 @@ name: Portfolio Quality Gate
 
 on:
   push:
-    branches: [main]
+    branches: [main, chore/portfolio-restructure]
   pull_request:
     branches: [main]
   schedule:
