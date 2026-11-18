@@ -13,3 +13,9 @@ It runs locally with Python and sample data. It does not estimate effort, invent
 The [CSV Data Quality Profiler](./csv-data-quality/) is a reusable local Python preflight utility. It reports structural CSV issues, blank records and cells, exact duplicate rows, and optional duplicate keys. It does not modify source files or apply business-specific validation rules.
 
 **Status: DEMO** — standard-library Python utility with unit tests and a sample CSV.
+
+## Document Intelligence — Plain-Text Extraction
+
+The [Document Intelligence skill](./document-intelligence/) extracts headings, simple key/value pairs, contact details, ISO dates, currency-like mentions, and basic document statistics from UTF-8 text and Markdown files. It preserves line references and does not modify source files.
+
+**Status: DEMO** — deterministic pattern-based extraction; no OCR, semantic interpretation, or external services.
