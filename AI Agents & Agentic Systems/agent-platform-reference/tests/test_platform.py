@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from platform import execute_reference_workflow
+from agent_platform import execute_reference_workflow
 
 
 class AgentPlatformReferenceTests(unittest.TestCase):
