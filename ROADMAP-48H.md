@@ -125,11 +125,11 @@ The AI Automation & Workflows category now contains two working pipelines. The R
 - Extend domain-specific capabilities using the shared foundation.
 - Prefer reusable analytical and operational components over isolated one-off examples.
 
-### 7. Demo Templates — next fast-track priority
+### 7. Demo Templates
 
-- [ ] Package the Intake Operations Hub + Operations Review Workspace as a reusable, configurable operations-intake template.
-- [ ] Add documented sample scenarios, setup defaults, and reset instructions.
-- [ ] Make assumptions, prerequisites, synthetic-data boundaries, and security limitations explicit.
+- [x] Package the Intake Operations Hub + Operations Review Workspace as a reusable operations-intake template with a component manifest and adaptation checklist.
+- [ ] Add additional distinct sample scenarios and explicit reset instructions.
+- [ ] Make assumptions, prerequisites, synthetic-data boundaries, and security limitations explicit for each template.
 
 ### 8. Client Demos — after the foundation
 
