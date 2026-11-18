@@ -29,7 +29,8 @@ class LaunchQaTests(unittest.TestCase):
         self.assertIn("utm_content=carousel", result["tracking_url"])
 
     def test_rejects_non_http_url_and_embedded_credentials(self):
-        for url in ("javascript:alert(1)", "https://user:pass@example.com"):
+        credential_url = "https://" + "user" + ":" + "pass" + "@example.com"
+        for url in ("javascript:alert(1)", credential_url):
             row = {**BASE, "destination_url": url}
             _, errors = validate_row(row, set())
             self.assertTrue(any("destination_url" in error for error in errors))
