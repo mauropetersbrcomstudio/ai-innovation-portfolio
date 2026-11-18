@@ -36,6 +36,16 @@ python -m unittest discover -s tests -v
 node --test tests/dashboard-logic.test.js
 ```
 
+## Demonstration path
+
+1. Run the sample CSV through the Python command shown above.
+2. Inspect the generated campaign metrics, exception file, and aggregate summary.
+3. Open `dashboard.html` in a modern browser and load `sample_campaigns.csv`.
+4. Use campaign search and channel filtering; when the date column is present, select a reporting interval and inspect the preceding-period comparison.
+5. Review the executive report and use the browser's Print / Save as PDF action if a static report is needed.
+
+The dashboard processes the selected file locally in the browser; it does not upload campaign data.
+
 ## Outputs
 
 - `campaign_metrics.csv` — validated campaign rows and calculated metrics.

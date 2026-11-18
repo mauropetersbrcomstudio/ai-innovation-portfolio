@@ -24,6 +24,16 @@ python server.py --port 8766
 
 The server refuses non-loopback binding. No external packages, cloud hosting, or paid services are required.
 
+## Demonstration path
+
+1. Start the server and open the printed loopback address.
+2. Review the queue totals and filter between lead, invoice, pending, and decided items.
+3. Select a pending item and inspect its source reference and routing reason.
+4. Enter a clearly synthetic reviewer identifier, choose an outcome, provide a reason, and record the decision.
+5. Refresh the workspace and confirm the item is marked decided and appears in the decision history.
+
+A review decision is a local record only. It does not send a message, update a CRM, approve an invoice for payment, or trigger another external action.
+
 ## What works
 
 - Reads the persisted workflow and prepared human-review queue.

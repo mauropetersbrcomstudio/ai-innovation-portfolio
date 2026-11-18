@@ -29,6 +29,16 @@ The validator checks required values, duplicate campaign IDs, absolute HTTP(S) d
 
 The source file is never modified. Duplicate campaign IDs cause every occurrence to be rejected.
 
+## Demonstration path
+
+1. Run the included synthetic CSV through the command above.
+2. Inspect approved rows and their generated tracking URLs in `approved_campaigns.csv`.
+3. Review rejected rows and reason codes in `exceptions.csv`.
+4. Check the final readiness state and counts in `summary.json`.
+5. To explore exception handling, copy the sample file and alter one value at a time; keep the original sample unchanged.
+
+A row marked ready has passed only the checks implemented in this demo. It is not authorization to publish or activate a campaign.
+
 ## Limitations
 
 This is a DEMO, not a publishing or activation tool. It does not verify destination ownership, consent, legal compliance, analytics-platform configuration, live URL availability, or actual tracking collection. Passing the checks is not approval to launch a campaign. Sample data is synthetic.
