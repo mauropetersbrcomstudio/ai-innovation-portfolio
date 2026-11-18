@@ -74,6 +74,10 @@ The included sample records are synthetic. These demonstrations do not imply cli
 
 Use the [Project README Template](./PROJECT-README-TEMPLATE.md) when adding a project and follow the [Project Entry Criteria](./PROJECT-ENTRY-CRITERIA.md) before publishing. These standards keep project descriptions, status labels, execution instructions, evidence, and limitations consistent.
 
+## First demonstrations
+
+Use the [Selected Demo Guide](./DEMO-GUIDE.md) for reproducible setup and presentation steps for the three initial demonstrations.
+
 ## Getting started
 
 1. Open a demo's README from the links above.
