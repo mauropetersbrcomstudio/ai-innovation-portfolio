@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { analyzeRows, parseCsv, summarizeByChannel } from "../dashboard-logic.js";
+import { analyzeRows, parseCsv, summarizeByChannel, summarizeCampaigns } from "../dashboard-logic.js";
 
 test("parses quoted commas and escaped quotes", () => {
   const rows = parseCsv('campaign,channel,spend,impressions,clicks,conversions,revenue\n"Spring, launch",Search,10,100,5,1,20\n');
@@ -57,4 +57,27 @@ test("summarizes channel ratios from channel totals", () => {
   assert.equal(search.conversions, 19);
   assert.equal(search.roas, 2);
   assert.equal(search.cpa, 400 / 19);
+});
+
+test("summarizes a filtered subset without averaging campaign rates", () => {
+  const rows = parseCsv([
+    "campaign,channel,spend,impressions,clicks,conversions,revenue",
+    "A,Search,100,1000,100,10,200",
+    "B,Social,300,9000,90,9,600"
+  ].join(String.fromCharCode(10)));
+  const result = analyzeRows(rows);
+  const filtered = result.valid.filter(item => item.channel === "Search");
+  const summary = summarizeCampaigns(filtered);
+  assert.equal(summary.campaign_count, 1);
+  assert.equal(summary.spend, 100);
+  assert.equal(summary.roas, 2);
+});
+
+test("exceptions retain channel for consistent filtering", () => {
+  const rows = parseCsv([
+    "campaign,channel,spend,impressions,clicks,conversions,revenue",
+    "Broken,Social,-1,100,10,2,20"
+  ].join(String.fromCharCode(10)));
+  const result = analyzeRows(rows);
+  assert.equal(result.exceptions[0].channel, "Social");
 });
