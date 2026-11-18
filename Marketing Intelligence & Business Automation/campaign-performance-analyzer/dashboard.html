@@ -26,9 +26,15 @@
     <div class="notice" role="note"><b>DEMO DATA</b><span>Use synthetic or authorized data. Metrics reflect only the values supplied in the selected file.</span></div>
     <section class="results" id="results" aria-live="polite">
       <div class="section-kicker"><span>02 / PERFORMANCE SNAPSHOT</span><span id="campaign-count">AWAITING DATA</span></div>
+      <div class="filters" aria-label="Dashboard filters">
+        <label>Search campaign<input id="campaign-search" type="search" placeholder="Name contains…" disabled></label>
+        <label>Channel<select id="channel-filter" disabled><option value="all">All channels</option></select></label>
+        <button id="export-report" type="button" disabled>Export filtered report ↓</button>
+      </div>
+      <p class="filter-note" id="filter-note">Filters apply to valid campaign rows and the exception list. Summary values reflect the current selection.</p>
       <div class="kpis">
         <article class="kpi primary"><span>ROAS</span><strong id="roas">—</strong><small>Revenue / spend</small></article>
-        <article class="kpi"><span>Spend</span><strong id="spend">—</strong><small>Supplied campaign spend</small></article>
+        <article class="kpi"><span>Spend</span><strong id="spend">—</strong><small>Selected campaign spend</small></article>
         <article class="kpi"><span>Conversions</span><strong id="conversions">—</strong><small>Reported conversions</small></article>
         <article class="kpi"><span>CPA</span><strong id="cpa">—</strong><small>Spend / conversions</small></article>
       </div>
