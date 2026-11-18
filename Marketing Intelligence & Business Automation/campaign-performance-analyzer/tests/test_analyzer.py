@@ -39,6 +39,20 @@ class CampaignAnalyzerTests(unittest.TestCase):
         self.assertAlmostEqual(summary["ctr"], 190 / 10000)
         self.assertAlmostEqual(summary["roas"], 2.5)
 
+    def test_non_finite_numeric_values_are_rejected(self):
+        for value in ("nan", "inf", "-inf"):
+            with self.subTest(value=value):
+                with tempfile.TemporaryDirectory() as tmp:
+                    path = Path(tmp) / "input.csv"
+                    path.write_text(
+                        "campaign,channel,spend,impressions,clicks,conversions,revenue\\n"
+                        f"Campaign,Search,{value},100,10,1,20\\n", encoding="utf-8"
+                    )
+                    valid, errors = load_campaigns(path)
+                    self.assertEqual(valid, [])
+                    self.assertEqual(len(errors), 1)
+                    self.assertIn("finite number", errors[0]["reason"])
+
     def test_invalid_rows_are_reported(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "input.csv"
