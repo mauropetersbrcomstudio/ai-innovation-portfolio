@@ -125,6 +125,21 @@ The initial CI attempt caught a missing `ToolSpec` import in the demo runner. It
 - [Agent Security Governance Tests — run 44255991438](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44255991438): 11 tests passed, including malformed risk values in requests and policy manifests.
 - [Portfolio Quality Gate — run 44255991376](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44255991376): portfolio validator passed for 36 project READMEs and eight category indexes; 230 Python tests passed across 35 suites.
 
+### P1 — Immutable policy and dispatch contract snapshots
+
+- [x] Copy registered tool input schemas so caller-owned dictionaries cannot change gateway validation after registration.
+- [x] Return defensive copies from the gateway's host-facing tool-spec lookup.
+- [x] Retain the validated security policy as an internal normalized snapshot and expose only defensive copies.
+- [x] Reject malformed gateway registration contracts, including invalid schema containers and boolean/non-positive invocation limits.
+- [x] Add regression tests for source-schema mutation, inspected-spec mutation, source-policy mutation, and policy-snapshot mutation.
+- [x] Update the Agent Tool Gateway, Agent Security & Governance, and Governed Agent Execution documentation plus both relevant category indexes.
+- [x] Confirm [Agent Tool Gateway Tests — run 44272797015](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44272797015): 13 tests passed.
+- [x] Confirm [Agent Security Governance Tests — run 44272797055](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44272797055): 13 tests passed.
+- [x] Confirm [Governed Agent Execution Tests — run 44272829622](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44272829622): 18 tests passed.
+- [x] Confirm [Portfolio Quality Gate — run 44272829717](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44272829717): catalogue validation passed and 249 Python tests passed across 35 suites.
+
+**Boundary:** defensive copies protect against accidental mutation through ordinary public references; they are not a sandbox against malicious code running inside the same Python process or code using introspection. Policy and gateway state remain in memory, the gateway supports only a small schema subset, and neither component provides production identity, approval, concurrency, or durable audit controls. Both remain DEMOs.
+
 ### P2 — Client Demos, only when source material is supplied
 
 - [ ] Convert user-provided case briefs into client-specific demonstrations only after the facts, assets, and publication authorization are supplied.

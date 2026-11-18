@@ -37,6 +37,11 @@ The host remains responsible for trusted identity, approval collection and verif
 
 See [test_gateway.py](./tests/test_gateway.py) for a simulated ticket handler.
 
+## Verification evidence
+
+- [Agent Tool Gateway Tests — run 44272797015](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44272797015): 13 tests passed, including registration-schema isolation and defensive tool-spec lookup.
+- [Portfolio Quality Gate — run 44272829717](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44272829717): catalogue validation passed; 249 Python tests passed across 35 suites.
+
 ## Security boundaries and limitations
 
 - The role and approved-tool list in `Session` are supplied by the caller. They are not authentication or proof of human approval; production hosts must populate them from trusted context.

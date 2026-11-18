@@ -30,6 +30,11 @@ The host application must authenticate the human or service identity and constru
 
 The [Agent Tool Gateway](../agent-tool-gateway/) provides a separate dispatch-time allowlist and input contract. Its caller-supplied role and approval markers do not replace this policy decision. A host integration should authorize first and dispatch only when `Decision.allowed` is true.
 
+## Verification evidence
+
+- [Agent Security Governance Tests — run 44272797055](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44272797055): 13 tests passed, including source-policy and defensive-snapshot mutation checks.
+- [Portfolio Quality Gate — run 44272829717](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44272829717): catalogue validation passed; 249 Python tests passed across 35 suites.
+
 ## Security boundaries
 
 - The `authenticated` field is a host assertion, not proof of identity. A caller able to construct arbitrary principals can forge it. This module is not an identity provider, authentication middleware, or network security boundary.

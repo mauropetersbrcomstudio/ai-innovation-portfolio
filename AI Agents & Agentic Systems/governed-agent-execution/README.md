@@ -61,6 +61,8 @@ The adapter also rejects reuse of a consumed approval ID within the same host in
 
 ## Verification evidence
 
+- [Governed Agent Execution Tests — run 44272829622](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44272829622): 18 tests passed against the contract-snapshot implementation.
+- [Portfolio Quality Gate — run 44272829717](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44272829717): catalogue validation passed; 249 Python tests passed across 35 suites.
 - [Governed Agent Execution Tests — run 44264628146](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44264628146): 18 tests passed, including the new host-adapter regression suite.
 - [Portfolio Quality Gate — run 44264628058](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44264628058): portfolio documentation validation passed for 36 project READMEs and eight category indexes; 244 Python tests passed across 35 test suites.
 
