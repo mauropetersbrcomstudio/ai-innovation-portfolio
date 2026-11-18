@@ -97,4 +97,4 @@ These items may be reconsidered only when a concrete client requirement or demon
 
 ## Working rule
 
-**P0 and P1 are complete.** Do not create a client case until a source brief, supporting evidence, and publication authorization are supplied. Defer additional independent projects unless a concrete gap justifies them.
+**P0 is complete. P1 automated verification and the presentation guide are complete; browser end-to-end verification is now being added, and interactive local review remains pending.** Do not create a client case until a source brief, supporting evidence, and publication authorization are supplied. Defer additional independent projects unless a concrete gap justifies them.
