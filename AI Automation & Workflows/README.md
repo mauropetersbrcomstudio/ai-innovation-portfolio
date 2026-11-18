@@ -17,3 +17,16 @@ The [Invoice Intake & Exception Routing workflow](./invoice-intake-exception-rou
 ## Resumable Intake Operations Hub
 
 The [Resumable Intake Operations Hub](./intake-operations-hub/) composes both existing intake examples with SQLite checkpoints and structured events, then prepares a consolidated human-review queue and records review decisions with a reviewer identifier, outcome, reason, timestamp, and matching audit event. Reviewer identity remains a host-supplied assertion; no authentication provider or external action is included.
+
+
+## CRM Lead Qualification & Routing
+
+The [CRM Lead Qualification & Routing](./crm-lead-qualification-routing/) demo provides configurable lead qualification, territory queues, follow-up dates, duplicate checks, and human-review routing. It is a local Python demo, not a live CRM integration.
+
+**Status: DEMO** — see the project README for exact run instructions, tests, data provenance, and limitations.
+
+## SME Customer Support Automation
+
+The [SME Customer Support Automation](./sme-customer-support-automation/) demo provides support request classification, approved-knowledge response drafts, and human escalation. It is rule-based; it does not send messages or connect to live systems.
+
+**Status: DEMO** — see the project README for exact run instructions, tests, data provenance, and limitations.
