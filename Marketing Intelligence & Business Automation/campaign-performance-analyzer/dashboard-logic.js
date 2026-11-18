@@ -26,9 +26,9 @@ export function parseCsv(source) {
   const headers = rows.shift().map(value => value.trim().replace(/^\uFEFF/, ""));
   const missing = REQUIRED.filter(field => !headers.includes(field));
   if (missing.length) throw new Error("Missing required columns: " + missing.join(", "));
-  return rows.map((values, index) => Object.fromEntries(headers.map((header, i) => [header, (values[i] ?? "").trim()])).valueOf())
-    .filter(row => Object.values(row).some(value => value !== ""))
-    .map((row, index) => ({ ...row, __row: index + 2 }));
+  return rows.map(values => Object.fromEntries(headers.map((header, i) => [header, (values[i] ?? "").trim()])))
+    .filter(record => Object.values(record).some(value => value !== ""))
+    .map((record, index) => ({ ...record, __row: index + 2 }));
 }
 
 function number(value, field) {
@@ -39,17 +39,29 @@ function number(value, field) {
 }
 const divide = (a, b) => b === 0 ? null : a / b;
 
+export function summarizeCampaigns(valid) {
+  const totals = Object.fromEntries(NUMERIC.map(field => [field, valid.reduce((sum, item) => sum + item[field], 0)]));
+  return {
+    campaign_count: valid.length, ...totals,
+    ctr: divide(totals.clicks, totals.impressions),
+    conversion_rate: divide(totals.conversions, totals.clicks),
+    cpc: divide(totals.spend, totals.clicks),
+    cpa: divide(totals.spend, totals.conversions),
+    roas: divide(totals.revenue, totals.spend)
+  };
+}
+
 export function analyzeRows(rows) {
   const valid = [], exceptions = [];
   rows.forEach(row => {
     const campaign = (row.campaign || "").trim();
     const channel = (row.channel || "").trim();
-    if (!campaign || !channel) { exceptions.push({ row: row.__row, campaign, reason: "campaign or channel is missing" }); return; }
+    if (!campaign || !channel) { exceptions.push({ row: row.__row, campaign, channel, reason: "campaign or channel is missing" }); return; }
     const values = {};
     try { NUMERIC.forEach(field => { values[field] = number(row[field] ?? "", field); }); }
-    catch (error) { exceptions.push({ row: row.__row, campaign, reason: error.message }); return; }
-    if (values.clicks > values.impressions) { exceptions.push({ row: row.__row, campaign, reason: "clicks cannot exceed impressions" }); return; }
-    if (values.conversions > values.clicks) { exceptions.push({ row: row.__row, campaign, reason: "conversions cannot exceed clicks" }); return; }
+    catch (error) { exceptions.push({ row: row.__row, campaign, channel, reason: error.message }); return; }
+    if (values.clicks > values.impressions) { exceptions.push({ row: row.__row, campaign, channel, reason: "clicks cannot exceed impressions" }); return; }
+    if (values.conversions > values.clicks) { exceptions.push({ row: row.__row, campaign, channel, reason: "conversions cannot exceed clicks" }); return; }
     valid.push({ campaign, channel, ...values,
       ctr: divide(values.clicks, values.impressions),
       conversion_rate: divide(values.conversions, values.clicks),
@@ -58,16 +70,7 @@ export function analyzeRows(rows) {
       roas: divide(values.revenue, values.spend)
     });
   });
-  const totals = Object.fromEntries(NUMERIC.map(field => [field, valid.reduce((sum, item) => sum + item[field], 0)]));
-  const summary = {
-    campaign_count: valid.length, ...totals,
-    ctr: divide(totals.clicks, totals.impressions),
-    conversion_rate: divide(totals.conversions, totals.clicks),
-    cpc: divide(totals.spend, totals.clicks),
-    cpa: divide(totals.spend, totals.conversions),
-    roas: divide(totals.revenue, totals.spend)
-  };
-  return { valid, exceptions, summary };
+  return { valid, exceptions, summary: summarizeCampaigns(valid) };
 }
 
 export function summarizeByChannel(validRows) {
