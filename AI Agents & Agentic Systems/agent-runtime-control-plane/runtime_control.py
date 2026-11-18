@@ -24,9 +24,15 @@ class AgentSpec:
 class RuntimeControlPlane:
     """SQLite-backed control plane. Tool handlers remain local to the host process."""
 
-    def __init__(self, database: str | Path, handlers: dict[str, Callable[[dict[str, Any]], Any]]):
+    def __init__(
+        self,
+        database: str | Path,
+        handlers: dict[str, Callable[[dict[str, Any]], Any]],
+        authorization_check: Callable[[Any, str, str, str, Any], Any] | None = None,
+    ):
         self.database = str(database)
         self.handlers = dict(handlers)
+        self.authorization_check = authorization_check
         self._initialize()
 
     def _connect(self) -> sqlite3.Connection:
@@ -164,8 +170,17 @@ class RuntimeControlPlane:
             self.escalate(agent_id, "AGENT_REPORTED_UNHEALTHY", {"health": health})
         return self.get_agent(agent_id)
 
-    def invoke(self, agent_id: str, tool: str, arguments: dict[str, Any], *,
-               approved_tools: tuple[str, ...] = ()) -> dict[str, Any]:
+    def invoke(
+        self,
+        agent_id: str,
+        tool: str,
+        arguments: dict[str, Any],
+        *,
+        approved_tools: tuple[str, ...] = (),
+        principal: Any = None,
+        risk: str | None = None,
+        approval: Any = None,
+    ) -> dict[str, Any]:
         with self._connect() as db:
             row = db.execute("SELECT * FROM agents WHERE agent_id=?", (agent_id,)).fetchone()
             if row is None:
@@ -174,17 +189,24 @@ class RuntimeControlPlane:
             approval_required = json.loads(row["approval_required_for"])
             count = row["invocation_count"]
             reason = None
-            if row["lifecycle"] != "ACTIVE":
+            if self.authorization_check is not None:
+                try:
+                    decision = self.authorization_check(principal, agent_id, tool, risk, approval)
+                    if getattr(decision, "allowed", False) is not True:
+                        reason = getattr(decision, "reason", "SECURITY_AUTHORIZATION_DENIED")
+                except Exception:
+                    reason = "SECURITY_AUTHORIZATION_ERROR"
+            if reason is None and row["lifecycle"] != "ACTIVE":
                 reason = "AGENT_NOT_ACTIVE"
-            elif row["health"] in {"DEGRADED", "UNHEALTHY"}:
+            elif reason is None and row["health"] in {"DEGRADED", "UNHEALTHY"}:
                 reason = "AGENT_HEALTH_BLOCKED"
-            elif tool not in allowed:
+            elif reason is None and tool not in allowed:
                 reason = "TOOL_NOT_ALLOWLISTED"
-            elif tool not in self.handlers:
+            elif reason is None and tool not in self.handlers:
                 reason = "TOOL_HANDLER_UNAVAILABLE"
-            elif tool in approval_required and tool not in approved_tools:
+            elif reason is None and self.authorization_check is None and tool in approval_required and tool not in approved_tools:
                 reason = "HUMAN_APPROVAL_REQUIRED"
-            elif count >= row["max_invocations"]:
+            elif reason is None and count >= row["max_invocations"]:
                 reason = "INVOCATION_LIMIT_REACHED"
             if reason:
                 self._event(db, agent_id, "INVOCATION_DENIED", {"tool": tool, "reason": reason})
