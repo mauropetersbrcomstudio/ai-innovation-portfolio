@@ -136,6 +136,8 @@ try {
   await page.locator("#executive-report").waitFor({ state: "visible" });
   assert.ok((await page.locator("#report-content").innerText()).includes("Executive summary"));
   assert.ok((await page.locator("#report-meta").textContent()).includes("sample_campaigns.csv"));
+  assert.equal(await page.locator("#report-content .report-table-wrap table").count(), 1);
+  assert.equal(await page.locator("#report-content .report-table-wrap").evaluate(element => getComputedStyle(element).overflowX), "auto");
   assert.ok(await page.locator("#print-report").isVisible());
 
   // Mobile dashboard and report smoke checks.
