@@ -91,3 +91,15 @@ The [Agent Policy Validator](./agent-policy-validator/) checks agent risk labels
 The [Agent Security & Governance engine](./agent-security-governance/) evaluates explicit agent, role, tool, and risk grants. It separates authorization from human approval and fails closed when approval evidence cannot be verified. Its validated policy is held as an internal snapshot; callers receive defensive copies. It is the policy decision component to call before dispatch through the Agent Tool Gateway.
 
 **Status: DEMO** — the host must supply a trusted authenticated principal and an authoritative approval verifier. The module itself provides neither identity authentication nor cryptographic approval verification; its audit events are in-memory.
+
+## Recommended governed dispatch path
+
+The following sequence describes how the existing DEMOs fit together; it is an integration pattern, not a production security guarantee:
+
+1. The trusted application host authenticates the user and constructs the principal passed to the policy engine.
+2. Agent Security & Governance evaluates the requested agent, role, tool, and risk. A deny or error stops the flow.
+3. If the policy requires human approval, the host calls an authoritative approval verifier and passes only its verified result into the governed host adapter.
+4. The host adapter checks policy/gateway configuration alignment and dispatches through the Agent Tool Gateway only after an allowed policy decision.
+5. Agent Observability may record a structured event, but its key-name redaction is limited and its local log is not tamper-evident.
+
+**Trust boundary:** caller-supplied role labels, session markers, and approval IDs are not proof of identity or approval. The host remains responsible for authentication, approval verification, safe handler effects, durable audit storage, and operational controls. These components remain **DEMOs**, not production authorization infrastructure.
