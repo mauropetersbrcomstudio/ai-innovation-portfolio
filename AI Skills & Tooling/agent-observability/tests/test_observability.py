@@ -1,4 +1,3 @@
-import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -86,7 +85,7 @@ class ObservabilityTests(unittest.TestCase):
     def test_corrupt_jsonl_is_reported(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "events.jsonl"
-            path.write_text("{broken}\\n", encoding="utf-8")
+            path.write_text("{broken}\n", encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "line 1"):
                 JsonlEventLogger(path).read_events()
 
