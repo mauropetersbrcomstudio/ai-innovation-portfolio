@@ -1,0 +1,16 @@
+{
+  "trim_fields": ["full_name", "email", "signup_date"],
+  "null_values": ["", "null", "n/a", "na"],
+  "rename": {
+    "full_name": "name"
+  },
+  "case": {
+    "email": "lower"
+  },
+  "dates": {
+    "signup_date": {
+      "input_formats": ["%d/%m/%Y", "%Y-%m-%d"],
+      "output_format": "%Y-%m-%d"
+    }
+  }
+}
