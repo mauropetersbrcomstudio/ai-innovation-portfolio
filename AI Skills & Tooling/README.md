@@ -55,3 +55,9 @@ The [Agent Orchestration framework](./agent-orchestration/) runs declared steps 
 The [Agent Coordination utility](./agent-coordination/) routes structured payloads among explicitly registered handlers, enforcing permitted handoffs, per-agent invocation limits, and a global handoff budget.
 
 **Status: DEMO** — sequential in-process coordination; no autonomous agent loop, message broker, or persistent memory.
+
+## Agent Evaluation — Scenario Assertions
+
+The [Agent Evaluation skill](./agent-evaluation/) checks structured agent outputs against explicit expectations for status, output fields, trace participants, and lifecycle events. It produces a machine-readable PASS/FAIL report.
+
+**Status: DEMO** — deterministic scenario assertions; no model grading or automatic test generation.
