@@ -1,0 +1,4 @@
+campaign_id,campaign_name,destination_url,utm_source,utm_medium,utm_campaign,start_date,end_date,budget,utm_content
+CMP-001,Spring Awareness,https://example.com/spring?ref=homepage,linkedin,social,spring-awareness,2026-12-01,2026-12-14,2500,carousel
+CMP-002,Search Demand,https://example.com/search,google,cpc,search-demand,2026-12-01,2026-12-31,4200,brand-keywords
+CMP-003,Partner Newsletter,https://example.com/partners,partner,email,partner-newsletter,2026-12-05,2026-12-20,900,
