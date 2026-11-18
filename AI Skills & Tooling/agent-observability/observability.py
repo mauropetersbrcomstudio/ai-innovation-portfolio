@@ -78,7 +78,7 @@ class JsonlEventLogger:
         line = json.dumps(event, ensure_ascii=False, sort_keys=True)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.path.open("a", encoding="utf-8") as handle:
-            handle.write(line + "\\n")
+            handle.write(line + "\n")
         return event
 
     def read_events(self) -> list[dict[str, Any]]:
