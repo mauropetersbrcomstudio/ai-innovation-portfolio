@@ -1,0 +1,25 @@
+name: Operations Review Workspace Tests
+on:
+  push:
+    paths:
+      - "AI Product Development/operations-review-workspace/**"
+      - "AI Automation & Workflows/intake-operations-hub/**"
+      - "AI Agents & Agentic Systems/durable-workflow-runner/**"
+      - "AI Skills & Tooling/agent-state-store/**"
+  pull_request:
+    paths:
+      - "AI Product Development/operations-review-workspace/**"
+      - "AI Automation & Workflows/intake-operations-hub/**"
+      - "AI Agents & Agentic Systems/durable-workflow-runner/**"
+      - "AI Skills & Tooling/agent-state-store/**"
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run workspace integration tests
+        working-directory: AI Product Development/operations-review-workspace
+        run: python -m unittest discover -s tests -v
