@@ -32,6 +32,18 @@ The same Chromium workflow includes narrow viewport checks at 375 CSS pixels:
 
 These checks target specific layout contracts. They do not replace manual visual review, test every device size, or establish cross-browser visual consistency.
 
+## Public repository hygiene
+
+Run the standard-library check from the repository root:
+
+```bash
+python scripts/check_public_content.py
+```
+
+The Portfolio Quality Gate runs this check before project documentation validation and unit tests. It scans Git-tracked UTF-8 text files for selected high-confidence credential formats and non-example environment-file names. Findings contain only a repository path and rule identifier; matched values are never printed.
+
+This is a heuristic guard, not a comprehensive secret scanner. It does not inspect Git history, binary or oversized files, every credential format, or all forms of confidential/client information. A clean result does not replace code review, access controls, or credential rotation.
+
 ## Scope and limitations
 
 These tests use synthetic records and loopback-only local servers. They verify selected workflows, not every visual state or browser/device combination. They do not test authentication, production security, external integrations, live customer data, or production deployment. A passing automated run does not mean a human has completed a local presentation review.
