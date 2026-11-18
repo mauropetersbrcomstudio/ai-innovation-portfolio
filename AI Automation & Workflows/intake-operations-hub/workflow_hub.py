@@ -29,12 +29,12 @@ def build_handlers() -> dict[str, Any]:
         outputs = request["previous_outputs"]
         lead_result, invoice_result = outputs["lead_intake"], outputs["invoice_intake"]
         lead_items = [
-            {"source": "lead_intake", "reference": item.get("email") or f"row:{item['row']}",
+            {"item_id": f"lead_intake:{item['row']}", "source": "lead_intake", "reference": item.get("email") or f"row:{item['row']}",
              "reason": item["reason"], "row": int(item["row"])}
             for item in lead_result["exceptions"]
         ]
         invoice_items = [
-            {"source": "invoice_intake", "reference": item.get("invoice_id") or f"row:{item['row']}",
+            {"item_id": f"invoice_intake:{item['row']}", "source": "invoice_intake", "reference": item.get("invoice_id") or f"row:{item['row']}",
              "reason": item["status"], "row": item["row"], "details": item["reasons"]}
             for item in invoice_result["results"] if item["status"] != "AP_REVIEW"
         ]
