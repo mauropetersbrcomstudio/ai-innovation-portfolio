@@ -12,4 +12,4 @@ The single library of independently developed demonstrations, reusable templates
 | [Marketing Intelligence & Business Automation](./Marketing%20Intelligence%20%26%20Business%20Automation/) | 3 |
 | **Total** | **37** |
 
-Projects are independently developed examples and do not imply client engagements or production deployments. For substantiated client work, use the separate [Client Demos](../Client%20Demos/) area. The root [portfolio README](../README.md) is the complete project catalogue.
+Projects are independently developed examples and do not imply client engagements or production deployments. For substantiated client work, use the separate [Client Case Studies](../Client%20Case%20Studies/) area. The root [portfolio README](../README.md) is the complete project catalogue.
