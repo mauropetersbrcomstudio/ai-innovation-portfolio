@@ -1,11 +1,9 @@
 # AI Automation & Workflows
 
-Examples of repeatable business workflows, integrations, validation, and exception handling.
+This section focuses on practical ways to make repeatable business processes more consistent: handling incoming information, checking it, applying clear rules, routing work, and dealing with exceptions.
 
-## Initial demonstration specification: Lead Intake Pipeline
-**Input:** synthetic lead records in CSV or JSON.
-**Workflow:** validate required fields → normalize values → assign a transparent qualification score → route records → generate an exception report.
+## Lead Intake Pipeline
 
-**Acceptance checks:** deterministic scoring, invalid-row reporting, duplicate detection, and reproducible output.
+The [Lead Intake Pipeline](./lead-intake-pipeline/) is an executable example. It takes lead records from a CSV file, checks and standardizes the information, identifies duplicate email addresses, applies a transparent scoring rule, and separates records for priority follow-up, standard follow-up, or review.
 
-**Status:** DEMO specification documented; executable implementation pending.
+It runs locally with Python and sample data. It does not connect to a CRM or contact leads.
