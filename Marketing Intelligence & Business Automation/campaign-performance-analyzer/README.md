@@ -12,19 +12,19 @@ A local Python tool and browser dashboard that read campaign-level CSV data, val
 - **CPA:** spend ÷ conversions
 - **ROAS:** attributed revenue ÷ spend
 
-If a denominator is zero, the corresponding metric is written as `null` rather than an invented zero rate. Aggregate rates are calculated from aggregate totals, not by averaging campaign-level rates.
+If a denominator is zero, the corresponding metric is `null`. Aggregate rates are calculated from aggregate totals, not by averaging campaign-level rates.
 
 ## Interactive dashboard
 
-Open `dashboard.html` in a modern browser, choose a CSV file, and inspect the campaign summary, ROAS comparison, channel aggregation, and detailed metrics. The dashboard processes the selected file locally in the browser; it does not upload the data. Download `sample_campaigns.csv` to try the included synthetic records.
-
-After loading a CSV, use the campaign-name search and channel selector to filter the valid campaign rows and exception list. All displayed KPIs, charts, and tables reflect the current selection. The **Export filtered report** action downloads a JSON report containing the active filters, selected valid campaigns, selected exceptions, metric definitions, aggregate summary, export timestamp, and limitations. Exception rows are excluded from performance totals.
-
-The browser dashboard is an independent front-end demonstration; the Python CLI remains available for repeatable file-based reporting.
+Open `dashboard.html` in a modern browser and select a CSV. The dashboard processes the file locally; it does not upload data. It supports campaign search, channel filtering, a filtered JSON report, and (when a valid `date` column exists) date-range filtering with a comparison against the immediately preceding interval of equal length.
 
 ## CSV contract
 
-Required headers: `campaign, channel, spend, impressions, clicks, conversions, revenue`. The current schema has no date field; period filters and period-over-period comparisons are therefore not available.
+Required headers: `campaign, channel, spend, impressions, clicks, conversions, revenue`.
+
+Optional date header: `date`, with every non-empty data row using a valid ISO calendar date in `YYYY-MM-DD` format. If the date column is absent, legacy CSV files remain supported and period comparison controls are hidden. If the date column is present, invalid or missing row dates are sent to exceptions and excluded from performance calculations.
+
+The comparison uses inclusive date boundaries. For a selected interval of N calendar days, the previous period is the N calendar days immediately before the selected start. Empty previous periods are shown as zero records; percentage change is unavailable when the previous metric is zero or undefined. This is a descriptive comparison, not a causal explanation.
 
 ## Run
 
@@ -44,4 +44,4 @@ node --test tests/dashboard-logic.test.js
 
 ## Data integrity and limitations
 
-The included dataset is synthetic. This tool checks that numeric values are non-negative, clicks do not exceed impressions, and conversions do not exceed clicks. These are basic structural checks, not proof of attribution correctness or data quality. It does not connect to advertising platforms, verify spend or revenue, infer causation, recommend budget allocation, or claim campaign effectiveness. ROAS is a ratio based on the supplied revenue field and is not profit or ROI.
+The sample dataset is synthetic. Checks are structural, not proof of attribution correctness. The tool does not connect to advertising platforms, verify spend or revenue, infer causation, or recommend budget allocation. ROAS is not profit or ROI.
