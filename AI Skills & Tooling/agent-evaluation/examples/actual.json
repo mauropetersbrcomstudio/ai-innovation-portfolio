@@ -1,0 +1,6 @@
+{
+  "status": "COMPLETED",
+  "output": {"queue": "support"},
+  "trace": [{"agent": "intake"}, {"agent": "policy_review"}],
+  "events": [{"event": "AGENT_HANDOFF"}, {"event": "COORDINATION_FINISHED"}]
+}
