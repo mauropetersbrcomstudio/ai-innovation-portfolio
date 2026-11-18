@@ -30,7 +30,7 @@ The repository already contains working demonstrations across the eight areas, i
 - SME Workflow Opportunity Mapper and SME KPI Workspace.
 - Campaign Performance Analyzer, Marketing Analytics Pipeline, and Campaign Launch QA & UTM Builder.
 
-The root README and individual project READMEs are the authoritative project catalogue and implementation instructions. The [Selected Demo Guide](./DEMO-GUIDE.md) provides a short, consolidated presentation path for the initial three demos. Sample records are synthetic unless explicitly identified otherwise. Existing demonstrations must not be described as client engagements or production systems without evidence.
+The root README and individual project READMEs are the authoritative project catalogue and implementation instructions. The [Selected Demo Guide](./DEMO-GUIDE.md) provides a consolidated presentation path for the initial three demos. The [cross-project test guide](./tests/README.md) explains the browser and CI test coverage. Sample records are synthetic unless explicitly identified otherwise. Existing demonstrations must not be described as client engagements or production systems without evidence.
 
 ## Essential backlog
 
@@ -52,20 +52,24 @@ The root README and individual project READMEs are the authoritative project cat
 - [x] Select three existing demos for first presentation: **Operations Review Workspace**, **Campaign Performance Analyzer**, and **Campaign Launch QA & UTM Builder**. These cover an interactive workflow and two complementary marketing use cases without new implementation.
 - [x] Reassess the selection after reproducibility checks; no blocker justified changing the three-demo shortlist.
 - [x] Verify automated test coverage and documented sample commands for each selected demo through GitHub Actions.
-- [ ] Execute each demo interactively on a local machine and verify the complete visual/user flow; CI tests alone do not establish this.
+- [x] Add a headless Chromium workflow for the Operations Review Workspace and Campaign Performance Analyzer, using synthetic data and loopback-only services.
+- [x] Verify that the Operations Review Workspace browser test checks decision persistence after a full page reload.
+- [ ] Confirm a successful run of the cross-project browser workflow and record its GitHub Actions run link.
+- [ ] Execute each demo interactively on a local machine and verify the complete visual/user flow; CI checks do not establish this.
 - [x] Ensure synthetic sample data, expected outputs, limitations, and a short demonstration path are clear.
 - [x] Resolve the test-hygiene warning found during the automated test run; no test blocker remained.
 - [x] Publish the [Selected Demo Guide](./DEMO-GUIDE.md) with reproducible commands, presentation sequence, automated checks, and explicit limitations.
+- [x] Add a cross-project test index in [tests/README.md](./tests/README.md).
 
-**Exit criteria:** each selected demo can be explained and reproduced from its README, with test evidence and limitations visible. Full manual presentation readiness remains pending until interactive local runs are recorded.
+**Exit criteria:** each selected demo can be explained and reproduced from its README, with test evidence and limitations visible. Browser workflow pass evidence and human-led local presentation review remain pending.
 
-**Verification evidence (2026-11-18):**
+**Previously recorded verification evidence (2026-11-18):**
 - [Portfolio Quality Gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44229011568): catalogue validator passed; 34 Python test suites and 224 tests passed.
 - [Operations Review Workspace Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44228923871): six integration tests passed, covering the local HTTP adapter, workflow state, and review-decision flow.
 - [Campaign Performance Analyzer Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44228923767): six Python tests and 15 browser-logic tests passed; the sample CLI run generated all three expected non-empty reports.
 - [Campaign Launch QA Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44229011729): nine Python tests passed; the sample CLI run generated the approved, exception, and summary files.
 
-The dashboard and workspace were not subjected to full browser-driven end-to-end automation. Their documented browser paths remain subject to manual presentation review; the automated evidence covers the underlying logic, HTTP integration, and sample CLI outputs.
+The new cross-project Chromium workflow has been configured and its assertions strengthened to check persisted state after a full reload. Its successful execution must be confirmed from the resulting GitHub Actions run before it is counted as passed. The dashboard and workspace still require human-led local presentation review. Automated browser checks do not establish complete visual quality on every device or browser.
 
 ### P2 — Client Demos, only when source material is supplied
 
@@ -97,4 +101,4 @@ These items may be reconsidered only when a concrete client requirement or demon
 
 ## Working rule
 
-**P0 is complete. P1 automated verification and the presentation guide are complete; browser end-to-end verification is now being added, and interactive local review remains pending.** Do not create a client case until a source brief, supporting evidence, and publication authorization are supplied. Defer additional independent projects unless a concrete gap justifies them.
+**P0 is complete. P1 test and presentation documentation is in place. The cross-project browser workflow is configured; its pass result and human-led local presentation review remain outstanding.** Do not create a client case until a source brief, supporting evidence, and publication authorization are supplied. Defer additional independent projects unless a concrete gap justifies them.
