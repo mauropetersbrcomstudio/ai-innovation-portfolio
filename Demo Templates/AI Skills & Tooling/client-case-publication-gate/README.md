@@ -31,7 +31,7 @@ A case study should not enter the public portfolio until the proposed claims, ev
 - Inspection or verification of underlying evidence documents.
 - Legal advice or determination of publication rights.
 - Storage of client names, claim text, confidential documents, or personal data.
-- Publishing, deployment, or modification of the `client-demos/` category.
+- Publishing, deployment, or modification of the `client-case-studies/` category.
 
 ## How it works
 
@@ -99,7 +99,7 @@ A `READY_FOR_HUMAN_REVIEW` result is not proof of consent, legal authorization, 
 - Evidence references are not dereferenced or cryptographically verified.
 - No identity, approval signature, timestamp authority, or audit trail is provided.
 - The utility does not scan the evidence store for secrets or personal data.
-- It does not publish or modify files under `client-demos/`.
+- It does not publish or modify files under `client-case-studies/`.
 
 ## Next steps
 
