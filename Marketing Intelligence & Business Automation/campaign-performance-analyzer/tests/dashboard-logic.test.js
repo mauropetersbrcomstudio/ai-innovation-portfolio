@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { analyzeRows, parseCsv } from "../dashboard-logic.js";
+import { analyzeRows, parseCsv, summarizeByChannel } from "../dashboard-logic.js";
 
 test("parses quoted commas and escaped quotes", () => {
   const rows = parseCsv('campaign,channel,spend,impressions,clicks,conversions,revenue\n"Spring, launch",Search,10,100,5,1,20\n');
@@ -39,4 +39,16 @@ test("zero denominators remain null", () => {
 
 test("unclosed quoted fields are rejected", () => {
   assert.throws(() => parseCsv('campaign,channel,spend,impressions,clicks,conversions,revenue\n"Open,Search,1,2,1,1,2'), /unclosed quoted field/);
+});
+
+test("summarizes channel ratios from channel totals", () => {
+  const rows = parseCsv("campaign,channel,spend,impressions,clicks,conversions,revenue\\nA,Search,100,1000,100,10,200\\nB,Search,300,9000,90,9,600\\nC,Social,100,1000,100,10,500\\n");
+  const result = analyzeRows(rows);
+  const channels = summarizeByChannel(result.valid);
+  const search = channels.find(item => item.channel === "Search");
+  assert.equal(search.campaign_count, 2);
+  assert.equal(search.spend, 400);
+  assert.equal(search.conversions, 19);
+  assert.equal(search.roas, 2);
+  assert.equal(search.cpa, 400 / 19);
 });
