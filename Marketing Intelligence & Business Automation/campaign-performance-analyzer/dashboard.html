@@ -31,6 +31,19 @@
         <label>Channel<select id="channel-filter" disabled><option value="all">All channels</option></select></label>
         <button id="export-report" type="button" disabled>Export filtered report ↓</button>
       </div>
+      <div class="period-controls" id="period-controls" hidden>
+        <label>Period start<input id="period-start" type="date"></label>
+        <label>Period end<input id="period-end" type="date"></label>
+        <span class="period-help">Comparison: immediately preceding interval of equal length.</span>
+      </div>
+      <section class="period-panel" id="period-panel" hidden aria-live="polite">
+        <div class="panel-heading"><div><p class="eyebrow">PERIOD COMPARISON</p><h2>Current vs previous period</h2></div><span class="unit" id="period-label"></span></div>
+        <div class="period-grid">
+          <div><span>Spend</span><strong id="period-spend">—</strong><small id="period-spend-change">—</small></div>
+          <div><span>Conversions</span><strong id="period-conversions">—</strong><small id="period-conversions-change">—</small></div>
+          <div><span>ROAS</span><strong id="period-roas">—</strong><small id="period-roas-change">—</small></div>
+        </div>
+      </section>
       <p class="filter-note" id="filter-note">Filters apply to valid campaign rows and the exception list. Summary values reflect the current selection.</p>
       <div class="kpis">
         <article class="kpi primary"><span>ROAS</span><strong id="roas">—</strong><small>Revenue / spend</small></article>
