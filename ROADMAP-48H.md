@@ -30,7 +30,7 @@ The repository already contains working demonstrations across the eight areas, i
 - SME Workflow Opportunity Mapper and SME KPI Workspace.
 - Campaign Performance Analyzer, Marketing Analytics Pipeline, and Campaign Launch QA & UTM Builder.
 
-The root README and individual project READMEs are the authoritative project catalogue and implementation instructions. Sample records are synthetic unless explicitly identified otherwise. Existing demonstrations must not be described as client engagements or production systems without evidence.
+The root README and individual project READMEs are the authoritative project catalogue and implementation instructions. The [Selected Demo Guide](./DEMO-GUIDE.md) provides a short, consolidated presentation path for the initial three demos. Sample records are synthetic unless explicitly identified otherwise. Existing demonstrations must not be described as client engagements or production systems without evidence.
 
 ## Essential backlog
 
@@ -51,11 +51,13 @@ The root README and individual project READMEs are the authoritative project cat
 
 - [x] Select three existing demos for first presentation: **Operations Review Workspace**, **Campaign Performance Analyzer**, and **Campaign Launch QA & UTM Builder**. These cover an interactive workflow and two complementary marketing use cases without new implementation.
 - [x] Reassess the selection after reproducibility checks; no blocker justified changing the three-demo shortlist.
-- [x] Verify each selected demo from its documented setup through its primary user flow using its existing tests and available execution environment.
+- [x] Verify automated test coverage and documented sample commands for each selected demo through GitHub Actions.
+- [ ] Execute each demo interactively on a local machine and verify the complete visual/user flow; CI tests alone do not establish this.
 - [x] Ensure synthetic sample data, expected outputs, limitations, and a short demonstration path are clear.
-- [x] Resolve the test-hygiene warning found during the run; no functional blocker remained in the selected demo paths.
+- [x] Resolve the test-hygiene warning found during the automated test run; no test blocker remained.
+- [x] Publish the [Selected Demo Guide](./DEMO-GUIDE.md) with reproducible commands, presentation sequence, automated checks, and explicit limitations.
 
-**Exit criteria:** each selected demo can be explained and reproduced from its README, with test evidence and limitations visible.
+**Exit criteria:** each selected demo can be explained and reproduced from its README, with test evidence and limitations visible. Full manual presentation readiness remains pending until interactive local runs are recorded.
 
 **Verification evidence (2026-11-18):**
 - [Portfolio Quality Gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44229011568): catalogue validator passed; 34 Python test suites and 224 tests passed.
