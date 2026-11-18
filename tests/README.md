@@ -53,3 +53,7 @@ These tests use synthetic records and loopback-only local servers. They verify s
 The [Client Case Publication Gate](../demo-templates/client-case-publication-gate/) is a standard-library Python preflight for a future authorized case package. Its dedicated workflow runs unit tests and the synthetic sample manifest.
 
 The sample manifest is intentionally incomplete and must report `BLOCKED`; it does not represent a client, engagement, outcome, or publication approval. A complete manifest can reach only `READY_FOR_HUMAN_REVIEW`. The tool never returns publication authorization and does not verify underlying evidence or legal permissions.
+
+Latest evidence:
+- [Client Case Publication Gate Tests — run 44298660386](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44298660386): passed; 18 tests and the intentionally blocked sample command.
+- [Portfolio Quality Gate — run 44298765167](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44298765167): passed; 37 project READMEs, eight category indexes, 275 Python tests across 36 suites, and the public-content scan of 215 tracked UTF-8 files with zero skips.

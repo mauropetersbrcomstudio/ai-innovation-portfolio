@@ -161,8 +161,14 @@ The initial CI attempt caught a missing `ToolSpec` import in the demo runner. It
 - [x] Require an opaque case reference, publication authorization reference, explicit attribution permissions, claim-level evidence declarations, and data-review declarations.
 - [x] Fail closed on missing, malformed, duplicated, unverified, or unauthorized manifest declarations.
 - [x] Keep the output limited to status and finding codes; never echo client names, claim text, evidence references, or matched values.
-- [ ] Confirm the dedicated unit-test and sample-manifest workflow after commit.
-- [ ] Confirm the portfolio-wide quality gate after commit.
+- [x] Confirm the dedicated unit-test and sample-manifest workflow — [run 44298660386](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44298660386).
+- [x] Confirm the portfolio-wide quality gate — [run 44298765167](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44298765167).
+
+**Verification evidence (2026-11-18):**
+- [Client Case Publication Gate Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44298660386): passed; 18 unit tests and the intentionally blocked synthetic sample command completed successfully.
+- [Portfolio Quality Gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44298765167): passed; the heuristic scanner checked 215 tracked UTF-8 text files with zero skips and no reported findings; catalogue validation covered 37 project READMEs and eight category indexes; 275 Python tests passed across 36 suites.
+
+The first quality-gate attempt on the implementation commit failed because a direct project-directory link in the Client Demos category index was interpreted by the catalogue validator as a Client Demos project. The cross-reference was changed to the Demo Templates category index, preserving category separation; the final quality gate above passed.
 
 **Boundary:** the sample is a synthetic, intentionally blocked intake manifest. The tool does not inspect evidence, authenticate a client or approver, verify legal permissions, or authorize publication. A successful preflight means only that the manifest declarations are complete enough for human review. `client-demos/` remains reserved for real, substantiated, authorized cases.
 
