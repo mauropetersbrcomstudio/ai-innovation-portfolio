@@ -2,6 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from workflow_hub import run_intake_workflow
+from review_decisions import ReviewDecisionStore
 
 class IntakeOperationsHubTests(unittest.TestCase):
     def setUp(self):
@@ -55,6 +56,38 @@ class IntakeOperationsHubTests(unittest.TestCase):
         result = self.run_case("failure", [], [], "0")
         self.assertEqual(result["workflow"]["status"], "FAILED")
         self.assertIn("STEP_FAILED", [event["event_type"] for event in result["events"]])
+
+    def test_human_decision_is_persisted_and_audited(self):
+        self.run_case("decision", [{"name":"Ada","email":"bad"}], [], "5000.00")
+        store = ReviewDecisionStore(self.database)
+        result = store.record("decision", "lead_intake:2", "reviewer-17",
+                              "REQUESTED_INFORMATION", "Confirm company details")
+        self.assertEqual(result["reviewer_id"], "reviewer-17")
+        self.assertEqual(len(store.list_for_workflow("decision")), 1)
+        events = [e["event_type"] for e in store.state_store.events("decision")]
+        self.assertIn("HUMAN_REVIEW_DECISION_RECORDED", events)
+
+    def test_duplicate_human_decision_is_rejected(self):
+        self.run_case("once_decision", [{"name":"Ada","email":"bad"}], [], "5000.00")
+        store = ReviewDecisionStore(self.database)
+        store.record("once_decision", "lead_intake:2", "reviewer-1", "REJECTED", "Not qualified")
+        with self.assertRaises(ValueError):
+            store.record("once_decision", "lead_intake:2", "reviewer-2",
+                         "ACCEPTED_FOR_NEXT_STAGE", "Override")
+
+    def test_unknown_review_item_is_rejected(self):
+        self.run_case("unknown_item", [], [], "5000.00")
+        with self.assertRaises(KeyError):
+            ReviewDecisionStore(self.database).record(
+                "unknown_item", "lead_intake:999", "reviewer-1", "REJECTED", "Unknown")
+
+    def test_decision_requires_valid_outcome_and_reason(self):
+        self.run_case("invalid_decision", [{"name":"Ada","email":"bad"}], [], "5000.00")
+        store = ReviewDecisionStore(self.database)
+        with self.assertRaises(ValueError):
+            store.record("invalid_decision", "lead_intake:2", "reviewer-1", "REJECTED", " ")
+        with self.assertRaises(ValueError):
+            store.record("invalid_decision", "lead_intake:2", "reviewer-1", "PAID", "Not allowed")
 
 if __name__ == "__main__":
     unittest.main()
