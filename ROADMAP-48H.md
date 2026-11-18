@@ -56,7 +56,7 @@ The folder structure remains unchanged. The execution order below is a developme
 | AI Product Development | Operations Review Workspace | FUNCTIONAL LOCAL DEMO |
 | Web Applications & SaaS | SME KPI Workspace | DEMO |
 | Marketing Intelligence & Business Automation | Campaign Performance Analyzer | DEMO |
-| Marketing Intelligence & Business Automation | Marketing Analytics Pipeline | DEMO |
+| Marketing Intelligence & Business Automation | Marketing Analytics Pipeline | DEMO |\n| Marketing Intelligence & Business Automation | Campaign Launch QA & UTM Builder | DEMO |
 
 These are independently developed demonstrations. Their sample records are synthetic; none is presented as a completed client engagement or a production deployment.
 
@@ -82,7 +82,7 @@ The durable runner reduces loss of workflow progress across process restarts, bu
 
 The new agent-platform components are deterministic reference implementations. They do not establish production-grade identity, authorization, tamper-proof auditing, distributed execution, or autonomous LLM behavior.
 
-## Next implementation priority
+## Marketing intelligence additions\n\n- [x] Campaign Performance Analyzer with temporal evolution, period comparison, executive report, and browser print-to-PDF workflow.\n- [x] Campaign Launch QA & UTM Builder with metadata validation, tracking URL generation, duplicate detection, and exception reporting.\n\n## Next implementation priority
 
 The AI Automation & Workflows category now contains two working pipelines. The Resumable Intake Operations Hub and its Operations Review Workspace now demonstrate a complete local intake-to-human-review path: durable workflow state, a review queue, persisted decisions, and decision/event history. The next priority is packaging this reusable capability as a configurable Demo Template, then adding a second distinct product experience only where it reuses the shared foundation.
 
