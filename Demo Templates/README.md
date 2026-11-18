@@ -1,11 +1,15 @@
-# Demo Templates — Consolidated
+# Demo Templates
 
-The reusable templates formerly grouped in this directory have been consolidated into the six technology categories so that every project has one canonical location.
+The single library of independently developed demonstrations, reusable templates, tools, and product prototypes. Each project belongs to exactly one of the six technology categories below.
 
-- [Client Case Publication Gate](../AI%20Skills%20%26%20Tooling/client-case-publication-gate/) — AI Skills & Tooling
-- [CRM Lead Qualification & Routing](../AI%20Automation%20%26%20Workflows/crm-lead-qualification-routing/) — AI Automation & Workflows
-- [Operations Intake & Human Review](../AI%20Product%20Development/operations-intake-review/) — AI Product Development
-- [SME Customer Support Automation](../AI%20Automation%20%26%20Workflows/sme-customer-support-automation/) — AI Automation & Workflows
-- [SME Internal Knowledge Assistant](../AI%20Agents%20%26%20Agentic%20Systems/sme-internal-knowledge-assistant/) — AI Agents & Agentic Systems
+| Technology category | Projects |
+|---|---:|
+| [AI Agents & Agentic Systems](./AI%20Agents%20%26%20Agentic%20Systems/) | 9 |
+| [AI Automation & Workflows](./AI%20Automation%20%26%20Workflows/) | 5 |
+| [AI Skills & Tooling](./AI%20Skills%20%26%20Tooling/) | 16 |
+| [AI Product Development](./AI%20Product%20Development/) | 3 |
+| [Web Applications & SaaS](./Web%20Applications%20%26%20SaaS/) | 1 |
+| [Marketing Intelligence & Business Automation](./Marketing%20Intelligence%20%26%20Business%20Automation/) | 3 |
+| **Total** | **37** |
 
-The six category indexes and root README are the authoritative project catalogue. This transition index is retained to explain the consolidation and keep the former path useful.
+Projects are independently developed examples and do not imply client engagements or production deployments. For substantiated client work, use the separate [Client Demos](../Client%20Demos/) area. The root [portfolio README](../README.md) is the complete project catalogue.

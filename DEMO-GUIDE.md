@@ -11,7 +11,7 @@ This guide covers three existing demonstrations selected for an initial portfoli
 **Start:**
 
 ```bash
-cd "AI Product Development/operations-review-workspace"
+cd "Demo Templates/AI Product Development/operations-review-workspace"
 python server.py
 ```
 
@@ -42,7 +42,7 @@ The cross-project Chromium check also records a synthetic review decision, reloa
 **Run the sample analysis:**
 
 ```bash
-cd "Marketing Intelligence & Business Automation/campaign-performance-analyzer"
+cd "Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer"
 python analyzer.py --input sample_campaigns.csv --output-dir output
 ```
 
@@ -75,7 +75,7 @@ The cross-project Chromium check imports the included CSV, verifies the expected
 **Run:**
 
 ```bash
-cd "Marketing Intelligence & Business Automation/campaign-launch-qa"
+cd "Demo Templates/Marketing Intelligence & Business Automation/campaign-launch-qa"
 python launch_qa.py --input sample_campaigns.csv --output-dir output
 ```
 
