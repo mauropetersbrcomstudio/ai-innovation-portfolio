@@ -1,4 +1,4 @@
-import { analyzeRows, parseCsv } from "./dashboard-logic.js";
+import { analyzeRows, parseCsv, summarizeByChannel } from "./dashboard-logic.js";
 
 const money = value => value === null ? "N/A" : new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(value);
 const integer = value => new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(value);
@@ -26,6 +26,11 @@ function showData(result, fileName) {
     const width = Math.max(2, item.roas / max * 100);
     return `<div class="bar-group" role="listitem" aria-label="${escapeHtml(item.campaign)} ROAS ${ratio(item.roas)}"><span class="bar-value">${ratio(item.roas)}</span><div class="bar ${index === 0 ? "best" : ""}" style="height:${width}%"></div><span class="bar-label" title="${escapeHtml(item.campaign)}">${escapeHtml(item.campaign)}</span></div>`;
   }).join("") : '<p class="empty">No non-zero spend records available to calculate ROAS.</p>';
+
+  const channels = summarizeByChannel(valid);
+  $("#channel-rows").innerHTML = channels.length ? channels.map(item =>
+    `<tr><td>${escapeHtml(item.channel)}</td><td>${integer(item.campaign_count)}</td><td>${money(item.spend)}</td><td>${integer(item.conversions)}</td><td>${money(item.cpa)}</td><td>${ratio(item.roas)}</td></tr>`
+  ).join("") : '<tr><td colspan="6" class="empty-cell">No valid channel data.</td></tr>';
 
   $("#campaign-rows").innerHTML = valid.length ? valid.map(item =>
     `<tr><td>${escapeHtml(item.campaign)}</td><td>${escapeHtml(item.channel)}</td><td>${money(item.spend)}</td><td>${percent(item.ctr)}</td><td>${percent(item.conversion_rate)}</td><td>${money(item.cpa)}</td><td>${ratio(item.roas)}</td></tr>`
