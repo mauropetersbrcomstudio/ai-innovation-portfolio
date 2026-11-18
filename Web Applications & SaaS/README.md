@@ -4,6 +4,6 @@ This section features web-based products and application concepts, from focused 
 
 ## SME KPI Workspace
 
-One proposed application is a dashboard for a small or medium-sized business to explore selected operational indicators. The concept uses sample data and includes filters and clearly explained KPI calculations.
+The [SME KPI Workspace](./sme-kpi-workspace/) is a responsive, static dashboard using synthetic data. It displays revenue, orders, average order value, conversion rate, a monthly revenue chart, and a reporting-period filter.
 
-It is currently a concept, not a working dashboard. No live business data or operational results are represented.
+It runs locally in a browser and has automated tests for its KPI calculations and filtering logic. It has no live data connection, backend, or authentication.
