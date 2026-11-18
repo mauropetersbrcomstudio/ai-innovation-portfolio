@@ -24,7 +24,7 @@ from security_governance import (  # noqa: E402
     Principal,
     SecurityPolicyEngine,
 )
-from gateway import Session, ToolGateway  # noqa: E402
+from gateway import Session, ToolGateway, ToolSpec  # noqa: E402
 
 
 @dataclass
