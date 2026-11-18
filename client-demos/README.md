@@ -17,6 +17,6 @@ Independently developed demonstrations, templates, tools, and prototypes belong 
 
 ## Publication preflight
 
-Before adding a real case, use the [Client Case Publication Gate](../demo-templates/client-case-publication-gate/) to check that an opaque case reference, publication authorization reference, claim-level evidence declarations, attribution permissions, and data-review declarations are present.
+Before adding a real case, use the Client Case Publication Gate template listed in [Demo Templates](../demo-templates/README.md) to check that an opaque case reference, publication authorization reference, claim-level evidence declarations, attribution permissions, and data-review declarations are present.
 
 The gate reports only **BLOCKED** or **READY_FOR_HUMAN_REVIEW**. It never authorizes publication and cannot verify that an authorization or evidence reference is genuine. A human must inspect the underlying records and confirm the permitted disclosure. This directory remains reserved for actual, substantiated, authorized engagements; the template and its synthetic blocked sample are not client cases.
