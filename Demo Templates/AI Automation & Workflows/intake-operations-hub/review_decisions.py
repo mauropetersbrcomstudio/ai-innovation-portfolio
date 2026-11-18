@@ -4,8 +4,8 @@ import json, sqlite3, sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "AI Skills & Tooling" / "agent-state-store"))
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "Demo Templates" / "AI Skills & Tooling" / "agent-state-store"))
 from state_store import StateStore
 OUTCOMES = {"ACCEPTED_FOR_NEXT_STAGE", "REJECTED", "REQUESTED_INFORMATION"}
 
