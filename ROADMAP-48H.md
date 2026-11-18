@@ -140,6 +140,21 @@ The initial CI attempt caught a missing `ToolSpec` import in the demo runner. It
 
 **Boundary:** defensive copies protect against accidental mutation through ordinary public references; they are not a sandbox against malicious code running inside the same Python process or code using introspection. Policy and gateway state remain in memory, the gateway supports only a small schema subset, and neither component provides production identity, approval, concurrency, or durable audit controls. Both remain DEMOs.
 
+### P1 — Public repository content hygiene
+
+- [x] Add a standard-library scanner for Git-tracked UTF-8 files that flags selected high-confidence credential formats and non-example environment-file names.
+- [x] Ensure findings report only repository paths and rule identifiers; matched values are never printed.
+- [x] Add regression tests for provider-token formats, private-key markers, credential-bearing URLs, environment-file names, safe placeholders, binary/oversized-file handling, and diagnostic redaction.
+- [x] Run the scanner before catalogue validation and Python tests in the Portfolio Quality Gate.
+- [x] Document coverage and limitations in the root README, Project Entry Criteria, cross-project test guide, and AI Skills & Tooling integration notes.
+
+**Boundary:** this is a heuristic guard, not a comprehensive secret scanner or confidentiality review. It scans the current Git-tracked checkout; it does not inspect Git history, binary/oversized/non-UTF-8 files, symlinks, every credential format, or all forms of confidential/client information. A clean result does not replace human review, access controls, or credential rotation.
+
+**Verification evidence (2026-11-18):**
+- [Portfolio Quality Gate — run 44281968643](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44281968643): passed; heuristic scan checked 210 tracked UTF-8 text files with zero skipped files and no reported findings; catalogue validation passed for 36 project READMEs and eight category indexes; 257 Python tests passed across 35 suites.
+- [Campaign Launch QA Tests — run 44281968628](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44281968628): passed; nine unit tests and sample-output checks passed.
+- The first scan run flagged a credential-shaped URL used as a negative test fixture, not a real credential. The fixture was rewritten to assemble the URL from separate strings; the final repository scan and workflow then passed.
+
 ### P2 — Client Demos, only when source material is supplied
 
 - [ ] Convert user-provided case briefs into client-specific demonstrations only after the facts, assets, and publication authorization are supplied.
@@ -170,4 +185,4 @@ These items may be reconsidered only when a concrete client requirement or demon
 
 ## Working rule
 
-**P0 is complete. P1 automated verification and browser end-to-end checks are passing; the trusted-host adapter now demonstrates the authorization-to-dispatch boundary. Human-led local presentation review remains outstanding.** Do not create a client case until a source brief, supporting evidence, and publication authorization are supplied. Defer additional independent projects unless a concrete gap justifies them.
+**P0 is complete. P1 automated verification, browser end-to-end checks, and the public-content heuristic gate are passing; the trusted-host adapter demonstrates the authorization-to-dispatch boundary. Human-led local presentation review remains outstanding.** Do not create a client case until a source brief, supporting evidence, and publication authorization are supplied. Defer additional independent projects unless a concrete gap justifies them.
