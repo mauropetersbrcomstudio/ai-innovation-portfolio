@@ -23,13 +23,19 @@ function activeMatches(item) {
 }
 function applyFilters() {
   if (!loaded) return;
-  const valid = loaded.valid.filter(activeMatches);
-  const exceptions = loaded.exceptions.filter(activeMatches);
+  const baseValid = loaded.valid.filter(activeMatches);
+  const baseExceptions = loaded.exceptions.filter(activeMatches);
+  const start = $("#period-start").value;
+  const end = $("#period-end").value;
+  const valid = loaded.hasDate && start && end
+    ? baseValid.filter(item => item.date >= start && item.date <= end) : baseValid;
+  const exceptions = loaded.hasDate && start && end
+    ? baseExceptions.filter(item => item.date && item.date >= start && item.date <= end) : baseExceptions;
   const summary = summarizeCampaigns(valid);
   render({ valid, exceptions, summary }, loaded.fileName);
-  renderPeriod(valid);
+  renderPeriod(baseValid);
   $("#filter-note").textContent = valid.length + " valid campaign(s) and " + exceptions.length +
-    " exception row(s) in this selection. KPIs and tables reflect the current filters.";
+    " exception row(s) in this selection. KPIs and tables reflect campaign, channel and date filters.";
 }
 function renderPeriod(valid) {
   if (!loaded?.hasDate || !valid.length) { $("#period-panel").hidden = true; return; }
