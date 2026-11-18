@@ -1,0 +1,68 @@
+[
+  {
+    "request_id": "SYN-PR-001",
+    "requester": "Operations",
+    "item": "Office chairs",
+    "category": "equipment",
+    "amount": 1200,
+    "currency": "BRL",
+    "supplier": "Example Office Ltd",
+    "supplier_status": "approved",
+    "urgency": "standard"
+  },
+  {
+    "request_id": "SYN-PR-002",
+    "requester": "IT",
+    "item": "Team software subscription",
+    "category": "software",
+    "amount": 3200,
+    "currency": "BRL",
+    "supplier": "Example Software Co",
+    "supplier_status": "approved",
+    "urgency": "standard"
+  },
+  {
+    "request_id": "SYN-PR-003",
+    "requester": "Facilities",
+    "item": "Network equipment",
+    "category": "equipment",
+    "amount": 8200,
+    "currency": "BRL",
+    "supplier": "Example Network Co",
+    "supplier_status": "approved",
+    "urgency": "standard"
+  },
+  {
+    "request_id": "SYN-PR-004",
+    "requester": "Marketing",
+    "item": "Design services",
+    "category": "services",
+    "amount": 900,
+    "currency": "BRL",
+    "supplier": "New Design Vendor",
+    "supplier_status": "unverified",
+    "urgency": "standard"
+  },
+  {
+    "request_id": "SYN-PR-005",
+    "requester": "Operations",
+    "item": "Urgent replacement parts",
+    "category": "equipment",
+    "amount": 700,
+    "currency": "BRL",
+    "supplier": "Example Parts Co",
+    "supplier_status": "approved",
+    "urgency": "urgent"
+  },
+  {
+    "request_id": "SYN-PR-006",
+    "requester": "Finance",
+    "item": "",
+    "category": "services",
+    "amount": 500,
+    "currency": "BRL",
+    "supplier": "Example Accounting Co",
+    "supplier_status": "approved",
+    "urgency": "standard"
+  }
+]

@@ -13,6 +13,7 @@ The projects below are executable demonstrations. Each project README contains i
 | Demo | What it demonstrates | Status |
 |---|---|---|
 | [SME Operations Assistant](./AI%20Agents%20%26%20Agentic%20Systems/sme-operations-assistant/) | Request classification, action allowlisting, escalation, and decision traces | DEMO |
+| [SME Procurement Request Triage Agent](./AI%20Agents%20%26%20Agentic%20Systems/sme-procurement-request-triage/) | Purchase-request validation, policy-based review routing, duplicate detection, and supplier checks | DEMO |
 | [Lead Intake Pipeline](./AI%20Automation%20%26%20Workflows/lead-intake-pipeline/) | CSV validation, normalization, duplicate detection, lead scoring, and routing | DEMO |
 | [SME Customer Support Automation](./demo-templates/sme-customer-support-automation/) | Support request classification, knowledge-based draft responses, and human escalation | DEMO |
 | [Brief-to-Task Skill](./AI%20Skills%20%26%20Tooling/brief-to-task/) | Structured business brief converted into a task plan with open questions | DEMO |
@@ -20,7 +21,7 @@ The projects below are executable demonstrations. Each project README contains i
 | [SME KPI Workspace](./Web%20Applications%20%26%20SaaS/sme-kpi-workspace/) | Responsive browser dashboard with KPI calculations and period filtering | DEMO |
 | [Campaign Performance Analyzer](./Marketing%20Intelligence%20%26%20Business%20Automation/campaign-performance-analyzer/) | CSV validation and calculation of CTR, conversion rate, CPC, CPA, and ROAS | DEMO |
 
-All sample business records and campaign data are synthetic. These demos do not imply client engagements or production deployments.
+The included sample records are synthetic. These demonstrations do not imply client engagements or production deployments.
 
 ## Portfolio
 
