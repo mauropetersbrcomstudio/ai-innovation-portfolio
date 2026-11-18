@@ -49,3 +49,9 @@ The [Agent Tool Gateway](./agent-tool-gateway/) mediates calls to explicitly reg
 The [Agent Orchestration framework](./agent-orchestration/) runs declared steps sequentially, supports bounded retries, pauses for host-mediated approval, records lifecycle events, and allows cancellation.
 
 **Status: DEMO** — in-memory sequential runner; no durable queue, parallel execution, or production approval/authentication.
+
+## Multi-Agent Coordination — Bounded Handoffs
+
+The [Agent Coordination utility](./agent-coordination/) routes structured payloads among explicitly registered handlers, enforcing permitted handoffs, per-agent invocation limits, and a global handoff budget.
+
+**Status: DEMO** — sequential in-process coordination; no autonomous agent loop, message broker, or persistent memory.
