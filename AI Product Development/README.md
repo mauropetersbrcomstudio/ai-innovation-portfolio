@@ -8,6 +8,6 @@ The [SME Workflow Opportunity Mapper](./sme-workflow-opportunity-mapper/) is an 
 
 ## Operations Review Workspace
 
-The [Operations Review Workspace](./operations-review-workspace/) is a functional local web demo connected to the Resumable Intake Operations Hub. It displays a synthetic review queue, records decisions through the existing SQLite-backed decision store, and shows decision/event history.
+The [Operations Review Workspace](./operations-review-workspace/) is a local web DEMO connected to the Resumable Intake Operations Hub. It displays a synthetic review queue, records decisions through the existing SQLite-backed decision store, and shows decision/event history.
 
 Run it locally with `python server.py` from the project directory. It uses only the Python standard library and binds to loopback. Reviewer identity is not authenticated; no external actions are performed.

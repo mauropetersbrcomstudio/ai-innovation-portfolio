@@ -1,6 +1,6 @@
 # Operations Intake & Human Review Template
 
-**Status: REUSABLE DEMO TEMPLATE**
+**Status: DEMO**
 
 A reusable demonstration assembly for businesses that need a traceable intake and exception-review process across lead and invoice records.
 
@@ -15,11 +15,41 @@ This template reuses the existing intake pipelines, durable workflow runner, SQL
 5. Record one review decision per queue item.
 6. Inspect the queue, decisions, and event history in a local web interface.
 
+## Requirements
+
+- Python 3.10 or newer.
+- Python standard library only; no third-party packages or API credentials.
+- A local machine capable of running the workspace on loopback.
+
 ## Run the integrated demonstration
 
 Follow the [Operations Review Workspace instructions](../../AI%20Product%20Development/operations-review-workspace/README.md).
 
-The local demo seeds a synthetic sample workflow and runs on loopback only. Python 3.10+ and the standard library are sufficient.
+From the Operations Review Workspace directory:
+
+```bash
+python server.py
+```
+
+The local demo seeds a synthetic sample workflow and binds only to loopback. The default address is http://127.0.0.1:8765. Stop the server with Ctrl+C.
+
+## Tests
+
+The template directory is an assembly and documentation layer; it does not contain a separate executable test suite. Run the tests for its reused components.
+
+From the Operations Review Workspace directory:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+From the Resumable Intake Operations Hub directory:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+These suites exercise the workspace HTTP adapter, SQLite-backed decision capture, workflow composition, durable state, and review-decision rules. They do not establish production readiness.
 
 ## Reused components
 

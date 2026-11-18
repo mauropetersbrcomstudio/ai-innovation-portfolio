@@ -36,14 +36,16 @@ The root README and individual project READMEs are the authoritative project cat
 
 ### P0 — Portfolio integrity and navigation
 
-- [ ] Reconcile the root README, category indexes, and this roadmap against the actual repository tree.
+- [x] Reconcile the root README, category indexes, and this roadmap against the actual repository tree.
 - [x] Verify that all 48 relative links in the root README resolve to existing repository paths (repository-tree audit, 2026-11-18).
 - [ ] Audit individual project READMEs for status, run instructions, dependencies, tests, and limitations.
-- [ ] Correct only factual inconsistencies, broken links, duplicated entries, and missing essential documentation.
+- [x] Correct factual inconsistencies and missing essential documentation found in the audit.
 - [x] Confirm Portfolio Quality Gate succeeded for the backlog simplification commit `5a7359d10b247096ba00ce90123e646fde01c152` (run `44228054863`).
 - [ ] Confirm the quality gate for subsequent documentation corrections and resolve failures.
 
 **Exit criteria:** the repository catalogue matches the files that exist; documented commands and links are usable; applicable CI checks pass.
+
+**Audit snapshot (2026-11-18):** 201 tracked files and 45 README files were found: 36 project READMEs, eight category indexes, and the root README. The root index and category indexes cover all 36 project directories; no broken local links were found. This pass corrects two non-standard status labels, repairs one malformed root-index row, and documents the component test commands for the operations-intake template.
 
 ### P1 — Demonstration readiness of existing projects
 

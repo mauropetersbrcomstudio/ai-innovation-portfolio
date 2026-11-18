@@ -1,6 +1,6 @@
 # Operations Review Workspace
 
-**Status: FUNCTIONAL LOCAL DEMO**
+**Status: DEMO**
 
 A small local web application connected to the existing Resumable Intake Operations Hub. It loads a synthetic intake workflow from SQLite, displays its review queue, records decisions through the existing `ReviewDecisionStore`, and shows persisted decision and event history.
 
