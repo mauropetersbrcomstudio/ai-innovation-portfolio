@@ -41,4 +41,4 @@ Status labels:
 
 Projects are added continuously. See each category's README for its scope and project entry criteria.
 
-**Current portfolio stage:** Foundation plus two executable demonstrations. The responsive portfolio homepage and remaining category assets are being built incrementally. A project is considered public and deployed only after its hosting URL has been verified.
+**Current portfolio stage:** GitHub repository foundation plus two executable demonstrations. This portfolio is intentionally delivered through this repository and its folders; no separate portfolio website is part of the scope.
