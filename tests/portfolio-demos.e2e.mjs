@@ -119,6 +119,7 @@ try {
   await page.goto("http://127.0.0.1:8766/dashboard.html", { waitUntil: "networkidle" });
   const sample = path.join(
     root,
+    "Demo Templates",
     "Marketing Intelligence & Business Automation",
     "campaign-performance-analyzer",
     "sample_campaigns.csv"
