@@ -43,3 +43,9 @@ The [Knowledge Retrieval skill](./knowledge-retrieval/) searches an explicitly s
 The [Agent Tool Gateway](./agent-tool-gateway/) mediates calls to explicitly registered handlers. It applies tool allowlisting, role checks, argument validation, optional approval gates, per-session call limits, and an in-memory audit trail.
 
 **Status: DEMO** — reference component only. Identity, trusted approvals, durable audit storage, and safe handler side effects remain responsibilities of the host application.
+
+## Agent Execution & Orchestration
+
+The [Agent Orchestration framework](./agent-orchestration/) runs declared steps sequentially, supports bounded retries, pauses for host-mediated approval, records lifecycle events, and allows cancellation.
+
+**Status: DEMO** — in-memory sequential runner; no durable queue, parallel execution, or production approval/authentication.
