@@ -31,6 +31,7 @@ The projects below are executable demonstrations. Each project README contains i
 | [Resumable Intake Operations Hub](./AI%20Automation%20%26%20Workflows/intake-operations-hub/) | Composes lead and invoice intake with SQLite checkpoints, structured events, and durable human-review decisions | DEMO |
 | [Operations Review Workspace](./AI%20Product%20Development/operations-review-workspace/) | Local web workspace connected to SQLite intake state and durable human-review decisions | FUNCTIONAL LOCAL DEMO |
 | [Operations Intake & Human Review Template](./demo-templates/operations-intake-review/) | Reusable assembly of intake pipelines, durable workflow state, review decisions, and local workspace | DEMO TEMPLATE |
+| [Marketing Analytics Pipeline](./Marketing%20Intelligence%20%26%20Business%20Automation/marketing-analytics-pipeline/) | Composes CSV quality preflight with campaign metrics; blocks review findings by default | DEMO |
 | [CRM Lead Qualification & Routing](./demo-templates/crm-lead-qualification-routing/) | Configurable qualification rules, territory queues, follow-up dates, and human-review routing | DEMO |
 | [SME Customer Support Automation](./demo-templates/sme-customer-support-automation/) | Support request classification, knowledge-based draft responses, and human escalation | DEMO |
 | [SME Internal Knowledge Assistant](./demo-templates/sme-internal-knowledge-assistant/) | Role-filtered retrieval from approved sample sources, citations, and human escalation | DEMO |
