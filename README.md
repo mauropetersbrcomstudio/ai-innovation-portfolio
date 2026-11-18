@@ -14,7 +14,7 @@ Read the [Portfolio Development Strategy v2.0](./PORTFOLIO-DEVELOPMENT-STRATEGY-
 
 ## Explore working demos
 
-The projects below are executable demonstrations. Each project README records its status, setup instructions, dependencies, test commands, scope, and limitations.
+The six technology categories contain 37 independently developed demonstrations and reusable templates. Each project README records its status, setup instructions, dependencies, test commands, scope, and limitations. Every project is listed under exactly one category below.
 
 | Demo | What it demonstrates | Status |
 |---|---|---|
@@ -30,12 +30,12 @@ The projects below are executable demonstrations. Each project README records it
 | [Invoice Intake & Exception Routing](./AI%20Automation%20%26%20Workflows/invoice-intake-exception-routing/) | Validates synthetic invoices, detects duplicates, and routes missing information, policy exceptions, and approval thresholds | DEMO |
 | [Resumable Intake Operations Hub](./AI%20Automation%20%26%20Workflows/intake-operations-hub/) | Composes lead and invoice intake with SQLite checkpoints, structured events, and durable human-review decisions | DEMO |
 | [Operations Review Workspace](./AI%20Product%20Development/operations-review-workspace/) | Local web workspace connected to SQLite intake state and durable human-review decisions | DEMO |
-| [Operations Intake & Human Review Template](./demo-templates/operations-intake-review/) | Reusable assembly of intake pipelines, durable workflow state, review decisions, and local workspace | DEMO |
+| [Operations Intake & Human Review Template](./AI%20Product%20Development/operations-intake-review/) | Reusable assembly of intake pipelines, durable workflow state, review decisions, and local workspace | DEMO |
 | [Marketing Analytics Pipeline](./Marketing%20Intelligence%20%26%20Business%20Automation/marketing-analytics-pipeline/) | Composes CSV quality preflight with campaign metrics; blocks review findings by default | DEMO |
-| [CRM Lead Qualification & Routing](./demo-templates/crm-lead-qualification-routing/) | Configurable qualification rules, territory queues, follow-up dates, and human-review routing | DEMO |
-| [Client Case Publication Gate](./demo-templates/client-case-publication-gate/) | Pre-publication checks for evidence references, attribution permissions, data review, and claim authorization declarations; never authorizes publication | DEMO |
-| [SME Customer Support Automation](./demo-templates/sme-customer-support-automation/) | Support request classification, knowledge-based draft responses, and human escalation | DEMO |
-| [SME Internal Knowledge Assistant](./demo-templates/sme-internal-knowledge-assistant/) | Role-filtered retrieval from approved sample sources, citations, and human escalation | DEMO |
+| [CRM Lead Qualification & Routing](./AI%20Automation%20%26%20Workflows/crm-lead-qualification-routing/) | Configurable qualification rules, territory queues, follow-up dates, and human-review routing | DEMO |
+| [Client Case Publication Gate](./AI%20Skills%20%26%20Tooling/client-case-publication-gate/) | Pre-publication checks for evidence references, attribution permissions, data review, and claim authorization declarations; never authorizes publication | DEMO |
+| [SME Customer Support Automation](./AI%20Automation%20%26%20Workflows/sme-customer-support-automation/) | Support request classification, knowledge-based draft responses, and human escalation | DEMO |
+| [SME Internal Knowledge Assistant](./AI%20Agents%20%26%20Agentic%20Systems/sme-internal-knowledge-assistant/) | Role-filtered retrieval from approved sample sources, citations, and human escalation | DEMO |
 | [Brief-to-Task Skill](./AI%20Skills%20%26%20Tooling/brief-to-task/) | Structured business brief converted into a task plan with open questions | DEMO |
 | [CSV Data Quality Profiler](./AI%20Skills%20%26%20Tooling/csv-data-quality/) | CSV structure profiling, duplicate detection, and data-quality reporting | DEMO |
 | [Document Intelligence — Plain-Text Extraction](./AI%20Skills%20%26%20Tooling/document-intelligence/) | Traceable extraction of headings, key/value pairs, dates, contact details, and currency mentions | DEMO |
@@ -63,7 +63,6 @@ The included sample records are synthetic. These demonstrations do not imply cli
 | Area | Projects |
 |---|---|
 | [Client Demos](./client-demos/) | Reserved for substantiated, authorized case studies from real client engagements |
-| [Demo Templates](./demo-templates/) | Reusable templates for presenting and adapting AI solutions to business needs |
 | [AI Agents & Agentic Systems](./AI%20Agents%20%26%20Agentic%20Systems/) | Agent demonstrations, orchestration patterns, and bounded agentic workflows |
 | [AI Automation & Workflows](./AI%20Automation%20%26%20Workflows/) | Automation examples and workflow tools for business processes |
 | [AI Skills & Tooling](./AI%20Skills%20%26%20Tooling/) | Reusable AI skills, utilities, and tools |

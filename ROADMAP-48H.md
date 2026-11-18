@@ -159,7 +159,7 @@ The initial CI attempt caught a missing `ToolSpec` import in the demo runner. It
 
 ### P2 preparation — Client Case Publication Gate (template only)
 
-- [x] Add a reusable, standard-library preflight under `demo-templates/` without creating or implying a client case.
+- [x] Add a reusable, standard-library preflight under the six technology categories without creating or implying a client case.
 - [x] Require an opaque case reference, publication authorization reference, explicit attribution permissions, claim-level evidence declarations, and data-review declarations.
 - [x] Fail closed on missing, malformed, duplicated, unverified, or unauthorized manifest declarations.
 - [x] Keep the output limited to status and finding codes; never echo client names, claim text, evidence references, or matched values.

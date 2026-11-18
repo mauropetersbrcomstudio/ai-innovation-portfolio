@@ -51,3 +51,10 @@ The [Durable Workflow Runner](./durable-workflow-runner/) checkpoints each seque
 The [Agent Runtime Control Plane](./agent-runtime-control-plane/) provides a local SQLite-backed registry, lifecycle transitions, explicit tool allowlists, approval gates, invocation caps, host-reported health, persisted human escalations, and a read-only audit projection.
 
 **Status: DEMO** — caller-supplied identity and approval values; local database only; no independent tamper-proof audit or automatic heartbeat monitor.
+
+
+## SME Internal Knowledge Assistant
+
+The [SME Internal Knowledge Assistant](./sme-internal-knowledge-assistant/) is a deterministic local knowledge-retrieval demo with role-filtered source excerpts, citations, and human escalation. Role values are not authenticated identity; it does not use an LLM.
+
+**Status: DEMO** — see the project README for exact run instructions, tests, data provenance, and limitations.

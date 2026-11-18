@@ -103,3 +103,10 @@ The following sequence describes how the existing DEMOs fit together; it is an i
 5. Agent Observability may record a structured event, but its key-name redaction is limited and its local log is not tamper-evident.
 
 **Trust boundary:** caller-supplied role labels, session markers, and approval IDs are not proof of identity or approval. The host remains responsible for authentication, approval verification, safe handler effects, durable audit storage, and operational controls. These components remain **DEMOs**, not production authorization infrastructure.
+
+
+## Client Case Publication Gate
+
+The [Client Case Publication Gate](./client-case-publication-gate/) is a deterministic pre-publication checklist for evidence references, attribution permissions, data review, and claim-authorization declarations. It never authorizes publication.
+
+**Status: DEMO** — see the project README for exact run instructions, tests, data provenance, and limitations.

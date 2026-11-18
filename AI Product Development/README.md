@@ -15,3 +15,10 @@ Run it locally with `python server.py` from the project directory. It uses only 
 ## Verification and presentation
 
 The Operations Review Workspace has a documented presentation path in the [Selected Demo Guide](../DEMO-GUIDE.md). Its cross-project Chromium checks cover a recorded synthetic decision, persistence after reload, and a 375-pixel mobile layout. Automated checks do not replace human review on the intended presentation device, and they do not establish authentication or production readiness.
+
+
+## Operations Intake & Human Review Template
+
+The [Operations Intake & Human Review Template](./operations-intake-review/) is a reusable assembly of intake pipelines, durable workflow state, review decisions, and a local workspace. It uses synthetic data and has no authentication or external actions.
+
+**Status: DEMO** — see the project README for exact run instructions, tests, data provenance, and limitations.

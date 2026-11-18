@@ -9,8 +9,6 @@ from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 CATEGORIES = (
-    "client-demos",
-    "demo-templates",
     "AI Agents & Agentic Systems",
     "AI Automation & Workflows",
     "AI Skills & Tooling",

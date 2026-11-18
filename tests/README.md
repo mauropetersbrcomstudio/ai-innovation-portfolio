@@ -50,7 +50,7 @@ These tests use synthetic records and loopback-only local servers. They verify s
 
 ## Client Case Publication Gate
 
-The [Client Case Publication Gate](../demo-templates/client-case-publication-gate/) is a standard-library Python preflight for a future authorized case package. Its dedicated workflow runs unit tests and the synthetic sample manifest.
+The [Client Case Publication Gate](../AI%20Skills%20%26%20Tooling/client-case-publication-gate/) is a standard-library Python preflight for a future authorized case package. Its dedicated workflow runs unit tests and the synthetic sample manifest.
 
 The sample manifest is intentionally incomplete and must report `BLOCKED`; it does not represent a client, engagement, outcome, or publication approval. A complete manifest can reach only `READY_FOR_HUMAN_REVIEW`. The tool never returns publication authorization and does not verify underlying evidence or legal permissions.
 

@@ -1,22 +1,11 @@
-# Demo Templates
+# Demo Templates — Consolidated
 
-Reusable starting points for presenting AI solutions in the context of common SME business needs. A template gives us a practical way to demonstrate an idea, discuss how it could fit a business, and identify what would need to change for a real implementation.
+The reusable templates formerly grouped in this directory have been consolidated into the six technology categories so that every project has one canonical location.
 
-## Template examples
+- [Client Case Publication Gate](../AI%20Skills%20%26%20Tooling/client-case-publication-gate/) — AI Skills & Tooling
+- [CRM Lead Qualification & Routing](../AI%20Automation%20%26%20Workflows/crm-lead-qualification-routing/) — AI Automation & Workflows
+- [Operations Intake & Human Review](../AI%20Product%20Development/operations-intake-review/) — AI Product Development
+- [SME Customer Support Automation](../AI%20Automation%20%26%20Workflows/sme-customer-support-automation/) — AI Automation & Workflows
+- [SME Internal Knowledge Assistant](../AI%20Agents%20%26%20Agentic%20Systems/sme-internal-knowledge-assistant/) — AI Agents & Agentic Systems
 
-- **Customer support assistant** — a first point of contact for common questions, with a clear route to a human when needed.
-- **CRM lead qualification** — organize incoming leads and help a sales team decide what to follow up first.
-- **Commercial intelligence dashboard** — bring selected business and market indicators into one view.
-- **Marketing operations automation** — support repeatable campaign and content workflows.
-- **Internal knowledge assistant** — help employees find and use information from approved company sources.
-
-Templates are starting points, not ready-made solutions for every company. Data, business rules, integrations, and approval steps need to be adapted to the organization and the intended use. Examples use synthetic data unless a different source is explicitly authorized.
-
-## Available templates
-
-- [CRM Lead Qualification & Routing](./crm-lead-qualification-routing/) — configurable rule-based qualification, territory team queues, follow-up due dates, duplicate checks, and human-review handling. Local Python demo; no live CRM integration.
-- [SME Customer Support Automation](./sme-customer-support-automation/) — a reusable support workflow with request classification, response-draft guidance, and human escalation. A small local implementation is included; it does not send messages or connect to live systems.
-- [SME Internal Knowledge Assistant](./sme-internal-knowledge-assistant/) — a local approved-source retrieval demo with role filtering, source citations, and escalation. It does not use an LLM or authenticate users.
-
-- [Operations Intake & Human Review](./operations-intake-review/) — reusable assembly of lead and invoice intake, durable workflow state, consolidated human review, decision capture, and a local review workspace. Synthetic data; no authentication or external actions.
-- [Client Case Publication Gate](./client-case-publication-gate/) — deterministic preflight for case-evidence references, attribution permissions, data review, and claim-level publication authorization. Its synthetic sample is intentionally blocked; it is not an actual client case and cannot verify authorization.
+The six category indexes and root README are the authoritative project catalogue. This transition index is retained to explain the consolidation and keep the former path useful.
