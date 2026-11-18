@@ -31,3 +31,9 @@ The [JSON Contract Validator](./json-contract-validator/) checks JSON data again
 The [CSV Data Normalization skill](./data-normalization/) applies explicit, field-level CSV transformations: trimming, column renaming, case conversion, null-marker handling, and date parsing using configured formats. It writes a separate output file and a change report; it does not infer mappings or modify the source.
 
 **Status: DEMO** — local Python utility with unit tests; CSV only.
+
+## Knowledge Retrieval — Role-Filtered Lexical Search
+
+The [Knowledge Retrieval skill](./knowledge-retrieval/) searches an explicitly supplied JSON knowledge base, filters sources by configured role values, ranks lexical matches, and returns traceable excerpts or an escalation status when no source qualifies.
+
+**Status: DEMO** — local Python utility; role values are request inputs, not authenticated identity or a security boundary.
