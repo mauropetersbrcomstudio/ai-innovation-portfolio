@@ -24,9 +24,11 @@ The projects below are executable demonstrations. Each project README contains i
 | [CRM Lead Qualification & Routing](./demo-templates/crm-lead-qualification-routing/) | Configurable qualification rules, territory queues, follow-up dates, and human-review routing | DEMO |
 | [SME Customer Support Automation](./demo-templates/sme-customer-support-automation/) | Support request classification, knowledge-based draft responses, and human escalation | DEMO |
 | [SME Internal Knowledge Assistant](./demo-templates/sme-internal-knowledge-assistant/) | Role-filtered retrieval from approved sample sources, citations, and human escalation | DEMO |
-| [Brief-to-Task Skill](./AI%20Skills%20%26%20Tooling/brief-to-task/) | Structured business brief converted into a task plan with open questions | DEMO |\n| [CSV Data Quality Profiler](./AI%20Skills%20%26%20Tooling/csv-data-quality/) | CSV structure profiling, duplicate detection, and data-quality reporting | DEMO |
+| [Brief-to-Task Skill](./AI%20Skills%20%26%20Tooling/brief-to-task/) | Structured business brief converted into a task plan with open questions | DEMO |
+| [CSV Data Quality Profiler](./AI%20Skills%20%26%20Tooling/csv-data-quality/) | CSV structure profiling, duplicate detection, and data-quality reporting | DEMO |
 | [Document Intelligence — Plain-Text Extraction](./AI%20Skills%20%26%20Tooling/document-intelligence/) | Traceable extraction of headings, key/value pairs, dates, contact details, and currency mentions | DEMO |
 | [JSON Contract Validator](./AI%20Skills%20%26%20Tooling/json-contract-validator/) | Validate JSON structures against a documented schema subset | DEMO |
+| [CSV Data Normalization](./AI%20Skills%20%26%20Tooling/data-normalization/) | Apply explicit, configurable CSV field transformations and report changed cells | DEMO |
 | [SME Workflow Opportunity Mapper](./AI%20Product%20Development/sme-workflow-opportunity-mapper/) | Transparent rubric to prioritize workflows for further discovery | DEMO |
 | [SME KPI Workspace](./Web%20Applications%20%26%20SaaS/sme-kpi-workspace/) | Responsive browser dashboard with KPI calculations and period filtering | DEMO |
 | [Campaign Performance Analyzer](./Marketing%20Intelligence%20%26%20Business%20Automation/campaign-performance-analyzer/) | CSV validation and calculation of CTR, conversion rate, CPC, CPA, and ROAS | DEMO |
