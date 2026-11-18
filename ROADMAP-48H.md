@@ -103,9 +103,16 @@ The cross-project Chromium workflow now checks persisted review state, 375-pixel
 - [x] Reject non-string and otherwise malformed risk values in both policy manifests and authorization requests without leaking a Python type error.
 - [x] Add regression tests for output-free audit records, failed-handler attempt limits, and malformed risk values.
 - [x] Clarify the host integration sequence in both project READMEs and the category index: authenticate and authorize first, then dispatch only when the policy decision is allowed.
-- [ ] Build a dedicated cross-component host adapter only if a concrete integration requirement justifies standardizing the host's trusted identity and approval contracts.
+- [x] Confirm a concrete integration gap: the existing Governed Agent Execution demo did not call the separate deny-by-default Agent Security & Governance engine before gateway dispatch.
+- [x] Add a read-only gateway tool-spec lookup so the host can check dispatch-contract alignment without accessing gateway internals.
+- [x] Add `host_adapter.py` to the Governed Agent Execution demo. It accepts a host-authenticated `Principal`, calls the policy engine first, delegates approval verification to an injected verifier, and dispatches only after an allowed decision.
+- [x] Derive the gateway role and approval marker from the allowed policy decision rather than accepting gateway approval markers directly from the request.
+- [x] Reject policy/gateway approval mismatches, incompatible role allowlists, invalid session IDs, and attempts to reuse a session across subjects or roles.
+- [x] Preserve per-session invocation counts across calls made through the same host adapter and block reuse of consumed approval IDs within that host instance.
+- [x] Add regression tests for missing/unverified approval, unauthenticated principals, role and approval configuration mismatches, session binding, quota persistence, approval replay, invalid arguments, and audit-output exclusion.
+- [x] Extend the dedicated Governed Agent Execution workflow to run when Agent Security & Governance changes.
 
-**Boundary:** these changes improve deterministic component behavior and documentation. They do not authenticate identities, verify real approvals, make handler effects transactional, or provide durable/tamper-evident audit storage. The gateway's invocation counter is scoped to an in-memory `Session` object and is not a durable quota. Both components remain DEMOs.
+**Boundary:** the adapter does not authenticate users or approvers; the host must supply a trusted principal and an authoritative approval verifier. Session bindings, invocation counts, consumed approval IDs, and audit events are in memory, reset on process restart, and are not concurrency-safe or shared across processes. Handler effects are not transactional, and audit records are not durable or tamper-evident. The gateway, policy engine, and host adapter remain DEMOs.
 
 **Verification evidence (2026-11-18):**
 - [Agent Tool Gateway Tests — run 44255991317](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44255991317): 10 tests passed, including output-free audit records and failed-handler attempt limits.
@@ -142,4 +149,4 @@ These items may be reconsidered only when a concrete client requirement or demon
 
 ## Working rule
 
-**P0 is complete. P1 automated verification and browser end-to-end checks are passing; human-led local presentation review remains outstanding.** Do not create a client case until a source brief, supporting evidence, and publication authorization are supplied. Defer additional independent projects unless a concrete gap justifies them.
+**P0 is complete. P1 automated verification and browser end-to-end checks are passing; the trusted-host adapter now demonstrates the authorization-to-dispatch boundary. Human-led local presentation review remains outstanding.** Do not create a client case until a source brief, supporting evidence, and publication authorization are supplied. Defer additional independent projects unless a concrete gap justifies them.

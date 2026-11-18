@@ -6,6 +6,7 @@ on:
       - "AI Agents & Agentic Systems/governed-agent-execution/**"
       - "AI Skills & Tooling/agent-orchestration/**"
       - "AI Skills & Tooling/agent-policy-validator/**"
+      - "AI Skills & Tooling/agent-security-governance/**"
       - "AI Skills & Tooling/agent-tool-gateway/**"
       - ".github/workflows/governed-agent-execution-tests.yml"
   pull_request:
@@ -13,6 +14,7 @@ on:
       - "AI Agents & Agentic Systems/governed-agent-execution/**"
       - "AI Skills & Tooling/agent-orchestration/**"
       - "AI Skills & Tooling/agent-policy-validator/**"
+      - "AI Skills & Tooling/agent-security-governance/**"
       - "AI Skills & Tooling/agent-tool-gateway/**"
       - ".github/workflows/governed-agent-execution-tests.yml"
   workflow_dispatch:

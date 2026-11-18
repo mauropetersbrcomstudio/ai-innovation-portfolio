@@ -105,6 +105,14 @@ class ToolGateway:
         self._specs[spec.name] = spec
         self._handlers[spec.name] = handler
 
+    def get_tool_spec(self, tool_name: str) -> ToolSpec | None:
+        """Return a registered tool contract for host-side policy alignment.
+
+        The returned specification is intended for inspection. Callers should not
+        mutate its nested input-schema dictionary.
+        """
+        return self._specs.get(tool_name)
+
     def invoke(self, tool_name: str, arguments: Any, session: Session) -> dict[str, Any]:
         event = {
             "session_id": session.session_id,

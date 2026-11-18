@@ -34,20 +34,17 @@ The [Agent Platform Reference](./agent-platform-reference/) connects the portfol
 
 **Status: DEMO** — local deterministic integration; no external business system, LLM, or production security controls.
 
-
 ## Governed Agent Execution
 
-The [Governed Agent Execution demo](./governed-agent-execution/) composes the policy validator, allowlisted tool gateway, and bounded orchestrator. It demonstrates fail-closed behavior for invalid policy, missing approval, and unauthorized roles before allowing a simulated in-memory action.
+The [Governed Agent Execution demo](./governed-agent-execution/) now includes a trusted-host adapter that connects the deny-by-default Agent Security & Governance engine to the allowlisted Agent Tool Gateway. The adapter accepts a host-authenticated principal, delegates approval verification to an injected verifier, checks policy/gateway configuration alignment, binds sessions to a subject and role, and prevents same-instance approval-ID replay before dispatching a simulated handler.
 
-**Status: DEMO** — deterministic integration only; caller-supplied role and approval inputs are not production identity controls.
-
+**Status: DEMO** — the adapter does not authenticate users or approvers. Its identity and approval verifier fixtures are synthetic; session, quota, replay, and audit state are in memory.
 
 ## Durable Workflow Runner
 
 The [Durable Workflow Runner](./durable-workflow-runner/) checkpoints each sequential step in SQLite, records events in SQLite and JSONL, skips completed steps on resume, and rejects a changed plan or context.
 
 **Status: DEMO** — handlers with side effects must enforce the supplied idempotency key; the runner cannot guarantee exactly-once external execution.
-
 
 ## Agent Runtime Control Plane
 
