@@ -36,7 +36,7 @@ See [test_gateway.py](./tests/test_gateway.py) for a simulated ticket handler.
 ## Security boundaries and limitations
 
 - The role and approved-tool list in `Session` are supplied by the caller. They are not authentication or proof of human approval; production hosts must populate them from trusted context.
-- Invocation limits count attempts once a handler is entered. A handler may still perform a partial side effect before raising; the gateway cannot roll it back. Real handlers need appropriate transaction or idempotency controls.
+- Invocation limits count attempts once a handler is entered. The counter belongs to the in-memory `Session` object: creating a new object resets it, so it is not a durable quota or abuse-prevention boundary. A handler may still perform a partial side effect before raising; the gateway cannot roll it back. Real handlers need appropriate transaction or idempotency controls.
 - The audit log is in memory only and is lost when the process exits. It records the invocation outcome but deliberately excludes handler output; the returned result still goes to the caller.
 - The input contract supports a deliberately small subset of schema checks; it is not a full JSON Schema validator.
 - Handler side effects are outside this component's control.

@@ -105,7 +105,7 @@ The cross-project Chromium workflow now checks persisted review state, 375-pixel
 - [x] Clarify the host integration sequence in both project READMEs and the category index: authenticate and authorize first, then dispatch only when the policy decision is allowed.
 - [ ] Build a dedicated cross-component host adapter only if a concrete integration requirement justifies standardizing the host's trusted identity and approval contracts.
 
-**Boundary:** these changes improve deterministic component behavior and documentation. They do not authenticate identities, verify real approvals, make handler effects transactional, or provide durable/tamper-evident audit storage. Both components remain DEMOs.
+**Boundary:** these changes improve deterministic component behavior and documentation. They do not authenticate identities, verify real approvals, make handler effects transactional, or provide durable/tamper-evident audit storage. The gateway's invocation counter is scoped to an in-memory `Session` object and is not a durable quota. Both components remain DEMOs.
 
 **Verification evidence (2026-11-18):**
 - [Agent Tool Gateway Tests — run 44255991317](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44255991317): 10 tests passed, including output-free audit records and failed-handler attempt limits.
