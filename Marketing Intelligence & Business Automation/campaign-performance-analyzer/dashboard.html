@@ -29,7 +29,7 @@
       <div class="filters" aria-label="Dashboard filters">
         <label>Search campaign<input id="campaign-search" type="search" placeholder="Name contains…" disabled></label>
         <label>Channel<select id="channel-filter" disabled><option value="all">All channels</option></select></label>
-        <button id="export-report" type="button" disabled>Export filtered report ↓</button>
+        <button id="export-report" type="button" disabled>Export filtered report ↓</button><button id="generate-report" type="button" disabled>Generate executive report</button>
       </div>
       <div class="period-controls" id="period-controls" hidden>
         <label>Period start<input id="period-start" type="date"></label>
@@ -44,7 +44,7 @@
           <div><span>ROAS</span><strong id="period-roas">—</strong><small id="period-roas-change">—</small></div>
         </div>
       </section>
-      <p class="filter-note" id="filter-note">Filters apply to valid campaign rows and the exception list. Summary values reflect the current selection.</p>
+      <section class="panel timeline-panel" id="timeline-panel" hidden><div class="panel-heading"><div><p class="eyebrow">03 / TEMPORAL EVOLUTION</p><h2>Daily performance trend</h2><p>Daily totals from valid rows in the active campaign and channel selection.</p></div><span class="unit">BY DATE</span></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Spend</th><th>Conversions</th><th>Revenue</th><th>ROAS</th></tr></thead><tbody id="timeline-rows"></tbody></table></div></section>\n      <p class="filter-note" id="filter-note">Filters apply to valid campaign rows and the exception list. Summary values reflect the current selection.</p>
       <div class="kpis">
         <article class="kpi primary"><span>ROAS</span><strong id="roas">—</strong><small>Revenue / spend</small></article>
         <article class="kpi"><span>Spend</span><strong id="spend">—</strong><small>Selected campaign spend</small></article>
