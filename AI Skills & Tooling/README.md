@@ -70,9 +70,9 @@ The [Agent State Store](./agent-state-store/) persists workflow JSON state in SQ
 
 ## Agent Observability — Structured JSONL Events
 
-The [Agent Observability utility](./agent-observability/) writes structured local JSONL events and recursively redacts common credential fields before persistence.
+The [Agent Observability utility](./agent-observability/) writes structured local JSONL events and recursively redacts values under recognized sensitive field names. Its matcher handles common case and separator variants, but does not inspect arbitrary free-text values.
 
-**Status: DEMO** — local logs only; key-name redaction is not a guarantee that arbitrary secrets are detected.
+**Status: DEMO** — local logs only; key-name redaction is a limited safeguard, not a data-loss-prevention or tamper-proof audit system.
 
 ## Agent Recovery — Compensating Actions
 
@@ -91,4 +91,3 @@ The [Agent Policy Validator](./agent-policy-validator/) checks agent risk labels
 The [Agent Security & Governance engine](./agent-security-governance/) evaluates explicit agent, role, tool, and risk grants. It separates authorization from human approval and fails closed when approval evidence cannot be verified.
 
 **Status: DEMO** — the host must supply a trusted authenticated principal and an authoritative approval verifier. The module itself provides neither identity authentication nor cryptographic approval verification; its audit events are in-memory.
-
