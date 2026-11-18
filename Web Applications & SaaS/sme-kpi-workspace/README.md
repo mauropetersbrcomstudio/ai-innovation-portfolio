@@ -13,7 +13,10 @@ The dashboard displays:
 - Completed orders
 - Average order value (revenue divided by orders)
 - Conversion rate (orders divided by visits)
-- Monthly revenue bars and a detailed monthly table
+- A responsive monthly revenue chart with the highest month highlighted
+- A detailed monthly table and reporting-period label
+
+The interface uses an editorial, off-white and charcoal visual system with restrained gold accents. It adapts to narrow screens and respects reduced-motion preferences.
 
 ## Run automated tests
 
