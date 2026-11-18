@@ -47,3 +47,10 @@ The [Governed Agent Execution demo](./governed-agent-execution/) composes the po
 The [Durable Workflow Runner](./durable-workflow-runner/) checkpoints each sequential step in SQLite, records events in SQLite and JSONL, skips completed steps on resume, and rejects a changed plan or context.
 
 **Status: DEMO** — handlers with side effects must enforce the supplied idempotency key; the runner cannot guarantee exactly-once external execution.
+
+
+## Agent Runtime Control Plane
+
+The [Agent Runtime Control Plane](./agent-runtime-control-plane/) provides a local SQLite-backed registry, lifecycle transitions, explicit tool allowlists, approval gates, invocation caps, host-reported health, persisted human escalations, and a read-only audit projection.
+
+**Status: DEMO** — caller-supplied identity and approval values; local database only; no independent tamper-proof audit or automatic heartbeat monitor.
