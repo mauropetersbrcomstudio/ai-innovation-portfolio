@@ -104,4 +104,5 @@ Client projects are identified as such. Independently developed demos, templates
 - Automated tests are used where appropriate; workflow results are available in the repository's GitHub Actions.
 - Synthetic data is used for examples unless a different source is explicitly authorized.
 - No credentials, secrets, or confidential client materials belong in this public repository.
+- The quality workflow runs a heuristic scan of tracked UTF-8 files for selected high-confidence credential formats and non-example `.env` files. It does not scan Git history or detect every secret or confidential-data type.
 - A demo is not a production-ready service unless that status is explicitly supported by its implementation and evidence.
