@@ -3,6 +3,17 @@ import assert from "node:assert/strict";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+async function assertNoHorizontalOverflow(page, label) {
+  const dimensions = await page.evaluate(() => ({
+    viewport: document.documentElement.clientWidth,
+    document: document.documentElement.scrollWidth
+  }));
+  assert.ok(
+    dimensions.document <= dimensions.viewport + 1,
+    `${label}: horizontal overflow (${dimensions.document}px document / ${dimensions.viewport}px viewport)`
+  );
+}
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const browser = await chromium.launch({ headless: true });
 
@@ -49,6 +60,28 @@ try {
   assert.equal(Number(await page.locator("#pending-count").textContent()), initialPending - 1);
   assert.equal(Number(await page.locator("#decided-count").textContent()), initialDecided + 1);
 
+  // Mobile layout smoke check: queue and detail panels should stack without
+  // introducing page-level horizontal scrolling.
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.reload({ waitUntil: "networkidle" });
+  await page.waitForFunction(() => document.querySelector("#total-count")?.textContent !== "—");
+  await page.locator("#history-list .history-entry").filter({ hasText: "e2e-demo-reviewer" }).waitFor();
+  await assertNoHorizontalOverflow(page, "Operations Review Workspace at 375px");
+  const workspaceColumns = await page.locator(".workspace").evaluate(
+    element => getComputedStyle(element).gridTemplateColumns.trim().split(/\\s+/).length
+  );
+  assert.equal(workspaceColumns, 1, "the Operations Review Workspace panels should stack on mobile");
+  const workspacePanels = await page.locator(".workspace > .panel").evaluateAll(elements =>
+    elements.map(element => {
+      const rect = element.getBoundingClientRect();
+      return { left: rect.left, right: rect.right };
+    })
+  );
+  assert.equal(workspacePanels.length, 2);
+  for (const rect of workspacePanels) {
+    assert.ok(rect.left >= 0 && rect.right <= 376, "workspace panel must fit inside the mobile viewport");
+  }
+
   // Campaign Performance Analyzer: import the synthetic CSV, filter by
   // channel, and render the executive report in the browser.
   await page.goto("http://127.0.0.1:8766/dashboard.html", { waitUntil: "networkidle" });
@@ -73,7 +106,43 @@ try {
   assert.ok((await page.locator("#report-meta").textContent()).includes("sample_campaigns.csv"));
   assert.ok(await page.locator("#print-report").isVisible());
 
-  console.log("PASS: Operations Review Workspace browser flow and persisted decision");
+  // Mobile dashboard and report smoke checks.
+  await page.setViewportSize({ width: 375, height: 812 });
+  await assertNoHorizontalOverflow(page, "Campaign Performance Analyzer at 375px");
+  const kpiColumns = await page.locator(".kpis").evaluate(
+    element => getComputedStyle(element).gridTemplateColumns.trim().split(/\\s+/).length
+  );
+  assert.equal(kpiColumns, 2, "campaign KPIs should use a two-column mobile layout");
+  const channelFilterWidth = await page.locator("#channel-filter").evaluate(
+    element => element.getBoundingClientRect().width
+  );
+  assert.ok(channelFilterWidth > 0 && channelFilterWidth <= 375, "channel filter must fit the mobile viewport");
+  assert.equal(
+    await page.evaluate(() => document.body.innerText.includes("\\\\n")),
+    false,
+    "dashboard must not render a literal backslash-n sequence"
+  );
+
+  await page.emulateMedia({ media: "print" });
+  assert.equal(
+    await page.locator(".masthead").evaluate(element => getComputedStyle(element).display),
+    "none",
+    "the dashboard chrome should be hidden in print mode"
+  );
+  assert.equal(
+    await page.locator("#executive-report").evaluate(element => getComputedStyle(element).display),
+    "block",
+    "the executive report should remain visible in print mode"
+  );
+  assert.equal(
+    await page.locator("#print-report").evaluate(element => getComputedStyle(element).display),
+    "none",
+    "the print control should not appear in the printed report"
+  );
+  await page.emulateMedia({ media: "screen" });
+
+  console.log("PASS: Operations Review Workspace browser flow, persisted decision, and 375px mobile layout");
+  console.log("PASS: Campaign Performance Analyzer import, filter, executive report, 375px mobile layout, and print media");
   console.log("PASS: Campaign Performance Analyzer browser import, filter, and report flow");
 } finally {
   await browser.close();
