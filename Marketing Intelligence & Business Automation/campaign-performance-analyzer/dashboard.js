@@ -89,19 +89,24 @@ function render(result, fileName) {
 }
 function exportReport() {
   if (!loaded) return;
-  const valid = loaded.valid.filter(activeMatches);
-  const exceptions = loaded.exceptions.filter(activeMatches);
+  const periodSource = loaded.valid.filter(activeMatches);
+  const start = $("#period-start").value;
+  const end = $("#period-end").value;
+  const valid = loaded.hasDate && start && end
+    ? periodSource.filter(item => item.date >= start && item.date <= end) : periodSource;
+  const exceptions = loaded.exceptions.filter(activeMatches).filter(item =>
+    !loaded.hasDate || !start || !end || (item.date && item.date >= start && item.date <= end));
   const report = {
     report_type: "campaign-performance-analyzer-filtered-report",
     source_file: loaded.fileName,
     exported_at: new Date().toISOString(),
     filters: { campaign_search: $("#campaign-search").value.trim(), channel: $("#channel-filter").value,
-      period_start: $("#period-start").value || null, period_end: $("#period-end").value || null },
+      period_start: start || null, period_end: end || null },
     definitions: { ctr: "clicks / impressions", conversion_rate: "conversions / clicks", cpc: "spend / clicks",
       cpa: "spend / conversions", roas: "attributed revenue / spend" },
     summary: summarizeCampaigns(valid), campaigns: valid, exceptions,
     period_comparison: loaded.hasDate && $("#period-start").value && $("#period-end").value
-      ? comparePeriods(valid, $("#period-start").value, $("#period-end").value) : null,
+      ? comparePeriods(periodSource, start, end) : null,
     limitations: ["Metrics use only supplied CSV values.", "No advertising platform connection or attribution verification.",
       "ROAS is not profit or ROI.", "Exception rows are excluded from performance totals."]
   };
