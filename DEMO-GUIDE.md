@@ -29,6 +29,8 @@ Open `http://127.0.0.1:8765` (or the address printed by the server).
 python -m unittest discover -s tests -v
 ```
 
+The cross-project Chromium check also records a synthetic review decision, reloads the page, and verifies that the decision remains in the history.
+
 **Boundaries:** loopback-only; reviewer ID is not authenticated; records are synthetic; no CRM, email, accounting, payment, or bank transfer action occurs. Do not expose the server to a LAN or internet.
 
 ## 2. Campaign Performance Analyzer
@@ -60,6 +62,8 @@ python -m unittest discover -s tests -v
 node --test tests/dashboard-logic.test.js
 ```
 
+The cross-project Chromium check imports the included CSV, verifies the expected campaign count, applies the Search channel filter, and renders the executive report.
+
 **Boundaries:** browser processing is local and does not upload the selected CSV. Structural checks do not verify attribution; comparisons are descriptive, not causal. ROAS is not profit or ROI. No advertising-platform connection or budget recommendation is provided.
 
 ## 3. Campaign Launch QA & UTM Builder
@@ -82,19 +86,24 @@ python launch_qa.py --input sample_campaigns.csv --output-dir output
 4. Show `summary.json` and explain `ready`, `review`, or `blocked`.
 5. For a controlled exception demonstration, copy the sample CSV and change one field in the copy; keep the original unchanged.
 
-**Automated check:**
-
-```bash
-python -m unittest discover -s tests -v
-```
+**Automated check:** the dedicated GitHub Actions workflow runs the unit tests and executes the sample CSV command, checking that the approved, exception, and summary files are non-empty.
 
 **Boundaries:** the tool does not publish or activate campaigns, verify destination ownership, consent, legal compliance, analytics configuration, live URL availability, or actual tracking collection. A `ready` result means only that implemented checks passed; it is not launch authorization.
 
+## Cross-project browser verification
+
+The [Portfolio Demo Browser Tests workflow](./.github/workflows/portfolio-demo-browser-tests.yml) runs the Operations Review Workspace and Campaign Performance Analyzer in headless Chromium. It starts both services on loopback, uses the included synthetic records, and checks the principal browser paths. The workspace check includes a full page reload to verify that a recorded decision persists in its isolated SQLite database.
+
+The test source is [`tests/portfolio-demos.e2e.mjs`](./tests/portfolio-demos.e2e.mjs). The Campaign Launch QA demonstration is checked separately by its own workflow because it is a command-line tool rather than a browser application.
+
+A CI browser check is not a substitute for a person launching the demos on their own machine and reviewing the visual presentation. Do not claim that manual local review has occurred unless it is separately recorded.
+
 ## Verification status
 
-The repository's GitHub Actions workflows have passed for these three projects:
-- Operations Review Workspace integration tests.
-- Campaign Performance Analyzer Python tests and browser-logic tests.
-- Campaign Launch QA & UTM Builder Python tests.
+The repository has dedicated automated workflows for all three demonstrations:
+- Operations Review Workspace: Python integration tests and the cross-project browser flow.
+- Campaign Performance Analyzer: Python tests, browser-logic tests, sample CLI execution, and the cross-project browser flow.
+- Campaign Launch QA & UTM Builder: Python tests and sample CLI execution.
 
-CI evidence confirms the automated checks listed above. It does not establish that a human has launched the applications interactively on a local machine or verified every visual interaction. Record that manual demonstration separately when performed.
+Use the linked GitHub Actions runs for the actual pass/fail result. Workflow configuration and test source code alone do not establish a successful run.
+
