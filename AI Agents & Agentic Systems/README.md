@@ -15,3 +15,9 @@ The [SME Procurement Request Triage Agent](./sme-procurement-request-triage/) va
 **Status: DEMO** — deterministic policy-based routing. It never approves a purchase or creates a purchase order.
 
 Both projects run locally and use no live company data or external integrations. Their READMEs describe setup, tests, assumptions, and limitations.
+
+## Bounded Support Workflow Agent
+
+The [Bounded Support Workflow Agent](./bounded-support-workflow-agent/) composes the portfolio's orchestration and tool-gateway components. It validates a synthetic support request, pauses for host-mediated approval, checks role and argument policy, and records workflow/tool events.
+
+**Status: DEMO** — the ticket action is simulated; role and approval inputs are not production identity controls.
