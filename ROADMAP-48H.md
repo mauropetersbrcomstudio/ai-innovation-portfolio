@@ -50,6 +50,7 @@ The folder structure remains unchanged. The execution order below is a developme
 | AI Skills & Tooling | Agent Observability | DEMO |
 | AI Skills & Tooling | Agent Recovery | DEMO |
 | AI Skills & Tooling | Agent Policy Validator | DEMO |
+| AI Skills & Tooling | Agent Security & Governance | DEMO |
 | AI Product Development | SME Workflow Opportunity Mapper | DEMO |
 | Web Applications & SaaS | SME KPI Workspace | DEMO |
 | Marketing Intelligence & Business Automation | Campaign Performance Analyzer | DEMO |
@@ -68,6 +69,8 @@ These are independently developed demonstrations. Their sample records are synth
 - [x] Governed execution integration combining policy validation, role/approval checks, tool allowlisting, and bounded orchestration.
 - [x] Durable sequential workflow runner with per-step SQLite checkpoints, JSONL observability, resume behavior, and idempotency-key contract.
 - [x] Agent Runtime Control Plane with lifecycle management, explicit tool authorization, invocation caps, health reporting, human escalation, and audit projection.
+- [x] Agent Security & Governance policy engine with deny-by-default role/tool/risk decisions, scoped approval evidence, and injected approval verification.
+- [x] Secured Runtime Control Plane integration: authorization decisions are checked and recorded before handlers execute; tests cover denied roles, missing principals, and high-risk approval.
 - [x] Invoice Intake & Exception Routing workflow with decimal-safe threshold checks, batch duplicate detection, validation, and human-review routes.
 - [x] Dedicated GitHub Actions workflows for the new reusable components and integration demonstrations.
 - [x] Synthetic sample data, documented limitations, and explicit separation between demos and client engagements.
