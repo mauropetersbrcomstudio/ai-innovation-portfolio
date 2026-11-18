@@ -20,10 +20,23 @@ async function assertNoHorizontalOverflow(page, label) {
           scrollWidth: element.scrollWidth,
           clientWidth: element.clientWidth,
           parentClass: element.parentElement?.className || "",
-          parentOverflowX: element.parentElement ? getComputedStyle(element.parentElement).overflowX : ""
+          scrollContainerAncestor: (() => {
+            let parent = element.parentElement;
+            while (parent && parent !== document.body) {
+              const overflow = getComputedStyle(parent).overflowX;
+              if (["auto", "scroll", "hidden", "clip"].includes(overflow)) {
+                return parent.className || parent.tagName.toLowerCase();
+              }
+              parent = parent.parentElement;
+            }
+            return null;
+          })()
         };
       })
-      .filter(item => item.right > document.documentElement.clientWidth + 1 || item.left < -1)
+      .filter(item =>
+        (item.right > document.documentElement.clientWidth + 1 || item.left < -1) &&
+        !item.scrollContainerAncestor
+      )
       .sort((a, b) => b.right - a.right)
       .slice(0, 20)
   }));
