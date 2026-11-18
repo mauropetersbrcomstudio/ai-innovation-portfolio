@@ -6,11 +6,27 @@ import { fileURLToPath } from "node:url";
 async function assertNoHorizontalOverflow(page, label) {
   const dimensions = await page.evaluate(() => ({
     viewport: document.documentElement.clientWidth,
-    document: document.documentElement.scrollWidth
+    document: document.documentElement.scrollWidth,
+    offenders: [...document.querySelectorAll("body *")]
+      .map(element => {
+        const rect = element.getBoundingClientRect();
+        return {
+          tag: element.tagName.toLowerCase(),
+          id: element.id,
+          className: typeof element.className === "string" ? element.className : "",
+          left: Math.round(rect.left),
+          right: Math.round(rect.right),
+          width: Math.round(rect.width),
+          scrollWidth: element.scrollWidth,
+          clientWidth: element.clientWidth
+        };
+      })
+      .filter(item => item.right > document.documentElement.clientWidth + 1 || item.left < -1)
+      .slice(0, 12)
   }));
   assert.ok(
     dimensions.document <= dimensions.viewport + 1,
-    `${label}: horizontal overflow (${dimensions.document}px document / ${dimensions.viewport}px viewport)`
+    `${label}: horizontal overflow (${dimensions.document}px document / ${dimensions.viewport}px viewport); offenders=${JSON.stringify(dimensions.offenders)}`
   );
 }
 
