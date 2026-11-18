@@ -13,3 +13,7 @@ It runs locally with Python and sample data. It does not connect to a CRM or con
 The [Invoice Intake & Exception Routing workflow](./invoice-intake-exception-routing/) validates synthetic invoice records, checks supplier/invoice duplicates, verifies dates and amounts, and routes complete records or exceptions to human review queues.
 
 **Status: DEMO** — deterministic rules only. It does not approve invoices, authorize payments, or connect to accounting systems.
+
+## Resumable Intake Operations Hub
+
+The [Resumable Intake Operations Hub](./intake-operations-hub/) composes both existing intake examples with SQLite checkpoints and structured events, then prepares a consolidated human-review queue. It does not make human decisions or execute external actions.
