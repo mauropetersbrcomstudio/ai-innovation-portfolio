@@ -3,11 +3,11 @@ name: Agent Runtime Control Plane Tests
 on:
   push:
     paths:
-      - "AI Agents & Agentic Systems/agent-runtime-control-plane/**"
+      - "Demo Templates/AI Agents & Agentic Systems/agent-runtime-control-plane/**"
       - ".github/workflows/agent-runtime-control-plane-tests.yml"
   pull_request:
     paths:
-      - "AI Agents & Agentic Systems/agent-runtime-control-plane/**"
+      - "Demo Templates/AI Agents & Agentic Systems/agent-runtime-control-plane/**"
       - ".github/workflows/agent-runtime-control-plane-tests.yml"
   workflow_dispatch:
 
@@ -20,5 +20,5 @@ jobs:
         with:
           python-version: "3.11"
       - name: Run runtime control plane tests
-        working-directory: AI Agents & Agentic Systems/agent-runtime-control-plane
+        working-directory: Demo Templates/AI Agents & Agentic Systems/agent-runtime-control-plane
         run: python -m unittest discover -s tests -v
