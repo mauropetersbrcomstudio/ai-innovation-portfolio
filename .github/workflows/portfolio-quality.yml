@@ -1,0 +1,45 @@
+name: Portfolio Quality Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python-tests:
+    name: Python unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Discover and run test suites
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t test_dirs < <(find . -type d -name tests -not -path './.git/*' | sort)
+          if [ "${#test_dirs[@]}" -eq 0 ]; then
+            echo "No tests directories found."
+            exit 1
+          fi
+          for test_dir in "${test_dirs[@]}"; do
+            project_dir="$(dirname "$test_dir")"
+            echo "::group::Tests in $project_dir"
+            (
+              cd "$project_dir"
+              python -m unittest discover -s tests -v
+            )
+            echo "::endgroup::"
+          done
