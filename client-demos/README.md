@@ -1,19 +1,22 @@
 # Client Demos
 
-Fictional, technically grounded projects inspired by real SME segments, operating models, and business challenges supplied as project briefs.
+A selection of projects carried out for real clients. This section is reserved for work from actual client engagements, rather than fictional business scenarios or internally developed demo templates.
 
-## Purpose
-Demonstrate how a business problem can be translated into a scoped technology solution. These are portfolio simulations, not claims of work delivered to the referenced companies.
+Each project should give a clear account of the business context, the challenge addressed, the work undertaken, and the solution or deliverable produced. The level of detail will depend on what can be shared about the engagement.
 
-## Required contents for each demo
-1. Fictional business profile and segment context.
-2. Business challenge and assumptions.
-3. Proposed solution and architecture.
-4. Working demonstration and synthetic data.
-5. Setup and usage instructions.
-6. Tests, limitations, and next implementation steps.
+## Project information
 
-## Disclosure
-Do not publish company names, logos, confidential information, or identifying details without explicit authorization. Label hypothetical outcomes as expected benefits, never measured results.
+Where publication is permitted, an individual case may include:
 
-**Status:** Framework documented; individual demos await source briefs and implementation.
+- Client and industry context, with identifying details only when authorized.
+- The business challenge and project objectives.
+- Our role, scope of work, and approach.
+- The solution, deliverables, or implementation.
+- Relevant technologies and methods.
+- Outcomes or lessons, using only information that can be substantiated and shared.
+
+## Confidentiality
+
+Client names, logos, documents, data, and other identifying details must not be published without the appropriate authorization. Where an engagement is confidential, describe it only at a level the client permits. Do not invent outcomes, metrics, testimonials, or project details.
+
+This section contains real client work. Independently developed demonstrations, reusable templates, tools, and prototypes belong in their respective portfolio categories.
