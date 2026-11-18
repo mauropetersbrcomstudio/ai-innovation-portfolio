@@ -1,0 +1,30 @@
+name: SME Internal Knowledge Assistant Tests
+
+on:
+  push:
+    paths:
+      - "demo-templates/sme-internal-knowledge-assistant/**"
+      - ".github/workflows/internal-knowledge-assistant-tests.yml"
+  pull_request:
+    paths:
+      - "demo-templates/sme-internal-knowledge-assistant/**"
+      - ".github/workflows/internal-knowledge-assistant-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run unit tests
+        working-directory: demo-templates/sme-internal-knowledge-assistant
+        run: python -m unittest discover -s tests -v
+      - name: Run sample
+        working-directory: demo-templates/sme-internal-knowledge-assistant
+        run: python assistant.py
