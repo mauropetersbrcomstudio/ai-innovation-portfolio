@@ -5,7 +5,7 @@ from pathlib import Path
 
 from runtime_control import AgentSpec, RuntimeControlPlane
 
-security_path = Path(__file__).resolve().parents[2] / "AI Skills & Tooling" / "agent-security-governance"
+security_path = Path(__file__).resolve().parents[3] / "AI Skills & Tooling" / "agent-security-governance"
 sys.path.insert(0, str(security_path))
 from security_governance import ApprovalEvidence, Principal, SecurityPolicyEngine
 
