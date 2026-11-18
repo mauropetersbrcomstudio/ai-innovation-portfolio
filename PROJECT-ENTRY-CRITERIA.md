@@ -57,7 +57,10 @@ Before merging or publishing a project, check:
 5. Links and paths resolve.
 6. Sample data and claims have a clear provenance.
 7. Limitations and exclusions are visible.
-8. No secrets or confidential information are present.
+8. No secrets, credentials, private customer records, or unauthorized third-party materials are present.
+9. Run `python scripts/check_public_content.py` and treat any finding as a publication blocker. The check reports paths and rule IDs only; it never prints matched values.
+
+The public-content check is heuristic. It scans tracked UTF-8 files in the current checkout, not Git history, binary files, every possible credential format, or all forms of confidential information. It does not replace human review or credential rotation.
 
 ## 6. Maintenance
 
