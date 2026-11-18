@@ -37,15 +37,18 @@ The root README and individual project READMEs are the authoritative project cat
 ### P0 — Portfolio integrity and navigation
 
 - [ ] Reconcile the root README, category indexes, and this roadmap against the actual repository tree.
-- [ ] Ensure every featured project link resolves and every project has a clear status, run instructions, dependencies, tests, and limitations.
+- [x] Verify that all 48 relative links in the root README resolve to existing repository paths (repository-tree audit, 2026-11-18).
+- [ ] Audit individual project READMEs for status, run instructions, dependencies, tests, and limitations.
 - [ ] Correct only factual inconsistencies, broken links, duplicated entries, and missing essential documentation.
-- [ ] Run the repository's existing automated quality workflows and resolve failures.
+- [x] Confirm Portfolio Quality Gate succeeded for the backlog simplification commit `5a7359d10b247096ba00ce90123e646fde01c152` (run `44228054863`).
+- [ ] Confirm the quality gate for subsequent documentation corrections and resolve failures.
 
 **Exit criteria:** the repository catalogue matches the files that exist; documented commands and links are usable; applicable CI checks pass.
 
 ### P1 — Demonstration readiness of existing projects
 
-- [ ] Select a small set of strongest existing demos for first presentation; do not build new demos for this step.
+- [x] Select three existing demos for first presentation: **Operations Review Workspace**, **Campaign Performance Analyzer**, and **Campaign Launch QA & UTM Builder**. These cover an interactive workflow and two complementary marketing use cases without new implementation.
+- [ ] Reassess this selection only if reproducibility checks reveal blockers.
 - [ ] Verify each selected demo from its documented setup through its primary user flow using its existing tests and available execution environment.
 - [ ] Ensure synthetic sample data, expected outputs, limitations, and a short demonstration path are clear.
 - [ ] Fix only issues that block setup, the primary flow, or truthful presentation.
