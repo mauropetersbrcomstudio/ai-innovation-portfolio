@@ -70,6 +70,8 @@ try {
   await page.locator("#generate-report").click();
   await page.locator("#executive-report").waitFor({ state: "visible" });
   assert.ok((await page.locator("#report-content").innerText()).includes("Executive summary"));
+  assert.ok((await page.locator("#report-meta").textContent()).includes("sample_campaigns.csv"));
+  assert.ok(await page.locator("#print-report").isVisible());
 
   console.log("PASS: Operations Review Workspace browser flow and persisted decision");
   console.log("PASS: Campaign Performance Analyzer browser import, filter, and report flow");
