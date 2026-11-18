@@ -21,3 +21,9 @@ Both projects run locally and use no live company data or external integrations.
 The [Bounded Support Workflow Agent](./bounded-support-workflow-agent/) composes the portfolio's orchestration and tool-gateway components. It validates a synthetic support request, pauses for host-mediated approval, checks role and argument policy, and records workflow/tool events.
 
 **Status: DEMO** — the ticket action is simulated; role and approval inputs are not production identity controls.
+
+## Multi-Agent Request Review
+
+The [Multi-Agent Request Review demo](./multi-agent-request-review/) demonstrates a bounded handoff from intake to policy review, with explicit category routing and human escalation for unsupported requests.
+
+**Status: DEMO** — deterministic routing only; no external systems or autonomous planning.
