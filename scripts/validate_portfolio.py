@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check project status/docs and keep the root/category indexes aligned with the tree."""
+"""Check project status/docs and keep category indexes aligned with the project tree."""
 from __future__ import annotations
 
 import re
@@ -161,7 +161,7 @@ def main() -> int:
 
     print(
         f"Portfolio validation passed: {len(projects)} project READMEs, "
-        f"{len(CATEGORIES)} category indexes, root index coverage, local links, "
+        f"{len(CATEGORIES)} category indexes, category links, local project links, "
         "status labels, run/dependency/test/limitation documentation."
     )
     return 0
