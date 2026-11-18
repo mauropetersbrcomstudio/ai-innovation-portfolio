@@ -4,10 +4,10 @@ import argparse, json, sys
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "AI Automation & Workflows" / "lead-intake-pipeline"))
-sys.path.insert(0, str(ROOT / "AI Automation & Workflows" / "invoice-intake-exception-routing"))
-sys.path.insert(0, str(ROOT / "AI Agents & Agentic Systems" / "durable-workflow-runner"))
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "Demo Templates" / "AI Automation & Workflows" / "lead-intake-pipeline"))
+sys.path.insert(0, str(ROOT / "Demo Templates" / "AI Automation & Workflows" / "invoice-intake-exception-routing"))
+sys.path.insert(0, str(ROOT / "Demo Templates" / "AI Agents & Agentic Systems" / "durable-workflow-runner"))
 from pipeline import process_rows
 from invoice_workflow import process_invoices
 from durable_runner import run_durable_workflow
