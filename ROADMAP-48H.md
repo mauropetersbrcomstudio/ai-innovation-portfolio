@@ -38,7 +38,7 @@ The root README and individual project READMEs are the authoritative project cat
 
 - [x] Reconcile the root README, category indexes, and this roadmap against the actual repository tree.
 - [x] Verify that all 48 relative links in the root README resolve to existing repository paths (repository-tree audit, 2026-11-18).
-- [ ] Audit individual project READMEs for status, run instructions, dependencies, tests, and limitations.
+- [x] Audit all 36 project READMEs for status, run instructions, dependencies, tests, and limitations.
 - [x] Correct factual inconsistencies and missing essential documentation found in the audit.
 - [x] Confirm Portfolio Quality Gate succeeded for the backlog simplification commit `5a7359d10b247096ba00ce90123e646fde01c152` (run `44228054863`).
 - [ ] Confirm the quality gate for subsequent documentation corrections and resolve failures.

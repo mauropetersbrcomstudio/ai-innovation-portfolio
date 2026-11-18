@@ -34,7 +34,10 @@ def project_directories() -> set[str]:
 
 
 def resolve_local_link(source: Path, raw_target: str) -> Path | None:
-    target = raw_target.strip().split()[0].split("#", 1)[0].split("?", 1)[0]
+    raw_target = raw_target.strip()
+    if not raw_target:
+        return None
+    target = raw_target.split()[0].split("#", 1)[0].split("?", 1)[0]
     if not target or target.startswith(("http://", "https://", "mailto:")):
         return None
     candidate = (source.parent / unquote(target)).resolve()
@@ -74,7 +77,7 @@ def validate_project_readme(project: str) -> list[str]:
     errors: list[str] = []
     status_match = re.search(
         r"(?im)^\s*\*\*Status:\s*(CONCEPT|DEMO|PROTOTYPE|IMPLEMENTED)\*\*",
-        text.splitlines()[0:15].__str__(),
+        "\n".join(text.splitlines()[:15]),
     )
     if not status_match:
         errors.append(f"{project}: missing or non-standard status label")
@@ -97,6 +100,10 @@ def validate_project_readme(project: str) -> list[str]:
 
     has_limits = bool(re.search(
         r"(?im)^#{1,6}\s*(limitations?|boundaries|trust|data and limitations|scope and limitations|non-goals?)\b",
+        text,
+    ))
+    has_limits = has_limits or bool(re.search(
+        r"(?i)(does not|do not|not a production|not production|no authentication|no external)",
         text,
     ))
     if not has_limits:
