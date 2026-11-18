@@ -9,7 +9,7 @@ A runnable integration example that connects three reusable portfolio components
 Requires Python 3.10+ and uses only the standard library. From this directory:
 
 ```bash
-python platform.py --request "Review a new support request"
+python agent_platform.py --request "Review a new support request"
 ```
 
 The demo creates local files under `runtime/`. To keep generated runtime data out of source control, do not commit those files.
