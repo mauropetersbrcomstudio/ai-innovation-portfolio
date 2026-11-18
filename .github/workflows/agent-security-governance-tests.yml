@@ -3,11 +3,11 @@ name: Agent Security Governance Tests
 on:
   push:
     paths:
-      - "AI Skills & Tooling/agent-security-governance/**"
+      - "Demo Templates/AI Skills & Tooling/agent-security-governance/**"
       - ".github/workflows/agent-security-governance-tests.yml"
   pull_request:
     paths:
-      - "AI Skills & Tooling/agent-security-governance/**"
+      - "Demo Templates/AI Skills & Tooling/agent-security-governance/**"
       - ".github/workflows/agent-security-governance-tests.yml"
 
 jobs:
@@ -19,5 +19,5 @@ jobs:
         with:
           python-version: "3.12"
       - name: Run unit tests
-        working-directory: AI Skills & Tooling/agent-security-governance
+        working-directory: Demo Templates/AI Skills & Tooling/agent-security-governance
         run: python -m unittest discover -s tests -v
