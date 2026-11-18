@@ -125,7 +125,7 @@ The initial CI attempt caught a missing `ToolSpec` import in the demo runner. It
 - [Agent Security Governance Tests — run 44255991438](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44255991438): 11 tests passed, including malformed risk values in requests and policy manifests.
 - [Portfolio Quality Gate — run 44255991376](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44255991376): portfolio validator passed for 36 project READMEs and eight category indexes; 230 Python tests passed across 35 suites.
 
-### P1 — Immutable policy and dispatch contract snapshots
+### P1 — Defensive policy and dispatch contract snapshots
 
 - [x] Copy registered tool input schemas so caller-owned dictionaries cannot change gateway validation after registration.
 - [x] Return defensive copies from the gateway's host-facing tool-spec lookup.
