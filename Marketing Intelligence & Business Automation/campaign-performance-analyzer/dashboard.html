@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Local campaign performance dashboard demo. Analyze an uploaded CSV without sending data to a server.">
+  <meta name="theme-color" content="#f3f1eb">
+  <title>Campaign Intelligence — Demo</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <a class="brand" href="./dashboard.html"><span class="brand-mark">C</span><span>FIELDNOTES <i>/ CAMPAIGN INTELLIGENCE</i></span></a>
+      <span class="demo-tag"><span></span> LOCAL DEMO</span>
+    </header>
+    <section class="intro">
+      <div><p class="eyebrow">MARKETING PERFORMANCE <span>/ ANALYTICS</span></p><h1>See the signal.<br><em>Understand the spend.</em></h1><p class="lede">A transparent view of campaign metrics, calculated directly from your CSV file.</p></div>
+      <div class="privacy-note"><span class="privacy-icon">↳</span><span>Runs in your browser.<br><strong>Data is not uploaded.</strong></span></div>
+    </section>
+    <section class="upload-panel" aria-labelledby="upload-title">
+      <div class="upload-copy"><p class="eyebrow">01 / DATA SOURCE</p><h2 id="upload-title">Choose a campaign file</h2><p>Use the included sample or select a CSV with the required campaign fields.</p></div>
+      <div class="upload-actions"><label class="file-button" for="csv-file">Choose CSV file</label><input id="csv-file" type="file" accept=".csv,text/csv"><a class="sample-link" href="sample_campaigns.csv" download>Download sample data ↗</a></div>
+      <p class="file-status" id="file-status" role="status">No file selected</p>
+    </section>
+    <div class="notice" role="note"><b>DEMO DATA</b><span>Use synthetic or authorized data. Metrics reflect only the values supplied in the selected file.</span></div>
+    <section class="results" id="results" aria-live="polite">
+      <div class="section-kicker"><span>02 / PERFORMANCE SNAPSHOT</span><span id="campaign-count">AWAITING DATA</span></div>
+      <div class="kpis">
+        <article class="kpi primary"><span>ROAS</span><strong id="roas">—</strong><small>Revenue / spend</small></article>
+        <article class="kpi"><span>Spend</span><strong id="spend">—</strong><small>Supplied campaign spend</small></article>
+        <article class="kpi"><span>Conversions</span><strong id="conversions">—</strong><small>Reported conversions</small></article>
+        <article class="kpi"><span>CPA</span><strong id="cpa">—</strong><small>Spend / conversions</small></article>
+      </div>
+      <div class="metrics-strip">
+        <div><span>CTR</span><strong id="ctr">—</strong></div><div><span>Conversion rate</span><strong id="conversion-rate">—</strong></div><div><span>CPC</span><strong id="cpc">—</strong></div><div><span>Impressions</span><strong id="impressions">—</strong></div>
+      </div>
+      <section class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">03 / CAMPAIGN COMPARISON</p><h2>ROAS by campaign</h2><p>Attributed revenue divided by spend · ratio</p></div><span class="unit">RATIO</span></div>
+        <div id="chart" class="chart"><p class="empty">Upload a CSV to see campaign comparisons.</p></div>
+      </section>
+      <section class="panel table-panel">
+        <div class="panel-heading"><div><p class="eyebrow">04 / DETAIL</p><h2>Campaign breakdown</h2></div><span class="unit" id="valid-count">0 VALID</span></div>
+        <div class="table-wrap"><table><thead><tr><th>Campaign</th><th>Channel</th><th>Spend</th><th>CTR</th><th>Conv. rate</th><th>CPA</th><th>ROAS</th></tr></thead><tbody id="campaign-rows"><tr><td colspan="7" class="empty-cell">No campaign data loaded.</td></tr></tbody></table></div>
+      </section>
+      <section class="exceptions" id="exceptions" hidden><div class="panel-heading"><div><p class="eyebrow">05 / DATA QUALITY</p><h2>Rows requiring attention</h2></div><span class="unit" id="exception-count">0 ROWS</span></div><ul id="exception-list"></ul></section>
+    </section>
+    <footer><span>CAMPAIGN PERFORMANCE ANALYZER <b>·</b> INDEPENDENT DEMO</span><span>NO PLATFORM CONNECTION / NO ATTRIBUTION VERIFICATION</span></footer>
+  </main>
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>
