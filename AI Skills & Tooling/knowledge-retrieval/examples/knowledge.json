@@ -1,0 +1,25 @@
+{
+  "sources": [
+    {
+      "id": "HR-001",
+      "title": "Annual leave policy",
+      "tags": ["leave", "vacation", "HR"],
+      "allowed_roles": ["employee", "manager"],
+      "text": "Employees should submit annual leave requests to their manager before making travel commitments. Managers review requests against team coverage."
+    },
+    {
+      "id": "FIN-001",
+      "title": "Expense reimbursement process",
+      "tags": ["expenses", "finance", "reimbursement"],
+      "allowed_roles": ["employee", "finance"],
+      "text": "Employees submit itemized receipts through the expense process. Finance reviews documentation before reimbursement is approved."
+    },
+    {
+      "id": "HR-002",
+      "title": "Manager leave planning notes",
+      "tags": ["leave", "coverage", "planning"],
+      "allowed_roles": ["manager"],
+      "text": "Managers should review overlapping leave requests and document coverage arrangements before confirming team schedules."
+    }
+  ]
+}
