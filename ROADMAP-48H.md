@@ -82,6 +82,19 @@ The first browser runs exposed two real issues: the test expected two Search cam
 
 The cross-project Chromium workflow now checks persisted review state, 375-pixel mobile layout behavior, and the Campaign Performance Analyzer's print-media rules. The responsive run exposed a five-pixel page-level overflow caused by the daily-evolution table in the generated report; the table is now contained in a horizontally scrollable region. The final browser run above passed. The dashboard and workspace still require human-led local presentation review. Automated browser checks do not establish complete visual quality on every device or browser.
 
+### P1 — Reusable foundation hardening: Agent Observability
+
+- [x] Review the structured JSONL logger's sensitive-key matching rather than treating its original substring checks as comprehensive.
+- [x] Normalize common key styles, including camelCase, spaces, dots, hyphens, and case differences, before matching recognized credential/session markers.
+- [x] Avoid broad substring matches that would redact unrelated names such as `tokenizer` and `secretary`.
+- [x] Reject non-string severity values with a clear validation error.
+- [x] Add regression coverage for sensitive key variants, safe-name controls, and invalid severity types.
+- [x] Clarify in the project and category READMEs that redaction is key-name based and does not inspect arbitrary free-text values.
+- [x] Confirm [Agent Observability Tests — run 44247820974](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44247820974): 9 tests passed.
+- [x] Confirm [Portfolio Quality Gate — run 44247821005](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44247821005): catalogue validation passed and 226 Python tests passed across 35 suites.
+
+**Boundary:** this remains a limited DEMO safeguard. It is not a data-loss-prevention system, cannot detect secrets embedded in free text or unrecognized fields, and does not provide encrypted or tamper-proof audit storage.
+
 ### P2 — Client Demos, only when source material is supplied
 
 - [ ] Convert user-provided case briefs into client-specific demonstrations only after the facts, assets, and publication authorization are supplied.
