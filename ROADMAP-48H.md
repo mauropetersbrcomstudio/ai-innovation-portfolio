@@ -91,7 +91,8 @@ The AI Automation & Workflows category now contains two working pipelines. The n
 - [x] Compose the existing lead and invoice intake examples with the durable runner, SQLite state store, and structured observability.
 - [x] Demonstrate resumable workflow state, plan/input conflict detection, and a consolidated human-review queue; no human decision or external action is performed.
 - [x] Add automated coverage for normal, incomplete, duplicate, conflicting, repeat-run, and failure scenarios.
-- [ ] Add authenticated human decision capture with durable reviewer/action evidence before considering any live workflow.
+- [x] Add durable human decision capture with reviewer identifier, outcome, reason, timestamp, duplicate-decision protection, and a matching workflow audit event.
+- [ ] Integrate a real identity provider and enforce reviewer roles; current reviewer identifier is host-supplied and not authenticated by this demo.
 - Keep external actions simulated unless a real integration is separately configured and verified.
 
 ### 2. AI Skills & Tooling — extend selectively
