@@ -3,11 +3,11 @@ name: CRM Lead Qualification & Routing Tests
 on:
   push:
     paths:
-      - "demo-templates/crm-lead-qualification-routing/**"
+      - "Demo Templates/Demo Templates/AI Automation & Workflows/crm-lead-qualification-routing/**"
       - ".github/workflows/crm-lead-qualification-routing-tests.yml"
   pull_request:
     paths:
-      - "demo-templates/crm-lead-qualification-routing/**"
+      - "Demo Templates/Demo Templates/AI Automation & Workflows/crm-lead-qualification-routing/**"
       - ".github/workflows/crm-lead-qualification-routing-tests.yml"
   workflow_dispatch:
 
