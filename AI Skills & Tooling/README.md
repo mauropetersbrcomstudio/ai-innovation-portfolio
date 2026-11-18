@@ -79,3 +79,9 @@ The [Agent Observability utility](./agent-observability/) writes structured loca
 The [Agent Recovery utility](./agent-recovery/) runs bounded sequential steps and attempts declared compensations in reverse order after failure, reporting complete or partial rollback outcomes.
 
 **Status: DEMO** — compensations are application handlers, not guaranteed transactional rollback.
+
+## Agent Policy Validator — Governance Configuration Checks
+
+The [Agent Policy Validator](./agent-policy-validator/) checks agent risk labels, explicit tool allowlists, approval gates, and execution bounds in a small declarative policy format.
+
+**Status: DEMO** — configuration validation only; runtime authorization and identity verification remain external responsibilities.
