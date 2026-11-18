@@ -16,7 +16,7 @@ If a denominator is zero, the corresponding metric is `null`. Aggregate rates ar
 
 ## Interactive dashboard
 
-Open `dashboard.html` in a modern browser and select a CSV. The dashboard processes the file locally; it does not upload data. It supports campaign search, channel filtering, a filtered JSON report, and (when a valid `date` column exists) date-range filtering with a comparison against the immediately preceding interval of equal length.
+Open `dashboard.html` in a modern browser and select a CSV. The dashboard processes the file locally; it does not upload data. It supports campaign search, channel filtering, a filtered JSON report, daily temporal evolution, and (when a valid `date` column exists) date-range filtering with a comparison against the immediately preceding interval of equal length. It can generate a filtered executive report with methodology, KPIs, period comparison, and daily trend; use **Print / Save as PDF** in the browser to create a PDF without an external service.
 
 ## CSV contract
 
