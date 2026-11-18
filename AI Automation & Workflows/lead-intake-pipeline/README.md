@@ -1,49 +1,55 @@
 # Lead Intake Pipeline
 
-**Status: DEMO — executable local prototype**
+**Status: DEMO**
 
-A deterministic lead-intake workflow using only the Python standard library. It validates CSV records, normalizes fields, detects duplicate email addresses, calculates a transparent qualification score, routes valid leads, and writes an exception report.
+A local Python example of a first-pass lead intake process for a small sales team. It reads a CSV file, checks and standardizes the records, flags duplicate email addresses, applies a simple qualification score, and separates leads into follow-up groups.
 
-## Problem
-Small teams often receive inconsistent lead records and need a repeatable first-pass process before human follow-up.
+The workflow uses the Python standard library; no external services or third-party packages are required.
 
 ## What it does
-1. Validates required fields and email shape.
-2. Normalizes names, email addresses, company names, and source labels.
-3. Detects duplicate email addresses (later duplicate rows are flagged and excluded from routing).
-4. Scores leads using explicit, editable rules.
-5. Routes leads to `priority`, `standard`, or `review`.
-6. Exports processed records and row-level exceptions.
 
-## Run
-Requires Python 3.10+; no third-party packages.
+1. Checks that required fields are present and that email addresses have a basic valid shape.
+2. Standardizes names, email addresses, company names, and source labels.
+3. Flags later rows that repeat an email address and leaves those duplicates out of lead routing.
+4. Calculates a score using the rules below.
+5. Assigns each valid record to `priority`, `standard`, or `review`.
+6. Writes the processed records, exceptions, and a summary to the output directory.
+
+## Run it
+
+Requires Python 3.10 or newer. From this directory, run:
 
 ```bash
 python pipeline.py --input sample_leads.csv --output-dir output
 ```
 
-Run tests:
+To run the tests:
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-## Scoring rules
-- +30 when a company is supplied.
-- +25 when a business email is supplied (common free-mail domains do not qualify).
-- +25 when the requested service is supplied.
-- +20 when the source is supplied.
-- Score 70–100: priority; 40–69: standard; 0–39: review.
+## How the score is calculated
 
-These are demonstration rules, not empirically calibrated conversion predictions. They should be adapted and validated against a real organization's criteria before operational use.
+- **+30** when a company is supplied.
+- **+25** when a business email is supplied. Common free-mail domains do not qualify for these points.
+- **+25** when the requested service is supplied.
+- **+20** when the lead source is supplied.
 
-## Outputs
-- `processed_leads.csv`
-- `exceptions.csv`
-- `summary.json`
+The resulting score determines the route:
 
-## Privacy and limitations
-Use synthetic or appropriately authorized data. This local demo does not connect to a CRM, send messages, or make external changes. Email validation is intentionally basic and does not verify mailbox existence.
+- **70–100:** priority
+- **40–69:** standard
+- **0–39:** review
 
-## Acceptance checks
-Unit tests cover normalization, scoring, routing, invalid records, duplicate handling, and generated output files.
+These weights are example rules chosen to make the workflow easy to inspect. They are not based on measured conversion data and should not be treated as a prediction of sales potential.
+
+## Files produced
+
+- `processed_leads.csv` — records that passed validation and were routed.
+- `exceptions.csv` — rows that need attention, including invalid and duplicate records.
+- `summary.json` — a summary of the run.
+
+## Data and limitations
+
+The included CSV contains sample data. Use synthetic or appropriately authorized information when trying the workflow. This demo does not connect to a CRM, send messages, or update external systems. Its email check looks at format only; it does not confirm that a mailbox exists.
