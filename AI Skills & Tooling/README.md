@@ -19,3 +19,9 @@ The [CSV Data Quality Profiler](./csv-data-quality/) is a reusable local Python 
 The [Document Intelligence skill](./document-intelligence/) extracts headings, simple key/value pairs, contact details, ISO dates, currency-like mentions, and basic document statistics from UTF-8 text and Markdown files. It preserves line references and does not modify source files.
 
 **Status: DEMO** — deterministic pattern-based extraction; no OCR, semantic interpretation, or external services.
+
+## JSON Contract Validator
+
+The [JSON Contract Validator](./json-contract-validator/) checks JSON data against a documented schema subset, including types, required fields, additional properties, nested arrays, enums, and basic length/range constraints. It is designed for local input/output contract checks in reusable tools and agent workflows.
+
+**Status: DEMO** — Python standard-library implementation; not a full JSON Schema engine.
