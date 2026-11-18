@@ -21,6 +21,7 @@ permissions:
 jobs:
   browser-e2e:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -44,3 +45,10 @@ jobs:
           curl -fsS http://127.0.0.1:8765/api/health
       - name: Run end-to-end browser checks
         run: node tests/portfolio-demos.e2e.mjs
+      - name: Show demo server logs on failure
+        if: failure()
+        run: |
+          echo "=== Operations Review Workspace ==="
+          cat /tmp/workspace.log || true
+          echo "=== Campaign Performance Analyzer ==="
+          cat /tmp/dashboard.log || true
