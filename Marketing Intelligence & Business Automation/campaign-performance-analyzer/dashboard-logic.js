@@ -69,3 +69,23 @@ export function analyzeRows(rows) {
   };
   return { valid, exceptions, summary };
 }
+
+export function summarizeByChannel(validRows) {
+  const groups = new Map();
+  validRows.forEach(item => {
+    if (!groups.has(item.channel)) groups.set(item.channel, []);
+    groups.get(item.channel).push(item);
+  });
+  return [...groups.entries()].map(([channel, items]) => {
+    const totals = Object.fromEntries(NUMERIC.map(field => [
+      field, items.reduce((sum, item) => sum + item[field], 0)
+    ]));
+    return {
+      channel,
+      campaign_count: items.length,
+      ...totals,
+      cpa: divide(totals.spend, totals.conversions),
+      roas: divide(totals.revenue, totals.spend)
+    };
+  }).sort((a, b) => a.channel.localeCompare(b.channel));
+}
