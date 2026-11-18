@@ -1,5 +1,6 @@
 export const REQUIRED = ["campaign", "channel", "spend", "impressions", "clicks", "conversions", "revenue"];
 const NUMERIC = ["spend", "impressions", "clicks", "conversions", "revenue"];
+const DAY_MS = 86400000;
 
 export function parseCsv(source) {
   const rows = [];
@@ -28,9 +29,14 @@ export function parseCsv(source) {
   if (missing.length) throw new Error("Missing required columns: " + missing.join(", "));
   return rows.map(values => Object.fromEntries(headers.map((header, i) => [header, (values[i] ?? "").trim()])))
     .filter(record => Object.values(record).some(value => value !== ""))
-    .map((record, index) => ({ ...record, __row: index + 2 }));
+    .map((record, index) => ({ ...record, __row: index + 2, __hasDate: headers.includes("date") }));
 }
 
+export function isIsoDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return false;
+  const date = new Date(value + "T00:00:00.000Z");
+  return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
+}
 function number(value, field) {
   if (value === "") throw new Error(field + " is missing");
   const parsed = Number(value);
@@ -56,13 +62,17 @@ export function analyzeRows(rows) {
   rows.forEach(row => {
     const campaign = (row.campaign || "").trim();
     const channel = (row.channel || "").trim();
-    if (!campaign || !channel) { exceptions.push({ row: row.__row, campaign, channel, reason: "campaign or channel is missing" }); return; }
+    const date = (row.date || "").trim();
+    if (!campaign || !channel) { exceptions.push({ row: row.__row, campaign, channel, date, reason: "campaign or channel is missing" }); return; }
+    if (row.__hasDate && !isIsoDate(date)) {
+      exceptions.push({ row: row.__row, campaign, channel, date, reason: "date must use a valid YYYY-MM-DD value" }); return;
+    }
     const values = {};
     try { NUMERIC.forEach(field => { values[field] = number(row[field] ?? "", field); }); }
-    catch (error) { exceptions.push({ row: row.__row, campaign, channel, reason: error.message }); return; }
-    if (values.clicks > values.impressions) { exceptions.push({ row: row.__row, campaign, channel, reason: "clicks cannot exceed impressions" }); return; }
-    if (values.conversions > values.clicks) { exceptions.push({ row: row.__row, campaign, channel, reason: "conversions cannot exceed clicks" }); return; }
-    valid.push({ campaign, channel, ...values,
+    catch (error) { exceptions.push({ row: row.__row, campaign, channel, date, reason: error.message }); return; }
+    if (values.clicks > values.impressions) { exceptions.push({ row: row.__row, campaign, channel, date, reason: "clicks cannot exceed impressions" }); return; }
+    if (values.conversions > values.clicks) { exceptions.push({ row: row.__row, campaign, channel, date, reason: "conversions cannot exceed clicks" }); return; }
+    valid.push({ campaign, channel, ...(row.__hasDate ? { date } : {}), ...values,
       ctr: divide(values.clicks, values.impressions),
       conversion_rate: divide(values.conversions, values.clicks),
       cpc: divide(values.spend, values.clicks),
@@ -70,7 +80,23 @@ export function analyzeRows(rows) {
       roas: divide(values.revenue, values.spend)
     });
   });
-  return { valid, exceptions, summary: summarizeCampaigns(valid) };
+  return { valid, exceptions, summary: summarizeCampaigns(valid), hasDate: rows.some(row => row.__hasDate) };
+}
+
+export function comparePeriods(rows, start, end) {
+  if (!isIsoDate(start) || !isIsoDate(end) || start > end) throw new Error("Select a valid start and end date.");
+  const startMs = Date.parse(start + "T00:00:00.000Z");
+  const endMs = Date.parse(end + "T00:00:00.000Z");
+  const durationDays = Math.round((endMs - startMs) / DAY_MS) + 1;
+  const previousEnd = new Date(startMs - DAY_MS).toISOString().slice(0, 10);
+  const previousStart = new Date(startMs - durationDays * DAY_MS).toISOString().slice(0, 10);
+  const inRange = (item, from, to) => item.date >= from && item.date <= to;
+  const current = rows.filter(item => inRange(item, start, end));
+  const previous = rows.filter(item => inRange(item, previousStart, previousEnd));
+  return {
+    current: { start, end, summary: summarizeCampaigns(current) },
+    previous: { start: previousStart, end: previousEnd, summary: summarizeCampaigns(previous) }
+  };
 }
 
 export function summarizeByChannel(validRows) {
