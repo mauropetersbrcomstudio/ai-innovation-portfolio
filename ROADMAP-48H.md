@@ -37,15 +37,17 @@ The root README and individual project READMEs are the authoritative project cat
 ### P0 — Portfolio integrity and navigation
 
 - [x] Reconcile the root README, category indexes, and this roadmap against the actual repository tree.
-- [x] Verify that all 48 relative links in the root README resolve to existing repository paths (repository-tree audit, 2026-11-18).
-- [x] Audit all 36 project READMEs for status, run instructions, dependencies, tests, and limitations.
-- [x] Correct factual inconsistencies and missing essential documentation found in the audit.
-- [x] Confirm Portfolio Quality Gate succeeded for the backlog simplification commit `5a7359d10b247096ba00ce90123e646fde01c152` (run `44228054863`).
+- [x] Re-verify all relative links in the root README against the current repository tree: 50 local links resolve, with zero broken targets.
+- [x] Reconcile project documentation coverage against the current tree: 37 project directories have project READMEs, and all eight agreed portfolio folders have category indexes.
+- [x] Retain the original audit and correction record, including the review of status labels, run instructions, dependencies, tests, limitations, and essential documentation.
+- [x] Confirm Portfolio Quality Gate succeeded for the backlog simplification commit `5a7359d10b247096ba00ce90123e646fde01c152` (run [44228054863](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44228054863)).
 - [x] Confirm the quality gate for subsequent documentation corrections passed (run [44229011568](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44229011568), commit `6164850df8283f49a56ee89116c9cfa536a1b899`).
 
 **Exit criteria:** the repository catalogue matches the files that exist; documented commands and links are usable; applicable CI checks pass.
 
-**Audit snapshot (2026-11-18):** 201 tracked files and 45 README files were found: 36 project READMEs, eight category indexes, and the root README. The root index and category indexes cover all 36 project directories; no broken local links were found. This was the initial audit snapshot before the cross-project test guide was added. This pass corrects two non-standard status labels, repairs one malformed root-index row, and documents the component test commands for the operations-intake template.
+**Initial audit snapshot (2026-11-18):** 201 tracked files and 45 README files were recorded: 36 project READMEs, eight category indexes, and the root README. At that point, the root index and category indexes covered the 36 project directories, with no broken local links. The initial pass corrected two non-standard status labels, repaired one malformed root-index row, and documented component test commands for the operations-intake template.
+
+**Current reconciliation (2026-11-18):** the recursive Git tree contains 215 tracked files and 47 README files: 37 project READMEs, nine category/test indexes, and the root README. All eight agreed portfolio folders have their category README; the additional `tests/README.md` is a cross-project test index. The root README contains 50 relative links; all 50 resolve to tracked files or repository directories. The historical 201/45/36/48 figures are retained above only as the initial audit snapshot and are not presented as current counts.
 
 ### P1 — Demonstration readiness of existing projects
 
