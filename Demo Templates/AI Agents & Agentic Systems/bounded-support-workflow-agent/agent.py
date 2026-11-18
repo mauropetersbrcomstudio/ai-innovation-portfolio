@@ -5,9 +5,9 @@ import sys
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "AI Skills & Tooling" / "agent-tool-gateway"))
-sys.path.insert(0, str(ROOT / "AI Skills & Tooling" / "agent-orchestration"))
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "Demo Templates" / "AI Skills & Tooling" / "agent-tool-gateway"))
+sys.path.insert(0, str(ROOT / "Demo Templates" / "AI Skills & Tooling" / "agent-orchestration"))
 
 from gateway import Session, ToolGateway, ToolSpec  # noqa: E402
 from orchestrator import Orchestrator, Step, WorkflowState, state_to_dict  # noqa: E402

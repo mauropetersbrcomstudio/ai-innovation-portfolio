@@ -7,8 +7,8 @@ import sys
 from pathlib import Path
 from typing import Any, Callable
 
-ROOT = Path(__file__).resolve().parents[2]
-SKILLS = ROOT / "AI Skills & Tooling"
+ROOT = Path(__file__).resolve().parents[3]
+SKILLS = ROOT / "Demo Templates" / "AI Skills & Tooling"
 sys.path.insert(0, str(SKILLS / "agent-state-store"))
 sys.path.insert(0, str(SKILLS / "agent-observability"))
 
