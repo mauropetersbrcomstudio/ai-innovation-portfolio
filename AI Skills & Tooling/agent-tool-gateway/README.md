@@ -7,6 +7,8 @@ A small Python component that mediates calls from an agent or workflow to applic
 ## Capabilities
 
 - Register named tools with an object input contract.
+- Copy the input schema at registration so later caller mutation cannot silently change validation.
+- Return defensive copies from the host-facing tool-spec lookup.
 - Reject unregistered tool names.
 - Enforce configured role allowlists.
 - Validate required fields, primitive types, unknown fields, string lengths, enums, and numeric bounds.
@@ -28,6 +30,8 @@ python -m unittest discover -s tests -v
 The host application registers a handler function for each approved capability. The gateway does not discover functions, import tools dynamically, execute shell commands, or create network connections.
 
 For a governed host flow, authenticate the principal first, then call [Agent Security & Governance](../agent-security-governance/) to evaluate the principal, agent, tool, risk, and any separately verified approval. Dispatch only when that policy decision is allowed. The gateway's `Session.role` and `approved_tools` values are caller-supplied checks; they are not proof of identity or authoritative human approval. Do not treat the gateway alone as an authentication or authorization boundary.
+
+The host-facing get_tool_spec() method returns a defensive copy for policy/gateway alignment checks. Mutating the original schema after registration or a schema returned by get_tool_spec() does not alter the gateway's active validation contract.
 
 The host remains responsible for trusted identity, approval collection and verification, safe handler implementation, transaction/idempotency behavior, and durable audit storage.
 

@@ -42,6 +42,7 @@ Omit `approval_present=True` to see the fail-closed path when approval is missin
 3. `SecurityPolicyEngine` checks the principal and policy grant. If approval is required, its injected verifier must accept the scoped evidence.
 4. The adapter checks that the policy and gateway agree on whether approval is required, resolves a role permitted by both, and creates or reuses a session bound to the same subject and role.
 5. Only after authorization does the adapter add the gateway approval marker and call the registered handler.
+6. The policy engine and gateway keep active contracts isolated from caller-owned mutation; host inspection methods return defensive snapshots.
 6. Authorization, host, and gateway audit records retain decision and outcome metadata, not handler output or request arguments.
 
 The adapter also rejects reuse of a consumed approval ID within the same host instance and preserves the gateway's per-session invocation counter across calls made through that instance.

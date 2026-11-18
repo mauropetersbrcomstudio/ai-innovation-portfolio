@@ -38,7 +38,7 @@ The [Agent Platform Reference](./agent-platform-reference/) connects the portfol
 
 The [Governed Agent Execution demo](./governed-agent-execution/) now includes a trusted-host adapter that connects the deny-by-default Agent Security & Governance engine to the allowlisted Agent Tool Gateway. The adapter accepts a host-authenticated principal, delegates approval verification to an injected verifier, checks policy/gateway configuration alignment, binds sessions to a subject and role, and prevents same-instance approval-ID replay before dispatching a simulated handler.
 
-**Status: DEMO** — the adapter does not authenticate users or approvers. Its identity and approval verifier fixtures are synthetic; session, quota, replay, and audit state are in memory.
+**Status: DEMO** — the adapter does not authenticate users or approvers. Its identity and approval verifier fixtures are synthetic; session, quota, replay, and audit state are in memory. The policy engine and gateway isolate their active authorization and dispatch contracts from later mutation of caller-owned mappings; host inspection methods return defensive snapshots.
 
 ## Durable Workflow Runner
 

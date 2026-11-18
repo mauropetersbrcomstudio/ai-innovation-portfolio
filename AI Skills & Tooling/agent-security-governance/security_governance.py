@@ -6,6 +6,7 @@ verification to an injected verifier; it does not authenticate users itself.
 """
 from __future__ import annotations
 
+from copy import deepcopy
 from dataclasses import dataclass
 from typing import Any, Callable
 
@@ -52,9 +53,14 @@ class SecurityPolicyEngine:
         policy: dict[str, Any],
         approval_verifier: Callable[[ApprovalEvidence], bool] | None = None,
     ):
-        self.policy = self._validate_policy(policy)
+        self._policy = self._validate_policy(policy)
         self.approval_verifier = approval_verifier
         self.audit_events: list[dict[str, Any]] = []
+
+    @property
+    def policy(self) -> dict[str, Any]:
+        """Return a defensive snapshot of the active normalized policy."""
+        return deepcopy(self._policy)
 
     @staticmethod
     def _validate_policy(policy: dict[str, Any]) -> dict[str, Any]:
@@ -147,7 +153,7 @@ class SecurityPolicyEngine:
             return "INVALID_REQUEST"
         if not isinstance(risk, str) or risk not in VALID_RISKS:
             return "INVALID_RISK"
-        agent = self.policy["agents"].get(agent_id)
+        agent = self._policy["agents"].get(agent_id)
         if agent is None:
             return "AGENT_NOT_IN_POLICY"
         if not set(principal.roles).intersection(agent["roles"]):

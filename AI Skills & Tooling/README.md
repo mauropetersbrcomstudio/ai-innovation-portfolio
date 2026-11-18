@@ -40,7 +40,7 @@ The [Knowledge Retrieval skill](./knowledge-retrieval/) searches an explicitly s
 
 ## Agent Tool Gateway — Allowlisting & Permission Controls
 
-The [Agent Tool Gateway](./agent-tool-gateway/) mediates calls to explicitly registered handlers. It applies tool allowlisting, caller-supplied role checks, argument validation, optional approval markers, per-session invocation limits, and an in-memory audit trail that excludes handler output.
+The [Agent Tool Gateway](./agent-tool-gateway/) mediates calls to explicitly registered handlers. It applies tool allowlisting, caller-supplied role checks, argument validation, optional approval markers, per-session invocation limits, and an in-memory audit trail that excludes handler output. Registered input schemas are copied on registration, and host-facing contract lookups return defensive copies so external mutation cannot silently alter dispatch validation.
 
 **Status: DEMO** — dispatch control only. Its session role and approval markers are not trusted identity or approval evidence. A host should call Agent Security & Governance first, then dispatch only after an allowed policy decision. The host remains responsible for identity, approval verification, durable audit storage, and safe handler side effects.
 
@@ -88,6 +88,6 @@ The [Agent Policy Validator](./agent-policy-validator/) checks agent risk labels
 
 ## Agent Security & Governance — Deny-by-Default Authorization
 
-The [Agent Security & Governance engine](./agent-security-governance/) evaluates explicit agent, role, tool, and risk grants. It separates authorization from human approval and fails closed when approval evidence cannot be verified. It is the policy decision component to call before dispatch through the Agent Tool Gateway.
+The [Agent Security & Governance engine](./agent-security-governance/) evaluates explicit agent, role, tool, and risk grants. It separates authorization from human approval and fails closed when approval evidence cannot be verified. Its validated policy is held as an internal snapshot; callers receive defensive copies. It is the policy decision component to call before dispatch through the Agent Tool Gateway.
 
 **Status: DEMO** — the host must supply a trusted authenticated principal and an authoritative approval verifier. The module itself provides neither identity authentication nor cryptographic approval verification; its audit events are in-memory.

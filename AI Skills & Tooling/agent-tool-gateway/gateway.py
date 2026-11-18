@@ -1,7 +1,8 @@
 """Small allowlisted tool gateway with explicit contracts and audit events."""
 from __future__ import annotations
 
-from dataclasses import dataclass
+from copy import deepcopy
+from dataclasses import dataclass, replace
 from typing import Any, Callable
 
 
@@ -93,25 +94,32 @@ class ToolGateway:
         self.audit_log: list[dict[str, Any]] = []
 
     def register(self, spec: ToolSpec, handler: Callable[[dict[str, Any]], Any]) -> None:
-        if not spec.name or spec.name in self._specs:
+        if not isinstance(spec, ToolSpec):
+            raise ValueError("spec must be a ToolSpec")
+        if not isinstance(spec.name, str) or not spec.name.strip() or spec.name in self._specs:
             raise ValueError("Tool name must be non-empty and unique")
-        if spec.max_calls_per_session < 1:
-            raise ValueError("max_calls_per_session must be positive")
+        if not isinstance(spec.max_calls_per_session, int) or isinstance(spec.max_calls_per_session, bool) or spec.max_calls_per_session < 1:
+            raise ValueError("max_calls_per_session must be a positive integer")
         if not callable(handler):
             raise ValueError("Handler must be callable")
-        # Validate the schema shape before making the tool available.
-        if spec.input_schema.get("type") != "object":
+        if not isinstance(spec.input_schema, dict) or spec.input_schema.get("type") != "object":
             raise ValueError("Tool input schema must be an object")
-        self._specs[spec.name] = spec
-        self._handlers[spec.name] = handler
+        if not isinstance(spec.allowed_roles, tuple) or any(
+            not isinstance(role, str) or not role.strip() for role in spec.allowed_roles
+        ):
+            raise ValueError("allowed_roles must be a tuple of non-empty strings")
+
+        registered = replace(spec, input_schema=deepcopy(spec.input_schema))
+        self._specs[registered.name] = registered
+        self._handlers[registered.name] = handler
 
     def get_tool_spec(self, tool_name: str) -> ToolSpec | None:
-        """Return a registered tool contract for host-side policy alignment.
+        """Return a defensive copy for host-side policy alignment.
 
-        The returned specification is intended for inspection. Callers should not
-        mutate its nested input-schema dictionary.
+        The returned frozen dataclass contains a nested schema dictionary; copy it so
+        inspection cannot mutate the gateway's active dispatch contract.
         """
-        return self._specs.get(tool_name)
+        return deepcopy(self._specs.get(tool_name))
 
     def invoke(self, tool_name: str, arguments: Any, session: Session) -> dict[str, Any]:
         event = {

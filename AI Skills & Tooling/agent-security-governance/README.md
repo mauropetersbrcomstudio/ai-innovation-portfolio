@@ -14,6 +14,8 @@ python -m unittest discover -s tests -v
 
 ## Controls
 
+- Normalize and retain the validated policy as an internal snapshot at engine construction.
+- Expose policy as a defensive copy; mutating the source mapping or a returned snapshot does not change active authorization rules.
 - Explicit agent-to-role and agent-to-tool grants; wildcard grants are rejected.
 - Risk allowlists for each tool, with malformed and non-string risk values rejected.
 - Authentication-required gate for every authorization decision.
@@ -33,7 +35,7 @@ The [Agent Tool Gateway](../agent-tool-gateway/) provides a separate dispatch-ti
 - The `authenticated` field is a host assertion, not proof of identity. A caller able to construct arbitrary principals can forge it. This module is not an identity provider, authentication middleware, or network security boundary.
 - The injected approval verifier defines the trust in human approval. This demo includes no signature, key management, approval database, or cryptographic verification.
 - Audit events are held in process memory and are mutable by the process. They are not durable, tamper-evident, or independently secured.
-- Policy is loaded as an in-memory Python mapping; there is no policy distribution, version signing, or live reload.
+- Policy is loaded as an in-memory Python mapping and normalized into an internal snapshot; the public policy property returns a defensive copy. There is no policy distribution, version signing, or live reload.
 - The module returns authorization decisions; it does not itself execute tools or enforce a network boundary. The caller must deny execution unless `allowed` is true.
 - This is a reference demo, not production-ready security infrastructure.
 

@@ -107,6 +107,50 @@ class ToolGatewayTests(unittest.TestCase):
         self.assertEqual(attempts, ["called"])
         self.assertEqual(session.call_counts["bounded_write"], 1)
 
+    def test_registration_detaches_schema_from_caller_mutation(self):
+        schema = {
+            "type": "object",
+            "properties": {"amount": {"type": "integer", "minimum": 0}},
+            "required": ["amount"],
+            "additionalProperties": False,
+        }
+        gateway = ToolGateway()
+        gateway.register(
+            ToolSpec("check_amount", "check a synthetic amount", schema, ("finance",)),
+            lambda args: args,
+        )
+        schema["properties"]["amount"]["minimum"] = -100
+        schema["required"].clear()
+        result = gateway.invoke("check_amount", {"amount": -1}, Session("s1", "finance"))
+        self.assertEqual(result["reason"], "INVALID_ARGUMENTS")
+        self.assertIn("below minimum", result["validation_errors"][0])
+
+    def test_tool_spec_lookup_returns_defensive_schema_copy(self):
+        gateway = make_gateway()
+        inspected = gateway.get_tool_spec("create_ticket")
+        inspected.input_schema["properties"]["ticket"]["minLength"] = 0
+        inspected.input_schema["required"].clear()
+        result = gateway.invoke(
+            "create_ticket",
+            {"ticket": "x", "priority": "normal"},
+            Session("s1", "support", approved_tools=("create_ticket",)),
+        )
+        self.assertEqual(result["reason"], "INVALID_ARGUMENTS")
+        self.assertIn("shorter than minLength", result["validation_errors"][0])
+
+    def test_invalid_registration_contract_is_rejected(self):
+        gateway = ToolGateway()
+        with self.assertRaises(ValueError):
+            gateway.register(
+                ToolSpec("invalid", "invalid schema", None, ("support",)),
+                lambda _: None,
+            )
+        with self.assertRaises(ValueError):
+            gateway.register(
+                ToolSpec("invalid", "invalid limit", {"type": "object"}, ("support",), max_calls_per_session=True),
+                lambda _: None,
+            )
+
     def test_audit_log_records_denials_and_execution(self):
         gateway = make_gateway()
         session = Session("s1", "support", approved_tools=("create_ticket",))

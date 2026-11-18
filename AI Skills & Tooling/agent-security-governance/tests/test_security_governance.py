@@ -1,4 +1,5 @@
 import unittest
+from copy import deepcopy
 
 from security_governance import (
     ApprovalEvidence,
@@ -103,6 +104,20 @@ class SecurityGovernanceTests(unittest.TestCase):
         }
         with self.assertRaises(SecurityPolicyError):
             SecurityPolicyEngine(malformed)
+
+    def test_constructor_detaches_policy_from_source_mapping(self):
+        source = deepcopy(POLICY)
+        engine = SecurityPolicyEngine(source)
+        source["agents"]["support-agent"]["tools"]["search_kb"]["risks"].clear()
+        result = engine.authorize(self.operator, "support-agent", "search_kb", "LOW")
+        self.assertTrue(result.allowed)
+
+    def test_policy_property_returns_defensive_snapshot(self):
+        snapshot = self.engine.policy
+        snapshot["agents"]["support-agent"]["tools"]["search_kb"]["risks"] = ()
+        snapshot["agents"]["support-agent"]["roles"] = ()
+        result = self.engine.authorize(self.operator, "support-agent", "search_kb", "LOW")
+        self.assertTrue(result.allowed)
 
     def test_denials_and_allowances_are_audited(self):
         self.engine.authorize(self.operator, "support-agent", "search_kb", "LOW")
