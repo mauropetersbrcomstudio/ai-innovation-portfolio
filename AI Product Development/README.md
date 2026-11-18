@@ -4,6 +4,6 @@ This section covers the work involved in turning an AI-related business opportun
 
 ## SME Workflow Opportunity Mapper
 
-One concept in this area is an SME Workflow Opportunity Mapper. It is intended to help a business describe a process, identify repetitive or time-consuming steps, and compare possible automation opportunities using visible criteria.
+The [SME Workflow Opportunity Mapper](./sme-workflow-opportunity-mapper/) is an executable decision-support demo. It uses a transparent, user-supplied rubric to compare workflow opportunities and identify candidates for further discovery.
 
-At this stage, it is a product concept rather than a working application. No automated analysis or product functionality is available yet.
+It does not calculate ROI, validate ratings, or approve automation. Its scores and thresholds are illustrative and require human review.
