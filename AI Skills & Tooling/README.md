@@ -1,10 +1,9 @@
 # AI Skills & Tooling
 
-Reusable capabilities and utilities designed to make AI workflows more reliable and maintainable.
+This section brings together reusable skills, utilities, and supporting tools for building and operating AI workflows. The emphasis is on components that can be understood, tested, and reused rather than one-off demonstrations.
 
-## Initial demonstration specification: Brief-to-Task Skill
-A structured skill definition that converts a business brief into tasks with objective, inputs, constraints, acceptance criteria, and unresolved questions.
+## Brief-to-Task Skill
 
-**Acceptance checks:** preserves supplied facts, flags missing information, separates assumptions from confirmed requirements, and emits machine-readable output.
+A proposed example is a skill that turns a business brief into a structured task description. It is designed to retain the facts supplied, identify missing information, distinguish confirmed requirements from assumptions, and capture the acceptance criteria and open questions.
 
-**Status:** DEMO specification documented; executable implementation pending.
+The skill is currently a specification, not an executable tool. Its output format and behavior will need to be implemented and tested before it can be used in a workflow.
