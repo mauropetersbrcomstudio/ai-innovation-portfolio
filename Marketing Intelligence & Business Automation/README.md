@@ -1,10 +1,9 @@
 # Marketing Intelligence & Business Automation
 
-Demonstrations connecting marketing data, decision support, and operational workflows.
+This section explores how marketing information can support better decisions and more consistent execution. Projects may include campaign analysis, reporting, audience and channel insights, and automation of recurring marketing tasks.
 
-## Initial demonstration specification: Campaign Performance Analyzer
-A reproducible analysis of synthetic campaign data covering spend, reach, clicks, conversions, and cost metrics.
+## Campaign Performance Analyzer
 
-**Acceptance checks:** documented formulas, input validation, treatment of missing values, and no unsupported performance claims.
+One proposed example is an analysis of campaign data such as spend, reach, clicks, and conversions. The aim is to make the calculations visible and produce a repeatable view of performance using a sample dataset.
 
-**Status:** DEMO specification documented; executable implementation pending.
+This is currently a project concept. No campaign data has been analyzed and no performance results are claimed.
