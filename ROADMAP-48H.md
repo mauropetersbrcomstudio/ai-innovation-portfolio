@@ -107,6 +107,11 @@ The cross-project Chromium workflow now checks persisted review state, 375-pixel
 
 **Boundary:** these changes improve deterministic component behavior and documentation. They do not authenticate identities, verify real approvals, make handler effects transactional, or provide durable/tamper-evident audit storage. Both components remain DEMOs.
 
+**Verification evidence (2026-11-18):**
+- [Agent Tool Gateway Tests — run 44255991317](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44255991317): 10 tests passed, including output-free audit records and failed-handler attempt limits.
+- [Agent Security Governance Tests — run 44255991438](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44255991438): 11 tests passed, including malformed risk values in requests and policy manifests.
+- [Portfolio Quality Gate — run 44255991376](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44255991376): portfolio validator passed for 36 project READMEs and eight category indexes; 230 Python tests passed across 35 suites.
+
 ### P2 — Client Demos, only when source material is supplied
 
 - [ ] Convert user-provided case briefs into client-specific demonstrations only after the facts, assets, and publication authorization are supplied.
