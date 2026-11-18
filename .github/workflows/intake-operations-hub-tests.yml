@@ -3,21 +3,21 @@ name: Intake Operations Hub Tests
 on:
   push:
     paths:
-      - "AI Automation & Workflows/intake-operations-hub/**"
-      - "AI Automation & Workflows/lead-intake-pipeline/**"
-      - "AI Automation & Workflows/invoice-intake-exception-routing/**"
-      - "AI Agents & Agentic Systems/durable-workflow-runner/**"
-      - "AI Skills & Tooling/agent-state-store/**"
-      - "AI Skills & Tooling/agent-observability/**"
+      - "Demo Templates/AI Automation & Workflows/intake-operations-hub/**"
+      - "Demo Templates/AI Automation & Workflows/lead-intake-pipeline/**"
+      - "Demo Templates/AI Automation & Workflows/invoice-intake-exception-routing/**"
+      - "Demo Templates/AI Agents & Agentic Systems/durable-workflow-runner/**"
+      - "Demo Templates/AI Skills & Tooling/agent-state-store/**"
+      - "Demo Templates/AI Skills & Tooling/agent-observability/**"
       - ".github/workflows/intake-operations-hub-tests.yml"
   pull_request:
     paths:
-      - "AI Automation & Workflows/intake-operations-hub/**"
-      - "AI Automation & Workflows/lead-intake-pipeline/**"
-      - "AI Automation & Workflows/invoice-intake-exception-routing/**"
-      - "AI Agents & Agentic Systems/durable-workflow-runner/**"
-      - "AI Skills & Tooling/agent-state-store/**"
-      - "AI Skills & Tooling/agent-observability/**"
+      - "Demo Templates/AI Automation & Workflows/intake-operations-hub/**"
+      - "Demo Templates/AI Automation & Workflows/lead-intake-pipeline/**"
+      - "Demo Templates/AI Automation & Workflows/invoice-intake-exception-routing/**"
+      - "Demo Templates/AI Agents & Agentic Systems/durable-workflow-runner/**"
+      - "Demo Templates/AI Skills & Tooling/agent-state-store/**"
+      - "Demo Templates/AI Skills & Tooling/agent-observability/**"
       - ".github/workflows/intake-operations-hub-tests.yml"
 
 jobs:
@@ -29,5 +29,5 @@ jobs:
         with:
           python-version: "3.12"
       - name: Run intake operations hub tests
-        working-directory: AI Automation & Workflows/intake-operations-hub
+        working-directory: Demo Templates/AI Automation & Workflows/intake-operations-hub
         run: python -m unittest discover -s tests -v
