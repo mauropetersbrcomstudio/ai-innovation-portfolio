@@ -2,9 +2,9 @@
 
 **Mauro Peters | AI Strategy, Product Development & Business Automation**
 
-A practical portfolio of demonstrable projects across AI agents, automation, developer tooling, digital products, web applications, and marketing intelligence.
+A collection of practical AI experiments and demonstrations, built around business problems worth solving. The focus is on showing how an idea can work, what it takes to build it, and where it could create value for a small or medium-sized business.
 
-> **Portfolio integrity:** Projects in this repository are independent demonstrations and prototypes unless explicitly stated otherwise. Fictional business scenarios are not claims of client engagement, deployment, endorsement, or measured business results. No client-confidential information is included.
+> **A note on the work:** Most projects here are demonstrations or prototypes, not completed client engagements. Some use fictional business scenarios inspired by real SME challenges. They do not imply that a solution was deployed for the business that inspired it. No confidential client information is included.
 
 ## Portfolio
 
@@ -19,26 +19,25 @@ A practical portfolio of demonstrable projects across AI agents, automation, dev
 | [Web Applications & SaaS](./Web%20Applications%20%26%20SaaS/) | Web application demonstrations and SaaS foundations |
 | [Marketing Intelligence & Business Automation](./Marketing%20Intelligence%20%26%20Business%20Automation/) | Marketing analytics, decision support, and business automation |
 
-## How to evaluate a project
+## What to expect from each project
 
-Each project should provide a clear problem statement, scope, architecture, source code, setup instructions, sample data where appropriate, tests, limitations, and a truthful delivery status.
+Each project starts with a business or technical problem. The project notes explain what I set out to explore, what the current version can actually do, and how to try it. They also make clear what is simulated, what is not yet built, and what would be needed to take the idea further.
 
-Status labels:
-- **CONCEPT** — documented proposal; not implemented.
-- **DEMO** — working demonstration with intentionally limited scope.
-- **PROTOTYPE** — implemented proof of concept, not production-hardened.
-- **IMPLEMENTED** — deployed or operational in a defined environment, with evidence.
+Not every project will have the same level of detail or implementation. A small experiment should be presented as an experiment; a working demo should be possible to run; and a more developed prototype should make its boundaries clear.
 
-## Engineering principles
+To avoid confusion, projects use these status labels:
 
-- Reproducible setup and clear documentation.
-- Secrets and personal/client data are never committed.
-- Synthetic data for public demonstrations unless disclosure is explicitly authorized.
-- Automated checks where practical.
-- No fabricated metrics, testimonials, clients, or delivery claims.
+- **CONCEPT** — an idea and its proposed approach; no working implementation yet.
+- **DEMO** — a limited working example that lets you try a specific capability.
+- **PROTOTYPE** — a more developed proof of concept, still short of production readiness.
+- **IMPLEMENTED** — running in a defined environment, with the implementation and its evidence described.
+
+## How the work is approached
+
+The emphasis is on useful solutions, understandable engineering, and honest explanations of what has and has not been built. Public demos use synthetic or otherwise authorized data. Credentials and confidential client information stay out of the repository, and project descriptions do not invent customers, results, testimonials, or deployments.
 
 ## Development
 
-Projects are added continuously. See each category's README for its scope and project entry criteria.
+The portfolio will grow as new demonstrations and prototypes are developed. Start with the category that interests you, then open an individual project to see the problem it addresses and try the work that is available.
 
-**Current portfolio stage:** GitHub repository foundation plus two executable demonstrations. This portfolio is intentionally delivered through this repository and its folders; no separate portfolio website is part of the scope.
+**Current stage:** the repository is set up and includes two executable demonstrations. This portfolio lives in GitHub; a separate portfolio website is not part of the project.
