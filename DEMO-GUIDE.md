@@ -86,7 +86,7 @@ python launch_qa.py --input sample_campaigns.csv --output-dir output
 4. Show `summary.json` and explain `ready`, `review`, or `blocked`.
 5. For a controlled exception demonstration, copy the sample CSV and change one field in the copy; keep the original unchanged.
 
-**Automated check:** the dedicated GitHub Actions workflow runs the unit tests and executes the sample CSV command, checking that the approved, exception, and summary files are non-empty.
+**Automated check:** the internal validation materials describe the unit tests and sample CSV command, which check that the approved, exception, and summary files are non-empty.
 
 **Boundaries:** the tool does not publish or activate campaigns, verify destination ownership, consent, legal compliance, analytics configuration, live URL availability, or actual tracking collection. A `ready` result means only that implemented checks passed; it is not launch authorization.
 
