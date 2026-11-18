@@ -1,0 +1,27 @@
+name: CSV Data Quality Tests
+
+on:
+  push:
+    paths:
+      - "AI Skills & Tooling/csv-data-quality/**"
+      - ".github/workflows/**"
+  pull_request:
+    paths:
+      - "AI Skills & Tooling/csv-data-quality/**"
+      - ".github/workflows/**"
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: AI Skills & Tooling/csv-data-quality
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Run sample analysis
+        run: python csv_data_quality.py examples/sample.csv --key-columns record_id
