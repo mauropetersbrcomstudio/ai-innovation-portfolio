@@ -102,10 +102,12 @@ A CI browser check is not a substitute for a person launching the demos on their
 
 ## Verification status
 
-The repository has dedicated automated workflows for all three demonstrations. The following links record the earlier desktop-baseline checks; the responsive and print assertions are being added to the cross-project browser workflow:
-- [Portfolio Demo Browser Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238035) — passed; both browser flows completed, including persisted review history and executive report rendering.
-- [Portfolio Quality Gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238079) — passed; 36 project READMEs validated and 224 Python tests passed across 34 suites.
-- [Campaign Performance Analyzer Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235237936) — passed; six Python tests and the sample CLI output checks passed.
+The repository has dedicated automated workflows for all three demonstrations. The latest checks for the current responsive baseline are:
+- [Portfolio Demo Browser Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44242143780) — passed; persisted workspace decision, 375-pixel mobile layouts for both apps, Campaign Performance Analyzer import/filter/report, and print-media behavior.
+- [Portfolio Quality Gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44242143819) — passed; 36 project READMEs, eight category indexes, root index coverage, and 224 Python tests across 35 suites.
+- [Campaign Performance Analyzer Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44242143783) — passed; Python tests, browser-logic tests, and sample CLI output checks.
+- [Marketing Analytics Pipeline Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44242144371) — passed.
+- [Operations Review Workspace Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44241490459) — passed; six integration tests.
 
 - Operations Review Workspace: Python integration tests and the cross-project browser flow.
 - Campaign Performance Analyzer: Python tests, browser-logic tests, sample CLI execution, and the cross-project browser flow.

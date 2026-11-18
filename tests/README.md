@@ -19,8 +19,8 @@ The GitHub Actions workflow [Portfolio Demo Browser Tests](../.github/workflows/
 
 ## Latest CI evidence
 
-- [Portfolio Demo Browser Tests — run 44235238035](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238035): passed.
-- [Portfolio Quality Gate — run 44235238079](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238079): passed; 34 Python suites and 224 tests.
+- [Portfolio Demo Browser Tests — run 44242143780](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44242143780): passed; persisted decision, 375-pixel responsive checks, and report print-media behavior.
+- [Portfolio Quality Gate — run 44242143819](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44242143819): passed; 36 project READMEs, eight category indexes, and 224 Python tests across 35 suites.
 
 ## Responsive and print smoke checks
 

@@ -55,17 +55,23 @@ The root README and individual project READMEs are the authoritative project cat
 - [x] Add a headless Chromium workflow for the Operations Review Workspace and Campaign Performance Analyzer, using synthetic data and loopback-only services.
 - [x] Verify that the Operations Review Workspace browser test checks decision persistence after a full page reload.
 - [x] Confirm the cross-project browser workflow passed and record [run 44235238035](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238035).
+- [x] Add 375-pixel responsive smoke checks for both interactive demos, including layout structure and page-level horizontal overflow.
+- [x] Verify Campaign Performance Analyzer print-media behavior: executive report visible, dashboard masthead and print control hidden.
+- [x] Resolve the mobile report-table overflow found by the new browser check and confirm the final browser workflow passed (run `44242143780`).
 - [ ] Execute each demo interactively on a local machine and verify the complete visual/user flow; CI checks do not establish this.
 - [x] Ensure synthetic sample data, expected outputs, limitations, and a short demonstration path are clear.
 - [x] Resolve the test-hygiene warning found during the automated test run; no test blocker remained.
 - [x] Publish the [Selected Demo Guide](./DEMO-GUIDE.md) with reproducible commands, presentation sequence, automated checks, and explicit limitations.
 - [x] Add a cross-project test index in [tests/README.md](./tests/README.md).
 
-**Exit criteria:** each selected demo can be explained and reproduced from its README, with test evidence and limitations visible. Browser workflow pass evidence is now recorded; human-led local presentation review remains pending.
+**Exit criteria:** each selected demo can be explained and reproduced from its README, with test evidence and limitations visible. Desktop, 375-pixel responsive, and print-media smoke checks are passing; human-led local presentation review remains pending.
 
 **Verification evidence (2026-11-18):**
-- [Portfolio Quality Gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238079): passed; catalogue validator covered 36 project READMEs and eight category indexes; 34 Python test suites and 224 tests passed.
-- [Portfolio Demo Browser Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238035): passed; Operations Review Workspace recorded a synthetic decision that remained after a full page reload, and Campaign Performance Analyzer imported the sample CSV, filtered Search to one valid campaign, and rendered the executive report.
+- [Portfolio Quality Gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44242143819): passed; catalogue validator covered 36 project READMEs, eight category indexes, root index coverage, local links, status labels, and documentation requirements; 224 Python tests passed across 35 suites.
+- [Portfolio Demo Browser Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44242143780): passed; Operations Review Workspace recorded a synthetic decision that persisted after reload and passed a 375-pixel single-column layout check. Campaign Performance Analyzer imported the sample CSV, filtered Search, rendered the executive report, passed a 375-pixel layout check, and passed print-media assertions.
+- [Campaign Performance Analyzer Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44242143783): passed; Python and browser-logic tests plus sample CLI output checks.
+- [Marketing Analytics Pipeline Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44242144371): passed.
+- [Operations Review Workspace Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44241490459): passed; six integration tests.
 - [Campaign Performance Analyzer Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235237936): passed; six Python tests and the sample CLI output checks passed.
 - [Portfolio Quality Gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44229011568): catalogue validator passed; 34 Python test suites and 224 tests passed.
 - [Operations Review Workspace Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44228923871): six integration tests passed, covering the local HTTP adapter, workflow state, and review-decision flow.
@@ -74,7 +80,7 @@ The root README and individual project READMEs are the authoritative project cat
 
 The first browser runs exposed two real issues: the test expected two Search campaigns although the synthetic fixture contains one, and the dashboard's JavaScript referenced an executive-report section that was absent from the HTML. The expected count was corrected, the missing report section and Print / Save as PDF control were restored, and the final browser run above passed. The earlier failed runs remain visible in GitHub Actions and are not counted as successful evidence.
 
-The new cross-project Chromium workflow has been configured and its assertions strengthened to check persisted state after a full reload. Its successful execution must be confirmed from the resulting GitHub Actions run before it is counted as passed. The dashboard and workspace still require human-led local presentation review. Automated browser checks do not establish complete visual quality on every device or browser.
+The cross-project Chromium workflow now checks persisted review state, 375-pixel mobile layout behavior, and the Campaign Performance Analyzer's print-media rules. The responsive run exposed a five-pixel page-level overflow caused by the daily-evolution table in the generated report; the table is now contained in a horizontally scrollable region. The final browser run above passed. The dashboard and workspace still require human-led local presentation review. Automated browser checks do not establish complete visual quality on every device or browser.
 
 ### P2 — Client Demos, only when source material is supplied
 
