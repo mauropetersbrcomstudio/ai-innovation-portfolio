@@ -15,6 +15,7 @@ The projects below are executable demonstrations. Each project README contains i
 | [SME Operations Assistant](./AI%20Agents%20%26%20Agentic%20Systems/sme-operations-assistant/) | Request classification, action allowlisting, escalation, and decision traces | DEMO |
 | [SME Procurement Request Triage Agent](./AI%20Agents%20%26%20Agentic%20Systems/sme-procurement-request-triage/) | Purchase-request validation, policy-based review routing, duplicate detection, and supplier checks | DEMO |
 | [Lead Intake Pipeline](./AI%20Automation%20%26%20Workflows/lead-intake-pipeline/) | CSV validation, normalization, duplicate detection, lead scoring, and routing | DEMO |
+| [CRM Lead Qualification & Routing](./demo-templates/crm-lead-qualification-routing/) | Configurable qualification rules, territory queues, follow-up dates, and human-review routing | DEMO |
 | [SME Customer Support Automation](./demo-templates/sme-customer-support-automation/) | Support request classification, knowledge-based draft responses, and human escalation | DEMO |
 | [SME Internal Knowledge Assistant](./demo-templates/sme-internal-knowledge-assistant/) | Role-filtered retrieval from approved sample sources, citations, and human escalation | DEMO |
 | [Brief-to-Task Skill](./AI%20Skills%20%26%20Tooling/brief-to-task/) | Structured business brief converted into a task plan with open questions | DEMO |
