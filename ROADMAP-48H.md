@@ -2,7 +2,7 @@
 
 **Objective:** make the existing GitHub portfolio coherent, reliable, easy to demonstrate, and ready to receive substantiated client cases.
 
-**Only deliverable:** the central GitHub repository and its eight agreed folders. No separate website, domain, hosting, or deployment.
+**Only deliverable:** the central GitHub repository and its agreed two-level structure: `Client Demos/` plus `Demo Templates/` with six technology categories. No separate website, domain, hosting, or deployment.
 
 **Execution rule:** stabilize and present what already exists before creating anything new. Do not add projects merely to increase the project count.
 

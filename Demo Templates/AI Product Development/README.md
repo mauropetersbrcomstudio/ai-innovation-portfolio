@@ -14,7 +14,7 @@ Run it locally with `python server.py` from the project directory. It uses only 
 
 ## Verification and presentation
 
-The Operations Review Workspace has a documented presentation path in the [Selected Demo Guide](../DEMO-GUIDE.md). Its cross-project Chromium checks cover a recorded synthetic decision, persistence after reload, and a 375-pixel mobile layout. Automated checks do not replace human review on the intended presentation device, and they do not establish authentication or production readiness.
+The Operations Review Workspace has a documented presentation path in the [Selected Demo Guide](../../DEMO-GUIDE.md). Its cross-project Chromium checks cover a recorded synthetic decision, persistence after reload, and a 375-pixel mobile layout. Automated checks do not replace human review on the intended presentation device, and they do not establish authentication or production readiness.
 
 
 ## Operations Intake & Human Review Template
