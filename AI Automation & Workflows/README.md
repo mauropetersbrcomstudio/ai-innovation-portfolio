@@ -16,4 +16,4 @@ The [Invoice Intake & Exception Routing workflow](./invoice-intake-exception-rou
 
 ## Resumable Intake Operations Hub
 
-The [Resumable Intake Operations Hub](./intake-operations-hub/) composes both existing intake examples with SQLite checkpoints and structured events, then prepares a consolidated human-review queue. It does not make human decisions or execute external actions.
+The [Resumable Intake Operations Hub](./intake-operations-hub/) composes both existing intake examples with SQLite checkpoints and structured events, then prepares a consolidated human-review queue and records review decisions with a reviewer identifier, outcome, reason, timestamp, and matching audit event. Reviewer identity remains a host-supplied assertion; no authentication provider or external action is included.
