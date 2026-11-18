@@ -1,0 +1,27 @@
+name: Document Intelligence Tests
+
+on:
+  push:
+    paths:
+      - "AI Skills & Tooling/document-intelligence/**"
+      - ".github/workflows/document-intelligence-tests.yml"
+  pull_request:
+    paths:
+      - "AI Skills & Tooling/document-intelligence/**"
+      - ".github/workflows/document-intelligence-tests.yml"
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: AI Skills & Tooling/document-intelligence
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Run sample extraction
+        run: python document_intelligence.py examples/sample-agreement.md
