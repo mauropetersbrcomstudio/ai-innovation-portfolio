@@ -1,0 +1,35 @@
+{
+  "title": "Illustrative SME workflow screening",
+  "opportunities": [
+    {
+      "name": "Invoice data entry",
+      "problem": "Staff manually copy invoice details into an accounting system.",
+      "frequency": 5,
+      "time_burden": 4,
+      "standardization": 5,
+      "data_readiness": 4,
+      "user_impact": 4,
+      "risk": 2
+    },
+    {
+      "name": "Complex customer complaints",
+      "problem": "Cases require nuanced investigation and cross-team decisions.",
+      "frequency": 3,
+      "time_burden": 4,
+      "standardization": 2,
+      "data_readiness": 3,
+      "user_impact": 5,
+      "risk": 5
+    },
+    {
+      "name": "Weekly sales report assembly",
+      "problem": "A team combines figures from several spreadsheets into a weekly report.",
+      "frequency": 4,
+      "time_burden": 3,
+      "standardization": 4,
+      "data_readiness": 3,
+      "user_impact": 3,
+      "risk": 2
+    }
+  ]
+}
