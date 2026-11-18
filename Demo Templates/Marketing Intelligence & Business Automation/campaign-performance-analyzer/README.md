@@ -48,7 +48,7 @@ The dashboard processes the selected file locally in the browser; it does not up
 
 ## Browser, responsive, and print checks
 
-The cross-project Playwright workflow imports the included synthetic CSV, applies the Search channel filter, and generates the executive report. It also checks the dashboard at a 375 CSS-pixel viewport, including the two-column KPI layout, channel-filter width, and absence of page-level horizontal overflow.
+The private internal repository's cross-project Playwright check imports the included synthetic CSV, applies the Search channel filter, and generates the executive report. It also checks the dashboard at a 375 CSS-pixel viewport, including the two-column KPI layout, channel-filter width, and absence of page-level horizontal overflow.
 
 The test emulates print media and checks that the report remains visible while the dashboard masthead and print control are hidden. This is a targeted smoke check; it is not a full visual-regression suite. Wide data tables may scroll inside their own containers.
 

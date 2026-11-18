@@ -19,6 +19,6 @@ The [Campaign Launch QA & UTM Builder](./campaign-launch-qa/) checks campaign me
 
 ## Verification and presentation
 
-The [Selected Demo Guide](../../DEMO-GUIDE.md) documents the Campaign Performance Analyzer and Campaign Launch QA presentation paths. The Analyzer's browser checks cover local CSV import, filtering, executive-report rendering, a 375-pixel mobile viewport, and print-media behavior. The Marketing Analytics Pipeline and Campaign Launch QA are command-line demonstrations; their checks are documented with their respective projects and workflows.
+The [Selected Demo Guide](../../DEMO-GUIDE.md) documents the Campaign Performance Analyzer and Campaign Launch QA presentation paths. The Analyzer's browser checks cover local CSV import, filtering, executive-report rendering, a 375-pixel mobile viewport, and print-media behavior. The Marketing Analytics Pipeline and Campaign Launch QA are command-line demonstrations; their automated checks are maintained with the private internal validation materials.
 
 All bundled campaign records are synthetic. Automated checks do not verify advertising-platform data, attribution, legal compliance, or live campaign behavior.
