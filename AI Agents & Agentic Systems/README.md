@@ -27,3 +27,9 @@ The [Bounded Support Workflow Agent](./bounded-support-workflow-agent/) composes
 The [Multi-Agent Request Review demo](./multi-agent-request-review/) demonstrates a bounded handoff from intake to policy review, with explicit category routing and human escalation for unsupported requests.
 
 **Status: DEMO** — deterministic routing only; no external systems or autonomous planning.
+
+## Agent Platform Reference Integration
+
+The [Agent Platform Reference](./agent-platform-reference/) connects the portfolio's sequential orchestrator, SQLite state store, and structured JSONL observability utility in one runnable local workflow.
+
+**Status: DEMO** — local deterministic integration; no external business system, LLM, or production security controls.
