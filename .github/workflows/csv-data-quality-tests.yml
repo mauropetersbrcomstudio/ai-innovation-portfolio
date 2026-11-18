@@ -3,11 +3,11 @@ name: CSV Data Quality Tests
 on:
   push:
     paths:
-      - "AI Skills & Tooling/csv-data-quality/**"
+      - "Demo Templates/AI Skills & Tooling/csv-data-quality/**"
       - ".github/workflows/csv-data-quality-tests.yml"
   pull_request:
     paths:
-      - "AI Skills & Tooling/csv-data-quality/**"
+      - "Demo Templates/AI Skills & Tooling/csv-data-quality/**"
       - ".github/workflows/csv-data-quality-tests.yml"
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: AI Skills & Tooling/csv-data-quality
+        working-directory: Demo Templates/AI Skills & Tooling/csv-data-quality
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
