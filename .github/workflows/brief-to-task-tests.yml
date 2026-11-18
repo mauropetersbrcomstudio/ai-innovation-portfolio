@@ -3,11 +3,11 @@ name: Brief-to-Task Demo Tests
 on:
   push:
     paths:
-      - "AI Skills & Tooling/brief-to-task/**"
+      - "Demo Templates/AI Skills & Tooling/brief-to-task/**"
       - ".github/workflows/brief-to-task-tests.yml"
   pull_request:
     paths:
-      - "AI Skills & Tooling/brief-to-task/**"
+      - "Demo Templates/AI Skills & Tooling/brief-to-task/**"
       - ".github/workflows/brief-to-task-tests.yml"
   workflow_dispatch:
 
@@ -23,8 +23,8 @@ jobs:
         with:
           python-version: "3.11"
       - name: Run unit tests
-        working-directory: AI Skills & Tooling/brief-to-task
+        working-directory: Demo Templates/AI Skills & Tooling/brief-to-task
         run: python -m unittest discover -s tests -v
       - name: Run sample
-        working-directory: AI Skills & Tooling/brief-to-task
+        working-directory: Demo Templates/AI Skills & Tooling/brief-to-task
         run: python skill.py --input sample_brief.json --output-dir output
