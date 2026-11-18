@@ -1,0 +1,27 @@
+name: Marketing Analytics Pipeline Tests
+
+on:
+  push:
+    paths:
+      - "Marketing Intelligence & Business Automation/marketing-analytics-pipeline/**"
+      - "Marketing Intelligence & Business Automation/campaign-performance-analyzer/**"
+      - "AI Skills & Tooling/csv-data-quality/**"
+      - ".github/workflows/marketing-analytics-pipeline-tests.yml"
+  pull_request:
+    paths:
+      - "Marketing Intelligence & Business Automation/marketing-analytics-pipeline/**"
+      - "Marketing Intelligence & Business Automation/campaign-performance-analyzer/**"
+      - "AI Skills & Tooling/csv-data-quality/**"
+      - ".github/workflows/marketing-analytics-pipeline-tests.yml"
+
+jobs:
+  python-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run pipeline integration tests
+        working-directory: Marketing Intelligence & Business Automation/marketing-analytics-pipeline
+        run: python -m unittest discover -s tests -v
