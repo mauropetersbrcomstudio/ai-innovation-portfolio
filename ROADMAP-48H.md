@@ -33,6 +33,7 @@ The folder structure remains unchanged. The execution order below is a developme
 | AI Agents & Agentic Systems | Agent Runtime Control Plane | DEMO |
 | AI Automation & Workflows | Lead Intake Pipeline | DEMO |
 | AI Automation & Workflows | Invoice Intake & Exception Routing | DEMO |
+| AI Automation & Workflows | Resumable Intake Operations Hub | DEMO |
 | Demo Templates | CRM Lead Qualification & Routing | DEMO |
 | Demo Templates | SME Customer Support Automation | DEMO |
 | Demo Templates | SME Internal Knowledge Assistant | DEMO |
@@ -87,9 +88,10 @@ The AI Automation & Workflows category now contains two working pipelines. The n
 
 ### 1. AI Automation & Workflows — next implementation priority
 
-- Integrate the existing lead and invoice intake examples with reusable state and observability components where this improves traceability.
-- Demonstrate resumable processing and explicit human resolution of exception queues.
-- Test normal, incomplete, duplicate, conflicting, and failure scenarios.
+- [x] Compose the existing lead and invoice intake examples with the durable runner, SQLite state store, and structured observability.
+- [x] Demonstrate resumable workflow state, plan/input conflict detection, and a consolidated human-review queue; no human decision or external action is performed.
+- [x] Add automated coverage for normal, incomplete, duplicate, conflicting, repeat-run, and failure scenarios.
+- [ ] Add authenticated human decision capture with durable reviewer/action evidence before considering any live workflow.
 - Keep external actions simulated unless a real integration is separately configured and verified.
 
 ### 2. AI Skills & Tooling — extend selectively
