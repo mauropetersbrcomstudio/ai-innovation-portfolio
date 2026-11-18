@@ -33,3 +33,10 @@ The [Multi-Agent Request Review demo](./multi-agent-request-review/) demonstrate
 The [Agent Platform Reference](./agent-platform-reference/) connects the portfolio's sequential orchestrator, SQLite state store, and structured JSONL observability utility in one runnable local workflow.
 
 **Status: DEMO** — local deterministic integration; no external business system, LLM, or production security controls.
+
+
+## Governed Agent Execution
+
+The [Governed Agent Execution demo](./governed-agent-execution/) composes the policy validator, allowlisted tool gateway, and bounded orchestrator. It demonstrates fail-closed behavior for invalid policy, missing approval, and unauthorized roles before allowing a simulated in-memory action.
+
+**Status: DEMO** — deterministic integration only; caller-supplied role and approval inputs are not production identity controls.
