@@ -1,4 +1,4 @@
-import { analyzeRows, comparePeriods, parseCsv, summarizeByChannel, summarizeCampaigns } from "./dashboard-logic.js";
+import { analyzeRows, comparePeriods, parseCsv, summarizeByChannel, summarizeCampaigns, summarizeTimeline } from "./dashboard-logic.js";
 
 const money = value => value === null ? "N/A" : new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(value);
 const integer = value => new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(value);
@@ -54,6 +54,48 @@ function renderPeriod(valid) {
   $("#period-conversions-change").textContent = changeText(current.conversions, previous.conversions, integer);
   $("#period-roas").textContent = ratio(current.roas);
   $("#period-roas-change").textContent = changeText(current.roas, previous.roas, ratio);
+}
+function renderTimeline(valid) {
+  const panel = $("#timeline-panel");
+  const rows = summarizeTimeline(valid);
+  panel.hidden = rows.length === 0;
+  $("#timeline-rows").innerHTML = rows.map(item =>
+    `<tr><td>${item.date}</td><td>${money(item.spend)}</td><td>${integer(item.conversions)}</td><td>${money(item.revenue)}</td><td>${ratio(item.roas)}</td></tr>`
+  ).join("");
+}
+function buildExecutiveReport() {
+  if (!loaded) return;
+  const query = $("#campaign-search").value.trim();
+  const channel = $("#channel-filter").value;
+  const start = $("#period-start").value;
+  const end = $("#period-end").value;
+  const valid = loaded.valid.filter(activeMatches).filter(item =>
+    !loaded.hasDate || !start || !end || (item.date >= start && item.date <= end));
+  const exceptions = loaded.exceptions.filter(activeMatches).filter(item =>
+    !loaded.hasDate || !start || !end || (item.date && item.date >= start && item.date <= end));
+  const summary = summarizeCampaigns(valid);
+  const best = [...valid].filter(item => item.roas !== null).sort((a, b) => b.roas - a.roas)[0];
+  const channels = summarizeByChannel(valid);
+  const bestChannel = channels.filter(item => item.roas !== null).sort((a, b) => b.roas - a.roas)[0];
+  const timeline = summarizeTimeline(valid);
+  const period = loaded.hasDate && start && end && start <= end ? comparePeriods(
+    loaded.valid.filter(activeMatches), start, end) : null;
+  $("#report-meta").textContent = loaded.fileName + " · Generated " + new Date().toLocaleString() +
+    " · " + valid.length + " valid row(s) · " + exceptions.length + " exception(s)";
+  const statements = [
+    `The selected dataset contains ${valid.length} valid campaign row(s), with total spend of ${money(summary.spend)} and ${integer(summary.conversions)} reported conversion(s).`,
+    best ? `Highest campaign ROAS in this selection: ${best.campaign} (${ratio(best.roas)}).` : "No campaign has a calculable ROAS in this selection.",
+    bestChannel ? `Highest channel ROAS in this selection: ${bestChannel.channel} (${ratio(bestChannel.roas)}).` : "No channel has a calculable ROAS in this selection.",
+    exceptions.length ? `${exceptions.length} row(s) were excluded from performance totals and require data review.` : "No exception rows are present in this selection."
+  ];
+  let comparison = "";
+  if (period) {
+    const a = period.current.summary, b = period.previous.summary;
+    comparison = `<section class="report-section"><h3>Period comparison</h3><p>Current: ${period.current.start} to ${period.current.end}. Previous equal-length period: ${period.previous.start} to ${period.previous.end}.</p><table><thead><tr><th>Metric</th><th>Current</th><th>Previous</th></tr></thead><tbody><tr><td>Spend</td><td>${money(a.spend)}</td><td>${money(b.spend)}</td></tr><tr><td>Conversions</td><td>${integer(a.conversions)}</td><td>${integer(b.conversions)}</td></tr><tr><td>ROAS</td><td>${ratio(a.roas)}</td><td>${ratio(b.roas)}</td></tr></tbody></table></section>`;
+  }
+  const trend = timeline.length ? `<section class="report-section"><h3>Daily evolution</h3><table><thead><tr><th>Date</th><th>Spend</th><th>Conversions</th><th>Revenue</th><th>ROAS</th></tr></thead><tbody>${timeline.map(item => `<tr><td>${item.date}</td><td>${money(item.spend)}</td><td>${integer(item.conversions)}</td><td>${money(item.revenue)}</td><td>${ratio(item.roas)}</td></tr>`).join("")}</tbody></table></section>` : "";
+  $("#report-content").innerHTML = `<section class="report-section"><h3>Executive summary</h3><ul>${statements.map(value => `<li>${escapeHtml(value)}</li>`).join("")}</ul></section><section class="report-section"><h3>Key performance indicators</h3><div class="report-kpis"><div><span>Spend</span><strong>${money(summary.spend)}</strong></div><div><span>Revenue</span><strong>${money(summary.revenue)}</strong></div><div><span>ROAS</span><strong>${ratio(summary.roas)}</strong></div><div><span>CPA</span><strong>${money(summary.cpa)}</strong></div><div><span>CTR</span><strong>${percent(summary.ctr)}</strong></div><div><span>Conversion rate</span><strong>${percent(summary.conversion_rate)}</strong></div></div></section>${comparison}${trend}<section class="report-section"><h3>Scope and methodology</h3><p>Campaign search: ${escapeHtml(query || "All campaigns")}. Channel: ${escapeHtml(channel)}. Date range: ${escapeHtml(start || "All available")} to ${escapeHtml(end || "All available")}.</p><p>CTR = clicks / impressions; conversion rate = conversions / clicks; CPA = spend / conversions; ROAS = attributed revenue / spend. Zero denominators are not calculable. Exception rows are excluded from totals.</p></section>`;
+  $("#executive-report").hidden = false;
 }
 function render(result, fileName) {
   const { valid, exceptions, summary } = result;
@@ -127,7 +169,7 @@ $("#csv-file").addEventListener("change", async event => {
       .sort((a, b) => a.localeCompare(b));
     $("#channel-filter").innerHTML = '<option value="all">All channels</option>' +
       channels.map(value => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join("");
-    $("#campaign-search").disabled = false; $("#channel-filter").disabled = false; $("#export-report").disabled = false;
+    $("#campaign-search").disabled = false; $("#channel-filter").disabled = false; $("#export-report").disabled = false; $("#generate-report").disabled = false;
     if (loaded.hasDate && loaded.valid.length) {
       const dates = loaded.valid.map(item => item.date).sort();
       $("#period-start").value = dates[0]; $("#period-end").value = dates[dates.length - 1];
@@ -143,3 +185,6 @@ $("#channel-filter").addEventListener("change", applyFilters);
 $("#period-start").addEventListener("change", applyFilters);
 $("#period-end").addEventListener("change", applyFilters);
 $("#export-report").addEventListener("click", exportReport);
+
+$("#generate-report").addEventListener("click", buildExecutiveReport);
+$("#print-report").addEventListener("click", () => window.print());
