@@ -84,7 +84,9 @@ class SecurityPolicyEngine:
                     raise SecurityPolicyError(f"{agent_id}/{tool}: invalid grant shape")
                 risks = grant["risks"]
                 required = grant["approval_required"]
-                if not isinstance(risks, list) or not risks or any(r not in VALID_RISKS for r in risks):
+                if not isinstance(risks, list) or not risks or any(
+                    not isinstance(r, str) or r not in VALID_RISKS for r in risks
+                ):
                     raise SecurityPolicyError(f"{agent_id}/{tool}: risks must be valid and non-empty")
                 if len(set(risks)) != len(risks):
                     raise SecurityPolicyError(f"{agent_id}/{tool}: duplicate risk")
@@ -143,7 +145,7 @@ class SecurityPolicyEngine:
             return "INVALID_PRINCIPAL_ROLES"
         if not isinstance(agent_id, str) or not isinstance(tool, str):
             return "INVALID_REQUEST"
-        if risk not in VALID_RISKS:
+        if not isinstance(risk, str) or risk not in VALID_RISKS:
             return "INVALID_RISK"
         agent = self.policy["agents"].get(agent_id)
         if agent is None:

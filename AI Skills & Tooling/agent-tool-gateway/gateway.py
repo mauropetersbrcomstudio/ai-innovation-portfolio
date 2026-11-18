@@ -133,6 +133,11 @@ class ToolGateway:
         if count >= spec.max_calls_per_session:
             return deny("SESSION_CALL_LIMIT_REACHED")
 
+        # Count an invocation attempt before entering application code. A handler may
+        # perform a side effect and then raise, so counting only successful returns
+        # would allow the same session to repeat a partially completed operation.
+        session.call_counts[tool_name] = count + 1
+
         try:
             output = self._handlers[tool_name](dict(arguments))
         except Exception:
@@ -140,7 +145,8 @@ class ToolGateway:
             self.audit_log.append({**event, **result})
             return result
 
-        session.call_counts[tool_name] = count + 1
         result = {"status": "EXECUTED", "tool": tool_name, "output": output}
-        self.audit_log.append({**event, **result})
+        # Keep potentially sensitive handler output out of the audit trail. The
+        # caller receives the output; the audit event records only the outcome.
+        self.audit_log.append({**event, "status": "EXECUTED"})
         return result

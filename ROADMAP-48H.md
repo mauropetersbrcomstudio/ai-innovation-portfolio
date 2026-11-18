@@ -95,6 +95,18 @@ The cross-project Chromium workflow now checks persisted review state, 375-pixel
 
 **Boundary:** this remains a limited DEMO safeguard. It is not a data-loss-prevention system, cannot detect secrets embedded in free text or unrecognized fields, and does not provide encrypted or tamper-proof audit storage.
 
+### P1 — Agent Tool Gateway and Security & Governance consistency
+
+- [x] Compare the gateway's caller-supplied role/approval checks with the separate deny-by-default policy engine; document that the gateway markers are not trusted identity or approval evidence.
+- [x] Ensure the gateway audit trail records invocation outcomes without copying potentially sensitive handler output.
+- [x] Count a handler invocation attempt before entering application code, so a handler that partially acts and then raises cannot be retried repeatedly in the same session beyond its configured limit.
+- [x] Reject non-string and otherwise malformed risk values in both policy manifests and authorization requests without leaking a Python type error.
+- [x] Add regression tests for output-free audit records, failed-handler attempt limits, and malformed risk values.
+- [x] Clarify the host integration sequence in both project READMEs and the category index: authenticate and authorize first, then dispatch only when the policy decision is allowed.
+- [ ] Build a dedicated cross-component host adapter only if a concrete integration requirement justifies standardizing the host's trusted identity and approval contracts.
+
+**Boundary:** these changes improve deterministic component behavior and documentation. They do not authenticate identities, verify real approvals, make handler effects transactional, or provide durable/tamper-evident audit storage. Both components remain DEMOs.
+
 ### P2 — Client Demos, only when source material is supplied
 
 - [ ] Convert user-provided case briefs into client-specific demonstrations only after the facts, assets, and publication authorization are supplied.

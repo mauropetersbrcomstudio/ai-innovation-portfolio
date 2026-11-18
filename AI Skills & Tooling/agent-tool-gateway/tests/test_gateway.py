@@ -74,6 +74,39 @@ class ToolGatewayTests(unittest.TestCase):
         result = gateway.invoke("broken", {}, Session("s1", "support"))
         self.assertEqual(result, {"status": "ERROR", "reason": "HANDLER_FAILED"})
 
+
+    def test_audit_log_does_not_store_handler_output(self):
+        gateway = ToolGateway()
+        gateway.register(
+            ToolSpec("read_secret", "return a synthetic value", {"type": "object"}, ("support",)),
+            lambda _: {"api_token": "synthetic-secret-value"},
+        )
+        result = gateway.invoke("read_secret", {}, Session("s1", "support"))
+        self.assertEqual(result["output"]["api_token"], "synthetic-secret-value")
+        self.assertNotIn("output", gateway.audit_log[0])
+        self.assertNotIn("synthetic-secret-value", repr(gateway.audit_log))
+
+    def test_handler_failure_consumes_call_limit(self):
+        gateway = ToolGateway()
+        attempts = []
+
+        def partially_failing_handler(_):
+            attempts.append("called")
+            raise RuntimeError("simulated failure after a possible side effect")
+
+        gateway.register(
+            ToolSpec("bounded_write", "bounded synthetic write", {"type": "object"},
+                     ("support",), max_calls_per_session=1),
+            partially_failing_handler,
+        )
+        session = Session("s1", "support")
+        first = gateway.invoke("bounded_write", {}, session)
+        second = gateway.invoke("bounded_write", {}, session)
+        self.assertEqual(first, {"status": "ERROR", "reason": "HANDLER_FAILED"})
+        self.assertEqual(second["reason"], "SESSION_CALL_LIMIT_REACHED")
+        self.assertEqual(attempts, ["called"])
+        self.assertEqual(session.call_counts["bounded_write"], 1)
+
     def test_audit_log_records_denials_and_execution(self):
         gateway = make_gateway()
         session = Session("s1", "support", approved_tools=("create_ticket",))

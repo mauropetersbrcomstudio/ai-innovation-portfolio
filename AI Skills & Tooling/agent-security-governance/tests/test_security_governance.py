@@ -81,6 +81,29 @@ class SecurityGovernanceTests(unittest.TestCase):
         with self.assertRaises(SecurityPolicyError):
             SecurityPolicyEngine({"agents": {}})
 
+
+    def test_unhashable_risk_input_is_denied(self):
+        result = self.engine.authorize(self.operator, "support-agent", "search_kb", ["LOW"])
+        self.assertEqual(result.reason, "INVALID_RISK")
+        self.assertFalse(result.allowed)
+
+    def test_unhashable_risk_in_policy_is_rejected_cleanly(self):
+        malformed = {
+            "agents": {
+                "support-agent": {
+                    "roles": ["support_operator"],
+                    "tools": {
+                        "search_kb": {
+                            "risks": ["LOW", ["HIGH"]],
+                            "approval_required": False,
+                        }
+                    },
+                }
+            }
+        }
+        with self.assertRaises(SecurityPolicyError):
+            SecurityPolicyEngine(malformed)
+
     def test_denials_and_allowances_are_audited(self):
         self.engine.authorize(self.operator, "support-agent", "search_kb", "LOW")
         self.engine.authorize(self.operator, "support-agent", "unknown", "LOW")
