@@ -67,3 +67,9 @@ The [Agent Evaluation skill](./agent-evaluation/) checks structured agent output
 The [Agent State Store](./agent-state-store/) persists workflow JSON state in SQLite, uses optimistic version checks to reject stale writes, and stores ordered workflow events.
 
 **Status: DEMO** — local persistence only; no encryption, distributed locking, or automated backups.
+
+## Agent Observability — Structured JSONL Events
+
+The [Agent Observability utility](./agent-observability/) writes structured local JSONL events and recursively redacts common credential fields before persistence.
+
+**Status: DEMO** — local logs only; key-name redaction is not a guarantee that arbitrary secrets are detected.
