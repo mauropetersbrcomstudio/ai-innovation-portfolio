@@ -1,10 +1,9 @@
 # AI Product Development
 
-Product discovery and implementation demonstrations, from problem framing through prototype validation.
+This section covers the work involved in turning an AI-related business opportunity into a product: understanding the user and the problem, shaping the experience, testing assumptions, and developing a prototype.
 
-## Initial demonstration specification: SME Workflow Opportunity Mapper
-A lightweight product concept that maps a business process, identifies repetitive steps, and prioritizes automation opportunities using transparent criteria.
+## SME Workflow Opportunity Mapper
 
-**Deliverables:** product brief, user journey, prioritization model, prototype scope, and validation plan.
+One concept in this area is an SME Workflow Opportunity Mapper. It is intended to help a business describe a process, identify repetitive or time-consuming steps, and compare possible automation opportunities using visible criteria.
 
-**Status:** CONCEPT; no product functionality is claimed yet.
+At this stage, it is a product concept rather than a working application. No automated analysis or product functionality is available yet.
