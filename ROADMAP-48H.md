@@ -45,6 +45,7 @@ These are independently developed demonstrations. Their sample records are synth
 - [x] Agent foundations for tool allowlisting, argument contracts, approval gates, bounded orchestration, multi-agent handoffs, scenario evaluation, SQLite state persistence, structured observability, recovery/compensation, and declarative policy validation.
 - [x] Agent demonstrations for bounded support workflows and multi-agent request review.
 - [x] Integrated reference demo connecting orchestration, persistent state, and structured event logging.\n- [x] Governed execution integration combining policy validation, role/approval checks, tool allowlisting, and bounded orchestration.\n- [x] Durable sequential workflow runner with per-step SQLite checkpoints, JSONL observability, resume behavior, and idempotency-key contract.
+- [x] Agent Runtime Control Plane with lifecycle management, explicit tool authorization, invocation caps, health reporting, human escalation, and audit projection.
 - [x] Dedicated GitHub Actions workflows for the new reusable components and integration demonstrations.
 - [x] Synthetic sample data, documented limitations, and explicit separation between demos and client engagements.
 
