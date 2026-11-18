@@ -22,6 +22,7 @@ The projects below are executable demonstrations. Each project README contains i
 | [SME Procurement Request Triage Agent](./AI%20Agents%20%26%20Agentic%20Systems/sme-procurement-request-triage/) | Purchase-request validation, policy-based review routing, duplicate detection, and supplier checks | DEMO |
 | [Bounded Support Workflow Agent](./AI%20Agents%20%26%20Agentic%20Systems/bounded-support-workflow-agent/) | Composes workflow orchestration and allowlisted tools with approval pauses and bounded execution | DEMO |
 | [Multi-Agent Request Review](./AI%20Agents%20%26%20Agentic%20Systems/multi-agent-request-review/) | Bounded intake-to-review handoff with explicit routing and human escalation | DEMO |
+| [Agent Platform Reference](./AI%20Agents%20%26%20Agentic%20Systems/agent-platform-reference/) | Integrates orchestration, SQLite workflow state, and structured event logs | DEMO |
 | [Lead Intake Pipeline](./AI%20Automation%20%26%20Workflows/lead-intake-pipeline/) | CSV validation, normalization, duplicate detection, lead scoring, and routing | DEMO |
 | [CRM Lead Qualification & Routing](./demo-templates/crm-lead-qualification-routing/) | Configurable qualification rules, territory queues, follow-up dates, and human-review routing | DEMO |
 | [SME Customer Support Automation](./demo-templates/sme-customer-support-automation/) | Support request classification, knowledge-based draft responses, and human escalation | DEMO |
