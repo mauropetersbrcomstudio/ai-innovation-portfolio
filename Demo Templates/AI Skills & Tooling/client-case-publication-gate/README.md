@@ -84,7 +84,7 @@ python -m unittest discover -s tests -v
 
 The tests cover complete and incomplete declarations, named/anonymized attribution, logo permissions, missing and duplicate evidence declarations, data-review gates, unsupported engagement types, unknown fields, duplicate JSON keys, output redaction, and CLI exit behavior.
 
-The dedicated GitHub Actions workflow runs the unit tests and the intentionally blocked sample command. The repository-wide Portfolio Quality Gate also discovers this test suite and validates the project README and category indexes.
+The private internal validation materials run the unit tests and the intentionally blocked sample command. Portfolio-wide validation also discovers this test suite and checks the project README and category indexes.
 
 ## Data, privacy, and safety
 

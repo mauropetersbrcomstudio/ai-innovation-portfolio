@@ -10,7 +10,7 @@ The repository brings together two kinds of work: projects carried out for real 
 
 The portfolio follows **Foundation First → Client Demos**. We will build reusable skills and tools first, then specialized agents, orchestrated workflows, and product components. Client-specific demonstrations will then assemble and configure these foundations against verified business requirements.
 
-Read the [Portfolio Development Strategy v2.0](./PORTFOLIO-DEVELOPMENT-STRATEGY-v2.md) and the [Portfolio Delivery Roadmap](./ROADMAP-48H.md) for the execution sequence.
+The detailed development strategy and delivery roadmap are maintained in the private internal repository.
 
 ## Explore working demos
 
@@ -73,7 +73,7 @@ The included sample records are synthetic. These demonstrations do not imply cli
 
 ## Project standards
 
-Use the [Project README Template](./PROJECT-README-TEMPLATE.md) when adding a project and follow the [Project Entry Criteria](./PROJECT-ENTRY-CRITERIA.md) before publishing. These standards keep project descriptions, status labels, execution instructions, evidence, and limitations consistent.
+Each project README documents its status, setup instructions, evidence, and limitations. Maintainers keep the internal project template and entry criteria in the private internal repository.
 
 ## First demonstrations
 
@@ -102,8 +102,8 @@ Client projects are identified as such. Independently developed demos, templates
 ## Quality and integrity
 
 - Each project should document its purpose, run instructions, technologies, tests, status, and limitations.
-- Automated tests are used where appropriate; workflow results are available in the repository's GitHub Actions.
+- Automated tests are used where appropriate; project-level test commands are documented in individual project READMEs.
 - Synthetic data is used for examples unless a different source is explicitly authorized.
 - No credentials, secrets, or confidential client materials belong in this public repository.
-- The quality workflow runs a heuristic scan of tracked UTF-8 files for selected high-confidence credential formats and non-example `.env` files. It does not scan Git history or detect every secret or confidential-data type.
+- Maintainers use a heuristic scan of tracked UTF-8 files for selected high-confidence credential formats and non-example `.env` files. It does not scan Git history or detect every secret or confidential-data type.
 - A demo is not a production-ready service unless that status is explicitly supported by its implementation and evidence.
