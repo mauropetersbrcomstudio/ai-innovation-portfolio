@@ -22,6 +22,16 @@ The GitHub Actions workflow [Portfolio Demo Browser Tests](../.github/workflows/
 - [Portfolio Demo Browser Tests — run 44235238035](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238035): passed.
 - [Portfolio Quality Gate — run 44235238079](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238079): passed; 34 Python suites and 224 tests.
 
+## Responsive and print smoke checks
+
+The same Chromium workflow includes narrow viewport checks at 375 CSS pixels:
+
+- **Operations Review Workspace:** verifies that the queue and detail panels stack into one column, fit within the viewport, and do not cause page-level horizontal overflow after the persisted-decision reload.
+- **Campaign Performance Analyzer:** verifies the two-column KPI layout, channel-filter fit, and absence of page-level horizontal overflow after report generation.
+- **Print media:** verifies that the Analyzer's executive report remains visible while the dashboard masthead and print control are hidden.
+
+These checks target specific layout contracts. They do not replace manual visual review, test every device size, or establish cross-browser visual consistency.
+
 ## Scope and limitations
 
 These tests use synthetic records and loopback-only local servers. They verify selected workflows, not every visual state or browser/device combination. They do not test authentication, production security, external integrations, live customer data, or production deployment. A passing automated run does not mean a human has completed a local presentation review.

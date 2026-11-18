@@ -59,6 +59,12 @@ A review decision is a local record only. It does not send a message, update a C
 - **Audit limitations:** decision records are persisted with a matching workflow event in one SQLite transaction, but direct database modification is possible; storage is not tamper-proof.
 - **No production controls:** no identity provider, server-side reviewer roles, CSRF token, TLS, deployment hardening, backups, or operational monitoring.
 
+## Browser and responsive checks
+
+The cross-project Playwright workflow exercises the workspace in Chromium. In addition to recording a synthetic decision and confirming that it remains after a full page reload, the browser test checks a 375 CSS-pixel viewport, a single-column queue/detail layout, and the absence of page-level horizontal overflow.
+
+These are targeted layout smoke checks, not a full visual review across devices and browsers. They do not change the local-only, unauthenticated demonstration boundary.
+
 ## Tests
 
 From this directory:

@@ -96,12 +96,13 @@ The [Portfolio Demo Browser Tests workflow](./.github/workflows/portfolio-demo-b
 
 The test source is [`tests/portfolio-demos.e2e.mjs`](./tests/portfolio-demos.e2e.mjs). The Campaign Launch QA demonstration is checked separately by its own workflow because it is a command-line tool rather than a browser application.
 
+The browser test also includes 375-pixel responsive smoke checks for both interactive demos. It verifies the Operations Review Workspace's stacked panels and the Campaign Performance Analyzer's KPI/filter layout without page-level horizontal overflow. Print-media emulation checks that the executive report remains visible while the dashboard masthead and print control are hidden. These checks are targeted and do not replace a human-led visual review on the intended presentation device.
+
 A CI browser check is not a substitute for a person launching the demos on their own machine and reviewing the visual presentation. Do not claim that manual local review has occurred unless it is separately recorded.
 
 ## Verification status
 
-The repository has dedicated automated workflows for all three demonstrations:
-The latest recorded checks for this presentation path are:
+The repository has dedicated automated workflows for all three demonstrations. The following links record the earlier desktop-baseline checks; the responsive and print assertions are being added to the cross-project browser workflow:
 - [Portfolio Demo Browser Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238035) — passed; both browser flows completed, including persisted review history and executive report rendering.
 - [Portfolio Quality Gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238079) — passed; 36 project READMEs validated and 224 Python tests passed across 34 suites.
 - [Campaign Performance Analyzer Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235237936) — passed; six Python tests and the sample CLI output checks passed.

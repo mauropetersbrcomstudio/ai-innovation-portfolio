@@ -16,3 +16,9 @@ Both demonstrations use synthetic sample data and transparent arithmetic. They d
 ## Campaign Launch QA & UTM Builder
 
 The [Campaign Launch QA & UTM Builder](./campaign-launch-qa/) checks campaign metadata, date ranges, budgets, duplicate campaign IDs, destination URL structure, and UTM collisions. It generates tracking URLs and separates approved rows from exceptions without changing the source file. It does not publish campaigns or verify live tracking.
+
+## Verification and presentation
+
+The [Selected Demo Guide](../DEMO-GUIDE.md) documents the Campaign Performance Analyzer and Campaign Launch QA presentation paths. The Analyzer's browser checks cover local CSV import, filtering, executive-report rendering, a 375-pixel mobile viewport, and print-media behavior. The Marketing Analytics Pipeline and Campaign Launch QA are command-line demonstrations; their checks are documented with their respective projects and workflows.
+
+All bundled campaign records are synthetic. Automated checks do not verify advertising-platform data, attribution, legal compliance, or live campaign behavior.
