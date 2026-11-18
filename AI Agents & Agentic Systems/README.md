@@ -40,3 +40,10 @@ The [Agent Platform Reference](./agent-platform-reference/) connects the portfol
 The [Governed Agent Execution demo](./governed-agent-execution/) composes the policy validator, allowlisted tool gateway, and bounded orchestrator. It demonstrates fail-closed behavior for invalid policy, missing approval, and unauthorized roles before allowing a simulated in-memory action.
 
 **Status: DEMO** — deterministic integration only; caller-supplied role and approval inputs are not production identity controls.
+
+
+## Durable Workflow Runner
+
+The [Durable Workflow Runner](./durable-workflow-runner/) checkpoints each sequential step in SQLite, records events in SQLite and JSONL, skips completed steps on resume, and rejects a changed plan or context.
+
+**Status: DEMO** — handlers with side effects must enforce the supplied idempotency key; the runner cannot guarantee exactly-once external execution.
