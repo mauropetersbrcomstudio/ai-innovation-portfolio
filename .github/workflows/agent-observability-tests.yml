@@ -3,11 +3,11 @@ name: Agent Observability Tests
 on:
   push:
     paths:
-      - "AI Skills & Tooling/agent-observability/**"
+      - "Demo Templates/AI Skills & Tooling/agent-observability/**"
       - ".github/workflows/agent-observability-tests.yml"
   pull_request:
     paths:
-      - "AI Skills & Tooling/agent-observability/**"
+      - "Demo Templates/AI Skills & Tooling/agent-observability/**"
       - ".github/workflows/agent-observability-tests.yml"
   workflow_dispatch:
 
@@ -20,5 +20,5 @@ jobs:
         with:
           python-version: "3.11"
       - name: Run unit tests
-        working-directory: AI Skills & Tooling/agent-observability
+        working-directory: Demo Templates/AI Skills & Tooling/agent-observability
         run: python -m unittest discover -s tests -v
