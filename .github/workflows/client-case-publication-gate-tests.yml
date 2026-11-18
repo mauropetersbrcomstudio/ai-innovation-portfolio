@@ -4,12 +4,12 @@ on:
   push:
     branches: [main]
     paths:
-      - "demo-templates/client-case-publication-gate/**"
+      - "AI Skills & Tooling/client-case-publication-gate/**"
       - ".github/workflows/client-case-publication-gate-tests.yml"
   pull_request:
     branches: [main]
     paths:
-      - "demo-templates/client-case-publication-gate/**"
+      - "AI Skills & Tooling/client-case-publication-gate/**"
       - ".github/workflows/client-case-publication-gate-tests.yml"
   workflow_dispatch:
 
@@ -31,9 +31,9 @@ jobs:
           python-version: "3.11"
 
       - name: Run publication gate tests
-        working-directory: demo-templates/client-case-publication-gate
+        working-directory: "AI Skills & Tooling/client-case-publication-gate"
         run: python -m unittest discover -s tests -v
 
       - name: Run intentionally blocked synthetic sample
-        working-directory: demo-templates/client-case-publication-gate
+        working-directory: "AI Skills & Tooling/client-case-publication-gate"
         run: python publication_gate.py sample_manifest.json
