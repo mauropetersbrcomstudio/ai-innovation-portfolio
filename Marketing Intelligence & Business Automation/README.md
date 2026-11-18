@@ -4,6 +4,6 @@ This section explores how marketing information can support better decisions and
 
 ## Campaign Performance Analyzer
 
-One proposed example is an analysis of campaign data such as spend, reach, clicks, and conversions. The aim is to make the calculations visible and produce a repeatable view of performance using a sample dataset.
+The [Campaign Performance Analyzer](./campaign-performance-analyzer/) is an executable Python demo. It validates campaign-level CSV data, calculates CTR, conversion rate, CPC, CPA, and ROAS, and produces campaign-level and aggregate reports.
 
-This is currently a project concept. No campaign data has been analyzed and no performance results are claimed.
+It uses synthetic sample data and transparent arithmetic. It does not connect to advertising platforms or claim causal performance results.
