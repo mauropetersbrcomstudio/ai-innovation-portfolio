@@ -15,3 +15,4 @@ Templates are starting points, not ready-made solutions for every company. Data,
 ## Available template
 
 - [SME Customer Support Automation](./sme-customer-support-automation/) — a reusable support workflow with request classification, response-draft guidance, and human escalation. A small local implementation is included; it does not send messages or connect to live systems.
+- [SME Internal Knowledge Assistant](./sme-internal-knowledge-assistant/) — a local approved-source retrieval demo with role filtering, source citations, and escalation. It does not use an LLM or authenticate users.
