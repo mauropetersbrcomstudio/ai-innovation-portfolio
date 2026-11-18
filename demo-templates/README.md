@@ -17,3 +17,5 @@ Templates are starting points, not ready-made solutions for every company. Data,
 - [CRM Lead Qualification & Routing](./crm-lead-qualification-routing/) — configurable rule-based qualification, territory team queues, follow-up due dates, duplicate checks, and human-review handling. Local Python demo; no live CRM integration.
 - [SME Customer Support Automation](./sme-customer-support-automation/) — a reusable support workflow with request classification, response-draft guidance, and human escalation. A small local implementation is included; it does not send messages or connect to live systems.
 - [SME Internal Knowledge Assistant](./sme-internal-knowledge-assistant/) — a local approved-source retrieval demo with role filtering, source citations, and escalation. It does not use an LLM or authenticate users.
+
+- [Operations Intake & Human Review](./operations-intake-review/) — reusable assembly of lead and invoice intake, durable workflow state, consolidated human review, decision capture, and a local review workspace. Synthetic data; no authentication or external actions.
