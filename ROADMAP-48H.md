@@ -38,16 +38,17 @@ These are independently developed demonstrations. Their sample records are synth
 
 ## Completed foundation
 
-- [x] One central public GitHub repository.
-- [x] Eight agreed portfolio categories and category navigation.
-- [x] Root README with a working-demo index and portfolio integrity disclosures.
-- [x] Project README template and project entry criteria.
-- [x] Executable demonstrations across multiple non-client categories.
-- [x] Python unit tests for command-line demonstrations.
-- [x] Portfolio Quality Gate for Python test discovery.
-- [x] Dedicated automated workflows for selected projects, including browser-side JavaScript tests.
-- [x] Synthetic sample data and explicit boundaries for demonstrations.
+- [x] One central public GitHub repository and eight agreed categories.
+- [x] Root README, category navigation, project index, project README template, and entry criteria.
 - [x] Foundation First → Client Demos strategy documented.
+- [x] Reusable skills for brief-to-task conversion, CSV data quality, document text extraction, JSON contract validation, CSV normalization, and lexical knowledge retrieval.
+- [x] Agent foundations for tool allowlisting, argument contracts, approval gates, bounded orchestration, multi-agent handoffs, scenario evaluation, SQLite state persistence, structured observability, recovery/compensation, and declarative policy validation.
+- [x] Agent demonstrations for bounded support workflows and multi-agent request review.
+- [x] Integrated reference demo connecting orchestration, persistent state, and structured event logging.
+- [x] Dedicated GitHub Actions workflows for the new reusable components and integration demonstrations.
+- [x] Synthetic sample data, documented limitations, and explicit separation between demos and client engagements.
+
+The new agent-platform components are deterministic reference implementations. They do not establish production-grade identity, authorization, tamper-proof auditing, distributed execution, or autonomous LLM behavior.
 
 ## Execution sequence and backlog
 
