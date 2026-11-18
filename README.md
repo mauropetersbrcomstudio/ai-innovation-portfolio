@@ -6,6 +6,12 @@ A portfolio of selected client work alongside independently developed AI demonst
 
 The repository brings together two kinds of work: projects carried out for real clients, presented in the Client Demos section, and solutions or building blocks developed independently to explore, demonstrate, or support the use of AI in business.
 
+## Development strategy
+
+The portfolio follows **Foundation First → Client Demos**. We will build reusable skills and tools first, then specialized agents, orchestrated workflows, and product components. Client-specific demonstrations will then assemble and configure these foundations against verified business requirements.
+
+Read the [Portfolio Development Strategy v2.0](./PORTFOLIO-DEVELOPMENT-STRATEGY-v2.md) and the [Portfolio Delivery Roadmap](./ROADMAP-48H.md) for the execution sequence.
+
 ## Explore working demos
 
 The projects below are executable demonstrations. Each project README contains its own setup instructions, scope, and limitations.
