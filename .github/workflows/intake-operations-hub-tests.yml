@@ -1,0 +1,33 @@
+name: Intake Operations Hub Tests
+
+on:
+  push:
+    paths:
+      - "AI Automation & Workflows/intake-operations-hub/**"
+      - "AI Automation & Workflows/lead-intake-pipeline/**"
+      - "AI Automation & Workflows/invoice-intake-exception-routing/**"
+      - "AI Agents & Agentic Systems/durable-workflow-runner/**"
+      - "AI Skills & Tooling/agent-state-store/**"
+      - "AI Skills & Tooling/agent-observability/**"
+      - ".github/workflows/intake-operations-hub-tests.yml"
+  pull_request:
+    paths:
+      - "AI Automation & Workflows/intake-operations-hub/**"
+      - "AI Automation & Workflows/lead-intake-pipeline/**"
+      - "AI Automation & Workflows/invoice-intake-exception-routing/**"
+      - "AI Agents & Agentic Systems/durable-workflow-runner/**"
+      - "AI Skills & Tooling/agent-state-store/**"
+      - "AI Skills & Tooling/agent-observability/**"
+      - ".github/workflows/intake-operations-hub-tests.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run intake operations hub tests
+        working-directory: AI Automation & Workflows/intake-operations-hub
+        run: python -m unittest discover -s tests -v
