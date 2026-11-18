@@ -2,7 +2,7 @@
 
 **Status: DEMO**
 
-A local Python tool that reads campaign-level CSV data, validates basic count relationships, calculates transparent performance metrics, and writes campaign-level and aggregate reports.
+A local Python tool and browser dashboard that read campaign-level CSV data, validate basic count relationships, calculate transparent performance metrics, and produce campaign-level and aggregate reports.
 
 ## Metrics
 
@@ -16,9 +16,15 @@ If a denominator is zero, the corresponding metric is written as `null` rather t
 
 ## Interactive dashboard
 
-Open `dashboard.html` in a modern browser, choose a CSV file, and inspect the campaign summary, ROAS comparison, and detailed metrics. The dashboard processes the selected file locally in the browser; it does not upload the data. Download `sample_campaigns.csv` to try the included synthetic records.
+Open `dashboard.html` in a modern browser, choose a CSV file, and inspect the campaign summary, ROAS comparison, channel aggregation, and detailed metrics. The dashboard processes the selected file locally in the browser; it does not upload the data. Download `sample_campaigns.csv` to try the included synthetic records.
 
-The browser dashboard applies the same metric definitions and basic row checks described below. It is an independent front-end demonstration; the Python CLI remains available for repeatable file-based reporting.
+After loading a CSV, use the campaign-name search and channel selector to filter the valid campaign rows and exception list. All displayed KPIs, charts, and tables reflect the current selection. The **Export filtered report** action downloads a JSON report containing the active filters, selected valid campaigns, selected exceptions, metric definitions, aggregate summary, export timestamp, and limitations. Exception rows are excluded from performance totals.
+
+The browser dashboard is an independent front-end demonstration; the Python CLI remains available for repeatable file-based reporting.
+
+## CSV contract
+
+Required headers: `campaign, channel, spend, impressions, clicks, conversions, revenue`. The current schema has no date field; period filters and period-over-period comparisons are therefore not available.
 
 ## Run
 
