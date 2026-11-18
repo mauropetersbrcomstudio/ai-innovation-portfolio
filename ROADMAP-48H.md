@@ -45,7 +45,7 @@ The root README and individual project READMEs are the authoritative project cat
 
 **Exit criteria:** the repository catalogue matches the files that exist; documented commands and links are usable; applicable CI checks pass.
 
-**Audit snapshot (2026-11-18):** 201 tracked files and 45 README files were found: 36 project READMEs, eight category indexes, and the root README. The root index and category indexes cover all 36 project directories; no broken local links were found. This pass corrects two non-standard status labels, repairs one malformed root-index row, and documents the component test commands for the operations-intake template.
+**Audit snapshot (2026-11-18):** 201 tracked files and 45 README files were found: 36 project READMEs, eight category indexes, and the root README. The root index and category indexes cover all 36 project directories; no broken local links were found. This was the initial audit snapshot before the cross-project test guide was added. This pass corrects two non-standard status labels, repairs one malformed root-index row, and documents the component test commands for the operations-intake template.
 
 ### P1 — Demonstration readiness of existing projects
 
@@ -54,20 +54,25 @@ The root README and individual project READMEs are the authoritative project cat
 - [x] Verify automated test coverage and documented sample commands for each selected demo through GitHub Actions.
 - [x] Add a headless Chromium workflow for the Operations Review Workspace and Campaign Performance Analyzer, using synthetic data and loopback-only services.
 - [x] Verify that the Operations Review Workspace browser test checks decision persistence after a full page reload.
-- [ ] Confirm a successful run of the cross-project browser workflow and record its GitHub Actions run link.
+- [x] Confirm the cross-project browser workflow passed and record [run 44235238035](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238035).
 - [ ] Execute each demo interactively on a local machine and verify the complete visual/user flow; CI checks do not establish this.
 - [x] Ensure synthetic sample data, expected outputs, limitations, and a short demonstration path are clear.
 - [x] Resolve the test-hygiene warning found during the automated test run; no test blocker remained.
 - [x] Publish the [Selected Demo Guide](./DEMO-GUIDE.md) with reproducible commands, presentation sequence, automated checks, and explicit limitations.
 - [x] Add a cross-project test index in [tests/README.md](./tests/README.md).
 
-**Exit criteria:** each selected demo can be explained and reproduced from its README, with test evidence and limitations visible. Browser workflow pass evidence and human-led local presentation review remain pending.
+**Exit criteria:** each selected demo can be explained and reproduced from its README, with test evidence and limitations visible. Browser workflow pass evidence is now recorded; human-led local presentation review remains pending.
 
-**Previously recorded verification evidence (2026-11-18):**
+**Verification evidence (2026-11-18):**
+- [Portfolio Quality Gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238079): passed; catalogue validator covered 36 project READMEs and eight category indexes; 34 Python test suites and 224 tests passed.
+- [Portfolio Demo Browser Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238035): passed; Operations Review Workspace recorded a synthetic decision that remained after a full page reload, and Campaign Performance Analyzer imported the sample CSV, filtered Search to one valid campaign, and rendered the executive report.
+- [Campaign Performance Analyzer Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235237936): passed; six Python tests and the sample CLI output checks passed.
 - [Portfolio Quality Gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44229011568): catalogue validator passed; 34 Python test suites and 224 tests passed.
 - [Operations Review Workspace Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44228923871): six integration tests passed, covering the local HTTP adapter, workflow state, and review-decision flow.
 - [Campaign Performance Analyzer Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44228923767): six Python tests and 15 browser-logic tests passed; the sample CLI run generated all three expected non-empty reports.
 - [Campaign Launch QA Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44229011729): nine Python tests passed; the sample CLI run generated the approved, exception, and summary files.
+
+The first browser runs exposed two real issues: the test expected two Search campaigns although the synthetic fixture contains one, and the dashboard's JavaScript referenced an executive-report section that was absent from the HTML. The expected count was corrected, the missing report section and Print / Save as PDF control were restored, and the final browser run above passed. The earlier failed runs remain visible in GitHub Actions and are not counted as successful evidence.
 
 The new cross-project Chromium workflow has been configured and its assertions strengthened to check persisted state after a full reload. Its successful execution must be confirmed from the resulting GitHub Actions run before it is counted as passed. The dashboard and workspace still require human-led local presentation review. Automated browser checks do not establish complete visual quality on every device or browser.
 
@@ -101,4 +106,4 @@ These items may be reconsidered only when a concrete client requirement or demon
 
 ## Working rule
 
-**P0 is complete. P1 test and presentation documentation is in place. The cross-project browser workflow is configured; its pass result and human-led local presentation review remain outstanding.** Do not create a client case until a source brief, supporting evidence, and publication authorization are supplied. Defer additional independent projects unless a concrete gap justifies them.
+**P0 is complete. P1 automated verification and browser end-to-end checks are passing; human-led local presentation review remains outstanding.** Do not create a client case until a source brief, supporting evidence, and publication authorization are supplied. Defer additional independent projects unless a concrete gap justifies them.

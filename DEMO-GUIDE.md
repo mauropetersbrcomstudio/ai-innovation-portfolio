@@ -101,6 +101,11 @@ A CI browser check is not a substitute for a person launching the demos on their
 ## Verification status
 
 The repository has dedicated automated workflows for all three demonstrations:
+The latest recorded checks for this presentation path are:
+- [Portfolio Demo Browser Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238035) — passed; both browser flows completed, including persisted review history and executive report rendering.
+- [Portfolio Quality Gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238079) — passed; 36 project READMEs validated and 224 Python tests passed across 34 suites.
+- [Campaign Performance Analyzer Tests](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235237936) — passed; six Python tests and the sample CLI output checks passed.
+
 - Operations Review Workspace: Python integration tests and the cross-project browser flow.
 - Campaign Performance Analyzer: Python tests, browser-logic tests, sample CLI execution, and the cross-project browser flow.
 - Campaign Launch QA & UTM Builder: Python tests and sample CLI execution.

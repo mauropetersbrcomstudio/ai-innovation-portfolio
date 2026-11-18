@@ -17,6 +17,11 @@ The GitHub Actions workflow [Portfolio Demo Browser Tests](../.github/workflows/
 - [Campaign Launch QA Tests](../.github/workflows/campaign-launch-qa-tests.yml) runs the command-line demo's unit tests and checks its sample output files.
 - Each project README remains the source of truth for its own setup, commands, dependencies, and limitations.
 
+## Latest CI evidence
+
+- [Portfolio Demo Browser Tests — run 44235238035](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238035): passed.
+- [Portfolio Quality Gate — run 44235238079](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44235238079): passed; 34 Python suites and 224 tests.
+
 ## Scope and limitations
 
 These tests use synthetic records and loopback-only local servers. They verify selected workflows, not every visual state or browser/device combination. They do not test authentication, production security, external integrations, live customer data, or production deployment. A passing automated run does not mean a human has completed a local presentation review.
