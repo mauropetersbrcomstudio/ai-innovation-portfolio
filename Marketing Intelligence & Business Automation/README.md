@@ -6,4 +6,8 @@ This section explores how marketing information can support better decisions and
 
 The [Campaign Performance Analyzer](./campaign-performance-analyzer/) is an executable Python demo. It validates campaign-level CSV data, calculates CTR, conversion rate, CPC, CPA, and ROAS, and produces campaign-level and aggregate reports.
 
-It uses synthetic sample data and transparent arithmetic. It does not connect to advertising platforms or claim causal performance results.
+## Marketing Analytics Pipeline
+
+The [Marketing Analytics Pipeline](./marketing-analytics-pipeline/) composes the reusable CSV Data Quality Profiler with the Campaign Performance Analyzer. It runs a structural preflight, blocks review-level files by default, and proceeds to metrics only when the preflight passes or an operator explicitly allows review-level input.
+
+Both demonstrations use synthetic sample data and transparent arithmetic. They do not connect to advertising platforms, verify attribution, or claim causal performance results.
