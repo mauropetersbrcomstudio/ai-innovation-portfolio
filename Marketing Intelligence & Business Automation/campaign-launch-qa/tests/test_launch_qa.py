@@ -70,7 +70,8 @@ class LaunchQaTests(unittest.TestCase):
             self.assertEqual(source.read_bytes(), before)
             self.assertEqual(summary["approved_rows"], 0)
             self.assertEqual(summary["exception_rows"], 2)
-            exceptions = list(csv.DictReader((output / "exceptions.csv").open(encoding="utf-8")))
+            with (output / "exceptions.csv").open(encoding="utf-8", newline="") as handle:
+                exceptions = list(csv.DictReader(handle))
             self.assertTrue(all("campaign_id is duplicated" in item["reasons"] for item in exceptions))
 
     def test_outputs_are_created_and_status_reflects_review(self):
