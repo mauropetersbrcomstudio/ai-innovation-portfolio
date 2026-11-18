@@ -61,3 +61,9 @@ The [Agent Coordination utility](./agent-coordination/) routes structured payloa
 The [Agent Evaluation skill](./agent-evaluation/) checks structured agent outputs against explicit expectations for status, output fields, trace participants, and lifecycle events. It produces a machine-readable PASS/FAIL report.
 
 **Status: DEMO** — deterministic scenario assertions; no model grading or automatic test generation.
+
+## Agent State Store — SQLite Persistence
+
+The [Agent State Store](./agent-state-store/) persists workflow JSON state in SQLite, uses optimistic version checks to reject stale writes, and stores ordered workflow events.
+
+**Status: DEMO** — local persistence only; no encryption, distributed locking, or automated backups.
