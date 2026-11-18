@@ -1,0 +1,27 @@
+name: JSON Contract Validator Tests
+
+on:
+  push:
+    paths:
+      - "AI Skills & Tooling/json-contract-validator/**"
+      - ".github/workflows/json-contract-validator-tests.yml"
+  pull_request:
+    paths:
+      - "AI Skills & Tooling/json-contract-validator/**"
+      - ".github/workflows/json-contract-validator-tests.yml"
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: AI Skills & Tooling/json-contract-validator
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate sample contract
+        run: python json_contract_validator.py examples/request.json examples/request.schema.json
