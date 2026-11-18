@@ -37,6 +37,7 @@ The projects below are executable demonstrations. Each project README contains i
 | [Multi-Agent Coordination](./AI%20Skills%20%26%20Tooling/agent-coordination/) | Explicit agent registry, bounded handoffs, invocation limits, and escalation | DEMO |
 | [Agent Evaluation](./AI%20Skills%20%26%20Tooling/agent-evaluation/) | Scenario-based assertions for agent outputs, execution traces, and safety events | DEMO |
 | [Agent State Store](./AI%20Skills%20%26%20Tooling/agent-state-store/) | SQLite workflow-state persistence, optimistic versioning, and ordered event records | DEMO |
+| [Agent Observability](./AI%20Skills%20%26%20Tooling/agent-observability/) | Structured JSONL events with recursive redaction of common credential fields | DEMO |
 | [SME Workflow Opportunity Mapper](./AI%20Product%20Development/sme-workflow-opportunity-mapper/) | Transparent rubric to prioritize workflows for further discovery | DEMO |
 | [SME KPI Workspace](./Web%20Applications%20%26%20SaaS/sme-kpi-workspace/) | Responsive browser dashboard with KPI calculations and period filtering | DEMO |
 | [Campaign Performance Analyzer](./Marketing%20Intelligence%20%26%20Business%20Automation/campaign-performance-analyzer/) | CSV validation and calculation of CTR, conversion rate, CPC, CPA, and ROAS | DEMO |
