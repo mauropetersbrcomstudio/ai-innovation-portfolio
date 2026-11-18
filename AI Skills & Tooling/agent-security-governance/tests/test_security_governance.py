@@ -75,6 +75,10 @@ class SecurityGovernanceTests(unittest.TestCase):
         with self.assertRaises(SecurityPolicyError):
             SecurityPolicyEngine({"agents": {"*": POLICY["agents"]["support-agent"]}})
         with self.assertRaises(SecurityPolicyError):
+            SecurityPolicyEngine({"agents": {"support-agent": {
+                "roles": ["*"], "tools": POLICY["agents"]["support-agent"]["tools"]
+            }}})
+        with self.assertRaises(SecurityPolicyError):
             SecurityPolicyEngine({"agents": {}})
 
     def test_denials_and_allowances_are_audited(self):
