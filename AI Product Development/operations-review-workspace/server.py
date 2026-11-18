@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import mimetypes
 import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -14,6 +15,8 @@ sys.path.insert(0, str(HUB))
 from workflow_hub import run_intake_workflow
 from review_decisions import ReviewDecisionStore
 
+STATIC_DIR = Path(__file__).resolve().parent
+STATIC_FILES = {"index.html", "app.js", "styles.css"}
 DEMO_WORKFLOW_ID = "operations-review-demo"
 DEMO_LEADS = [
     {"name": "Alex Morgan", "email": "alex@example.test", "company": "Northstar Studio"},
@@ -86,8 +89,24 @@ def make_handler(database: Path):
                 raise ValueError("Request body must be a JSON object")
             return value
 
+        def _send_static(self, filename: str) -> None:
+            if filename not in STATIC_FILES:
+                return self._send(404, {"error": "Not found"})
+            content = (STATIC_DIR / filename).read_bytes()
+            content_type = mimetypes.guess_type(filename)[0] or "application/octet-stream"
+            self.send_response(200)
+            self.send_header("Content-Type", f"{content_type}; charset=utf-8")
+            self.send_header("Content-Length", str(len(content)))
+            self.send_header("Cache-Control", "no-store")
+            self.end_headers()
+            self.wfile.write(content)
+
         def do_GET(self):
             path = urlparse(self.path).path
+            if path == "/":
+                return self._send_static("index.html")
+            if path in {"/app.js", "/styles.css"}:
+                return self._send_static(path.lstrip("/"))
             if path == "/api/health":
                 return self._send(200, {"status": "ok", "mode": "local-demo"})
             prefix = "/api/workflows/"
