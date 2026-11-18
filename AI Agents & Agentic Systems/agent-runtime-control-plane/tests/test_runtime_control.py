@@ -1,8 +1,13 @@
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
 from runtime_control import AgentSpec, RuntimeControlPlane
+
+security_path = Path(__file__).resolve().parents[2] / "AI Skills & Tooling" / "agent-security-governance"
+sys.path.insert(0, str(security_path))
+from security_governance import ApprovalEvidence, Principal, SecurityPolicyEngine
 
 
 class RuntimeControlPlaneTests(unittest.TestCase):
@@ -31,6 +36,80 @@ class RuntimeControlPlaneTests(unittest.TestCase):
         allowed = self.runtime.invoke("support-agent", "create_task", {"id": "A"},
                                        approved_tools=("create_task",))
         self.assertEqual(allowed["status"], "EXECUTED")
+        self.assertEqual(len(self.effects), 1)
+
+
+    def test_security_policy_is_enforced_before_handler_execution(self):
+        policy = {"agents": {"support-agent": {
+            "roles": ["support_operator"],
+            "tools": {"create_task": {"risks": ["LOW"], "approval_required": False}}
+        }}}
+        security = SecurityPolicyEngine(policy)
+        runtime = RuntimeControlPlane(
+            Path(self.tmp.name) / "secure-runtime.db",
+            {"create_task": lambda args: self.effects.append(args) or {"created": True}},
+            authorization_check=security.authorize,
+        )
+        runtime.register(AgentSpec("support-agent", "operator", ("create_task",)))
+        runtime.transition("support-agent", "ACTIVE")
+        denied = runtime.invoke(
+            "support-agent", "create_task", {"id": "DENIED"},
+            principal=Principal("user-1", ("viewer",), True), risk="LOW"
+        )
+        self.assertEqual(denied["status"], "DENIED")
+        self.assertEqual(denied["reason"], "ROLE_NOT_AUTHORIZED")
+        self.assertEqual(self.effects, [])
+        allowed = runtime.invoke(
+            "support-agent", "create_task", {"id": "ALLOWED"},
+            principal=Principal("user-1", ("support_operator",), True), risk="LOW"
+        )
+        self.assertEqual(allowed["status"], "EXECUTED")
+        self.assertEqual(len(self.effects), 1)
+
+    def test_secure_runtime_fails_closed_without_principal(self):
+        security = SecurityPolicyEngine({"agents": {"support-agent": {
+            "roles": ["support_operator"],
+            "tools": {"create_task": {"risks": ["LOW"], "approval_required": False}}
+        }}})
+        runtime = RuntimeControlPlane(
+            Path(self.tmp.name) / "secure-runtime-no-principal.db",
+            {"create_task": lambda args: self.effects.append(args) or {"created": True}},
+            authorization_check=security.authorize,
+        )
+        runtime.register(AgentSpec("support-agent", "operator", ("create_task",)))
+        runtime.transition("support-agent", "ACTIVE")
+        result = runtime.invoke("support-agent", "create_task", {"id": "A"}, risk="LOW")
+        self.assertEqual(result["status"], "DENIED")
+        self.assertEqual(result["reason"], "INVALID_PRINCIPAL")
+        self.assertEqual(self.effects, [])
+
+    def test_secure_runtime_requires_verified_approval_for_high_risk(self):
+        policy = {"agents": {"support-agent": {
+            "roles": ["support_operator"],
+            "tools": {"create_task": {"risks": ["HIGH"], "approval_required": True}}
+        }}}
+        security = SecurityPolicyEngine(policy, lambda evidence: evidence.approval_id == "valid")
+        runtime = RuntimeControlPlane(
+            Path(self.tmp.name) / "secure-runtime-approval.db",
+            {"create_task": lambda args: self.effects.append(args) or {"created": True}},
+            authorization_check=security.authorize,
+        )
+        runtime.register(AgentSpec("support-agent", "operator", ("create_task",)))
+        runtime.transition("support-agent", "ACTIVE")
+        principal = Principal("user-1", ("support_operator",), True)
+        missing = runtime.invoke(
+            "support-agent", "create_task", {"id": "A"},
+            principal=principal, risk="HIGH"
+        )
+        self.assertEqual(missing["reason"], "HUMAN_APPROVAL_REQUIRED")
+        self.assertEqual(self.effects, [])
+        evidence = ApprovalEvidence("valid", "supervisor-1", "support-agent",
+                                    "create_task", "HIGH", "user-1")
+        accepted = runtime.invoke(
+            "support-agent", "create_task", {"id": "B"},
+            principal=principal, risk="HIGH", approval=evidence
+        )
+        self.assertEqual(accepted["status"], "EXECUTED")
         self.assertEqual(len(self.effects), 1)
 
     def test_invocation_limit_blocks_second_call(self):
