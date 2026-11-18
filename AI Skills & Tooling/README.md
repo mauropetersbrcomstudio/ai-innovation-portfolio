@@ -37,3 +37,9 @@ The [CSV Data Normalization skill](./data-normalization/) applies explicit, fiel
 The [Knowledge Retrieval skill](./knowledge-retrieval/) searches an explicitly supplied JSON knowledge base, filters sources by configured role values, ranks lexical matches, and returns traceable excerpts or an escalation status when no source qualifies.
 
 **Status: DEMO** — local Python utility; role values are request inputs, not authenticated identity or a security boundary.
+
+## Agent Tool Gateway — Allowlisting & Permission Controls
+
+The [Agent Tool Gateway](./agent-tool-gateway/) mediates calls to explicitly registered handlers. It applies tool allowlisting, role checks, argument validation, optional approval gates, per-session call limits, and an in-memory audit trail.
+
+**Status: DEMO** — reference component only. Identity, trusted approvals, durable audit storage, and safe handler side effects remain responsibilities of the host application.
