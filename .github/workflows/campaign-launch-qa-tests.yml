@@ -1,0 +1,27 @@
+name: Campaign Launch QA Tests
+
+on:
+  push:
+    paths:
+      - "Marketing Intelligence & Business Automation/campaign-launch-qa/**"
+      - ".github/workflows/campaign-launch-qa-tests.yml"
+  pull_request:
+    paths:
+      - "Marketing Intelligence & Business Automation/campaign-launch-qa/**"
+      - ".github/workflows/campaign-launch-qa-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run campaign launch QA tests
+        working-directory: Marketing Intelligence & Business Automation/campaign-launch-qa
+        run: python -m unittest discover -s tests -v
