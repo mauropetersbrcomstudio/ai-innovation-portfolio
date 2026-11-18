@@ -70,3 +70,20 @@ test("compares current period with immediately preceding equal-length period", (
 test("rejects reversed period boundaries", () => {
   assert.throws(() => comparePeriods([], "2026-11-04", "2026-11-03"), /valid start and end/);
 });
+
+
+test("summarizes temporal evolution by date using aggregate totals", async () => {
+  const { summarizeTimeline } = await import("../dashboard-logic.js");
+  const rows = parseCsv([
+    "campaign,channel,date,spend,impressions,clicks,conversions,revenue",
+    "A,Search,2026-11-01,100,1000,100,10,200",
+    "B,Social,2026-11-01,50,500,25,5,150",
+    "A,Search,2026-11-02,200,2000,100,20,600"
+  ].join(String.fromCharCode(10)));
+  const timeline = summarizeTimeline(analyzeRows(rows).valid);
+  assert.equal(timeline.length, 2);
+  assert.equal(timeline[0].spend, 150);
+  assert.equal(timeline[0].conversions, 15);
+  assert.equal(timeline[0].roas, 350 / 150);
+  assert.equal(timeline[1].spend, 200);
+});
