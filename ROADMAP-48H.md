@@ -56,6 +56,7 @@ The folder structure remains unchanged. The execution order below is a developme
 | AI Product Development | Operations Review Workspace | FUNCTIONAL LOCAL DEMO |
 | Web Applications & SaaS | SME KPI Workspace | DEMO |
 | Marketing Intelligence & Business Automation | Campaign Performance Analyzer | DEMO |
+| Marketing Intelligence & Business Automation | Marketing Analytics Pipeline | DEMO |
 
 These are independently developed demonstrations. Their sample records are synthetic; none is presented as a completed client engagement or a production deployment.
 
