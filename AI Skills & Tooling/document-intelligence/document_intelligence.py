@@ -12,7 +12,7 @@ from typing import Any
 EMAIL_RE = re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 URL_RE = re.compile(r"(?i)\bhttps?://[^\s<>\]]+")
 ISO_DATE_RE = re.compile(r"\b(?:19|20)\d{2}-\d{2}-\d{2}\b")
-CURRENCY_RE = re.compile(r"(?i)(?:\b(?:USD|EUR|GBP|BRL)\s*)?[$€£R]\s?\d[\d.,]*(?:\s?(?:USD|EUR|GBP|BRL))?")
+CURRENCY_RE = re.compile(r"(?i)(?:(?:USD|EUR|GBP|BRL)\s*[$€£]?\s*|[$€£]\s*)\d[\d.,]*(?:\s?(?:USD|EUR|GBP|BRL))?")
 KEY_VALUE_RE = re.compile(r"^\s*([^:=]{1,80}?)\s*[:=]\s*(.*?)\s*$")
 HEADING_RE = re.compile(r"^\s{0,3}(#{1,6})\s+(.+?)\s*#*\s*$")
 
