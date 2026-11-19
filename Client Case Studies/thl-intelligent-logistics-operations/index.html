@@ -37,8 +37,13 @@
             <article class="metric"><span>Ocorrências abertas</span><strong id="metric-open-occurrences">0</strong><small>Tratativas não encerradas</small></article>
             <article class="metric"><span>Sistemas mapeados</span><strong id="metric-systems">0</strong><small>Itens cadastrados no diagnóstico</small></article>
             <article class="metric"><span>Documentos registrados</span><strong id="metric-documents">0</strong><small>Referências e status informados</small></article>
+          <article class="metric"><span>Coletas registradas</span><strong id="metric-collections">0</strong><small>Checklists manuais</small></article>
+            <article class="metric"><span>Operações de terminal</span><strong id="metric-terminal">0</strong><small>Registros manuais</small></article>
+            <article class="metric"><span>Movimentações</span><strong id="metric-events">0</strong><small>Eventos manuais</small></article>
+            <article class="metric"><span>POD registrados</span><strong id="metric-pods">0</strong><small>Status informados manualmente</small></article>
           </div>
           <div class="two-col">
+            <article class="panel"><div class="panel-head"><div><span class="eyebrow">MIX DE OPERAÇÕES</span><h2>Cargas por modalidade</h2></div></div><div id="modality-summary" class="record-list empty">Nenhuma carga cadastrada.</div></article>
             <article class="panel"><div class="panel-head"><div><span class="eyebrow">FLUXO CONFIRMADO</span><h2>Etapas operacionais</h2></div></div><div class="process-list">
               <div><i>01</i><span><b>Solicitação e planejamento</b><small>Demanda, cotação, modalidade e documentos</small></span></div>
               <div><i>02</i><span><b>Coleta e dimensionamento</b><small>Veículo, vistoria e embarque</small></span></div>
@@ -99,7 +104,7 @@
           <div class="two-col form-layout">
             <form class="panel form-panel" id="occurrence-form">
               <div class="panel-head"><div><span class="eyebrow">NOVA OCORRÊNCIA</span><h2>Registrar evento</h2></div></div>
-              <label>Referência da carga<input name="reference" maxlength="60" placeholder="Código da carga, se conhecido"></label>
+              <label>Referência da carga<input name="reference" maxlength="60" list="shipment-reference-options" placeholder="Código da carga, se conhecido"></label>
               <div class="form-grid"><label>Categoria<select name="category"><option>Atraso</option><option>Desvio de rota</option><option>Avaria</option><option>Divergência de volumes</option><option>Documento pendente / divergente</option><option>Falha na coleta</option><option>Falha na entrega</option><option>Risco / segurança</option><option>Outro</option></select></label><label>Prioridade<select name="priority"><option>Normal</option><option>Alta</option><option>Crítica</option></select></label></div>
               <label>Descrição<textarea name="description" rows="3" maxlength="1000" required></textarea></label>
               <label>Responsável pela tratativa<input name="owner" maxlength="100"></label>
@@ -117,7 +122,7 @@
           <div class="two-col form-layout">
             <form class="panel form-panel" id="document-form">
               <div class="panel-head"><div><span class="eyebrow">REGISTRO DOCUMENTAL</span><h2>Novo documento</h2></div></div>
-              <label>Referência da carga<input name="reference" maxlength="60" placeholder="Código da carga, se conhecido"></label>
+              <label>Referência da carga<input name="reference" maxlength="60" list="shipment-reference-options" placeholder="Código da carga, se conhecido"></label>
               <div class="form-grid"><label>Tipo<select name="type"><option>NF-e</option><option>CT-e</option><option>MDF-e</option><option>Romaneio</option><option>POD / Comprovante de entrega</option><option>Outro</option></select></label><label>Status<select name="status"><option>Não informado</option><option>Pendente</option><option>Recebido</option><option>Conferido manualmente</option><option>Divergente</option><option>Cancelado</option></select></label></div>
               <label>Chave / número / referência<input name="documentRef" maxlength="100" placeholder="Não inserir conteúdo confidencial"></label>
               <label>Observações<textarea name="notes" rows="3" maxlength="600"></textarea></label>
@@ -131,14 +136,14 @@
 <div class="notice">Eventos informados manualmente. Sem GPS, rastreamento em tempo real ou integração externa. Não registre dados pessoais do recebedor, assinaturas ou documentos nesta versão.</div>
 <div class="two-col form-layout">
 <form class="panel form-panel" id="event-form"><div class="panel-head"><div><span class="eyebrow">EVENTO OPERACIONAL</span><h2>Nova movimentação</h2></div></div>
-<label>Referência da carga<input name="reference" maxlength="60" required></label>
+<label>Referência da carga<input name="reference" maxlength="60" list="shipment-reference-options" required></label>
 <div class="form-grid"><label>Etapa<select name="stage"><option>Transferência rodoviária</option><option>Chegada ao terminal / filial</option><option>Triagem / desconsolidação</option><option>Em distribuição</option><option>Tentativa de entrega</option><option>Entrega realizada</option><option>Retorno / insucesso</option><option>Outro evento</option></select></label><label>Data e hora<input name="occurredAt" type="datetime-local" required></label></div>
 <div class="form-grid"><label>Local informado<input name="location" maxlength="120" placeholder="Cidade / UF ou unidade"></label><label>Resultado<select name="result"><option>Informativo</option><option>Em andamento</option><option>Concluído</option><option>Com impedimento</option></select></label></div>
 <label>Observações<textarea name="notes" rows="3" maxlength="700"></textarea></label><button class="button primary" type="submit">Registrar movimentação</button></form>
 <article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">HISTÓRICO DE EVENTOS</span><h2>Movimentações registradas</h2></div><span id="event-total" class="count">0</span></div><div id="event-list" class="record-list empty">Nenhuma movimentação registrada.</div></article></div>
 <div class="two-col form-layout">
 <form class="panel form-panel" id="pod-form"><div class="panel-head"><div><span class="eyebrow">PROOF OF DELIVERY</span><h2>Registro de comprovante</h2></div></div>
-<label>Referência da carga<input name="reference" maxlength="60" required></label>
+<label>Referência da carga<input name="reference" maxlength="60" list="shipment-reference-options" required></label>
 <div class="form-grid"><label>Status do POD<select name="status"><option>Aguardando comprovante</option><option>Comprovante recebido</option><option>Conferido manualmente</option><option>Comprovante divergente</option><option>Não aplicável</option></select></label><label>Data da entrega<input name="deliveryDate" type="date"></label></div>
 <label>Tipo de evidência<select name="evidenceType"><option>Não informado</option><option>Físico</option><option>Eletrônico</option><option>Referência externa</option></select></label>
 <label>Referência não sensível<input name="evidenceRef" maxlength="120" placeholder="Não anexar assinatura ou imagem"></label><button class="button primary" type="submit">Registrar status do POD</button></form>
@@ -148,7 +153,7 @@
 <div class="notice">O sistema não calcula capacidade técnica, peso máximo, cubagem útil ou compatibilidade regulatória. A escolha do veículo e a liberação da coleta permanecem sob responsabilidade da equipe operacional.</div>
 <div class="two-col form-layout">
 <form class="panel form-panel" id="collection-form"><div class="panel-head"><div><span class="eyebrow">PLANEJAMENTO DE COLETA</span><h2>Checklist de coleta</h2></div></div>
-<label>Referência da carga<input name="reference" maxlength="60" required placeholder="Código da carga"></label>
+<label>Referência da carga<input name="reference" maxlength="60" list="shipment-reference-options" required placeholder="Código da carga"></label>
 <div class="form-grid"><label>Veículo selecionado<select name="vehicle"><option>Van</option><option>Truck</option><option>Carreta</option><option>Outro / a confirmar</option><option>Ainda não definido</option></select></label><label>Responsável pela conferência<input name="owner" maxlength="100" placeholder="Área ou responsável"></label></div>
 <div class="form-grid"><label>Volumes previstos<input name="expectedPackages" type="number" min="0" step="1"></label><label>Volumes conferidos<input name="checkedPackages" type="number" min="0" step="1"></label></div>
 <label>Integridade das embalagens<select name="integrity"><option>Não conferida</option><option>Íntegras</option><option>Com avaria identificada</option><option>Conferência parcial</option></select></label>
@@ -163,7 +168,7 @@
 <div class="notice">Use este módulo para fluxos fracionados ou com armazenagem contratada. Em cargas dedicadas/expressas com fluxo direto, registre “Não aplicável — fluxo direto”. Não há controle de posições físicas, estoque em tempo real ou capacidade do terminal.</div>
 <div class="two-col form-layout">
 <form class="panel form-panel" id="terminal-form"><div class="panel-head"><div><span class="eyebrow">CONTROLE DE TERMINAL</span><h2>Novo registro de operação</h2></div></div>
-<label>Referência da carga<input name="reference" maxlength="60" required placeholder="Código da carga"></label>
+<label>Referência da carga<input name="reference" maxlength="60" list="shipment-reference-options" required placeholder="Código da carga"></label>
 <div class="form-grid"><label>Fluxo<select name="flow"><option>Carga fracionada</option><option>Armazenagem + distribuição</option><option>Dedicado / expresso</option><option>Não confirmado</option></select></label><label>Aplicabilidade<select name="applicability"><option>Aplicável</option><option>Não aplicável — fluxo direto</option><option>A confirmar</option></select></label></div>
 <div class="form-grid"><label>Etapa atual<select name="stage"><option>Entrada prevista</option><option>Recebido no terminal</option><option>Conferência de manifesto</option><option>Triagem / identificação</option><option>Armazenagem</option><option>Consolidação</option><option>Pronto para expedição</option><option>Expedido</option><option>Não aplicável</option><option>Com divergência</option></select></label><label>Data/hora do evento<input name="occurredAt" type="datetime-local"></label></div>
 <div class="form-grid"><label>Manifesto / conferência<select name="manifest"><option>Não informado</option><option>Pendente</option><option>Conferido</option><option>Com divergência</option><option>Não aplicável</option></select></label><label>Etiquetas / identificação<select name="labeling"><option>Não informado</option><option>Pendente</option><option>Conferidas</option><option>Com divergência</option><option>Não aplicável</option></select></label></div>
@@ -182,5 +187,6 @@
       </div>
     </main>
   </div>
+  <datalist id="shipment-reference-options"></datalist>
 </body>
 </html>
