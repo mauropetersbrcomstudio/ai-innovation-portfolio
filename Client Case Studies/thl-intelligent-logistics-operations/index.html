@@ -20,6 +20,7 @@
         <button class="nav-button" data-view="documents">Documentos <b id="nav-document-count">0</b></button>
         <button class="nav-button" data-view="tracking">Movimentações <b id="nav-event-count">0</b></button>
         <button class="nav-button" data-view="fleet">Coleta e frota <b id="nav-collection-count">0</b></button>
+        <button class="nav-button" data-view="terminal">Terminal e consolidação <b id="nav-terminal-count">0</b></button>
         <button class="nav-button" data-view="audit">Auditoria</button>
       </nav>
       <div class="sidebar-bottom"><span class="local-dot"></span><div><strong>Ambiente independente</strong><small>Sem integrações externas</small></div></div>
@@ -156,6 +157,21 @@
 <label>Observações<textarea name="notes" rows="3" maxlength="700" placeholder="Divergências, restrições de acesso ou observações autorizadas"></textarea></label>
 <button class="button primary" type="submit">Registrar checklist</button></form>
 <article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">REGISTROS DE COLETA</span><h2>Checklists registrados</h2></div><span id="collection-total" class="count">0</span></div><div id="collection-list" class="record-list empty">Nenhum checklist registrado.</div></article>
+</div></section>
+<section class="view" id="view-terminal">
+<div class="page-title"><div><span class="eyebrow">TERMINAL, STORAGE & CONSOLIDATION</span><h1>Terminal, armazenagem e consolidação</h1><p>Controle manual de recebimento, triagem, armazenagem contratada, consolidação e expedição.</p></div></div>
+<div class="notice">Use este módulo para fluxos fracionados ou com armazenagem contratada. Em cargas dedicadas/expressas com fluxo direto, registre “Não aplicável — fluxo direto”. Não há controle de posições físicas, estoque em tempo real ou capacidade do terminal.</div>
+<div class="two-col form-layout">
+<form class="panel form-panel" id="terminal-form"><div class="panel-head"><div><span class="eyebrow">CONTROLE DE TERMINAL</span><h2>Novo registro de operação</h2></div></div>
+<label>Referência da carga<input name="reference" maxlength="60" required placeholder="Código da carga"></label>
+<div class="form-grid"><label>Fluxo<select name="flow"><option>Carga fracionada</option><option>Armazenagem + distribuição</option><option>Dedicado / expresso</option><option>Não confirmado</option></select></label><label>Aplicabilidade<select name="applicability"><option>Aplicável</option><option>Não aplicável — fluxo direto</option><option>A confirmar</option></select></label></div>
+<div class="form-grid"><label>Etapa atual<select name="stage"><option>Entrada prevista</option><option>Recebido no terminal</option><option>Conferência de manifesto</option><option>Triagem / identificação</option><option>Armazenagem</option><option>Consolidação</option><option>Pronto para expedição</option><option>Expedido</option><option>Não aplicável</option><option>Com divergência</option></select></label><label>Data/hora do evento<input name="occurredAt" type="datetime-local"></label></div>
+<div class="form-grid"><label>Manifesto / conferência<select name="manifest"><option>Não informado</option><option>Pendente</option><option>Conferido</option><option>Com divergência</option><option>Não aplicável</option></select></label><label>Etiquetas / identificação<select name="labeling"><option>Não informado</option><option>Pendente</option><option>Conferidas</option><option>Com divergência</option><option>Não aplicável</option></select></label></div>
+<div class="form-grid"><label>Armazenagem contratada<select name="storage"><option>Não informado</option><option>Sim</option><option>Não</option><option>A confirmar</option></select></label><label>Consolidação<select name="consolidation"><option>Não iniciada</option><option>Em preparação</option><option>Consolidada</option><option>Não aplicável</option><option>Com divergência</option></select></label></div>
+<div class="form-grid"><label>Região / destino de consolidação<input name="destination" maxlength="120"></label><label>Janela de expedição<input name="dispatchWindow" maxlength="100" placeholder="Janela informada pela operação"></label></div>
+<label>Observações<textarea name="notes" rows="3" maxlength="700"></textarea></label>
+<button class="button primary" type="submit">Registrar operação de terminal</button></form>
+<article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">REGISTROS OPERACIONAIS</span><h2>Operações registradas</h2></div><span id="terminal-total" class="count">0</span></div><div id="terminal-list" class="record-list empty">Nenhuma operação registrada.</div></article>
 </div></section>
 <section class="view" id="view-audit">
           <div class="page-title"><div><span class="eyebrow">GOVERNANÇA E RASTREABILIDADE</span><h1>Histórico de auditoria</h1><p>Eventos gerados pelas ações realizadas nesta instância do navegador.</p></div></div>
