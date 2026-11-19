@@ -32,16 +32,16 @@ footer{margin-top:20px;color:#84909a;font-size:10px;line-height:1.5}
 <body>
 <header><div class="brand"><small>Operations Control Center · Multi-agent workflow</small><h1>Accounting Intelligence</h1><p>Gestão integrada do fechamento mensal · Fiscal · Departamento Pessoal · Contábil</p></div><span class="env">PROTÓTIPO LOCAL · SEM INTEGRAÇÕES</span></header>
 <main>
-<div class="notice"><b>Limite operacional desta versão:</b> os indicadores abaixo refletem somente os arquivos selecionados nesta sessão do navegador. O protótipo não lê o conteúdo dos documentos, não executa regras fiscais ou contábeis, não persiste dados e não transmite obrigações. Os exemplos de exceção são cenários ilustrativos, não ocorrências do cliente.</div>
+<div class="notice"><b>Limite operacional desta versão:</b> arquivos CSV e OFX são lidos localmente no navegador para normalização preliminar; XML passa apenas por verificação de boa formação. Nenhum conteúdo é enviado ao servidor ou persistido. Não há cálculo tributário, classificação contábil, conciliação ou transmissão. Os exemplos de exceção são ilustrativos.</div>
 <div class="metrics">
  <article class="metric"><small>Arquivos na sessão</small><strong id="mFiles">0</strong><em>Metadados locais</em></article>
  <article class="metric"><small>Tipos reconhecidos</small><strong id="mFormats">0</strong><em>Extensões mapeadas</em></article>
- <article class="metric"><small>Etapas executadas</small><strong>1/8</strong><em>Somente intake visual</em></article>
+ <article class="metric"><small>Registros lidos</small><strong id="mRecords">0</strong><em>CSV/OFX suportados nesta versão</em></article>
  <article class="metric"><small>Fechamentos aprovados</small><strong>—</strong><em>Não implementado</em></article>
 </div>
 <div class="section"><div><h2>Visão do processo</h2><p>Pipeline-alvo do produto; estados não representam execução real nesta versão.</p></div><span class="pill">WORKFLOW</span></div>
 <section class="panel"><div class="stages">
- <div class="stage"><div class="num">01</div><b>Recepção documental</b><span>Inventário local de arquivos</span><span class="pill">DISPONÍVEL</span></div>
+ <div class="stage"><div class="num">01</div><b>Recepção documental</b><span>Inventário e leitura local limitada</span><span class="pill">PARCIAL</span></div>
  <div class="stage"><div class="num">02</div><b>Leitura e classificação</b><span>Extração e normalização</span><span class="pill">PENDENTE</span></div>
  <div class="stage"><div class="num">03</div><b>Validação fiscal</b><span>Regras versionadas</span><span class="pill">PENDENTE</span></div>
  <div class="stage"><div class="num">04</div><b>Departamento pessoal</b><span>Conferências e eventos</span><span class="pill">PENDENTE</span></div>
@@ -50,10 +50,10 @@ footer{margin-top:20px;color:#84909a;font-size:10px;line-height:1.5}
  <div class="stage"><div class="num">07</div><b>Revisão humana</b><span>Decisão e justificativa</span><span class="pill">PENDENTE</span></div>
  <div class="stage"><div class="num">08</div><b>Fechamento</b><span>Gate de aprovação</span><span class="pill">PENDENTE</span></div>
 </div></section>
-<div class="section"><div><h2>Operação e documentos</h2><p>Seleção de arquivos na sessão atual; nenhum conteúdo é enviado ao servidor.</p></div><span class="pill">INTAKE</span></div>
+<div class="section"><div><h2>Operação e documentos</h2><p>CSV/OFX processados localmente; XML validado estruturalmente. PDF/XLSX ainda não suportados.</p></div><span class="pill">INTAKE</span></div>
 <div class="layout">
  <section class="panel"><h3>Entrada documental</h3><div class="drop"><b>Adicionar documentos à sessão</b><p>XML · OFX · CSV · PDF · TXT · XLSX</p><label class="filebtn" for="files">Selecionar arquivos</label><input id="files" type="file" multiple accept=".xml,.ofx,.csv,.pdf,.txt,.xlsx,.xls"></div>
- <table><thead><tr><th>Arquivo</th><th>Tipo</th><th>Tamanho</th><th>Estado</th></tr></thead><tbody id="fileRows"><tr><td colspan="4" class="empty">Nenhum arquivo selecionado.</td></tr></tbody></table></section>
+ <table><thead><tr><th>Arquivo</th><th>Tipo</th><th>Tamanho</th><th>Estado</th></tr></thead><tbody id="fileRows"><tr><td colspan="4" class="empty">Nenhum arquivo selecionado.</td></tr></tbody></table><h3 style="margin-top:20px">Registros normalizados · prévia</h3><p style="font-size:10px;color:#778592">Valores originais preservados como texto; sem classificação ou cálculo.</p><table><thead><tr><th>Origem</th><th>Data original</th><th>Valor original</th><th>Descrição</th></tr></thead><tbody id="recordRows"><tr><td colspan="4" class="empty">Nenhum registro processado.</td></tr></tbody></table></section>
  <section class="panel"><h3>Fila de exceções · exemplos ilustrativos</h3>
  <div class="exception"><b>Movimentação sem documento de suporte</b><p>Solicitar evidência e impedir classificação automática até revisão.</p><span class="pill">EXEMPLO · EVIDÊNCIA</span></div>
  <div class="exception"><b>Possível divergência em documento fiscal</b><p>Exigir regra aplicável, contexto da competência e revisão profissional.</p><span class="pill">EXEMPLO · REVISÃO</span></div>
