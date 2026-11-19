@@ -12,8 +12,10 @@ Every claimed capability must be supported by:
 
 ### Unit
 - File hashing and duplicate detection.
-- XML field extraction.
-- OFX/CSV normalization.
+- XML well-formedness validation and rejection of DTD/ENTITY declarations.
+- OFX SGML transaction-block extraction and CSV header/delimiter normalization.
+- CSV malformed quoting and unsupported-header rejection.
+- File-size boundary and unsupported-format handling.
 - Decimal-safe monetary calculations.
 - Competence and date validation.
 - Checklist evaluation.
@@ -45,6 +47,7 @@ Every claimed capability must be supported by:
 - Confirm logs do not expose personal or bank data.
 - Confirm public artifacts contain no client-specific identifiers.
 - Confirm no network integration or outbound submission is performed by the prototype.
+- Confirm CSV/OFX/XML parsing runs in the browser and selected file contents are not sent to the local server.
 
 ## 3. Metrics
 
