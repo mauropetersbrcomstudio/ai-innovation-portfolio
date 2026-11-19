@@ -1,71 +1,76 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Accounting Office Operations Workspace</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Accounting Intelligence | Operations Control Center</title>
 <style>
-:root{font-family:Inter,Segoe UI,Arial,sans-serif;color:#17212b;background:#f4f6f8;font-synthesis:none}
-*{box-sizing:border-box}body{margin:0}header{background:#142536;color:#fff;padding:24px clamp(18px,4vw,52px)}
-header .eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9db3c6}
-h1{font-size:clamp(22px,3vw,32px);margin:8px 0 5px}header p{color:#c4d1dc;margin:0;font-size:14px}
-main{max-width:1320px;margin:0 auto;padding:24px clamp(14px,3vw,36px) 48px}
-.notice{border:1px solid #d9e1e8;background:#fff;border-radius:12px;padding:12px 15px;font-size:13px;color:#465564;margin-bottom:20px}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.metric,.panel,.stage{background:#fff;border:1px solid #e1e7ed;border-radius:12px}
-.metric{padding:16px}.metric small{display:block;color:#667786;font-size:12px}.metric strong{display:block;font-size:26px;margin-top:7px}
-.section{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:28px 0 12px}.section h2{font-size:18px;margin:0}.section p{font-size:12px;color:#71808d;margin:4px 0 0}
-.panel{padding:18px}.columns{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
-.drop{border:1.5px dashed #aab9c6;background:#f8fafb;border-radius:10px;padding:24px;text-align:center}
-.drop strong{display:block;margin-bottom:6px}.drop p{font-size:12px;color:#657584;margin:0 0 14px}
-button,.filebtn{background:#173c59;color:#fff;border:0;border-radius:8px;padding:10px 14px;font-weight:600;font-size:12px;cursor:pointer}
-button.secondary{background:#eaf0f4;color:#27465e}input[type=file]{display:none}
-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:14px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #edf0f3}th{color:#71808d;font-weight:600}
-.pill{display:inline-block;border-radius:99px;padding:4px 8px;background:#edf2f6;color:#496073;font-size:10px;font-weight:700}
-.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stage{padding:13px}.stage b{display:block;font-size:12px}.stage span{font-size:11px;color:#71808d}
-.event{padding:10px 0;border-bottom:1px solid #edf0f3;font-size:12px}.event:last-child{border:0}
-.exception{border-left:3px solid #c58a25;background:#fffaf0;padding:13px;border-radius:6px;font-size:12px}
-footer{margin-top:24px;color:#7a8792;font-size:11px}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.columns{grid-template-columns:1fr}.stages{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.grid{grid-template-columns:1fr 1fr}.metric strong{font-size:21px}.section{align-items:start;flex-direction:column}}
+:root{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Arial,sans-serif;color:#17212b;background:#f3f5f7;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}header{background:#142536;color:#fff;padding:22px clamp(16px,4vw,48px);display:flex;justify-content:space-between;gap:16px;align-items:center}
+.brand small{color:#b6c5d1;letter-spacing:.14em;text-transform:uppercase;font-size:10px}.brand h1{font-size:clamp(20px,3vw,28px);margin:7px 0 4px}.brand p{font-size:12px;color:#c5d1da;margin:0}
+.env{border:1px solid #587083;border-radius:99px;padding:7px 11px;font-size:10px;white-space:nowrap;color:#e2eaf0}
+main{max-width:1380px;margin:auto;padding:22px clamp(14px,3vw,34px) 42px}
+.notice{background:#fff;border:1px solid #dce3e9;border-left:4px solid #b88736;border-radius:9px;padding:12px 15px;font-size:12px;color:#536270;margin-bottom:17px;line-height:1.55}
+.section{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:25px 0 11px}.section h2{font-size:16px;margin:0}.section p{font-size:11px;color:#778592;margin:4px 0 0}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.metric,.panel,.stage,.agent{background:#fff;border:1px solid #e0e6eb;border-radius:10px}
+.metric{padding:15px}.metric small{font-size:11px;color:#73818d;display:block}.metric strong{display:block;font-size:26px;margin:6px 0 2px;font-weight:650}.metric em{font-size:10px;color:#87939d;font-style:normal}
+.layout{display:grid;grid-template-columns:1.45fr .85fr;gap:12px}.panel{padding:16px}.panel h3{font-size:13px;margin:0 0 12px}
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.stage{padding:12px}.stage .num{font-size:10px;color:#9a793e;font-weight:700}.stage b{display:block;font-size:11px;margin:5px 0}.stage span{font-size:10px;color:#7c8994;line-height:1.4;display:block}
+.pill{display:inline-block;border-radius:99px;background:#edf1f4;color:#5b6d7b;padding:4px 7px;font-size:9px;font-weight:700;letter-spacing:.03em}
+.agents{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.agent{padding:12px}.agent b{display:block;font-size:11px;margin-bottom:5px}.agent small{font-size:10px;color:#7a8792;line-height:1.4;display:block}.agent .pill{margin-top:8px}
+.drop{border:1.5px dashed #aab9c6;background:#f8fafb;border-radius:9px;padding:19px;text-align:center}.drop b{display:block;font-size:12px;margin-bottom:5px}.drop p{font-size:10px;color:#71808d;margin:0 0 12px}
+button,.filebtn{background:#173c59;color:white;border:0;border-radius:7px;padding:9px 12px;font-weight:650;font-size:11px;cursor:pointer;display:inline-block}
+button.secondary{background:#eaf0f4;color:#29475d}button:focus-visible,.filebtn:focus-within{outline:3px solid #d6b36f;outline-offset:2px}input[type=file]{display:none}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:12px}th,td{text-align:left;padding:9px 7px;border-bottom:1px solid #edf0f3;overflow-wrap:anywhere}th{color:#7a8792;font-weight:600}td{color:#435361}
+.empty{color:#8996a0!important;text-align:center;padding:18px 8px}
+.event{padding:9px 0;border-bottom:1px solid #edf0f3;font-size:10px;color:#62717e}.event:last-child{border:0}
+.exception{background:#fbf8f1;border:1px solid #eee3cb;border-radius:8px;padding:11px;margin-bottom:9px}.exception b{font-size:11px}.exception p{font-size:10px;color:#687783;line-height:1.45;margin:6px 0 8px}
+footer{margin-top:20px;color:#84909a;font-size:10px;line-height:1.5}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.agents{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){header{align-items:flex-start;flex-direction:column}.metrics{grid-template-columns:repeat(2,1fr)}.stages{grid-template-columns:repeat(2,1fr)}.agents{grid-template-columns:repeat(2,1fr)}table{font-size:10px}th,td{padding:8px 4px}}
 </style>
 </head>
 <body>
-<header><div class="eyebrow">Local prototype · Multi-agent workflow</div><h1>Accounting Office Operations Workspace</h1><p>Fechamento mensal integrado · Fiscal · Departamento Pessoal · Contábil</p></header>
+<header><div class="brand"><small>Operations Control Center · Multi-agent workflow</small><h1>Accounting Intelligence</h1><p>Gestão integrada do fechamento mensal · Fiscal · Departamento Pessoal · Contábil</p></div><span class="env">PROTÓTIPO LOCAL · SEM INTEGRAÇÕES</span></header>
 <main>
-<div class="notice"><strong>Ambiente de demonstração local.</strong> Nenhuma plataforma externa está conectada. Os arquivos selecionados permanecem no navegador e não são enviados ao servidor. Esta versão inicial registra somente metadados da seleção; não executa apuração fiscal nem transmissão de obrigações.</div>
-<div class="grid">
- <div class="metric"><small>Arquivos selecionados nesta sessão</small><strong id="mFiles">0</strong></div>
- <div class="metric"><small>Formatos reconhecidos</small><strong id="mFormats">0</strong></div>
- <div class="metric"><small>Exceções em revisão</small><strong id="mExceptions">0</strong></div>
- <div class="metric"><small>Competência</small><strong style="font-size:18px">Não definida</strong></div>
+<div class="notice"><b>Limite operacional desta versão:</b> os indicadores abaixo refletem somente os arquivos selecionados nesta sessão do navegador. O protótipo não lê o conteúdo dos documentos, não executa regras fiscais ou contábeis, não persiste dados e não transmite obrigações. Os exemplos de exceção são cenários ilustrativos, não ocorrências do cliente.</div>
+<div class="metrics">
+ <article class="metric"><small>Arquivos na sessão</small><strong id="mFiles">0</strong><em>Metadados locais</em></article>
+ <article class="metric"><small>Tipos reconhecidos</small><strong id="mFormats">0</strong><em>Extensões mapeadas</em></article>
+ <article class="metric"><small>Etapas executadas</small><strong>1/8</strong><em>Somente intake visual</em></article>
+ <article class="metric"><small>Fechamentos aprovados</small><strong>—</strong><em>Não implementado</em></article>
 </div>
-<div class="section"><div><h2>Entrada documental</h2><p>Importação local por competência e referência de cliente não identificável.</p></div><span class="pill">INTAKE</span></div>
-<div class="columns">
- <section class="panel">
-  <div class="drop"><strong>Adicionar documentos à sessão</strong><p>XML · OFX · CSV · PDF · TXT · XLSX</p><label class="filebtn" for="files">Selecionar arquivos</label><input id="files" type="file" multiple accept=".xml,.ofx,.csv,.pdf,.txt,.xlsx,.xls"></div>
-  <table><thead><tr><th>Arquivo</th><th>Tipo</th><th>Tamanho</th><th>Status</th></tr></thead><tbody id="fileRows"><tr><td colspan="4" style="color:#82909b">Nenhum arquivo selecionado.</td></tr></tbody></table>
+<div class="section"><div><h2>Visão do processo</h2><p>Pipeline-alvo do produto; estados não representam execução real nesta versão.</p></div><span class="pill">WORKFLOW</span></div>
+<section class="panel"><div class="stages">
+ <div class="stage"><div class="num">01</div><b>Recepção documental</b><span>Inventário local de arquivos</span><span class="pill">DISPONÍVEL</span></div>
+ <div class="stage"><div class="num">02</div><b>Leitura e classificação</b><span>Extração e normalização</span><span class="pill">PENDENTE</span></div>
+ <div class="stage"><div class="num">03</div><b>Validação fiscal</b><span>Regras versionadas</span><span class="pill">PENDENTE</span></div>
+ <div class="stage"><div class="num">04</div><b>Departamento pessoal</b><span>Conferências e eventos</span><span class="pill">PENDENTE</span></div>
+ <div class="stage"><div class="num">05</div><b>Conciliação contábil</b><span>Correspondência de lançamentos</span><span class="pill">PENDENTE</span></div>
+ <div class="stage"><div class="num">06</div><b>Auditoria cruzada</b><span>Fiscal × DP × Contábil</span><span class="pill">PENDENTE</span></div>
+ <div class="stage"><div class="num">07</div><b>Revisão humana</b><span>Decisão e justificativa</span><span class="pill">PENDENTE</span></div>
+ <div class="stage"><div class="num">08</div><b>Fechamento</b><span>Gate de aprovação</span><span class="pill">PENDENTE</span></div>
+</div></section>
+<div class="section"><div><h2>Operação e documentos</h2><p>Seleção de arquivos na sessão atual; nenhum conteúdo é enviado ao servidor.</p></div><span class="pill">INTAKE</span></div>
+<div class="layout">
+ <section class="panel"><h3>Entrada documental</h3><div class="drop"><b>Adicionar documentos à sessão</b><p>XML · OFX · CSV · PDF · TXT · XLSX</p><label class="filebtn" for="files">Selecionar arquivos</label><input id="files" type="file" multiple accept=".xml,.ofx,.csv,.pdf,.txt,.xlsx,.xls"></div>
+ <table><thead><tr><th>Arquivo</th><th>Tipo</th><th>Tamanho</th><th>Estado</th></tr></thead><tbody id="fileRows"><tr><td colspan="4" class="empty">Nenhum arquivo selecionado.</td></tr></tbody></table></section>
+ <section class="panel"><h3>Fila de exceções · exemplos ilustrativos</h3>
+ <div class="exception"><b>Movimentação sem documento de suporte</b><p>Solicitar evidência e impedir classificação automática até revisão.</p><span class="pill">EXEMPLO · EVIDÊNCIA</span></div>
+ <div class="exception"><b>Possível divergência em documento fiscal</b><p>Exigir regra aplicável, contexto da competência e revisão profissional.</p><span class="pill">EXEMPLO · REVISÃO</span></div>
  </section>
- <section class="panel">
-  <h2 style="font-size:15px;margin:0 0 12px">Fila de revisão</h2>
-  <div class="exception"><strong>Exemplo de exceção — cenário ilustrativo</strong><p>Movimentação bancária sem documento de suporte. O sistema deverá solicitar evidência, preservar a origem do lançamento e impedir classificação automática sem confirmação.</p><span class="pill">AGUARDANDO EVIDÊNCIA</span></div>
-  <div style="height:12px"></div>
-  <div class="exception"><strong>Exemplo de exceção — cenário ilustrativo</strong><p>Documento fiscal com possível divergência de regra tributária. A validação depende de regra versionada e revisão profissional quando houver ambiguidade.</p><span class="pill">REVISÃO TÉCNICA</span></div>
- </section>
 </div>
-<div class="section"><div><h2>Fluxo do fechamento</h2><p>Etapas previstas; nesta versão, o processamento ainda não foi habilitado.</p></div><span class="pill">WORKFLOW</span></div>
-<div class="stages">
- <div class="stage"><b>01 · Intake</b><span>Seleção e inventário local</span></div>
- <div class="stage"><b>02 · Document Intelligence</b><span>Parsing e extração — pendente</span></div>
- <div class="stage"><b>03 · Validação</b><span>Regras determinísticas — pendente</span></div>
- <div class="stage"><b>04 · Reconciliação</b><span>Conciliação — pendente</span></div>
- <div class="stage"><b>05 · Auditoria cruzada</b><span>Fiscal × DP × Contábil — pendente</span></div>
- <div class="stage"><b>06 · Exceções</b><span>Priorização e evidências — pendente</span></div>
- <div class="stage"><b>07 · Aprovação humana</b><span>Registro de decisão — pendente</span></div>
- <div class="stage"><b>08 · Fechamento demonstrativo</b><span>Gate de prontidão — pendente</span></div>
-</div>
-<div class="section"><div><h2>Histórico da sessão</h2><p>Eventos locais do navegador; não constituem trilha de auditoria persistente.</p></div><button class="secondary" id="clear">Limpar sessão</button></div>
-<section class="panel" id="events"><div class="event">Protótipo iniciado. Nenhum documento foi importado.</div></section>
-<footer>PROTOTYPE · Dados não persistidos · Sem integração externa · Não utilizar para decisões ou transmissões fiscais reais.</footer>
-</main>
-<script src="app.js"></script>
-</body></html>
+<div class="section"><div><h2>Agentes especializados</h2><p>Componentes previstos na arquitetura; nenhum agente está executando nesta versão.</p></div><span class="pill">ORQUESTRAÇÃO PLANEJADA</span></div>
+<section class="agents">
+ <article class="agent"><b>Intake Agent</b><small>Recepção e inventário de documentos</small><span class="pill">NÃO EXECUTADO</span></article>
+ <article class="agent"><b>Document Intelligence</b><small>Leitura, extração e classificação</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+ <article class="agent"><b>Fiscal Review</b><small>Validação de regras e obrigações</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+ <article class="agent"><b>Payroll Review</b><small>Conferências de departamento pessoal</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+ <article class="agent"><b>Reconciliation</b><small>Conciliação e rastreabilidade</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+ <article class="agent"><b>Cross-Workstream Audit</b><small>Auditoria entre áreas</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+ <article class="agent"><b>Exception Agent</b><small>Detecção e encaminhamento de exceções</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+ <article class="agent"><b>Governance & Human Review</b><small>Aprovação, justificativa e trilha de decisão</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+</section>
+<div class="section"><div><h2>Atividade da sessão</h2><p>Registro temporário no navegador, não é trilha de auditoria persistente.</p></div><button class="secondary" id="clear">Limpar sessão</button></div>
+<section class="panel" id="events" aria-live="polite"><div class="event">Protótipo iniciado. Nenhum documento foi selecionado.</div></section>
+<footer>PROTOTYPE · Dados não persistidos · Sem integração externa · Não utilizar para decisões fiscais, contábeis, trabalhistas ou transmissões reais.</footer>
+</main><script src="app.js"></script></body></html>
