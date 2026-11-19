@@ -1,4 +1,4 @@
-name: Priority demo quality gate
+name: Portfolio demo quality gate
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   python-demo-tests:
-    name: Priority Python demo tests
+    name: Python demo test suites
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,18 +21,46 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run seven priority Python test suites
+      - name: Run all 35 Python test suites
         shell: bash
         run: |
           set -euo pipefail
           projects=(
-            "Demo Templates/AI Agents & Agentic Systems/governed-agent-execution"
+            "Demo Templates/AI Agents & Agentic Systems/agent-platform-reference"
             "Demo Templates/AI Agents & Agentic Systems/agent-runtime-control-plane"
+            "Demo Templates/AI Agents & Agentic Systems/bounded-support-workflow-agent"
             "Demo Templates/AI Agents & Agentic Systems/durable-workflow-runner"
+            "Demo Templates/AI Agents & Agentic Systems/governed-agent-execution"
+            "Demo Templates/AI Agents & Agentic Systems/multi-agent-request-review"
+            "Demo Templates/AI Agents & Agentic Systems/sme-internal-knowledge-assistant"
+            "Demo Templates/AI Agents & Agentic Systems/sme-operations-assistant"
+            "Demo Templates/AI Agents & Agentic Systems/sme-procurement-request-triage"
+            "Demo Templates/AI Automation & Workflows/crm-lead-qualification-routing"
             "Demo Templates/AI Automation & Workflows/intake-operations-hub"
+            "Demo Templates/AI Automation & Workflows/invoice-intake-exception-routing"
+            "Demo Templates/AI Automation & Workflows/lead-intake-pipeline"
+            "Demo Templates/AI Automation & Workflows/sme-customer-support-automation"
             "Demo Templates/AI Product Development/operations-review-workspace"
-            "Demo Templates/Marketing Intelligence & Business Automation/marketing-analytics-pipeline"
+            "Demo Templates/AI Product Development/sme-workflow-opportunity-mapper"
+            "Demo Templates/AI Skills & Tooling/agent-coordination"
+            "Demo Templates/AI Skills & Tooling/agent-evaluation"
+            "Demo Templates/AI Skills & Tooling/agent-observability"
+            "Demo Templates/AI Skills & Tooling/agent-orchestration"
+            "Demo Templates/AI Skills & Tooling/agent-policy-validator"
+            "Demo Templates/AI Skills & Tooling/agent-recovery"
+            "Demo Templates/AI Skills & Tooling/agent-security-governance"
+            "Demo Templates/AI Skills & Tooling/agent-state-store"
+            "Demo Templates/AI Skills & Tooling/agent-tool-gateway"
+            "Demo Templates/AI Skills & Tooling/brief-to-task"
+            "Demo Templates/AI Skills & Tooling/client-case-publication-gate"
+            "Demo Templates/AI Skills & Tooling/csv-data-quality"
+            "Demo Templates/AI Skills & Tooling/data-normalization"
+            "Demo Templates/AI Skills & Tooling/document-intelligence"
+            "Demo Templates/AI Skills & Tooling/json-contract-validator"
+            "Demo Templates/AI Skills & Tooling/knowledge-retrieval"
+            "Demo Templates/Marketing Intelligence & Business Automation/campaign-launch-qa"
             "Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer"
+            "Demo Templates/Marketing Intelligence & Business Automation/marketing-analytics-pipeline"
           )
           for project in "${projects[@]}"; do
             echo "::group::Testing $project"
@@ -53,6 +81,20 @@ jobs:
       - name: Run dashboard tests
         working-directory: Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer
         run: node --test tests/dashboard-logic.test.js
+
+  kpi-workspace-tests:
+    name: SME KPI workspace JavaScript tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Run KPI workspace tests
+        working-directory: Demo Templates/Web Applications & SaaS/sme-kpi-workspace
+        run: node --test
 
   healthcare-demo-static-check:
     name: Healthcare demo JavaScript syntax
