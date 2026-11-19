@@ -13,14 +13,14 @@ try {
 
   await page.locator("#files").setInputFiles({
     name: "synthetic.csv", mimeType: "text/csv",
-    buffer: Buffer.from("date,amount,description\\n2026-10-01,125.50,Service fee\\n")
+    buffer: Buffer.from(["date,amount,description","2026-10-01,125.50,Service fee",""].join(String.fromCharCode(10)))
   });
   await page.waitForFunction(() => document.querySelector("#mRecords")?.textContent === "1");
   assert.match(await page.locator("#recordRows").innerText(), /125.50/);
 
   await page.locator("#files").setInputFiles({
     name: "synthetic.ofx", mimeType: "application/x-ofx",
-    buffer: Buffer.from("<OFX>\\n<BANKTRANLIST>\\n<STMTTRN>\\n<DTPOSTED>20261001120000\\n<TRNAMT>-42.10\\n<NAME>Bank fee\\n</STMTTRN>\\n</BANKTRANLIST>\\n</OFX>")
+    buffer: Buffer.from(["<OFX>","<BANKTRANLIST>","<STMTTRN>","<DTPOSTED>20261001120000","<TRNAMT>-42.10","<NAME>Bank fee","</STMTTRN>","</BANKTRANLIST>","</OFX>"].join(String.fromCharCode(10)))
   });
   await page.waitForFunction(() => document.querySelector("#mRecords")?.textContent === "2");
   assert.match(await page.locator("#recordRows").innerText(), /-42.10/);
