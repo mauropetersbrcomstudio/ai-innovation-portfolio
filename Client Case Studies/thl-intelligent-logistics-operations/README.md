@@ -30,6 +30,7 @@ O fluxo detalhado de referência está documentado em [BASELINE-OPERACIONAL.md](
 - Registra metadados e status de documentos de transporte (NF-e, CT-e, MDF-e, romaneio e POD), sem upload ou validação fiscal.
 - Registra manualmente eventos de transferência, chegada, distribuição e entrega.
 - Registra checklist de coleta: veículo selecionado, volumes previstos/conferidos, integridade, identificação/etiquetas e resultado informado.
+- Registra operações de terminal: entrada, manifesto, triagem, armazenagem contratada, consolidação, destino e janela de expedição, incluindo fluxo direto não aplicável.
 - Mantém histórico local de eventos e permite exportar os dados em JSON.
 - Exibe uma visão geral baseada exclusivamente nos registros inseridos.
 
@@ -65,9 +66,11 @@ Não inserir dados pessoais, documentos fiscais reais, dados comerciais sensíve
 
 1. Validar os campos de coleta com a equipe THL.
 2. Completar regras operacionais e estados de cada modalidade.
-3. Implementar gestão de ocorrências e documentos com critérios validados.
-4. Definir modelo de persistência e autenticação antes de qualquer uso compartilhado.
-5. Planejar agentes de IA após a qualidade e os formatos dos dados serem avaliados.
+3. Validar os estados e campos de terminal/consolidação com a equipe operacional.
+4. Refinar vínculos entre cargas, documentos, movimentações, coleta e terminal.
+5. Definir modelo de persistência e autenticação antes de qualquer uso compartilhado.
+6. Planejar agentes de IA após a qualidade e os formatos dos dados serem avaliados.
+
 
 ## Integridade do case
 
