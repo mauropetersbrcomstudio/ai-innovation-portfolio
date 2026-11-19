@@ -18,6 +18,7 @@
         <button class="nav-button" data-view="discovery">Descoberta tecnológica</button>
         <button class="nav-button" data-view="occurrences">Ocorrências <b id="nav-occurrence-count">0</b></button>
         <button class="nav-button" data-view="documents">Documentos <b id="nav-document-count">0</b></button>
+        <button class="nav-button" data-view="tracking">Movimentações <b id="nav-event-count">0</b></button>
         <button class="nav-button" data-view="audit">Auditoria</button>
       </nav>
       <div class="sidebar-bottom"><span class="local-dot"></span><div><strong>Ambiente independente</strong><small>Sem integrações externas</small></div></div>
@@ -123,6 +124,23 @@
             <article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">REFERÊNCIAS DOCUMENTAIS</span><h2>Documentos cadastrados</h2></div><span id="document-total" class="count">0</span></div><div id="document-list" class="record-list empty">Nenhum documento registrado.</div></article>
           </div>
         </section>
+<section class="view" id="view-tracking">
+<div class="page-title"><div><span class="eyebrow">TRANSFER & LAST MILE</span><h1>Movimentações e entrega</h1><p>Registro manual de eventos de transferência, distribuição e POD.</p></div></div>
+<div class="notice">Eventos informados manualmente. Sem GPS, rastreamento em tempo real ou integração externa. Não registre dados pessoais do recebedor, assinaturas ou documentos nesta versão.</div>
+<div class="two-col form-layout">
+<form class="panel form-panel" id="event-form"><div class="panel-head"><div><span class="eyebrow">EVENTO OPERACIONAL</span><h2>Nova movimentação</h2></div></div>
+<label>Referência da carga<input name="reference" maxlength="60" required></label>
+<div class="form-grid"><label>Etapa<select name="stage"><option>Transferência rodoviária</option><option>Chegada ao terminal / filial</option><option>Triagem / desconsolidação</option><option>Em distribuição</option><option>Tentativa de entrega</option><option>Entrega realizada</option><option>Retorno / insucesso</option><option>Outro evento</option></select></label><label>Data e hora<input name="occurredAt" type="datetime-local" required></label></div>
+<div class="form-grid"><label>Local informado<input name="location" maxlength="120" placeholder="Cidade / UF ou unidade"></label><label>Resultado<select name="result"><option>Informativo</option><option>Em andamento</option><option>Concluído</option><option>Com impedimento</option></select></label></div>
+<label>Observações<textarea name="notes" rows="3" maxlength="700"></textarea></label><button class="button primary" type="submit">Registrar movimentação</button></form>
+<article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">HISTÓRICO DE EVENTOS</span><h2>Movimentações registradas</h2></div><span id="event-total" class="count">0</span></div><div id="event-list" class="record-list empty">Nenhuma movimentação registrada.</div></article></div>
+<div class="two-col form-layout">
+<form class="panel form-panel" id="pod-form"><div class="panel-head"><div><span class="eyebrow">PROOF OF DELIVERY</span><h2>Registro de comprovante</h2></div></div>
+<label>Referência da carga<input name="reference" maxlength="60" required></label>
+<div class="form-grid"><label>Status do POD<select name="status"><option>Aguardando comprovante</option><option>Comprovante recebido</option><option>Conferido manualmente</option><option>Comprovante divergente</option><option>Não aplicável</option></select></label><label>Data da entrega<input name="deliveryDate" type="date"></label></div>
+<label>Tipo de evidência<select name="evidenceType"><option>Não informado</option><option>Físico</option><option>Eletrônico</option><option>Referência externa</option></select></label>
+<label>Referência não sensível<input name="evidenceRef" maxlength="120" placeholder="Não anexar assinatura ou imagem"></label><button class="button primary" type="submit">Registrar status do POD</button></form>
+<article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">CONTROLE DE ENTREGA</span><h2>Comprovantes registrados</h2></div><span id="pod-total" class="count">0</span></div><div id="pod-list" class="record-list empty">Nenhum POD registrado.</div></article></div></section>
 <section class="view" id="view-audit">
           <div class="page-title"><div><span class="eyebrow">GOVERNANÇA E RASTREABILIDADE</span><h1>Histórico de auditoria</h1><p>Eventos gerados pelas ações realizadas nesta instância do navegador.</p></div></div>
           <article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">LOG LOCAL</span><h2>Eventos registrados</h2></div><button class="button secondary" id="export-audit">Exportar histórico</button></div><div id="audit-list" class="record-list empty">Nenhum evento registrado.</div></article>
