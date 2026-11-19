@@ -1,7 +1,7 @@
 (() => {
   "use strict";
   const KEY = "thl-intelligent-logistics-mvp-v1";
-  const emptyState = { shipments: [], systems: [], occurrences: [], documents: [], events: [], pods: [], collections: [], audit: [] };
+  const emptyState = { shipments: [], systems: [], occurrences: [], documents: [], events: [], pods: [], collections: [], terminal: [], audit: [] };
   const shipmentStatuses = ["Solicitação registrada","Em cotação / planejamento","Coleta planejada","Coletada","Em triagem / armazenagem","Consolidada","Em transferência","Em distribuição","Entregue — aguardando comprovante","Concluída","Em ocorrência","Cancelada"];
   const occurrenceStatuses = ["Aberta","Em análise","Aguardando informação","Resolvida","Encerrada"];
   let state = loadState();
@@ -30,7 +30,7 @@
   function openView(name) {
     document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id === "view-" + name));
     document.querySelectorAll(".nav-button").forEach(b => b.classList.toggle("active", b.dataset.view === name));
-    const labels = { overview:"VISÃO GERAL", shipments:"CARGAS", discovery:"DESCOBERTA TECNOLÓGICA", occurrences:"OCORRÊNCIAS", documents:"DOCUMENTOS", tracking:"MOVIMENTAÇÕES", fleet:"COLETA E FROTA", audit:"AUDITORIA" };
+    const labels = { overview:"VISÃO GERAL", shipments:"CARGAS", discovery:"DESCOBERTA TECNOLÓGICA", occurrences:"OCORRÊNCIAS", documents:"DOCUMENTOS", tracking:"MOVIMENTAÇÕES", fleet:"COLETA E FROTA", terminal:"TERMINAL / CONSOLIDAÇÃO", audit:"AUDITORIA" };
     $("section-name").textContent = labels[name] || name.toUpperCase();
   }
   function render() {
@@ -44,6 +44,10 @@
     $("pod-total").textContent = state.pods.length;
     $("nav-collection-count").textContent = state.collections.length;
     $("collection-total").textContent = state.collections.length;
+    $("nav-terminal-count").textContent = state.terminal.length;
+    $("terminal-total").textContent = state.terminal.length;
+    $("terminal-list").className = state.terminal.length ? "record-list" : "record-list empty";
+    $("terminal-list").innerHTML = state.terminal.length ? state.terminal.map(terminalCard).join("") : "Nenhuma operação registrada.";
     $("collection-list").className = state.collections.length ? "record-list" : "record-list empty";
     $("collection-list").innerHTML = state.collections.length ? state.collections.map(collectionCard).join("") : "Nenhum checklist registrado.";
     $("event-list").className = state.events.length ? "record-list" : "record-list empty";
@@ -89,6 +93,9 @@
   function eventCard(x) { return `<article class="record"><div class="record-top"><div><strong>${esc(x.stage)}</strong><small>${esc(x.reference)} · ${esc(x.location || "Local não informado")}</small></div><span class="record-tag">${esc(x.result)}</span></div><p>${esc(x.notes || "Sem observações")}</p><small>Evento: ${dateLabel(x.occurredAt)} · Registrado: ${dateLabel(x.createdAt)}</small></article>`; }
   function podCard(x) { return `<article class="record"><div class="record-top"><div><strong>${esc(x.reference)}</strong><small>${esc(x.evidenceType)} · Entrega: ${dateLabel(x.deliveryDate)}</small></div><span class="record-tag">${esc(x.status)}</span></div><small>Referência: ${esc(x.evidenceRef || "Não informada")}</small></article>`; }
   function collectionCard(x) { return `<article class="record"><div class="record-top"><div><strong>${esc(x.reference)}</strong><small>${esc(x.vehicle)} · ${esc(x.owner || "Responsável não informado")}</small></div><span class="record-tag">${esc(x.result)}</span></div><p>Volumes: ${esc(x.checkedPackages || "Não informado")} conferidos / ${esc(x.expectedPackages || "Não informado")} previstos</p><small>Integridade: ${esc(x.integrity)} · Etiquetas: ${esc(x.labeling)}</small>${x.notes ? `<p>${esc(x.notes)}</p>` : ""}<small>Registrado em ${dateLabel(x.createdAt)}</small></article>`; }
+  function terminalCard(x) {
+    return '<article class="record"><div class="record-top"><div><strong>'+esc(x.reference)+'</strong><small>'+esc(x.flow)+' · '+esc(x.applicability)+'</small></div><span class="record-tag">'+esc(x.stage)+'</span></div><p>Manifesto: '+esc(x.manifest)+' · Etiquetas: '+esc(x.labeling)+'</p><p>Armazenagem: '+esc(x.storage)+' · Consolidação: '+esc(x.consolidation)+'</p><small>Destino: '+esc(x.destination || "Não informado")+' · Janela: '+esc(x.dispatchWindow || "Não informada")+'</small><small>Evento: '+dateLabel(x.occurredAt)+' · Registrado: '+dateLabel(x.createdAt)+'</small>'+(x.notes?'<p>'+esc(x.notes)+'</p>':"")+'</article>';
+  }
   function auditCard(x) {
     return '<article class="record"><div class="record-top"><strong>'+esc(x.action)+'</strong><small>'+dateLabel(x.at)+'</small></div><p>'+esc(x.detail)+'</p></article>';
   }
@@ -122,6 +129,14 @@
     const data = formData(e.currentTarget);
     data.id = crypto.randomUUID(); data.createdAt = now();
     state.systems.unshift(data); log("Recurso tecnológico mapeado", data.category + " · " + (data.name || "Não identificado") + " · " + data.status);
+    e.currentTarget.reset(); persist();
+  });
+  $("terminal-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const data = formData(e.currentTarget);
+    data.id = crypto.randomUUID(); data.createdAt = now();
+    state.terminal.unshift(data);
+    log("Operação de terminal registrada", data.reference + " · " + data.flow + " · " + data.stage);
     e.currentTarget.reset(); persist();
   });
   $("collection-form").addEventListener("submit", e => {
