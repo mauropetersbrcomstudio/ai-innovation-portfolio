@@ -1,7 +1,7 @@
 (() => {
   "use strict";
   const KEY = "thl-intelligent-logistics-mvp-v1";
-  const emptyState = { shipments: [], systems: [], occurrences: [], audit: [] };
+  const emptyState = { shipments: [], systems: [], occurrences: [], documents: [], audit: [] };
   const shipmentStatuses = ["Solicitação registrada","Em cotação / planejamento","Coleta planejada","Coletada","Em triagem / armazenagem","Consolidada","Em transferência","Em distribuição","Entregue — aguardando comprovante","Concluída","Em ocorrência","Cancelada"];
   const occurrenceStatuses = ["Aberta","Em análise","Aguardando informação","Resolvida","Encerrada"];
   let state = loadState();
@@ -38,6 +38,9 @@
     $("metric-transit").textContent = state.shipments.filter(x => x.status === "Em transferência" || x.status === "Em distribuição").length;
     $("metric-open-occurrences").textContent = state.occurrences.filter(x => !["Resolvida","Encerrada"].includes(x.status)).length;
     $("metric-systems").textContent = state.systems.length;
+    $("metric-documents").textContent = state.documents.length;
+    $("nav-document-count").textContent = state.documents.length;
+    $("document-total").textContent = state.documents.length;
     $("nav-load-count").textContent = state.shipments.length;
     $("nav-occurrence-count").textContent = state.occurrences.filter(x => !["Resolvida","Encerrada"].includes(x.status)).length;
     $("shipment-total").textContent = state.shipments.length;
@@ -51,6 +54,8 @@
     $("system-list").innerHTML = state.systems.length ? state.systems.map(systemCard).join("") : "Nenhum sistema ou recurso cadastrado.";
     $("occurrence-list").className = state.occurrences.length ? "record-list" : "record-list empty";
     $("occurrence-list").innerHTML = state.occurrences.length ? state.occurrences.map(occurrenceCard).join("") : "Nenhuma ocorrência registrada.";
+    $("document-list").className = state.documents.length ? "record-list" : "record-list empty";
+    $("document-list").innerHTML = state.documents.length ? state.documents.map(documentCard).join("") : "Nenhum documento registrado.";
     $("audit-list").className = state.audit.length ? "record-list" : "record-list empty";
     $("audit-list").innerHTML = state.audit.length ? state.audit.map(auditCard).join("") : "Nenhum evento registrado.";
   }
@@ -66,6 +71,9 @@
     const done = ["Resolvida","Encerrada"].includes(x.status);
     const options = occurrenceStatuses.map(status => '<option'+(status === x.status ? ' selected' : '')+'>'+esc(status)+'</option>').join("");
     return '<article class="record"><div class="record-top"><div><strong>'+esc(x.category)+'</strong><small>'+esc(x.reference || "Carga não vinculada")+' · '+esc(x.owner || "Responsável não definido")+'</small></div><span class="record-tag '+(done?"done":alert?"alert":"")+'">'+esc(x.priority)+'</span></div><p>'+esc(x.description)+'</p><label class="record-control">Atualizar tratativa<select data-occurrence-status="'+esc(x.id)+'">'+options+'</select></label><small>Registrada em '+dateLabel(x.createdAt)+'</small></article>';
+  }
+  function documentCard(x) {
+    return '<article class="record"><div class="record-top"><div><strong>'+esc(x.type)+'</strong><small>'+esc(x.reference || "Carga não vinculada")+' · '+esc(x.documentRef || "Referência não informada")+'</small></div><span class="record-tag">'+esc(x.status)+'</span></div>'+(x.notes?'<p>'+esc(x.notes)+'</p>':"")+'<small>Registrado em '+dateLabel(x.createdAt)+'</small></article>';
   }
   function auditCard(x) {
     return '<article class="record"><div class="record-top"><strong>'+esc(x.action)+'</strong><small>'+dateLabel(x.at)+'</small></div><p>'+esc(x.detail)+'</p></article>';
@@ -100,6 +108,13 @@
     const data = formData(e.currentTarget);
     data.id = crypto.randomUUID(); data.createdAt = now();
     state.systems.unshift(data); log("Recurso tecnológico mapeado", data.category + " · " + (data.name || "Não identificado") + " · " + data.status);
+    e.currentTarget.reset(); persist();
+  });
+  $("document-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const data = formData(e.currentTarget);
+    data.id = crypto.randomUUID(); data.createdAt = now();
+    state.documents.unshift(data); log("Documento registrado", data.type + " · " + (data.documentRef || "Referência não informada"));
     e.currentTarget.reset(); persist();
   });
   $("occurrence-form").addEventListener("submit", e => {
