@@ -21,6 +21,12 @@ Demonstrate how an accounting office can move from fragmented document intake an
 - Human review and approval simulation.
 - Local dashboard for workflow status, blockers, and audit events.
 
+## Synthetic demonstration scenario
+
+The dashboard includes a deliberately fictional reference scenario for competence 10/2026: 12 demo companies (8 Simples Nacional and 4 Lucro Presumido), 41 of 48 expected documents received (85.4%), 7 pending documents across 5 demo companies, and 4 illustrative exceptions (1 high, 2 medium, 1 low). Four anonymized demo rows are shown as examples; they are not the full 12-company dataset.
+
+These values are invented solely to make the prototype demonstrable in the absence of client source material. They do not describe the client, its portfolio, revenue, productivity, compliance, or actual results. They are not tax parameters, tax calculations, or official reference rates. Keep this synthetic dataset separate from any future authorized client data.
+
 ## Architecture boundary
 
 The prototype has no live integrations. Domínio, Acessórias, Sieg, Digisac, WhatsApp, Google Workspace, banking platforms, government portals, and external APIs are not connected. Future integration seams will be represented by replaceable adapters and documented contracts, not active connections.
