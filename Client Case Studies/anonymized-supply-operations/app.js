@@ -1,5 +1,5 @@
-const STORAGE_KEY = "pro-estetica-supply-operations-demo-v1";
-const POLICY = { id: "DEMO-EST-01", maxRequest: 20, standardResponse: "Revisão pela equipe antes de movimentar o estoque." };
+const STORAGE_KEY = "supply-operations-prototype-v1";
+const POLICY = { id: "DEMO-SUP-01", maxRequest: 20, standardResponse: "Revisão pela equipe antes de movimentar o estoque." };
 
 const UNITS = [
   ...Array.from({ length: 6 }, (_, i) => ({ id: `sp-${String(i + 1).padStart(2, "0")}`, label: `São Paulo · Unidade ${String(i + 1).padStart(2, "0")}`, aliases: ["sao paulo", "sp"] })),
@@ -476,7 +476,7 @@ function exportData() {
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
   const anchor = document.createElement("a");
   anchor.href = url;
-  anchor.download = "pro-estetica-demonstracao-local.json";
+  anchor.download = "supply-operations-demo-local.json";
   anchor.click();
   URL.revokeObjectURL(url);
   showToast("Cópia local dos dados de demonstração exportada.");

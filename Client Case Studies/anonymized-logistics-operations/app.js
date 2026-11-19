@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KEY = "thl-intelligent-logistics-mvp-v1";
+  const KEY = "logistics-operations-demo-v1";
   const emptyState = { shipments: [], systems: [], occurrences: [], documents: [], events: [], pods: [], collections: [], terminal: [], audit: [] };
   const shipmentStatuses = ["Solicitação registrada","Em cotação / planejamento","Coleta planejada","Coletada","Em triagem / armazenagem","Consolidada","Em transferência","Em distribuição","Entregue — aguardando comprovante","Concluída","Em ocorrência","Cancelada"];
   const occurrenceStatuses = ["Aberta","Em análise","Aguardando informação","Resolvida","Encerrada"];
@@ -257,8 +257,8 @@
     const url = URL.createObjectURL(blob); const a = document.createElement("a");
     a.href = url; a.download = filename; a.click(); URL.revokeObjectURL(url);
   }
-  $("export-button").addEventListener("click", () => download("thl-logistics-data.json", { exportedAt:now(), ...state }));
-  $("export-audit").addEventListener("click", () => download("thl-audit-log.json", { exportedAt:now(), audit:state.audit }));
+  $("export-button").addEventListener("click", () => download("logistics-demo-data.json", { exportedAt:now(), ...state }));
+  $("export-audit").addEventListener("click", () => download("logistics-demo-audit.json", { exportedAt:now(), audit:state.audit }));
   document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => openView(b.dataset.view)));
   document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => openView(b.dataset.go)));
   render();

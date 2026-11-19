@@ -1,0 +1,75 @@
+name: Repository policy checks
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/**"
+      - "Client Case Studies/**"
+      - "Demo Templates/README.md"
+      - "README.md"
+      - "REPOSITORY-SCOPE.md"
+      - "scripts/**"
+      - "tests/test_public_repository.py"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/**"
+      - "Client Case Studies/**"
+      - "Demo Templates/README.md"
+      - "README.md"
+      - "REPOSITORY-SCOPE.md"
+      - "scripts/**"
+      - "tests/test_public_repository.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repository-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate public repository scope
+        run: python scripts/validate_public_repository.py
+      - name: Test repository policy guard
+        run: python -m unittest discover -s tests -p "test_public_repository.py" -v
+      - name: Check anonymized demo JavaScript
+        run: |
+          node --check "Client Case Studies/anonymized-logistics-operations/app.js"
+          node --check "Client Case Studies/anonymized-supply-operations/app.js"
+      - name: Compile local demo servers
+        run: |
+          python -m py_compile "Client Case Studies/anonymized-logistics-operations/server.py"
+          python -m py_compile "Client Case Studies/anonymized-supply-operations/server.py"
+      - name: Verify required local demo assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          root = Path("Client Case Studies")
+          required = {
+              "anonymized-logistics-operations": ["README.md", "index.html", "styles.css", "app.js", "server.py", "docs/PUBLIC-SCOPE.md"],
+              "anonymized-supply-operations": ["README.md", "README.en.md", "index.html", "styles.css", "app.js", "server.py"],
+          }
+          for folder, files in required.items():
+              missing = [name for name in files if not (root / folder / name).is_file()]
+              assert not missing, f"{folder}: missing {missing}"
+          logistics_html = (root / "anonymized-logistics-operations" / "index.html").read_text(encoding="utf-8")
+          supply_html = (root / "anonymized-supply-operations" / "index.html").read_text(encoding="utf-8")
+          assert "DEMO LOCAL · DADOS SINTÉTICOS" in logistics_html
+          assert "Supply Operations Assistant | Prototype" in supply_html
+          assert "logo-" not in supply_html.lower()
+          print("Anonymized local demo asset checks passed.")
+          PY

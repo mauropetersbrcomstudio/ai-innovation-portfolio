@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111111">
-  <title>THL | Intelligent Logistics Operations</title>
+  <title>Logistics Operations Workspace</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
-      <div class="brand"><div class="brand-mark">THL<span>↗</span></div><div><strong>INTELLIGENT LOGISTICS</strong><small>OPERATIONS WORKSPACE</small></div></div>
+      <div class="brand"><div class="brand-mark">LOG<span>↗</span></div><div><strong>INTELLIGENT LOGISTICS</strong><small>OPERATIONS WORKSPACE</small></div></div>
       <nav aria-label="Navegação principal">
         <button class="nav-button active" data-view="overview">Visão geral</button>
         <button class="nav-button" data-view="shipments">Cargas <b id="nav-load-count">0</b></button>
@@ -26,10 +26,10 @@
       <div class="sidebar-bottom"><span class="local-dot"></span><div><strong>Ambiente independente</strong><small>Sem integrações externas</small></div></div>
     </aside>
     <main class="main">
-      <header class="topbar"><div><span class="eyebrow">THL TRANSPORTES</span><span class="slash"> / </span><span id="section-name">VISÃO GERAL</span></div><div class="top-actions"><span class="env-tag">MVP LOCAL · DADOS INSERIDOS MANUALMENTE</span><button id="export-button" class="button secondary">Exportar dados</button></div></header>
+      <header class="topbar"><div><span class="eyebrow">LOGISTICS DEMO</span><span class="slash"> / </span><span id="section-name">VISÃO GERAL</span></div><div class="top-actions"><span class="env-tag">MVP LOCAL · DADOS INSERIDOS MANUALMENTE</span><button id="export-button" class="button secondary">Exportar dados</button></div></header>
       <div class="content">
         <section class="view active" id="view-overview">
-          <div class="page-title"><div><span class="eyebrow">INTELLIGENT LOGISTICS OPERATIONS</span><h1>Centro de operações</h1><p>Acompanhamento independente das cargas, descoberta de sistemas e gestão de ocorrências.</p></div><span class="status-tag">BASELINE OPERACIONAL CONFIRMADA</span></div>
+          <div class="page-title"><div><span class="eyebrow">INTELLIGENT LOGISTICS OPERATIONS</span><h1>Centro de operações</h1><p>Acompanhamento independente das cargas, descoberta de sistemas e gestão de ocorrências.</p></div><span class="status-tag">DEMO LOCAL · DADOS SINTÉTICOS</span></div>
           <div class="notice"><strong>Ambiente de demonstração funcional.</strong> Os números refletem somente registros inseridos nesta aplicação. Não há conexão com sistemas, veículos, motoristas ou parceiros externos.</div>
           <div class="metrics">
             <article class="metric"><span>Cargas registradas</span><strong id="metric-loads">0</strong><small>Registros nesta aplicação</small></article>
@@ -55,7 +55,7 @@
             </div></article>
             <article class="panel"><div class="panel-head"><div><span class="eyebrow">VISÃO OPERACIONAL</span><h2>Últimas cargas</h2></div><button class="text-button" data-go="shipments">Ver cargas →</button></div><div id="recent-loads" class="empty">Nenhuma carga cadastrada. Registre uma carga para iniciar o acompanhamento.</div></article>
           </div>
-          <article class="panel discovery-callout"><div><span class="eyebrow">TECHNOLOGY & OPERATIONS DISCOVERY</span><h2>Mapeie o ambiente tecnológico da THL</h2><p>Registre ERP, TMS, WMS, rastreamento, parceiros, documentos, comunicação e BI. A aplicação não consulta nem conecta esses sistemas.</p></div><button class="button primary" data-go="discovery">Iniciar levantamento</button></article>
+          <article class="panel discovery-callout"><div><span class="eyebrow">TECHNOLOGY & OPERATIONS DISCOVERY</span><h2>Mapeie o ambiente tecnológico da operação</h2><p>Registre ERP, TMS, WMS, rastreamento, parceiros, documentos, comunicação e BI. A aplicação não consulta nem conecta esses sistemas.</p></div><button class="button primary" data-go="discovery">Iniciar levantamento</button></article>
         </section>
 
         <section class="view" id="view-shipments">
@@ -63,7 +63,7 @@
           <div class="two-col form-layout">
             <form class="panel form-panel" id="shipment-form">
               <div class="panel-head"><div><span class="eyebrow">NOVA OPERAÇÃO</span><h2>Dados da carga</h2></div></div>
-              <label>Referência interna<input name="reference" maxlength="60" placeholder="Ex.: THL-0001" required></label>
+              <label>Referência interna<input name="reference" maxlength="60" placeholder="Ex.: DEMO-0001" required></label>
               <div class="form-grid">
                 <label>Modalidade<select name="modality" required><option value="">Selecione</option><option>Carga fracionada</option><option>Carga dedicada</option><option>Frete expresso</option><option>Armazenagem + distribuição</option></select></label>
                 <label>Status<select name="status"><option>Solicitação registrada</option><option>Em cotação / planejamento</option><option>Coleta planejada</option><option>Coletada</option><option>Em triagem / armazenagem</option><option>Consolidada</option><option>Em transferência</option><option>Em distribuição</option><option>Entregue — aguardando comprovante</option><option>Concluída</option><option>Em ocorrência</option><option>Cancelada</option></select></label>
@@ -185,7 +185,7 @@
           <article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">LOG LOCAL</span><h2>Eventos registrados</h2></div><button class="button secondary" id="export-audit">Exportar histórico</button></div><div id="audit-list" class="record-list empty">Nenhum evento registrado.</div></article>
           <p class="footnote">Este histórico é local e não constitui trilha de auditoria inviolável. A aplicação ainda não possui autenticação, controle de acesso ou armazenamento central.</p>
         </section>
-        <footer>THL TRANSPORTES · INTELLIGENT LOGISTICS OPERATIONS · MVP INDEPENDENTE</footer>
+        <footer>LOGISTICS OPERATIONS WORKSPACE · DEMO LOCAL</footer>
       </div>
     </main>
   </div>

@@ -13,3 +13,9 @@ The single library of independently developed demonstrations, reusable templates
 | **Total** | **38** |
 
 Projects are independently developed examples and do not imply client engagements or production deployments. For substantiated client work, use the separate [Client Case Studies](../Client%20Case%20Studies/) area. The root [portfolio README](../README.md) is the complete project catalogue.
+
+## Execution and maturity
+
+Each project README should state one maturity label: `CONCEPT`, `DEMO`, `PROTOTYPE`, or `IMPLEMENTED`. Follow the project's own run instructions and documented limitations.
+
+This is a GitHub-only source library. Interactive demonstrations are run locally from their project folders; this repository has no portfolio website, hosting setup, GitHub Pages site, or web deployment.

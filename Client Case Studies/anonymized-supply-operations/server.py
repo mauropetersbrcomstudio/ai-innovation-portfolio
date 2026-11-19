@@ -16,7 +16,7 @@ class LocalHandler(SimpleHTTPRequestHandler):
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Servidor local do protótipo Pró Estética")
+    parser = argparse.ArgumentParser(description="Servidor local do protótipo Supply Operations")
     parser.add_argument("--port", type=int, default=8765, help="porta local (padrão: 8765)")
     args = parser.parse_args()
 

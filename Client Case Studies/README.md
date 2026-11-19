@@ -1,16 +1,25 @@
 # Client Case Studies
 
-This section is reserved for selected projects carried out for real clients. It is intended to show the business context, the work undertaken, and the solutions or deliverables produced during actual client engagements.
+This section is reserved for substantiated client engagements. Public material must be limited to the exact scope supported by evidence and permitted for disclosure.
 
-Each case will describe only the parts of the engagement that can be shared. Depending on the project, that may include:
+Client names, logos, documents, operational baselines, data, screenshots, testimonials, and other identifying details must not be published without the appropriate authorization. Where public attribution is not authorized, the public artifact must remain anonymized and must omit client-specific source material. No outcomes, metrics, testimonials, or project details may be invented.
 
-- The client's industry and business context.
-- The challenge or objective.
-- The scope of work and our role.
-- The solution, deliverables, or implementation.
-- The technologies and methods used.
-- Outcomes or lessons that can be substantiated and disclosed.
+## Anonymized public artifacts
 
-Client names, logos, documents, data, and other identifying details must only be published when the appropriate authorization is in place. Where an engagement is confidential, the case should be described only at a level the client permits. No outcomes, metrics, testimonials, or project details should be invented.
+### Logistics Operations Workspace
 
-Independently developed demonstrations, templates, tools, and prototypes belong in their respective portfolio categories.
+**Status: DEMO**
+
+[Open the anonymized local demonstration](./anonymized-logistics-operations/)
+
+A local-only logistics operations demonstration with manual entry and no external integrations. Client identity and the client-confirmed operational baseline are withheld pending explicit public-disclosure authorization. No client records, metrics, or outcomes are included.
+
+### Supply Replenishment Assistant
+
+**Status: PROTOTYPE**
+
+[Open the anonymized prototype](./anonymized-supply-operations/)
+
+A local prototype for supply-request intake, inventory lookup against synthetic records, simulated transfer/purchase proposals, and human review. Client identity and brand assets are withheld pending explicit public-disclosure authorization. Inventory, catalog, units, requests, limits, and policy values are synthetic.
+
+Both artifacts are local source projects only. They are not hosted or deployed, and their status labels do not imply production use.

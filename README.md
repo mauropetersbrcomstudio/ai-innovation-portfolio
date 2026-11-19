@@ -4,10 +4,18 @@
 
 A curated portfolio of independently developed AI demonstrations, reusable templates, tools, product prototypes, and separately documented client case studies.
 
+## Delivery scope
+
+This is a **GitHub-only portfolio**. The central repository and its agreed folders are the only deliverable. Demonstrations are source projects intended to run locally from their documented directories. This repository does not include a separate portfolio website or homepage, a custom domain, hosting setup, GitHub Pages site, or web deployment.
+
+## Project maturity labels
+
+Every project README must use exactly one maturity label: `CONCEPT`, `DEMO`, `PROTOTYPE`, or `IMPLEMENTED`. A label describes the current artifact maturity; it does not imply client approval, production deployment, or a measurable business outcome.
+
 The portfolio is organized into two distinct tracks:
 
 - **Demo Templates:** independently developed demonstrations and reusable building blocks.
-- **Client Case Studies:** reserved for substantiated client engagements whose public presentation is authorized.
+- **Client Case Studies:** anonymized or specifically authorized material from substantiated client engagements. Client attribution and client-specific details remain withheld until public-disclosure authorization is recorded.
 
 ## Explore the portfolio
 
@@ -25,18 +33,18 @@ The demonstration library currently contains **38 project directories across six
 | Marketing Intelligence & Business Automation | 3 | [Explore category](./Demo%20Templates/Marketing%20Intelligence%20%26%20Business%20Automation/) |
 | **Total** | **38** | [Open demonstration library](./Demo%20Templates/) |
 
-Start with the [Demo Guide](./DEMO-GUIDE.md) for orientation and execution guidance.
+Start with the [Demo Guide](./DEMO-GUIDE.md) for orientation and local execution guidance.
 
 ### Client Case Studies
 
 [Open Client Case Studies](./Client%20Case%20Studies/)
 
-This section is kept separate from independent demonstrations. A project is presented as client work only when its provenance and permission for public disclosure have been established. Client names, logos, identifiers, and confidential details must not be exposed without authorization.
+This section is kept separate from independent demonstrations. Public entries are anonymized where client attribution or source details are not authorized. The current public artifacts omit client names, logos, identifiers, and client-specific baseline documents; their sample operational data is synthetic. No client outcomes, metrics, or testimonials are claimed.
 
 ## Portfolio principles
 
 - **Evidence over claims:** describe only capabilities supported by the repository and its tests.
-- **Clear maturity labels:** distinguish demonstrations, MVPs, and production systems.
+- **Clear maturity labels:** distinguish concepts, demonstrations, prototypes, and implemented systems.
 - **Responsible disclosure:** identify synthetic data, assumptions, limitations, and external dependencies.
 - **Reusable structure:** keep each project discoverable through its own README and documentation.
 - **Controlled publication:** changes are reviewed before they are merged into the default branch.
