@@ -56,6 +56,11 @@ jobs:
           assert 'Entrega realizada' in js and 'Em ocorrência' in js, "Missing shipment lifecycle mapping"
           assert 'Conferido manualmente' in js and 'Concluída' in js, "Missing POD completion mapping"
           assert 'Pronto para expedição' in js and 'Em transferência' in js, "Missing terminal lifecycle mapping"
+          for alert_token in ["operationalAlerts", "renderOperationalAlerts", "Previsão informada ultrapassada", "Ocorrência prioritária em aberto", "Conferência de coleta requer revisão", "Divergência registrada no terminal", "Comprovante divergente", "Documento requer acompanhamento"]:
+              assert alert_token in js, f"Missing operational alert rule: {alert_token}"
+          for alert_id in ["operational-alert-count", "operational-alerts"]:
+              assert f'id="{alert_id}"' in html, f"Missing operational alert UI: {alert_id}"
+              assert alert_id in js, f"Missing operational alert binding: {alert_id}"
 
 
 
