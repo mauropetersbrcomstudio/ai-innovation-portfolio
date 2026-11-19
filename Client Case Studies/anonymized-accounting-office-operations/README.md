@@ -2,7 +2,7 @@
 
 **Status: PROTOTYPE**
 
-A local-first, multi-agent prototype for demonstrating a monthly accounting close workflow across fiscal, payroll, and accounting workstreams. The public artifact is anonymized and intentionally excludes client identity, source documents, personal data, tax identifiers, commercial records, credentials, and client-specific operational metrics.
+A local-first, multi-agent prototype for demonstrating a monthly accounting close workflow across fiscal, payroll, and accounting workstreams. The public artifact is anonymized: client identity is withheld, and the repository intentionally excludes source documents, personal data, tax identifiers, commercial records, credentials, and client-specific operational metrics. All records and examples included in the prototype are synthetic; no client source data is published.
 
 The prototype is designed as the first product increment of a solution that may later be deployed operationally. Its current demonstration mode is independent and local; external platforms are not connected.
 
