@@ -17,6 +17,7 @@
         <button class="nav-button" data-view="shipments">Cargas <b id="nav-load-count">0</b></button>
         <button class="nav-button" data-view="discovery">Descoberta tecnológica</button>
         <button class="nav-button" data-view="occurrences">Ocorrências <b id="nav-occurrence-count">0</b></button>
+        <button class="nav-button" data-view="documents">Documentos <b id="nav-document-count">0</b></button>
         <button class="nav-button" data-view="audit">Auditoria</button>
       </nav>
       <div class="sidebar-bottom"><span class="local-dot"></span><div><strong>Ambiente independente</strong><small>Sem integrações externas</small></div></div>
@@ -32,6 +33,7 @@
             <article class="metric"><span>Em trânsito</span><strong id="metric-transit">0</strong><small>Status informado manualmente</small></article>
             <article class="metric"><span>Ocorrências abertas</span><strong id="metric-open-occurrences">0</strong><small>Tratativas não encerradas</small></article>
             <article class="metric"><span>Sistemas mapeados</span><strong id="metric-systems">0</strong><small>Itens cadastrados no diagnóstico</small></article>
+            <article class="metric"><span>Documentos registrados</span><strong id="metric-documents">0</strong><small>Referências e status informados</small></article>
           </div>
           <div class="two-col">
             <article class="panel"><div class="panel-head"><div><span class="eyebrow">FLUXO CONFIRMADO</span><h2>Etapas operacionais</h2></div></div><div class="process-list">
@@ -105,7 +107,23 @@
           </div>
         </section>
 
-        <section class="view" id="view-audit">
+        
+        <section class="view" id="view-documents">
+          <div class="page-title"><div><span class="eyebrow">DOCUMENT CONTROL</span><h1>Documentos de transporte</h1><p>Controle de referências e status documentais informados manualmente. Esta versão não emite nem consulta documentos fiscais.</p></div></div>
+          <div class="notice">Cadastre apenas referências e metadados autorizados. Não carregue XML, DANFE, CT-e ou MDF-e reais nesta versão inicial. Nenhuma validação fiscal é executada.</div>
+          <div class="two-col form-layout">
+            <form class="panel form-panel" id="document-form">
+              <div class="panel-head"><div><span class="eyebrow">REGISTRO DOCUMENTAL</span><h2>Novo documento</h2></div></div>
+              <label>Referência da carga<input name="reference" maxlength="60" placeholder="Código da carga, se conhecido"></label>
+              <div class="form-grid"><label>Tipo<select name="type"><option>NF-e</option><option>CT-e</option><option>MDF-e</option><option>Romaneio</option><option>POD / Comprovante de entrega</option><option>Outro</option></select></label><label>Status<select name="status"><option>Não informado</option><option>Pendente</option><option>Recebido</option><option>Conferido manualmente</option><option>Divergente</option><option>Cancelado</option></select></label></div>
+              <label>Chave / número / referência<input name="documentRef" maxlength="100" placeholder="Não inserir conteúdo confidencial"></label>
+              <label>Observações<textarea name="notes" rows="3" maxlength="600"></textarea></label>
+              <button class="button primary" type="submit">Registrar documento</button>
+            </form>
+            <article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">REFERÊNCIAS DOCUMENTAIS</span><h2>Documentos cadastrados</h2></div><span id="document-total" class="count">0</span></div><div id="document-list" class="record-list empty">Nenhum documento registrado.</div></article>
+          </div>
+        </section>
+<section class="view" id="view-audit">
           <div class="page-title"><div><span class="eyebrow">GOVERNANÇA E RASTREABILIDADE</span><h1>Histórico de auditoria</h1><p>Eventos gerados pelas ações realizadas nesta instância do navegador.</p></div></div>
           <article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">LOG LOCAL</span><h2>Eventos registrados</h2></div><button class="button secondary" id="export-audit">Exportar histórico</button></div><div id="audit-list" class="record-list empty">Nenhum evento registrado.</div></article>
           <p class="footnote">Este histórico é local e não constitui trilha de auditoria inviolável. A aplicação ainda não possui autenticação, controle de acesso ou armazenamento central.</p>
