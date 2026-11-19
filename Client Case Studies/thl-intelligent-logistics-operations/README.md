@@ -32,7 +32,8 @@ O fluxo detalhado de referência está documentado em [BASELINE-OPERACIONAL.md](
 - Registra checklist de coleta: veículo selecionado, volumes previstos/conferidos, integridade, identificação/etiquetas e resultado informado.
 - Registra operações de terminal: entrada, manifesto, triagem, armazenagem contratada, consolidação, destino e janela de expedição, incluindo fluxo direto não aplicável.
 - Mantém histórico local de eventos e permite exportar os dados em JSON.
-- Exibe uma visão geral baseada exclusivamente nos registros inseridos, com contagens de registros operacionais e distribuição de cargas por modalidade.
+- Exibe uma visão geral baseada exclusivamente nos registros inseridos, com contagens de registros operacionais, distribuição por modalidade e previsões de entrega ultrapassadas conforme a data informada (sem presumir SLA contratual).
+- Atualiza o status da carga a partir de etapas de movimentação mapeadas quando a referência corresponde a uma carga cadastrada; a movimentação continua registrada como evento manual.
 - Sugere referências de cargas já cadastradas nos formulários relacionados, mantendo a possibilidade de digitação manual.
 
 ## O que esta versão não faz
@@ -40,7 +41,7 @@ O fluxo detalhado de referência está documentado em [BASELINE-OPERACIONAL.md](
 - Não conecta a ERP, TMS, WMS, transportadoras, rastreadores, e-mail, WhatsApp ou BI.
 - Não consulta dados externos nem transmite informações.
 - Não emite NF-e, CT-e ou MDF-e.
-- Não contrata fretes, despacha veículos, movimenta estoque físico ou confirma entregas.
+- Não contrata fretes, despacha veículos, movimenta estoque físico ou confirma entregas. A atualização de status por movimentação apenas reflete a etapa manual selecionada, não confirma a execução física do evento.
 - Não possui autenticação multiusuário nem banco de dados central.
 - Não utiliza modelo externo de IA. As classificações e registros são manuais nesta primeira versão.
 - Não calcula capacidade de frota nem valida adequação técnica do veículo; o dimensionamento permanece sob responsabilidade operacional.
