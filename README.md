@@ -6,7 +6,7 @@ A curated portfolio of independently developed AI demonstrations, reusable templ
 
 ## Delivery scope
 
-This is a **GitHub-only portfolio**. The central repository and its agreed folders are the only deliverable. Demonstrations are source projects intended to run locally from their documented directories. This repository does not include a separate portfolio website or homepage, a custom domain, hosting setup, GitHub Pages site, or web deployment.
+This is a **GitHub-only portfolio**. The central repository and its agreed folders are the only deliverable. Demonstrations are source projects intended to run locally from their documented directories. There is no separate portfolio website or homepage, no custom domain, no hosting setup, no GitHub Pages site, and no web deployment.
 
 ## Project maturity labels
 
