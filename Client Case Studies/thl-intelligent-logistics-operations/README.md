@@ -47,7 +47,7 @@ Requer Python 3, sem dependências adicionais.
 python server.py
 ```
 
-Abra http://127.0.0.1:8765 no mesmo computador. Para encerrar, pressione Ctrl+C no terminal.
+Abra http://127.0.0.1:8766 no mesmo computador. Para encerrar, pressione Ctrl+C no terminal.
 
 Também é possível abrir `index.html` diretamente, mas o servidor local é recomendado.
 
