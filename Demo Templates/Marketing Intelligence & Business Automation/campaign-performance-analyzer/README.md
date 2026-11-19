@@ -48,7 +48,7 @@ The dashboard processes the selected file locally in the browser; it does not up
 
 ## Browser, responsive, and print checks
 
-The private internal repository's cross-project Playwright check imports the included synthetic CSV, applies the Search channel filter, and generates the executive report. It also checks the dashboard at a 375 CSS-pixel viewport, including the two-column KPI layout, channel-filter width, and absence of page-level horizontal overflow.
+The public repository's [Portfolio Demo Browser Tests workflow](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/workflows/portfolio-demo-browser-tests.yml) imports the included synthetic CSV, applies the Search channel filter, and generates the executive report. It also checks the dashboard at a 375 CSS-pixel viewport, including the two-column KPI layout, channel-filter width, and absence of page-level horizontal overflow. The latest passing run is [44525851833](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44525851833).
 
 The test emulates print media and checks that the report remains visible while the dashboard masthead and print control are hidden. This is a targeted smoke check; it is not a full visual-regression suite. Wide data tables may scroll inside their own containers.
 

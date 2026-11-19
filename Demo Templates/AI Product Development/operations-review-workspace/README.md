@@ -61,7 +61,7 @@ A review decision is a local record only. It does not send a message, update a C
 
 ## Browser and responsive checks
 
-The private internal repository's cross-project Playwright check exercises the workspace in Chromium. In addition to recording a synthetic decision and confirming that it remains after a full page reload, the browser check uses a 375 CSS-pixel viewport, a single-column queue/detail layout, and no page-level horizontal overflow.
+The public repository's [Portfolio Demo Browser Tests workflow](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/workflows/portfolio-demo-browser-tests.yml) exercises the workspace in Chromium. It records a synthetic decision, confirms that it remains after a full page reload, and checks a 375 CSS-pixel viewport, a single-column queue/detail layout, and no page-level horizontal overflow. The latest passing run is [44525851833](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44525851833).
 
 These are targeted layout smoke checks, not a full visual review across devices and browsers. They do not change the local-only, unauthenticated demonstration boundary.
 
