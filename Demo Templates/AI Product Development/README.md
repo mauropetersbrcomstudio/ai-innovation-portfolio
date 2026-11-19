@@ -22,3 +22,10 @@ The Operations Review Workspace has a documented presentation path in the [Selec
 The [Operations Intake & Human Review Template](./operations-intake-review/) is a reusable assembly of intake pipelines, durable workflow state, review decisions, and a local workspace. It uses synthetic data and has no authentication or external actions.
 
 **Status: DEMO** — see the project README for exact run instructions, tests, data provenance, and limitations.
+
+
+## Healthcare Reception Assistant
+
+The [Healthcare Reception Assistant](./healthcare-reception-assistant/) is a local, browser-based product prototype for administrative reception workflows. It demonstrates synthetic appointment preferences, a browser-local human-review queue, and escalation for clinical, urgent, ambiguous, or unsupported requests.
+
+**Status: DEMO** — it has no live messaging, calendar, patient-record, or other external-system integrations. See the project README for run instructions and boundaries.
