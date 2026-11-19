@@ -3,7 +3,7 @@
 **Repository:** `mauropetersbrcomstudio/ai-innovation-portfolio`  
 **Branch baseline:** `main` at the time this audit branch was created  
 **Scope:** the 38 project-level README files under `Demo Templates/`  
-**Review type:** documentation and declared-scope review; not a source-code security audit or independent execution test.
+**Review type:** documentation and declared-scope review, supplemented by targeted GitHub Actions execution; not a full source-code security audit or independent local execution of all demos.
 
 ## Executive result
 
@@ -43,6 +43,7 @@ The strongest differentiator is not a claim that every project is an autonomous 
 - A checkpointed workflow cannot guarantee exactly-once external effects unless the destination enforces idempotency.
 - Static dashboards and synthetic datasets demonstrate UX and calculations, not live business performance.
 - README test commands are documentation claims. They are not, by themselves, evidence that every project test suite has been executed in this audit.
+- The automated portfolio quality gate now executes 35 existing Python test suites, the Campaign Performance Analyzer JavaScript logic tests, the SME KPI Workspace JavaScript tests, and a JavaScript syntax check for the Healthcare Reception Assistant. Passing these checks does not establish production readiness or complete behavioral coverage for all 38 demos.
 
 ## Priority candidates for the next technical and presentation pass
 
@@ -78,6 +79,17 @@ Other strong supporting components include Agent Security & Governance, Agent To
 - Promote the strongest eight demos in the root navigation and demo guide.
 - Preserve the distinction between independently developed demo templates and client case studies.
 
+## Automated validation evidence
+
+The expanded portfolio quality-gate workflow was merged through PR #15. Its pull-request run completed successfully for all four jobs:
+
+- 35 Python demo test suites — passed.
+- Campaign Performance Analyzer JavaScript logic tests — passed.
+- SME KPI Workspace JavaScript tests — passed.
+- Healthcare Reception Assistant inline JavaScript syntax check — passed.
+
+The repository policy workflow also passed on the same pull request. These results establish that the listed automated checks ran successfully in GitHub Actions on the submitted revision. They do not constitute a full security review, browser end-to-end test, or production-readiness certification. The 38-project inventory includes projects that are templates or static/browser demos and therefore do not all map to Python test suites.
+
 ## Governance
 
 - Do not publish client names, logos, confidential records, or client-specific outcome claims without recorded disclosure authorization.
@@ -88,6 +100,7 @@ Other strong supporting components include Agent Security & Governance, Agent To
 ## Audit status
 
 - **Documentation inventory:** complete for 38/38 project README files.
+- **Automated CI execution:** 35 Python suites and the listed JavaScript checks passed in GitHub Actions through PR #15.
 - **Independent local execution:** not yet completed as part of this phase.
 - **Full source-code/security review:** pending.
 - **Eight-project priority shortlist:** provisional, subject to Phase 2 technical verification.
