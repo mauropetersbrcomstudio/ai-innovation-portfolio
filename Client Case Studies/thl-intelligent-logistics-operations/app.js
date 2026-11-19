@@ -39,6 +39,9 @@
     $("metric-open-occurrences").textContent = state.occurrences.filter(x => !["Resolvida","Encerrada"].includes(x.status)).length;
     $("metric-systems").textContent = state.systems.length;
     $("metric-documents").textContent = state.documents.length;
+    const today = new Date();
+    const overdue = state.shipments.filter(x => x.dueDate && !["Concluída","Cancelada"].includes(x.status) && new Date(x.dueDate + "T23:59:59") < today);
+    $("metric-overdue").textContent = overdue.length;
     $("metric-collections").textContent = state.collections.length;
     $("metric-terminal").textContent = state.terminal.length;
     $("metric-events").textContent = state.events.length;
@@ -88,7 +91,9 @@
   }
   function shipmentCard(x) {
     const options = shipmentStatuses.map(status => '<option'+(status === x.status ? ' selected' : '')+'>'+esc(status)+'</option>').join("");
-    return '<article class="record"><div class="record-top"><div><strong>'+esc(x.reference)+'</strong><small>'+esc(x.modality)+' · '+esc(x.origin || "Origem não informada")+' → '+esc(x.destination || "Destino não informado")+'</small></div></div><p>'+esc(x.goods || "Mercadoria não informada")+' · '+esc(x.vehicle || "Veículo não definido")+'</p><label class="record-control">Atualizar status<select data-shipment-status="'+esc(x.id)+'">'+options+'</select></label><small>Registrada em '+dateLabel(x.createdAt)+'</small></article>';
+    const isOverdue = x.dueDate && !["Concluída","Cancelada"].includes(x.status) && new Date(x.dueDate + "T23:59:59") < new Date();
+    const due = x.dueDate ? '<small>Previsão informada: '+dateLabel(x.dueDate)+(isOverdue ? ' · Data ultrapassada' : '')+'</small>' : '<small>Previsão não informada</small>';
+    return '<article class="record"><div class="record-top"><div><strong>'+esc(x.reference)+'</strong><small>'+esc(x.modality)+' · '+esc(x.origin || "Origem não informada")+' → '+esc(x.destination || "Destino não informado")+'</small></div></div><p>'+esc(x.goods || "Mercadoria não informada")+' · '+esc(x.vehicle || "Veículo não definido")+'</p>'+due+'<label class="record-control">Atualizar status<select data-shipment-status="'+esc(x.id)+'">'+options+'</select></label><small>Registrada em '+dateLabel(x.createdAt)+'</small></article>';
   }
   function systemCard(x) {
     return '<article class="record"><div class="record-top"><div><strong>'+esc(x.name || "Sistema não identificado")+'</strong><small>'+esc(x.category)+' · '+esc(x.owner || "Área não informada")+'</small></div><span class="record-tag">'+esc(x.status)+'</span></div><p>'+esc(x.purpose || "Finalidade não informada")+'</p><small>Formato: '+esc(x.format)+' · Frequência: '+esc(x.frequency)+'</small>'+(x.limitations?'<small>Limitações: '+esc(x.limitations)+'</small>':"")+'</article>';
@@ -162,6 +167,20 @@
   $("event-form").addEventListener("submit", e => {
     e.preventDefault(); const data = formData(e.currentTarget);
     data.id = crypto.randomUUID(); data.createdAt = now(); state.events.unshift(data);
+    const eventStatus = {
+      "Transferência rodoviária":"Em transferência",
+      "Chegada ao terminal / filial":"Em triagem / armazenagem",
+      "Triagem / desconsolidação":"Em triagem / armazenagem",
+      "Em distribuição":"Em distribuição",
+      "Entrega realizada":"Entregue — aguardando comprovante",
+      "Retorno / insucesso":"Em ocorrência"
+    }[data.stage];
+    const linkedShipment = state.shipments.find(x => x.reference.trim().toLowerCase() === data.reference.trim().toLowerCase());
+    if (linkedShipment && eventStatus) {
+      const previousStatus = linkedShipment.status;
+      linkedShipment.status = eventStatus;
+      log("Status da carga atualizado por movimentação", linkedShipment.reference + " · " + previousStatus + " → " + eventStatus);
+    }
     log("Movimentação registrada", data.reference + " · " + data.stage + " · " + data.result);
     e.currentTarget.reset(); persist();
   });
