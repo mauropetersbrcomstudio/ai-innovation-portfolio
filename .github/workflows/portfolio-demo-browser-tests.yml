@@ -1,12 +1,6 @@
 name: Portfolio Demo Browser Tests
 
 on:
-  push:
-    paths:
-      - "Demo Templates/AI Product Development/operations-review-workspace/**"
-      - "Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer/**"
-      - "tests/portfolio-demos.e2e.mjs"
-      - ".github/workflows/portfolio-demo-browser-tests.yml"
   pull_request:
     paths:
       - "Demo Templates/AI Product Development/operations-review-workspace/**"
