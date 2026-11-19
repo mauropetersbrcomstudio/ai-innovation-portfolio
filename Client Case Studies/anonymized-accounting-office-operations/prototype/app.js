@@ -9,7 +9,7 @@ function addEvent(message){const el=document.createElement("div");el.className="
 function cell(row,value){const td=document.createElement("td");td.textContent=value==null?"":String(value);row.append(td);}
 function render(){
  $("mFiles").textContent=String(selected.length);
- $("mFormats").textContent=String(new Set(selected.filter(x=>x.status!=="REJEITADO").map(x=>x.ext)).size);
+ $("mFormats").textContent=String(new Set(selected.filter(x=>supported.has(x.ext)&&x.status!=="REJEITADO · LIMITE 10 MB").map(x=>x.ext)).size);
  $("mRecords").textContent=String(records.length);
  const body=$("fileRows");body.replaceChildren();
  if(!selected.length){const tr=document.createElement("tr"),td=document.createElement("td");td.colSpan=4;td.className="empty";td.textContent="Nenhum arquivo selecionado.";tr.append(td);body.append(tr);}
@@ -72,7 +72,6 @@ async function processFile(file){
 $("files").addEventListener("change",async event=>{
  const files=[...event.target.files];event.target.value="";
  for(const file of files){
-  if(selected.some(x=>x.name===file.name&&x.size===file.size)){addEvent("Arquivo duplicado na sessão ignorado: "+file.name);continue;}
   await processFile(file);render();
  }
 });
