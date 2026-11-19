@@ -90,6 +90,30 @@ python launch_qa.py --input sample_campaigns.csv --output-dir output
 
 **Boundaries:** the tool does not publish or activate campaigns, verify destination ownership, consent, legal compliance, analytics configuration, live URL availability, or actual tracking collection. A `ready` result means only that implemented checks passed; it is not launch authorization.
 
+## 4. Healthcare Reception Assistant
+
+**What to show:** a local administrative reception conversation, synthetic appointment-preference intake, a browser-local review queue, and deterministic escalation for clinical, urgent, ambiguous, or unsupported messages.
+
+**Requirements:** Python 3; no packages or API keys.
+
+**Start:**
+
+```bash
+cd "Demo Templates/AI Product Development/healthcare-reception-assistant"
+python -m http.server 8000
+```
+
+Open `http://localhost:8000`.
+
+**Presentation sequence:**
+1. Use the preset prompt to request an assessment and explain that the assistant only directs the user to the preference form.
+2. Submit a synthetic region and preferred period; show the pending item in the reception queue.
+3. Ask about hours or prices and show that the request is routed for human review because no approved operational content is configured.
+4. Use the clinical and urgent prompts to demonstrate escalation without clinical advice or external notification.
+5. Mark an item as reviewed and explain that this is a local demonstration state, not an actual appointment or operational action.
+
+**Boundaries:** use synthetic information only. Do not enter real patient data. The queue uses this browser's local storage; there is no authentication, cross-device synchronization, messaging, calendar, CRM, patient-record connection, or live alerting. Classification uses deterministic keyword rules. The prototype does not provide clinical advice, send messages, or confirm appointments.
+
 ## Cross-project browser verification
 
 Cross-project browser checks for the Operations Review Workspace and Campaign Performance Analyzer are maintained with the private internal validation materials. Each demo's README documents its local test commands. The workspace check records a synthetic decision and verifies that it persists after a page reload.
