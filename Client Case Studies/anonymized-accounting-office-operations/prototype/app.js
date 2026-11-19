@@ -21,7 +21,8 @@ function render(){
 function parseDelimited(text){
  const first=(text.split(/\r?\n/,1)[0]||"");
  const candidates=[",",";","\t"];
- const delimiter=candidates.sort((a,b)=>first.split(b).length-first.split(a).length)[0];
+ const countSeparator=sep=>{let quoted=false,count=0;for(let i=0;i<first.length;i++){if(first[i]==='"'&&quoted&&first[i+1]==='"')i++;else if(first[i]==='"')quoted=!quoted;else if(first[i]===sep&&!quoted)count++;}return count;};
+ const delimiter=candidates.sort((a,b)=>countSeparator(b)-countSeparator(a))[0];
  const rows=[];let row=[],field="",quoted=false;
  for(let i=0;i<text.length;i++){
   const ch=text[i];
