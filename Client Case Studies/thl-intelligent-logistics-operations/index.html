@@ -19,6 +19,7 @@
         <button class="nav-button" data-view="occurrences">Ocorrências <b id="nav-occurrence-count">0</b></button>
         <button class="nav-button" data-view="documents">Documentos <b id="nav-document-count">0</b></button>
         <button class="nav-button" data-view="tracking">Movimentações <b id="nav-event-count">0</b></button>
+        <button class="nav-button" data-view="fleet">Coleta e frota <b id="nav-collection-count">0</b></button>
         <button class="nav-button" data-view="audit">Auditoria</button>
       </nav>
       <div class="sidebar-bottom"><span class="local-dot"></span><div><strong>Ambiente independente</strong><small>Sem integrações externas</small></div></div>
@@ -141,6 +142,21 @@
 <label>Tipo de evidência<select name="evidenceType"><option>Não informado</option><option>Físico</option><option>Eletrônico</option><option>Referência externa</option></select></label>
 <label>Referência não sensível<input name="evidenceRef" maxlength="120" placeholder="Não anexar assinatura ou imagem"></label><button class="button primary" type="submit">Registrar status do POD</button></form>
 <article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">CONTROLE DE ENTREGA</span><h2>Comprovantes registrados</h2></div><span id="pod-total" class="count">0</span></div><div id="pod-list" class="record-list empty">Nenhum POD registrado.</div></article></div></section>
+<section class="view" id="view-fleet">
+<div class="page-title"><div><span class="eyebrow">PICKUP & FLEET DIMENSIONING</span><h1>Coleta e dimensionamento de frota</h1><p>Registre o planejamento do veículo e a conferência manual dos volumes antes do embarque.</p></div></div>
+<div class="notice">O sistema não calcula capacidade técnica, peso máximo, cubagem útil ou compatibilidade regulatória. A escolha do veículo e a liberação da coleta permanecem sob responsabilidade da equipe operacional.</div>
+<div class="two-col form-layout">
+<form class="panel form-panel" id="collection-form"><div class="panel-head"><div><span class="eyebrow">PLANEJAMENTO DE COLETA</span><h2>Checklist de coleta</h2></div></div>
+<label>Referência da carga<input name="reference" maxlength="60" required placeholder="Código da carga"></label>
+<div class="form-grid"><label>Veículo selecionado<select name="vehicle"><option>Van</option><option>Truck</option><option>Carreta</option><option>Outro / a confirmar</option><option>Ainda não definido</option></select></label><label>Responsável pela conferência<input name="owner" maxlength="100" placeholder="Área ou responsável"></label></div>
+<div class="form-grid"><label>Volumes previstos<input name="expectedPackages" type="number" min="0" step="1"></label><label>Volumes conferidos<input name="checkedPackages" type="number" min="0" step="1"></label></div>
+<label>Integridade das embalagens<select name="integrity"><option>Não conferida</option><option>Íntegras</option><option>Com avaria identificada</option><option>Conferência parcial</option></select></label>
+<label>Identificação e etiquetas<select name="labeling"><option>Não conferida</option><option>Conferidas</option><option>Com divergência</option><option>Não aplicável</option></select></label>
+<label>Resultado da coleta<select name="result"><option>Planejada</option><option>Conferência pendente</option><option>Liberada para embarque</option><option>Com divergência / bloqueio</option><option>Não realizada</option></select></label>
+<label>Observações<textarea name="notes" rows="3" maxlength="700" placeholder="Divergências, restrições de acesso ou observações autorizadas"></textarea></label>
+<button class="button primary" type="submit">Registrar checklist</button></form>
+<article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">REGISTROS DE COLETA</span><h2>Checklists registrados</h2></div><span id="collection-total" class="count">0</span></div><div id="collection-list" class="record-list empty">Nenhum checklist registrado.</div></article>
+</div></section>
 <section class="view" id="view-audit">
           <div class="page-title"><div><span class="eyebrow">GOVERNANÇA E RASTREABILIDADE</span><h1>Histórico de auditoria</h1><p>Eventos gerados pelas ações realizadas nesta instância do navegador.</p></div></div>
           <article class="panel list-panel"><div class="panel-head"><div><span class="eyebrow">LOG LOCAL</span><h2>Eventos registrados</h2></div><button class="button secondary" id="export-audit">Exportar histórico</button></div><div id="audit-list" class="record-list empty">Nenhum evento registrado.</div></article>
