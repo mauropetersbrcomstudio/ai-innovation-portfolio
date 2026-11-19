@@ -52,6 +52,9 @@ jobs:
               assert f'id="{metric_id}"' in html, f"Missing dashboard metric: {metric_id}"
               assert f'$("{metric_id}")' in js, f"Missing dashboard binding: {metric_id}"
           assert 'id="modality-summary"' in html and 'modality-summary' in js, "Missing modality summary"
+          assert 'id="metric-overdue"' in html and 'metric-overdue' in js, "Missing overdue forecast indicator"
+          assert 'Entrega realizada' in js and 'Em ocorrência' in js, "Missing shipment lifecycle mapping"
+
 
           print("THL MVP static checks passed.")
           PY
