@@ -1,0 +1,38 @@
+name: Accounting Prototype Browser Tests
+
+on:
+  pull_request:
+    paths:
+      - "Client Case Studies/anonymized-accounting-office-operations/**"
+      - ".github/workflows/accounting-prototype-browser-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Chromium test dependency
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Start local prototype
+        run: |
+          python "Client Case Studies/anonymized-accounting-office-operations/prototype/server.py" > /tmp/accounting-prototype.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8767/ >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8767/ >/dev/null
+      - name: Run browser smoke tests
+        run: node "Client Case Studies/anonymized-accounting-office-operations/prototype/browser-smoke.mjs"
+      - name: Show server log on failure
+        if: failure()
+        run: cat /tmp/accounting-prototype.log || true
