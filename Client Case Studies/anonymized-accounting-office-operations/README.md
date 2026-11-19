@@ -43,7 +43,7 @@ cd prototype
 python server.py
 ```
 
-Open `http://127.0.0.1:8767` on the same computer. The initial shell supports session-only file selection and metadata inventory. It does not upload or persist file contents and does not yet parse or reconcile source documents. Do not run this project against production systems or place source client files in this public repository.
+Open `http://127.0.0.1:8767` on the same computer. The current local increment reads CSV and OFX files in the browser for limited, header-based record normalization, and checks XML well-formedness only. It does not upload or persist file contents. PDF/OCR, XLSX, fiscal XML extraction, calculations, classification, reconciliation, and workflow persistence are not implemented. Do not run this project against production systems or place source client files in this public repository.
 
 ## Data and publication boundary
 
@@ -51,7 +51,7 @@ Use only authorized source files in a controlled local working directory. Keep a
 
 ## Current maturity and limitations
 
-This is a **PROTOTYPE**. No production integration, filing, payment, or deployment is implemented or claimed. Parsing coverage, business rules, reconciliation behavior, and performance must be verified against the client's supplied sample files before being described as working capabilities.
+This is a **PROTOTYPE**. No production integration, filing, payment, or deployment is implemented or claimed. Current CSV/OFX parsing is a preliminary format adapter, not yet validated against representative client exports. Parsing coverage, business rules, reconciliation behavior, and performance must be verified against authorized samples before being described as production-ready capabilities.
 
 See:
 - [Product brief](./docs/PRODUCT-BRIEF.md)
