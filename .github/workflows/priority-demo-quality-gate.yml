@@ -1,0 +1,105 @@
+name: Priority demo quality gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python-demo-tests:
+    name: Priority Python demo tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run seven priority Python test suites
+        shell: bash
+        run: |
+          set -euo pipefail
+          projects=(
+            "Demo Templates/AI Agents & Agentic Systems/governed-agent-execution"
+            "Demo Templates/AI Agents & Agentic Systems/agent-runtime-control-plane"
+            "Demo Templates/AI Agents & Agentic Systems/durable-workflow-runner"
+            "Demo Templates/AI Automation & Workflows/intake-operations-hub"
+            "Demo Templates/AI Product Development/operations-review-workspace"
+            "Demo Templates/Marketing Intelligence & Business Automation/marketing-analytics-pipeline"
+            "Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer"
+          )
+          for project in "${projects[@]}"; do
+            echo "::group::Testing $project"
+            (cd "$project" && python -m unittest discover -s tests -v)
+            echo "::endgroup::"
+          done
+
+  campaign-dashboard-tests:
+    name: Campaign dashboard logic tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Run dashboard tests
+        working-directory: Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer
+        run: node --test tests/dashboard-logic.test.js
+
+  healthcare-demo-static-check:
+    name: Healthcare demo JavaScript syntax
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Extract and syntax-check inline JavaScript
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+
+          class ScriptExtractor(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.in_script = False
+                  self.parts = []
+                  self.current = []
+
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower() == "script":
+                      self.in_script = True
+                      self.current = []
+
+              def handle_data(self, data):
+                  if self.in_script:
+                      self.current.append(data)
+
+              def handle_endtag(self, tag):
+                  if tag.lower() == "script" and self.in_script:
+                      self.parts.append("".join(self.current))
+                      self.in_script = False
+
+          html = Path("Demo Templates/AI Product Development/healthcare-reception-assistant/index.html").read_text(encoding="utf-8")
+          parser = ScriptExtractor()
+          parser.feed(html)
+          scripts = [script for script in parser.parts if script.strip()]
+          assert scripts, "No inline JavaScript found"
+          Path("/tmp/healthcare-demo.js").write_text("\n".join(scripts), encoding="utf-8")
+          PY
+          node --check /tmp/healthcare-demo.js
