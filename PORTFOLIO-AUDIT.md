@@ -43,7 +43,7 @@ The strongest differentiator is not a claim that every project is an autonomous 
 - A checkpointed workflow cannot guarantee exactly-once external effects unless the destination enforces idempotency.
 - Static dashboards and synthetic datasets demonstrate UX and calculations, not live business performance.
 - README test commands are documentation claims. They are not, by themselves, evidence that every project test suite has been executed in this audit.
-- The automated portfolio quality gate now executes 35 existing Python test suites, the Campaign Performance Analyzer JavaScript logic tests, the SME KPI Workspace JavaScript tests, and a JavaScript syntax check for the Healthcare Reception Assistant. Passing these checks does not establish production readiness or complete behavioral coverage for all 38 demos.
+- The automated portfolio quality gate executes 35 Python test suites, the Campaign Performance Analyzer JavaScript logic tests, the SME KPI Workspace JavaScript tests, and a JavaScript syntax check for the Healthcare Reception Assistant. A separate Chromium workflow now exercises selected end-to-end paths in Operations Review Workspace and Campaign Performance Analyzer. These targeted checks do not establish production readiness or complete behavioral coverage for all 38 demos.
 
 ## Priority candidates for the next technical and presentation pass
 
@@ -88,7 +88,7 @@ The expanded portfolio quality-gate workflow was merged through PR #15. Its pull
 - SME KPI Workspace JavaScript tests — 4 passed.
 - Healthcare Reception Assistant inline JavaScript syntax check — passed.
 
-The repository policy workflow also passed on the same pull request. The recorded quality-gate run is [GitHub Actions run 44521190234](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44521190234). These results establish that the listed automated checks ran successfully in GitHub Actions on the submitted revision. They do not constitute a full security review, browser end-to-end test, or production-readiness certification. The 38-project inventory includes projects that are templates or static/browser demos and therefore do not all map to Python test suites.
+The repository policy workflow also passed on the same pull request. The recorded quality-gate run is [GitHub Actions run 44521190234](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44521190234). The new Chromium browser workflow passed in [run 44525851833](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/runs/44525851833), covering the selected Operations Review Workspace and Campaign Performance Analyzer paths. These results establish that the listed automated checks ran successfully in GitHub Actions on their respective submitted revisions. They do not constitute a full security review, comprehensive browser/device coverage, or production-readiness certification. The 38-project inventory includes projects that are templates or static/browser demos and therefore do not all map to Python test suites.
 
 ## Governance
 
@@ -101,6 +101,7 @@ The repository policy workflow also passed on the same pull request. The recorde
 
 - **Documentation inventory:** complete for 38/38 project README files.
 - **Automated CI execution:** 35 Python suites (267 tests), 19 JavaScript logic tests, and the Healthcare Reception Assistant syntax check passed in GitHub Actions through PR #15.
+- **Browser E2E smoke checks:** selected flows for Operations Review Workspace and Campaign Performance Analyzer passed in Chromium through PR #19.
 - **Independent local execution:** not yet completed as part of this phase.
 - **Full source-code/security review:** pending.
 - **Eight-project priority shortlist:** provisional, subject to Phase 2 technical verification.
