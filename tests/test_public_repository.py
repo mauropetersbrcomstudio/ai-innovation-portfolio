@@ -22,6 +22,9 @@ class PublicRepositoryPolicyTests(unittest.TestCase):
             "name: CI\non: push\njobs:\n  test:\n    runs-on: ubuntu-latest\n",
             encoding="utf-8",
         )
+        category_readme = root / "Demo Templates" / "Example Category" / "README.md"
+        category_readme.parent.mkdir(parents=True)
+        category_readme.write_text("# Example Category\n", encoding="utf-8")
         demo_readme = root / "Demo Templates" / "Example Category" / "example-project" / "README.md"
         demo_readme.parent.mkdir(parents=True)
         demo_readme.write_text("**Status: DEMO**\nSynthetic example.\n", encoding="utf-8")

@@ -117,6 +117,7 @@ def main() -> int:
         for error in errors:
             print(f"ERROR: {error}")
         return 1
+    project_count = sum(1 for category in (root / "Demo Templates").iterdir() if category.is_dir() for project in category.iterdir() if project.is_dir())
     workflow_count = len(
         [
             path
