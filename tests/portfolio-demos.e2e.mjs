@@ -97,7 +97,7 @@ try {
   await page.locator("#history-list .history-entry").filter({ hasText: "e2e-demo-reviewer" }).waitFor();
   await assertNoHorizontalOverflow(page, "Operations Review Workspace at 375px");
   const workspaceColumns = await page.locator(".workspace").evaluate(
-    element => getComputedStyle(element).gridTemplateColumns.trim().split(/\\s+/).length
+    element => getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).length
   );
   assert.equal(workspaceColumns, 1, "the Operations Review Workspace panels should stack on mobile");
   const workspacePanels = await page.locator(".workspace > .panel").evaluateAll(elements =>
@@ -141,7 +141,7 @@ try {
   await page.setViewportSize({ width: 375, height: 812 });
   await assertNoHorizontalOverflow(page, "Campaign Performance Analyzer at 375px");
   const kpiColumns = await page.locator(".kpis").evaluate(
-    element => getComputedStyle(element).gridTemplateColumns.trim().split(/\\s+/).length
+    element => getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).length
   );
   assert.equal(kpiColumns, 2, "campaign KPIs should use a two-column mobile layout");
   const channelFilterWidth = await page.locator("#channel-filter").evaluate(
