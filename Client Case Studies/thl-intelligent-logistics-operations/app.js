@@ -1,7 +1,7 @@
 (() => {
   "use strict";
   const KEY = "thl-intelligent-logistics-mvp-v1";
-  const emptyState = { shipments: [], systems: [], occurrences: [], documents: [], audit: [] };
+  const emptyState = { shipments: [], systems: [], occurrences: [], documents: [], events: [], pods: [], audit: [] };
   const shipmentStatuses = ["Solicitação registrada","Em cotação / planejamento","Coleta planejada","Coletada","Em triagem / armazenagem","Consolidada","Em transferência","Em distribuição","Entregue — aguardando comprovante","Concluída","Em ocorrência","Cancelada"];
   const occurrenceStatuses = ["Aberta","Em análise","Aguardando informação","Resolvida","Encerrada"];
   let state = loadState();
@@ -30,7 +30,7 @@
   function openView(name) {
     document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id === "view-" + name));
     document.querySelectorAll(".nav-button").forEach(b => b.classList.toggle("active", b.dataset.view === name));
-    const labels = { overview:"VISÃO GERAL", shipments:"CARGAS", discovery:"DESCOBERTA TECNOLÓGICA", occurrences:"OCORRÊNCIAS", audit:"AUDITORIA" };
+    const labels = { overview:"VISÃO GERAL", shipments:"CARGAS", discovery:"DESCOBERTA TECNOLÓGICA", occurrences:"OCORRÊNCIAS", documents:"DOCUMENTOS", tracking:"MOVIMENTAÇÕES", audit:"AUDITORIA" };
     $("section-name").textContent = labels[name] || name.toUpperCase();
   }
   function render() {
@@ -39,6 +39,13 @@
     $("metric-open-occurrences").textContent = state.occurrences.filter(x => !["Resolvida","Encerrada"].includes(x.status)).length;
     $("metric-systems").textContent = state.systems.length;
     $("metric-documents").textContent = state.documents.length;
+    $("nav-event-count").textContent = state.events.length;
+    $("event-total").textContent = state.events.length;
+    $("pod-total").textContent = state.pods.length;
+    $("event-list").className = state.events.length ? "record-list" : "record-list empty";
+    $("event-list").innerHTML = state.events.length ? state.events.map(eventCard).join("") : "Nenhuma movimentação registrada.";
+    $("pod-list").className = state.pods.length ? "record-list" : "record-list empty";
+    $("pod-list").innerHTML = state.pods.length ? state.pods.map(podCard).join("") : "Nenhum POD registrado.";
     $("nav-document-count").textContent = state.documents.length;
     $("document-total").textContent = state.documents.length;
     $("nav-load-count").textContent = state.shipments.length;
@@ -75,6 +82,8 @@
   function documentCard(x) {
     return '<article class="record"><div class="record-top"><div><strong>'+esc(x.type)+'</strong><small>'+esc(x.reference || "Carga não vinculada")+' · '+esc(x.documentRef || "Referência não informada")+'</small></div><span class="record-tag">'+esc(x.status)+'</span></div>'+(x.notes?'<p>'+esc(x.notes)+'</p>':"")+'<small>Registrado em '+dateLabel(x.createdAt)+'</small></article>';
   }
+  function eventCard(x) { return `<article class="record"><div class="record-top"><div><strong>${esc(x.stage)}</strong><small>${esc(x.reference)} · ${esc(x.location || "Local não informado")}</small></div><span class="record-tag">${esc(x.result)}</span></div><p>${esc(x.notes || "Sem observações")}</p><small>Evento: ${dateLabel(x.occurredAt)} · Registrado: ${dateLabel(x.createdAt)}</small></article>`; }
+  function podCard(x) { return `<article class="record"><div class="record-top"><div><strong>${esc(x.reference)}</strong><small>${esc(x.evidenceType)} · Entrega: ${dateLabel(x.deliveryDate)}</small></div><span class="record-tag">${esc(x.status)}</span></div><small>Referência: ${esc(x.evidenceRef || "Não informada")}</small></article>`; }
   function auditCard(x) {
     return '<article class="record"><div class="record-top"><strong>'+esc(x.action)+'</strong><small>'+dateLabel(x.at)+'</small></div><p>'+esc(x.detail)+'</p></article>';
   }
@@ -108,6 +117,18 @@
     const data = formData(e.currentTarget);
     data.id = crypto.randomUUID(); data.createdAt = now();
     state.systems.unshift(data); log("Recurso tecnológico mapeado", data.category + " · " + (data.name || "Não identificado") + " · " + data.status);
+    e.currentTarget.reset(); persist();
+  });
+  $("event-form").addEventListener("submit", e => {
+    e.preventDefault(); const data = formData(e.currentTarget);
+    data.id = crypto.randomUUID(); data.createdAt = now(); state.events.unshift(data);
+    log("Movimentação registrada", data.reference + " · " + data.stage + " · " + data.result);
+    e.currentTarget.reset(); persist();
+  });
+  $("pod-form").addEventListener("submit", e => {
+    e.preventDefault(); const data = formData(e.currentTarget);
+    data.id = crypto.randomUUID(); data.createdAt = now(); state.pods.unshift(data);
+    log("Status de POD registrado", data.reference + " · " + data.status);
     e.currentTarget.reset(); persist();
   });
   $("document-form").addEventListener("submit", e => {
