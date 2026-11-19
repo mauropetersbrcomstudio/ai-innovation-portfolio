@@ -46,6 +46,7 @@
     $("metric-terminal").textContent = state.terminal.length;
     $("metric-events").textContent = state.events.length;
     $("metric-pods").textContent = state.pods.length;
+    renderOperationalAlerts();
     const modalities = [...new Set(state.shipments.map(x => x.modality || "Não informada"))];
     $("modality-summary").className = modalities.length ? "record-list" : "record-list empty";
     $("modality-summary").innerHTML = modalities.length ? modalities.map(m => {
@@ -88,6 +89,35 @@
     $("document-list").innerHTML = state.documents.length ? state.documents.map(documentCard).join("") : "Nenhum documento registrado.";
     $("audit-list").className = state.audit.length ? "record-list" : "record-list empty";
     $("audit-list").innerHTML = state.audit.length ? state.audit.map(auditCard).join("") : "Nenhum evento registrado.";
+  }
+  function operationalAlerts() {
+    const alerts = [];
+    const active = x => !["Concluída","Cancelada"].includes(x.status);
+    const today = new Date();
+    state.shipments.filter(x => x.dueDate && active(x) && !Number.isNaN(new Date(x.dueDate + "T23:59:59").getTime()) && new Date(x.dueDate + "T23:59:59") < today)
+      .forEach(x => alerts.push({ level:"Atenção", title:"Previsão informada ultrapassada", reference:x.reference, detail:"Revisar a previsão registrada e o status manual da carga." }));
+    state.occurrences.filter(x => !["Resolvida","Encerrada"].includes(x.status) && ["Crítica","Alta"].includes(x.priority))
+      .forEach(x => alerts.push({ level:x.priority, title:"Ocorrência prioritária em aberto", reference:x.reference || "Sem carga vinculada", detail:x.category + " · " + x.status + (x.owner ? " · Responsável: " + x.owner : "") }));
+    state.occurrences.filter(x => !["Resolvida","Encerrada"].includes(x.status) && !["Crítica","Alta"].includes(x.priority))
+      .forEach(x => alerts.push({ level:"Acompanhamento", title:"Ocorrência sem encerramento", reference:x.reference || "Sem carga vinculada", detail:x.category + " · " + x.status }));
+    state.collections.filter(x => /divergência|bloqueio|não realizada/i.test(x.result || "") || /avaria|divergência/i.test(x.integrity || "") || /divergência/i.test(x.labeling || "") || (x.expectedPackages !== "" && x.checkedPackages !== "" && Number(x.expectedPackages) !== Number(x.checkedPackages)))
+      .forEach(x => alerts.push({ level:"Atenção", title:"Conferência de coleta requer revisão", reference:x.reference, detail:"Resultado: " + x.result + " · Volumes conferidos: " + (x.checkedPackages || "não informado") + "/" + (x.expectedPackages || "não informado") }));
+    state.terminal.filter(x => /divergência/i.test([x.stage,x.manifest,x.labeling,x.consolidation].join(" ")))
+      .forEach(x => alerts.push({ level:"Atenção", title:"Divergência registrada no terminal", reference:x.reference, detail:"Etapa: " + x.stage + " · Manifesto: " + x.manifest + " · Etiquetas: " + x.labeling }));
+    state.pods.filter(x => ["Aguardando comprovante","Comprovante divergente"].includes(x.status))
+      .forEach(x => alerts.push({ level:x.status === "Comprovante divergente" ? "Atenção" : "Acompanhamento", title:x.status, reference:x.reference, detail:"Verificar manualmente o registro de POD associado à entrega." }));
+    state.documents.filter(x => /pendente|divergência|divergente|não recebido|aguardando/i.test(x.status || ""))
+      .forEach(x => alerts.push({ level:/divergência|divergente/i.test(x.status) ? "Atenção" : "Acompanhamento", title:"Documento requer acompanhamento", reference:x.reference || "Sem carga vinculada", detail:x.type + " · " + x.status }));
+    const rank = { "Crítica":0, "Alta":1, "Atenção":2, "Acompanhamento":3 };
+    return alerts.sort((a,b) => (rank[a.level] ?? 4) - (rank[b.level] ?? 4));
+  }
+  function renderOperationalAlerts() {
+    const target = $("operational-alerts"), count = $("operational-alert-count");
+    if (!target || !count) return;
+    const alerts = operationalAlerts();
+    count.textContent = alerts.length;
+    target.className = alerts.length ? "record-list" : "record-list empty";
+    target.innerHTML = alerts.length ? alerts.map(a => '<article class="record"><div class="record-top"><div><strong>'+esc(a.title)+'</strong><small>'+esc(a.reference)+'</small></div><span class="record-tag '+(["Crítica","Alta","Atenção"].includes(a.level)?"alert":"")+'">'+esc(a.level)+'</span></div><p>'+esc(a.detail)+'</p></article>').join("") : "Nenhum alerta derivado dos registros atuais.";
   }
   function shipmentCard(x) {
     const options = shipmentStatuses.map(status => '<option'+(status === x.status ? ' selected' : '')+'>'+esc(status)+'</option>').join("");
