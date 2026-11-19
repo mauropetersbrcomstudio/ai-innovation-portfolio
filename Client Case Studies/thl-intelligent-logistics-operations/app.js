@@ -2,6 +2,8 @@
   "use strict";
   const KEY = "thl-intelligent-logistics-mvp-v1";
   const emptyState = { shipments: [], systems: [], occurrences: [], audit: [] };
+  const shipmentStatuses = ["Solicitação registrada","Em cotação / planejamento","Coleta planejada","Coletada","Em triagem / armazenagem","Consolidada","Em transferência","Em distribuição","Entregue — aguardando comprovante","Concluída","Em ocorrência","Cancelada"];
+  const occurrenceStatuses = ["Aberta","Em análise","Aguardando informação","Resolvida","Encerrada"];
   let state = loadState();
   const $ = (id) => document.getElementById(id);
   const now = () => new Date().toISOString();
@@ -53,7 +55,8 @@
     $("audit-list").innerHTML = state.audit.length ? state.audit.map(auditCard).join("") : "Nenhum evento registrado.";
   }
   function shipmentCard(x) {
-    return '<article class="record"><div class="record-top"><div><strong>'+esc(x.reference)+'</strong><small>'+esc(x.modality)+' · '+esc(x.origin || "Origem não informada")+' → '+esc(x.destination || "Destino não informado")+'</small></div><span class="record-tag">'+esc(x.status)+'</span></div><p>'+esc(x.goods || "Mercadoria não informada")+' · '+esc(x.vehicle || "Veículo não definido")+'</p><small>Registrada em '+dateLabel(x.createdAt)+'</small></article>';
+    const options = shipmentStatuses.map(status => '<option'+(status === x.status ? ' selected' : '')+'>'+esc(status)+'</option>').join("");
+    return '<article class="record"><div class="record-top"><div><strong>'+esc(x.reference)+'</strong><small>'+esc(x.modality)+' · '+esc(x.origin || "Origem não informada")+' → '+esc(x.destination || "Destino não informado")+'</small></div></div><p>'+esc(x.goods || "Mercadoria não informada")+' · '+esc(x.vehicle || "Veículo não definido")+'</p><label class="record-control">Atualizar status<select data-shipment-status="'+esc(x.id)+'">'+options+'</select></label><small>Registrada em '+dateLabel(x.createdAt)+'</small></article>';
   }
   function systemCard(x) {
     return '<article class="record"><div class="record-top"><div><strong>'+esc(x.name || "Sistema não identificado")+'</strong><small>'+esc(x.category)+' · '+esc(x.owner || "Área não informada")+'</small></div><span class="record-tag">'+esc(x.status)+'</span></div><p>'+esc(x.purpose || "Finalidade não informada")+'</p><small>Formato: '+esc(x.format)+' · Frequência: '+esc(x.frequency)+'</small>'+(x.limitations?'<small>Limitações: '+esc(x.limitations)+'</small>':"")+'</article>';
@@ -61,11 +64,30 @@
   function occurrenceCard(x) {
     const alert = x.priority === "Crítica" || x.priority === "Alta";
     const done = ["Resolvida","Encerrada"].includes(x.status);
-    return '<article class="record"><div class="record-top"><div><strong>'+esc(x.category)+'</strong><small>'+esc(x.reference || "Carga não vinculada")+' · '+esc(x.owner || "Responsável não definido")+'</small></div><span class="record-tag '+(done?"done":alert?"alert":"")+'">'+esc(x.priority)+' · '+esc(x.status)+'</span></div><p>'+esc(x.description)+'</p><small>Registrada em '+dateLabel(x.createdAt)+'</small></article>';
+    const options = occurrenceStatuses.map(status => '<option'+(status === x.status ? ' selected' : '')+'>'+esc(status)+'</option>').join("");
+    return '<article class="record"><div class="record-top"><div><strong>'+esc(x.category)+'</strong><small>'+esc(x.reference || "Carga não vinculada")+' · '+esc(x.owner || "Responsável não definido")+'</small></div><span class="record-tag '+(done?"done":alert?"alert":"")+'">'+esc(x.priority)+'</span></div><p>'+esc(x.description)+'</p><label class="record-control">Atualizar tratativa<select data-occurrence-status="'+esc(x.id)+'">'+options+'</select></label><small>Registrada em '+dateLabel(x.createdAt)+'</small></article>';
   }
   function auditCard(x) {
     return '<article class="record"><div class="record-top"><strong>'+esc(x.action)+'</strong><small>'+dateLabel(x.at)+'</small></div><p>'+esc(x.detail)+'</p></article>';
   }
+  document.addEventListener("change", e => {
+    const shipmentId = e.target?.dataset?.shipmentStatus;
+    const occurrenceId = e.target?.dataset?.occurrenceStatus;
+    if (shipmentId) {
+      const item = state.shipments.find(x => x.id === shipmentId);
+      if (!item || !shipmentStatuses.includes(e.target.value)) return;
+      item.status = e.target.value;
+      log("Status da carga atualizado", item.reference + " → " + item.status);
+      persist();
+    }
+    if (occurrenceId) {
+      const item = state.occurrences.find(x => x.id === occurrenceId);
+      if (!item || !occurrenceStatuses.includes(e.target.value)) return;
+      item.status = e.target.value;
+      log("Status da ocorrência atualizado", item.category + " → " + item.status);
+      persist();
+    }
+  });
   $("shipment-form").addEventListener("submit", e => {
     e.preventDefault();
     const data = formData(e.currentTarget);
