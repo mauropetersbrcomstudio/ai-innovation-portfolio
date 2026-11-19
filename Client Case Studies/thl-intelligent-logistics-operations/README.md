@@ -1,6 +1,6 @@
 # Intelligent Logistics Operations — THL
 
-**Status:** MVP inicial em desenvolvimento  
+**Status:** MVP demonstrativo funcional — pronto para validação controlada  
 **Tipo de entrega:** aplicação independente para descoberta e acompanhamento operacional  
 **Integrações externas:** fora do escopo desta versão
 
@@ -66,16 +66,19 @@ Os registros desta versão ficam no armazenamento local do navegador (`localStor
 
 Não inserir dados pessoais, documentos fiscais reais, dados comerciais sensíveis, credenciais, informações de motoristas ou dados de clientes sem autorização e avaliação de segurança. Para demonstrações, utilizar dados fictícios ou devidamente anonimizados.
 
-## Próximas etapas
+## Estado de release e limitações conhecidas
 
-1. Validar os campos de coleta com a equipe THL.
-2. Completar regras operacionais e estados de cada modalidade.
-3. Validar os estados e campos de terminal/consolidação com a equipe operacional.
-4. Refinar vínculos entre cargas, documentos, movimentações, coleta e terminal.
-5. Definir modelo de persistência e autenticação antes de qualquer uso compartilhado.
-6. Planejar agentes de IA após a qualidade e os formatos dos dados serem avaliados.
+Este pacote entrega um MVP demonstrativo independente, com registros manuais e persistência no navegador. Está apto para demonstração controlada com dados fictícios ou anonimizados, mas não está homologado para operação produtiva.
 
+Antes de uso compartilhado ou produtivo, ainda são necessários:
+1. Validar campos, estados, regras de coleta e terminal com as equipes responsáveis.
+2. Descobrir sistemas, formatos, integrações e fontes oficiais de dados.
+3. Definir autenticação, perfis de acesso, banco central, retenção, backup e trilha de auditoria confiável.
+4. Definir regras operacionais, SLA e indicadores oficiais com suas fórmulas e responsáveis.
+5. Avaliar segurança, privacidade, requisitos legais e continuidade operacional.
+6. Planejar integrações e eventual uso de IA somente após a qualidade e governança dos dados serem avaliadas.
 
-## Integridade do case
+## Integridade e autorização do case
 
-A confirmação do fluxo operacional não representa confirmação de indicadores, volumes, sistemas utilizados, regras internas, resultados ou autorização para publicação pública do nome e logotipo. Esses itens precisam de evidência ou autorização específica.
+A confirmação do fluxo operacional não representa confirmação de indicadores, volumes, sistemas utilizados, regras internas, resultados ou autorização para publicação pública do nome e logotipo do cliente. A publicação identificada depende de autorização específica. Sem essa autorização, utilizar uma versão anonimizada e dados fictícios ou devidamente anonimizados.
+
