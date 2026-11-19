@@ -153,6 +153,18 @@
     const data = formData(e.currentTarget);
     data.id = crypto.randomUUID(); data.createdAt = now();
     state.terminal.unshift(data);
+    const terminalStatus = {
+      "Consolidada":"Consolidada",
+      "Pronto para expedição":"Consolidada",
+      "Expedido":"Em transferência",
+      "Com divergência":"Em ocorrência"
+    }[data.stage];
+    const terminalShipment = state.shipments.find(x => x.reference.trim().toLowerCase() === data.reference.trim().toLowerCase());
+    if (terminalShipment && terminalStatus) {
+      const previousStatus = terminalShipment.status;
+      terminalShipment.status = terminalStatus;
+      log("Status da carga atualizado por terminal", terminalShipment.reference + " · " + previousStatus + " → " + terminalStatus);
+    }
     log("Operação de terminal registrada", data.reference + " · " + data.flow + " · " + data.stage);
     e.currentTarget.reset(); persist();
   });
@@ -187,6 +199,12 @@
   $("pod-form").addEventListener("submit", e => {
     e.preventDefault(); const data = formData(e.currentTarget);
     data.id = crypto.randomUUID(); data.createdAt = now(); state.pods.unshift(data);
+    const podShipment = state.shipments.find(x => x.reference.trim().toLowerCase() === data.reference.trim().toLowerCase());
+    if (podShipment && data.status === "Conferido manualmente") {
+      const previousStatus = podShipment.status;
+      podShipment.status = "Concluída";
+      log("Status da carga atualizado por conferência de POD", podShipment.reference + " · " + previousStatus + " → Concluída");
+    }
     log("Status de POD registrado", data.reference + " · " + data.status);
     e.currentTarget.reset(); persist();
   });
