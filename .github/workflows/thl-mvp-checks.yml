@@ -54,6 +54,9 @@ jobs:
           assert 'id="modality-summary"' in html and 'modality-summary' in js, "Missing modality summary"
           assert 'id="metric-overdue"' in html and 'metric-overdue' in js, "Missing overdue forecast indicator"
           assert 'Entrega realizada' in js and 'Em ocorrência' in js, "Missing shipment lifecycle mapping"
+          assert 'Conferido manualmente' in js and 'Concluída' in js, "Missing POD completion mapping"
+          assert 'Pronto para expedição' in js and 'Em transferência' in js, "Missing terminal lifecycle mapping"
+
 
 
           print("THL MVP static checks passed.")
