@@ -45,7 +45,7 @@ function parseDelimited(text){
 }
 function parseOfx(text){
  if(!/<OFX[\s>]/i.test(text))throw new Error("Estrutura OFX não identificada.");
- const matches=[...text.matchAll(/<STMTTRN>([\s\S]*?)<\/STMTTRN>/gi)];
+ const matches=[...text.matchAll(/<STMTTRN>([\s\S]*?)(?=<STMTTRN>|<\/BANKTRANLIST>|<\/CCSTMTRS>|<\/INVSTMTRS>|$)/gi)];
  if(!matches.length)throw new Error("Nenhuma transação STMTTRN encontrada no OFX.");
  const tag=(block,name)=>{const m=block.match(new RegExp("<"+name+">([^<\\r\\n]*)","i"));return m?m[1].trim():"";};
  return matches.map((m,i)=>({source:"OFX · transação "+(i+1),date:tag(m[1],"DTPOSTED"),amount:tag(m[1],"TRNAMT"),description:tag(m[1],"NAME")||tag(m[1],"MEMO")}));
