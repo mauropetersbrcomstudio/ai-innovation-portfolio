@@ -44,7 +44,7 @@ def validate_repository(root: Path) -> list[str]:
             for marker in BLOCKED_WORKFLOW_MARKERS:
                 if marker in content:
                     errors.append(f"{workflow.relative_to(root)} contains prohibited deployment marker: {marker}")
-            if re.search(r"(?m)^\\s*id-token\\s*:\\s*write\\b", content):
+            if re.search(r"(?m)^\s*id-token\s*:\s*write\b", content):
                 errors.append(f"{workflow.relative_to(root)} grants id-token write permission.")
 
     for manifest in BLOCKED_ROOT_MANIFESTS:
@@ -74,7 +74,7 @@ def validate_repository(root: Path) -> list[str]:
                 continue
             text = readme.read_text(encoding="utf-8").lower()
             status_match = re.search(
-                r"(?im)^\\s*\\*\\*status:\\s*(concept|demo|prototype|implemented)\\s*\\*\\*",
+                r"(?im)^\s*\*\*status:\s*(concept|demo|prototype|implemented)\s*\*\*",
                 text,
             )
             if not status_match:
