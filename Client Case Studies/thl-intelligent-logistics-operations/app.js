@@ -39,6 +39,18 @@
     $("metric-open-occurrences").textContent = state.occurrences.filter(x => !["Resolvida","Encerrada"].includes(x.status)).length;
     $("metric-systems").textContent = state.systems.length;
     $("metric-documents").textContent = state.documents.length;
+    $("metric-collections").textContent = state.collections.length;
+    $("metric-terminal").textContent = state.terminal.length;
+    $("metric-events").textContent = state.events.length;
+    $("metric-pods").textContent = state.pods.length;
+    const modalities = [...new Set(state.shipments.map(x => x.modality || "Não informada"))];
+    $("modality-summary").className = modalities.length ? "record-list" : "record-list empty";
+    $("modality-summary").innerHTML = modalities.length ? modalities.map(m => {
+      const count = state.shipments.filter(x => (x.modality || "Não informada") === m).length;
+      return '<article class="record"><div class="record-top"><strong>'+esc(m)+'</strong><span class="record-tag">'+count+' carga(s)</span></div></article>';
+    }).join("") : "Nenhuma carga cadastrada.";
+    const refs = [...new Set(state.shipments.map(x => x.reference).filter(Boolean))];
+    $("shipment-reference-options").innerHTML = refs.map(ref => '<option value="'+esc(ref)+'"></option>').join("");
     $("nav-event-count").textContent = state.events.length;
     $("event-total").textContent = state.events.length;
     $("pod-total").textContent = state.pods.length;
