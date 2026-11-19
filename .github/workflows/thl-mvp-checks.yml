@@ -1,0 +1,50 @@
+name: THL MVP checks
+
+on:
+  pull_request:
+    paths:
+      - "Client Case Studies/thl-intelligent-logistics-operations/**"
+      - ".github/workflows/thl-mvp-checks.yml"
+  push:
+    branches:
+      - "feature/thl-intelligent-logistics-mvp"
+    paths:
+      - "Client Case Studies/thl-intelligent-logistics-operations/**"
+      - ".github/workflows/thl-mvp-checks.yml"
+
+jobs:
+  static-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check JavaScript syntax
+        run: node --check "Client Case Studies/thl-intelligent-logistics-operations/app.js"
+
+      - name: Check Python syntax
+        run: python -m py_compile "Client Case Studies/thl-intelligent-logistics-operations/server.py"
+
+      - name: Validate required application files and UI hooks
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          root = Path("Client Case Studies/thl-intelligent-logistics-operations")
+          required = ["README.md", "index.html", "styles.css", "app.js", "server.py", "docs/BASELINE-OPERACIONAL.md"]
+          missing = [name for name in required if not (root / name).is_file()]
+          assert not missing, f"Missing files: {missing}"
+          html = (root / "index.html").read_text(encoding="utf-8")
+          js = (root / "app.js").read_text(encoding="utf-8")
+          for form_id in ["shipment-form", "discovery-form", "occurrence-form"]:
+              assert f'id="{form_id}"' in html, f"Missing form in HTML: {form_id}"
+              assert f'$("{form_id}")' in js, f"Missing JS handler: {form_id}"
+          for asset in ["styles.css", "app.js"]:
+              assert f'href="{asset}"' in html or f'src="{asset}"' in html, f"Missing asset reference: {asset}"
+          assert '127.0.0.1' in (root / "server.py").read_text(encoding="utf-8")
+          print("THL MVP static checks passed.")
+          PY
