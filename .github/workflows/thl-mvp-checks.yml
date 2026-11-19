@@ -46,5 +46,12 @@ jobs:
           for asset in ["styles.css", "app.js"]:
               assert f'href="{asset}"' in html or f'src="{asset}"' in html, f"Missing asset reference: {asset}"
           assert '127.0.0.1' in (root / "server.py").read_text(encoding="utf-8")
+          assert 'id="shipment-reference-options"' in html, "Missing shipment reference datalist"
+          assert 'shipment-reference-options' in js, "Missing reference datalist rendering"
+          for metric_id in ["metric-collections", "metric-terminal", "metric-events", "metric-pods"]:
+              assert f'id="{metric_id}"' in html, f"Missing dashboard metric: {metric_id}"
+              assert f'$("{metric_id}")' in js, f"Missing dashboard binding: {metric_id}"
+          assert 'id="modality-summary"' in html and 'modality-summary' in js, "Missing modality summary"
+
           print("THL MVP static checks passed.")
           PY
