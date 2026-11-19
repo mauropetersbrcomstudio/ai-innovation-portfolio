@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Accounting Intelligence | Operations Control Center</title>
+<style>
+:root{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Arial,sans-serif;color:#17212b;background:#f3f5f7;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}header{background:#142536;color:#fff;padding:22px clamp(16px,4vw,48px);display:flex;justify-content:space-between;gap:16px;align-items:center}
+.brand small{color:#b6c5d1;letter-spacing:.14em;text-transform:uppercase;font-size:10px}.brand h1{font-size:clamp(20px,3vw,28px);margin:7px 0 4px}.brand p{font-size:12px;color:#c5d1da;margin:0}
+.env{border:1px solid #587083;border-radius:99px;padding:7px 11px;font-size:10px;white-space:nowrap;color:#e2eaf0}
+main{max-width:1380px;margin:auto;padding:22px clamp(14px,3vw,34px) 42px}
+.notice{background:#fff;border:1px solid #dce3e9;border-left:4px solid #b88736;border-radius:9px;padding:12px 15px;font-size:12px;color:#536270;margin-bottom:17px;line-height:1.55}
+.section{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:25px 0 11px}.section h2{font-size:16px;margin:0}.section p{font-size:11px;color:#778592;margin:4px 0 0}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.metric,.panel,.stage,.agent{background:#fff;border:1px solid #e0e6eb;border-radius:10px}
+.metric{padding:15px}.metric small{font-size:11px;color:#73818d;display:block}.metric strong{display:block;font-size:26px;margin:6px 0 2px;font-weight:650}.metric em{font-size:10px;color:#87939d;font-style:normal}
+.layout{display:grid;grid-template-columns:1.45fr .85fr;gap:12px}.panel{padding:16px}.panel h3{font-size:13px;margin:0 0 12px}
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.stage{padding:12px}.stage .num{font-size:10px;color:#9a793e;font-weight:700}.stage b{display:block;font-size:11px;margin:5px 0}.stage span{font-size:10px;color:#7c8994;line-height:1.4;display:block}
+.pill{display:inline-block;border-radius:99px;background:#edf1f4;color:#5b6d7b;padding:4px 7px;font-size:9px;font-weight:700;letter-spacing:.03em}
+.agents{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.agent{padding:12px}.agent b{display:block;font-size:11px;margin-bottom:5px}.agent small{font-size:10px;color:#7a8792;line-height:1.4;display:block}.agent .pill{margin-top:8px}
+.drop{border:1.5px dashed #aab9c6;background:#f8fafb;border-radius:9px;padding:19px;text-align:center}.drop b{display:block;font-size:12px;margin-bottom:5px}.drop p{font-size:10px;color:#71808d;margin:0 0 12px}
+button,.filebtn{background:#173c59;color:white;border:0;border-radius:7px;padding:9px 12px;font-weight:650;font-size:11px;cursor:pointer;display:inline-block}
+button.secondary{background:#eaf0f4;color:#29475d}button:focus-visible,.filebtn:focus-within{outline:3px solid #d6b36f;outline-offset:2px}input[type=file]{display:none}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:12px}th,td{text-align:left;padding:9px 7px;border-bottom:1px solid #edf0f3;overflow-wrap:anywhere}th{color:#7a8792;font-weight:600}td{color:#435361}
+.empty{color:#8996a0!important;text-align:center;padding:18px 8px}
+.event{padding:9px 0;border-bottom:1px solid #edf0f3;font-size:10px;color:#62717e}.event:last-child{border:0}
+.exception{background:#fbf8f1;border:1px solid #eee3cb;border-radius:8px;padding:11px;margin-bottom:9px}.exception b{font-size:11px}.exception p{font-size:10px;color:#687783;line-height:1.45;margin:6px 0 8px}
+footer{margin-top:20px;color:#84909a;font-size:10px;line-height:1.5}
+.demo-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.demo-card{background:#fff;border:1px solid #e0e6eb;border-radius:10px;padding:14px}.demo-card small{display:block;color:#73818d;font-size:10px}.demo-card strong{display:block;font-size:22px;margin:6px 0 3px}.demo-card em{font-size:10px;color:#87939d;font-style:normal}.demo-note{background:#fff8e9;border:1px solid #ead9b8;border-radius:8px;padding:10px 12px;color:#6c5938;font-size:10px;line-height:1.5;margin-bottom:10px}.demo-table{margin-top:0}@media(max-width:620px){.demo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.agents{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){header{align-items:flex-start;flex-direction:column}.metrics{grid-template-columns:repeat(2,1fr)}.stages{grid-template-columns:repeat(2,1fr)}.agents{grid-template-columns:repeat(2,1fr)}table{font-size:10px}th,td{padding:8px 4px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><small>Operations Control Center · Multi-agent workflow</small><h1>Accounting Intelligence</h1><p>Gestão integrada do fechamento mensal · Fiscal · Departamento Pessoal · Contábil</p></div><span class="env">PROTÓTIPO LOCAL · SEM INTEGRAÇÕES</span></header>
+<main>
+<div class="notice"><b>Limite operacional desta versão:</b> arquivos CSV e OFX são lidos localmente no navegador para normalização preliminar; XML passa apenas por verificação de boa formação. Nenhum conteúdo é enviado ao servidor ou persistido. Não há cálculo tributário, classificação contábil, conciliação ou transmissão. Os exemplos de exceção são ilustrativos.</div>
+<div class="metrics">
+ <article class="metric"><small>Arquivos na sessão</small><strong id="mFiles">0</strong><em>Metadados locais</em></article>
+ <article class="metric"><small>Tipos reconhecidos</small><strong id="mFormats">0</strong><em>Extensões mapeadas</em></article>
+ <article class="metric"><small>Registros lidos</small><strong id="mRecords">0</strong><em>CSV/OFX suportados nesta versão</em></article>
+ <article class="metric"><small>Fechamentos aprovados</small><strong>—</strong><em>Não implementado</em></article>
+</div>
+<div class="section"><div><h2>Cenário operacional de referência</h2><p>Carteira e competência inteiramente fictícias para demonstrar o produto.</p></div><span class="pill">DADO DEMONSTRATIVO</span></div>
+<div class="demo-note"><b>Base sintética — competência 10/2026.</b> Os números abaixo foram criados exclusivamente para a demonstração. Não representam a Vértice, sua carteira, faturamento, produtividade, obrigações ou resultados. Não são parâmetros fiscais oficiais nem resultados de cálculo.</div>
+<section class="demo-grid" aria-label="Indicadores demonstrativos">
+ <article class="demo-card"><small>Empresas na carteira fictícia</small><strong>12</strong><em>8 Simples Nacional · 4 Lucro Presumido</em></article>
+ <article class="demo-card"><small>Documentos recebidos</small><strong>41 / 48</strong><em>85,4% do volume previsto</em></article>
+ <article class="demo-card"><small>Documentos pendentes</small><strong>7</strong><em>Distribuídos em 5 empresas fictícias</em></article>
+ <article class="demo-card"><small>Exceções em revisão</small><strong>4</strong><em>1 alta · 2 médias · 1 baixa</em></article>
+</section>
+<section class="panel" style="margin-top:10px"><h3>Amostra da carteira fictícia</h3>
+<table class="demo-table"><thead><tr><th>Referência</th><th>Regime ilustrativo</th><th>Documentos</th><th>Pendências</th><th>Situação simulada</th></tr></thead><tbody>
+<tr><td>DEMO-001</td><td>Simples Nacional</td><td>7 / 8</td><td>1</td><td>Em revisão</td></tr>
+<tr><td>DEMO-002</td><td>Simples Nacional</td><td>6 / 6</td><td>0</td><td>Documentação completa</td></tr>
+<tr><td>DEMO-003</td><td>Lucro Presumido</td><td>5 / 7</td><td>2</td><td>Aguardando documentos</td></tr>
+<tr><td>DEMO-004</td><td>Simples Nacional</td><td>4 / 5</td><td>1</td><td>Aguardando documentos</td></tr>
+</tbody></table>
+<p style="font-size:10px;color:#778592;margin:10px 0 0">A tabela apresenta 4 registros de uma carteira fictícia de 12 empresas; os 8 registros restantes não são detalhados nesta prévia.</p></section>
+<div class="section"><div><h2>Visão do processo</h2><p>Pipeline-alvo do produto; estados não representam execução real nesta versão.</p></div><span class="pill">WORKFLOW</span></div>
+<section class="panel"><div class="stages">
+ <div class="stage"><div class="num">01</div><b>Recepção documental</b><span>Inventário e leitura local limitada</span><span class="pill">PARCIAL</span></div>
+ <div class="stage"><div class="num">02</div><b>Leitura e classificação</b><span>Extração e normalização</span><span class="pill">PENDENTE</span></div>
+ <div class="stage"><div class="num">03</div><b>Validação fiscal</b><span>Regras versionadas</span><span class="pill">PENDENTE</span></div>
+ <div class="stage"><div class="num">04</div><b>Departamento pessoal</b><span>Conferências e eventos</span><span class="pill">PENDENTE</span></div>
+ <div class="stage"><div class="num">05</div><b>Conciliação contábil</b><span>Correspondência de lançamentos</span><span class="pill">PENDENTE</span></div>
+ <div class="stage"><div class="num">06</div><b>Auditoria cruzada</b><span>Fiscal × DP × Contábil</span><span class="pill">PENDENTE</span></div>
+ <div class="stage"><div class="num">07</div><b>Revisão humana</b><span>Decisão e justificativa</span><span class="pill">PENDENTE</span></div>
+ <div class="stage"><div class="num">08</div><b>Fechamento</b><span>Gate de aprovação</span><span class="pill">PENDENTE</span></div>
+</div></section>
+<div class="section"><div><h2>Operação e documentos</h2><p>CSV/OFX processados localmente; XML validado estruturalmente. PDF/XLSX ainda não suportados.</p></div><span class="pill">INTAKE</span></div>
+<div class="layout">
+ <section class="panel"><h3>Entrada documental</h3><div class="drop"><b>Adicionar documentos à sessão</b><p>XML · OFX · CSV · PDF · TXT · XLSX</p><label class="filebtn" for="files">Selecionar arquivos</label><input id="files" type="file" multiple accept=".xml,.ofx,.csv,.pdf,.txt,.xlsx,.xls"></div>
+ <table><thead><tr><th>Arquivo</th><th>Tipo</th><th>Tamanho</th><th>Estado</th></tr></thead><tbody id="fileRows"><tr><td colspan="4" class="empty">Nenhum arquivo selecionado.</td></tr></tbody></table><h3 style="margin-top:20px">Registros normalizados · prévia</h3><p style="font-size:10px;color:#778592">Valores originais preservados como texto; sem classificação ou cálculo.</p><table><thead><tr><th>Origem</th><th>Data original</th><th>Valor original</th><th>Descrição</th></tr></thead><tbody id="recordRows"><tr><td colspan="4" class="empty">Nenhum registro processado.</td></tr></tbody></table></section>
+ <section class="panel"><h3>Fila de exceções · exemplos ilustrativos</h3>
+ <div class="exception"><b>Movimentação sem documento de suporte</b><p>Solicitar evidência e impedir classificação automática até revisão.</p><span class="pill">EXEMPLO · EVIDÊNCIA</span></div>
+ <div class="exception"><b>Possível divergência em documento fiscal</b><p>Exigir regra aplicável, contexto da competência e revisão profissional.</p><span class="pill">EXEMPLO · REVISÃO</span></div>
+ </section>
+</div>
+<div class="section"><div><h2>Agentes especializados</h2><p>Componentes previstos na arquitetura; nenhum agente está executando nesta versão.</p></div><span class="pill">ORQUESTRAÇÃO PLANEJADA</span></div>
+<section class="agents">
+ <article class="agent"><b>Intake Agent</b><small>Recepção e inventário de documentos</small><span class="pill">NÃO EXECUTADO</span></article>
+ <article class="agent"><b>Document Intelligence</b><small>Leitura, extração e classificação</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+ <article class="agent"><b>Fiscal Review</b><small>Validação de regras e obrigações</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+ <article class="agent"><b>Payroll Review</b><small>Conferências de departamento pessoal</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+ <article class="agent"><b>Reconciliation</b><small>Conciliação e rastreabilidade</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+ <article class="agent"><b>Cross-Workstream Audit</b><small>Auditoria entre áreas</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+ <article class="agent"><b>Exception Agent</b><small>Detecção e encaminhamento de exceções</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+ <article class="agent"><b>Governance & Human Review</b><small>Aprovação, justificativa e trilha de decisão</small><span class="pill">NÃO IMPLEMENTADO</span></article>
+</section>
+<div class="section"><div><h2>Atividade da sessão</h2><p>Registro temporário no navegador, não é trilha de auditoria persistente.</p></div><button class="secondary" id="clear">Limpar sessão</button></div>
+<section class="panel" id="events" aria-live="polite"><div class="event">Protótipo iniciado. Nenhum documento foi selecionado.</div></section>
+<footer>PROTOTYPE · Dados não persistidos · Sem integração externa · Não utilizar para decisões fiscais, contábeis, trabalhistas ou transmissões reais.</footer>
+</main><script src="app.js"></script></body></html>
