@@ -26,6 +26,7 @@ BLOCKED_ROOT_MANIFESTS = (
     "render.yaml",
 )
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
+STATUS_PATTERN = re.compile(r"(?im)^\s*(?:\*\*)?status(?:\*\*)?\s*:\s*(?:\*\*)?(concept|demo|prototype|implemented)\b")
 
 
 def validate_repository(root: Path) -> list[str]:
@@ -60,6 +61,26 @@ def validate_repository(root: Path) -> list[str]:
             if phrase not in readme_text:
                 errors.append(f"Root README must document the repository boundary: {phrase}")
 
+    demo_root = root / "Demo Templates"
+    project_count = 0
+    if not demo_root.is_dir():
+        errors.append("Missing Demo Templates directory.")
+    else:
+        category_dirs = sorted(path for path in demo_root.iterdir() if path.is_dir())
+        for category in category_dirs:
+            category_readme = category / "README.md"
+            if not category_readme.is_file():
+                errors.append(f"Missing category README: {category_readme.relative_to(root)}")
+            for project_dir in sorted(path for path in category.iterdir() if path.is_dir()):
+                project_count += 1
+                project_readme = project_dir / "README.md"
+                if not project_readme.is_file():
+                    errors.append(f"Missing project README: {project_readme.relative_to(root)}")
+                    continue
+                project_text = project_readme.read_text(encoding="utf-8")
+                if not STATUS_PATTERN.search(project_text):
+                    errors.append(f"Project README must contain one maturity label: {project_readme.relative_to(root)}")
+
     cases_root = root / "Client Case Studies"
     if not cases_root.is_dir():
         errors.append("Missing Client Case Studies directory.")
@@ -73,10 +94,7 @@ def validate_repository(root: Path) -> list[str]:
                 errors.append(f"Missing case README: {case_dir.relative_to(root)}")
                 continue
             text = readme.read_text(encoding="utf-8").lower()
-            status_match = re.search(
-                r"(?im)^\s*\*\*status:\s*(concept|demo|prototype|implemented)\s*\*\*",
-                text,
-            )
+            status_match = STATUS_PATTERN.search(text)
             if not status_match:
                 errors.append(f"Case README must contain one exact maturity label: {readme.relative_to(root)}")
             has_identity = "identity" in text or "identidade" in text
@@ -107,7 +125,7 @@ def main() -> int:
         ]
     )
     case_count = len([path for path in (root / "Client Case Studies").iterdir() if path.is_dir()])
-    print(f"Repository publication scope passed: {workflow_count} workflow files and {case_count} anonymized case directories inspected.")
+    print(f"Repository publication scope passed: {workflow_count} workflow files, {project_count} demo projects, and {case_count} anonymized case directories inspected.")
     return 0
 
 

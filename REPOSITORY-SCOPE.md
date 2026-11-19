@@ -20,4 +20,4 @@ Every project README must use exactly one of: `CONCEPT`, `DEMO`, `PROTOTYPE`, or
 
 ## Automated guard
 
-`scripts/validate_public_repository.py` checks the current repository tree for known web-deployment workflow markers, root hosting manifests, and basic anonymized case-study publication requirements. Its checks are intentionally conservative and do not scan historical Git objects or prove legal authorization.
+`scripts/validate_public_repository.py` checks the current repository tree for known web-deployment workflow markers, root hosting manifests, the six category indexes, a maturity label in every demo README, and basic anonymized case-study publication requirements. Its checks are intentionally conservative and do not scan historical Git objects or prove legal authorization.

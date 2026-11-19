@@ -16,6 +16,6 @@ Projects are independently developed examples and do not imply client engagement
 
 ## Execution and maturity
 
-Each project README should state one maturity label: `CONCEPT`, `DEMO`, `PROTOTYPE`, or `IMPLEMENTED`. Follow the project's own run instructions and documented limitations.
+Each project README must state one maturity label: `CONCEPT`, `DEMO`, `PROTOTYPE`, or `IMPLEMENTED`. The repository policy workflow checks every project README and category index. Follow the project's own run instructions and documented limitations.
 
 This is a GitHub-only source library. Interactive demonstrations are run locally from their project folders; this repository has no portfolio website, hosting setup, GitHub Pages site, or web deployment.

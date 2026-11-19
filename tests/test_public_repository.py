@@ -22,6 +22,9 @@ class PublicRepositoryPolicyTests(unittest.TestCase):
             "name: CI\non: push\njobs:\n  test:\n    runs-on: ubuntu-latest\n",
             encoding="utf-8",
         )
+        demo_readme = root / "Demo Templates" / "Example Category" / "example-project" / "README.md"
+        demo_readme.parent.mkdir(parents=True)
+        demo_readme.write_text("**Status: DEMO**\nSynthetic example.\n", encoding="utf-8")
         (root / "Client Case Studies" / "anonymized-example" / "README.md").write_text(
             "**Status: DEMO**\nClient identity is withheld. All records are synthetic.\n",
             encoding="utf-8",
@@ -66,6 +69,12 @@ class PublicRepositoryPolicyTests(unittest.TestCase):
             old = root / "Client Case Studies" / "anonymized-example"
             old.rename(root / "Client Case Studies" / "named-client-case")
         self.assertTrue(any("must be anonymized" in error for error in self.validate_temp(mutate)))
+
+    def test_rejects_demo_project_without_maturity_label(self):
+        def mutate(root: Path):
+            path = root / "Demo Templates" / "Example Category" / "example-project" / "README.md"
+            path.write_text("Synthetic example without a status.\n", encoding="utf-8")
+        self.assertTrue(any("Project README must contain one maturity label" in error for error in self.validate_temp(mutate)))
 
     def test_rejects_missing_maturity_label(self):
         def mutate(root: Path):
