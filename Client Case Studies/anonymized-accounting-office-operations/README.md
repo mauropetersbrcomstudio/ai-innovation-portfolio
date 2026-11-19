@@ -36,7 +36,14 @@ The prototype has no live integrations. Domínio, Acessórias, Sieg, Digisac, Wh
 
 ## Local execution
 
-Local run instructions will be added with the first runnable implementation. Do not run this project against production systems or place source client files in this public repository.
+Requires Python 3. From the project directory:
+
+```bash
+cd prototype
+python server.py
+```
+
+Open `http://127.0.0.1:8767` on the same computer. The initial shell supports session-only file selection and metadata inventory. It does not upload or persist file contents and does not yet parse or reconcile source documents. Do not run this project against production systems or place source client files in this public repository.
 
 ## Data and publication boundary
 
