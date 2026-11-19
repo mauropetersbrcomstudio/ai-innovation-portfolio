@@ -26,7 +26,10 @@ O fluxo detalhado de referência está documentado em [BASELINE-OPERACIONAL.md](
 - Registra cargas e seus dados operacionais manualmente.
 - Registra o inventário de sistemas e ferramentas utilizados pela empresa.
 - Coleta informações sobre ERP, TMS, WMS, rastreamento, transportadoras, documentos, comunicação e BI.
-- Registra ocorrências operacionais.
+- Registra ocorrências operacionais e histórico de tratativas.
+- Registra metadados e status de documentos de transporte (NF-e, CT-e, MDF-e, romaneio e POD), sem upload ou validação fiscal.
+- Registra manualmente eventos de transferência, chegada, distribuição e entrega.
+- Registra checklist de coleta: veículo selecionado, volumes previstos/conferidos, integridade, identificação/etiquetas e resultado informado.
 - Mantém histórico local de eventos e permite exportar os dados em JSON.
 - Exibe uma visão geral baseada exclusivamente nos registros inseridos.
 
@@ -38,6 +41,7 @@ O fluxo detalhado de referência está documentado em [BASELINE-OPERACIONAL.md](
 - Não contrata fretes, despacha veículos, movimenta estoque físico ou confirma entregas.
 - Não possui autenticação multiusuário nem banco de dados central.
 - Não utiliza modelo externo de IA. As classificações e registros são manuais nesta primeira versão.
+- Não calcula capacidade de frota nem valida adequação técnica do veículo; o dimensionamento permanece sob responsabilidade operacional.
 
 ## Executar localmente
 
