@@ -25,6 +25,7 @@ table{width:100%;border-collapse:collapse;font-size:11px;margin-top:12px}th,td{t
 .event{padding:9px 0;border-bottom:1px solid #edf0f3;font-size:10px;color:#62717e}.event:last-child{border:0}
 .exception{background:#fbf8f1;border:1px solid #eee3cb;border-radius:8px;padding:11px;margin-bottom:9px}.exception b{font-size:11px}.exception p{font-size:10px;color:#687783;line-height:1.45;margin:6px 0 8px}
 footer{margin-top:20px;color:#84909a;font-size:10px;line-height:1.5}
+.demo-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.demo-card{background:#fff;border:1px solid #e0e6eb;border-radius:10px;padding:14px}.demo-card small{display:block;color:#73818d;font-size:10px}.demo-card strong{display:block;font-size:22px;margin:6px 0 3px}.demo-card em{font-size:10px;color:#87939d;font-style:normal}.demo-note{background:#fff8e9;border:1px solid #ead9b8;border-radius:8px;padding:10px 12px;color:#6c5938;font-size:10px;line-height:1.5;margin-bottom:10px}.demo-table{margin-top:0}@media(max-width:620px){.demo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:900px){.layout{grid-template-columns:1fr}.agents{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){header{align-items:flex-start;flex-direction:column}.metrics{grid-template-columns:repeat(2,1fr)}.stages{grid-template-columns:repeat(2,1fr)}.agents{grid-template-columns:repeat(2,1fr)}table{font-size:10px}th,td{padding:8px 4px}}
 </style>
@@ -39,6 +40,22 @@ footer{margin-top:20px;color:#84909a;font-size:10px;line-height:1.5}
  <article class="metric"><small>Registros lidos</small><strong id="mRecords">0</strong><em>CSV/OFX suportados nesta versão</em></article>
  <article class="metric"><small>Fechamentos aprovados</small><strong>—</strong><em>Não implementado</em></article>
 </div>
+<div class="section"><div><h2>Cenário operacional de referência</h2><p>Carteira e competência inteiramente fictícias para demonstrar o produto.</p></div><span class="pill">DADO DEMONSTRATIVO</span></div>
+<div class="demo-note"><b>Base sintética — competência 10/2026.</b> Os números abaixo foram criados exclusivamente para a demonstração. Não representam a Vértice, sua carteira, faturamento, produtividade, obrigações ou resultados. Não são parâmetros fiscais oficiais nem resultados de cálculo.</div>
+<section class="demo-grid" aria-label="Indicadores demonstrativos">
+ <article class="demo-card"><small>Empresas na carteira fictícia</small><strong>12</strong><em>8 Simples Nacional · 4 Lucro Presumido</em></article>
+ <article class="demo-card"><small>Documentos recebidos</small><strong>41 / 48</strong><em>85,4% do volume previsto</em></article>
+ <article class="demo-card"><small>Documentos pendentes</small><strong>7</strong><em>Distribuídos em 5 empresas fictícias</em></article>
+ <article class="demo-card"><small>Exceções em revisão</small><strong>4</strong><em>1 alta · 2 médias · 1 baixa</em></article>
+</section>
+<section class="panel" style="margin-top:10px"><h3>Amostra da carteira fictícia</h3>
+<table class="demo-table"><thead><tr><th>Referência</th><th>Regime ilustrativo</th><th>Documentos</th><th>Pendências</th><th>Situação simulada</th></tr></thead><tbody>
+<tr><td>DEMO-001</td><td>Simples Nacional</td><td>7 / 8</td><td>1</td><td>Em revisão</td></tr>
+<tr><td>DEMO-002</td><td>Simples Nacional</td><td>6 / 6</td><td>0</td><td>Documentação completa</td></tr>
+<tr><td>DEMO-003</td><td>Lucro Presumido</td><td>5 / 7</td><td>2</td><td>Aguardando documentos</td></tr>
+<tr><td>DEMO-004</td><td>Simples Nacional</td><td>4 / 5</td><td>1</td><td>Aguardando documentos</td></tr>
+</tbody></table>
+<p style="font-size:10px;color:#778592;margin:10px 0 0">A tabela apresenta 4 registros de uma carteira fictícia de 12 empresas; os 8 registros restantes não são detalhados nesta prévia.</p></section>
 <div class="section"><div><h2>Visão do processo</h2><p>Pipeline-alvo do produto; estados não representam execução real nesta versão.</p></div><span class="pill">WORKFLOW</span></div>
 <section class="panel"><div class="stages">
  <div class="stage"><div class="num">01</div><b>Recepção documental</b><span>Inventário e leitura local limitada</span><span class="pill">PARCIAL</span></div>
