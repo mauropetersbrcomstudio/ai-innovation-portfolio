@@ -33,7 +33,8 @@ O fluxo detalhado de referência está documentado em [BASELINE-OPERACIONAL.md](
 - Registra operações de terminal: entrada, manifesto, triagem, armazenagem contratada, consolidação, destino e janela de expedição, incluindo fluxo direto não aplicável.
 - Mantém histórico local de eventos e permite exportar os dados em JSON.
 - Exibe uma visão geral baseada exclusivamente nos registros inseridos, com contagens de registros operacionais, distribuição por modalidade e previsões de entrega ultrapassadas conforme a data informada (sem presumir SLA contratual).
-- Atualiza o status da carga a partir de etapas de movimentação mapeadas quando a referência corresponde a uma carga cadastrada; a movimentação continua registrada como evento manual.
+- Atualiza o status da carga a partir de etapas mapeadas de movimentação e terminal quando a referência corresponde a uma carga cadastrada.
+- Ao registrar POD como “Conferido manualmente”, marca a carga vinculada como concluída. Essas transições refletem apenas os registros manuais e podem ser corrigidas pela equipe.
 - Sugere referências de cargas já cadastradas nos formulários relacionados, mantendo a possibilidade de digitação manual.
 
 ## O que esta versão não faz
