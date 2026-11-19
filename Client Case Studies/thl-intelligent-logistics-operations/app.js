@@ -1,0 +1,100 @@
+(() => {
+  "use strict";
+  const KEY = "thl-intelligent-logistics-mvp-v1";
+  const emptyState = { shipments: [], systems: [], occurrences: [], audit: [] };
+  let state = loadState();
+  const $ = (id) => document.getElementById(id);
+  const now = () => new Date().toISOString();
+  function loadState() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+      return saved && typeof saved === "object" ? { ...emptyState, ...saved } : structuredClone(emptyState);
+    } catch { return structuredClone(emptyState); }
+  }
+  function persist() { localStorage.setItem(KEY, JSON.stringify(state)); render(); }
+  function log(action, detail) {
+    state.audit.unshift({ id: crypto.randomUUID(), at: now(), action, detail });
+    state.audit = state.audit.slice(0, 500);
+  }
+  function esc(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+  }
+  function formData(form) { return Object.fromEntries(new FormData(form).entries()); }
+  function dateLabel(value) {
+    if (!value) return "Data não informada";
+    const d = new Date(value);
+    return Number.isNaN(d.getTime()) ? value : d.toLocaleString("pt-BR");
+  }
+  function openView(name) {
+    document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id === "view-" + name));
+    document.querySelectorAll(".nav-button").forEach(b => b.classList.toggle("active", b.dataset.view === name));
+    const labels = { overview:"VISÃO GERAL", shipments:"CARGAS", discovery:"DESCOBERTA TECNOLÓGICA", occurrences:"OCORRÊNCIAS", audit:"AUDITORIA" };
+    $("section-name").textContent = labels[name] || name.toUpperCase();
+  }
+  function render() {
+    $("metric-loads").textContent = state.shipments.length;
+    $("metric-transit").textContent = state.shipments.filter(x => x.status === "Em transferência" || x.status === "Em distribuição").length;
+    $("metric-open-occurrences").textContent = state.occurrences.filter(x => !["Resolvida","Encerrada"].includes(x.status)).length;
+    $("metric-systems").textContent = state.systems.length;
+    $("nav-load-count").textContent = state.shipments.length;
+    $("nav-occurrence-count").textContent = state.occurrences.filter(x => !["Resolvida","Encerrada"].includes(x.status)).length;
+    $("shipment-total").textContent = state.shipments.length;
+    $("system-total").textContent = state.systems.length;
+    $("occurrence-total").textContent = state.occurrences.length;
+    $("recent-loads").className = state.shipments.length ? "record-list" : "empty";
+    $("recent-loads").innerHTML = state.shipments.length ? state.shipments.slice(0,5).map(shipmentCard).join("") : "Nenhuma carga cadastrada. Registre uma carga para iniciar o acompanhamento.";
+    $("shipment-list").className = state.shipments.length ? "record-list" : "record-list empty";
+    $("shipment-list").innerHTML = state.shipments.length ? state.shipments.map(shipmentCard).join("") : "Nenhuma carga registrada.";
+    $("system-list").className = state.systems.length ? "record-list" : "record-list empty";
+    $("system-list").innerHTML = state.systems.length ? state.systems.map(systemCard).join("") : "Nenhum sistema ou recurso cadastrado.";
+    $("occurrence-list").className = state.occurrences.length ? "record-list" : "record-list empty";
+    $("occurrence-list").innerHTML = state.occurrences.length ? state.occurrences.map(occurrenceCard).join("") : "Nenhuma ocorrência registrada.";
+    $("audit-list").className = state.audit.length ? "record-list" : "record-list empty";
+    $("audit-list").innerHTML = state.audit.length ? state.audit.map(auditCard).join("") : "Nenhum evento registrado.";
+  }
+  function shipmentCard(x) {
+    return '<article class="record"><div class="record-top"><div><strong>'+esc(x.reference)+'</strong><small>'+esc(x.modality)+' · '+esc(x.origin || "Origem não informada")+' → '+esc(x.destination || "Destino não informado")+'</small></div><span class="record-tag">'+esc(x.status)+'</span></div><p>'+esc(x.goods || "Mercadoria não informada")+' · '+esc(x.vehicle || "Veículo não definido")+'</p><small>Registrada em '+dateLabel(x.createdAt)+'</small></article>';
+  }
+  function systemCard(x) {
+    return '<article class="record"><div class="record-top"><div><strong>'+esc(x.name || "Sistema não identificado")+'</strong><small>'+esc(x.category)+' · '+esc(x.owner || "Área não informada")+'</small></div><span class="record-tag">'+esc(x.status)+'</span></div><p>'+esc(x.purpose || "Finalidade não informada")+'</p><small>Formato: '+esc(x.format)+' · Frequência: '+esc(x.frequency)+'</small>'+(x.limitations?'<small>Limitações: '+esc(x.limitations)+'</small>':"")+'</article>';
+  }
+  function occurrenceCard(x) {
+    const alert = x.priority === "Crítica" || x.priority === "Alta";
+    const done = ["Resolvida","Encerrada"].includes(x.status);
+    return '<article class="record"><div class="record-top"><div><strong>'+esc(x.category)+'</strong><small>'+esc(x.reference || "Carga não vinculada")+' · '+esc(x.owner || "Responsável não definido")+'</small></div><span class="record-tag '+(done?"done":alert?"alert":"")+'">'+esc(x.priority)+' · '+esc(x.status)+'</span></div><p>'+esc(x.description)+'</p><small>Registrada em '+dateLabel(x.createdAt)+'</small></article>';
+  }
+  function auditCard(x) {
+    return '<article class="record"><div class="record-top"><strong>'+esc(x.action)+'</strong><small>'+dateLabel(x.at)+'</small></div><p>'+esc(x.detail)+'</p></article>';
+  }
+  $("shipment-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const data = formData(e.currentTarget);
+    data.id = crypto.randomUUID(); data.createdAt = now();
+    state.shipments.unshift(data); log("Carga registrada", data.reference + " · " + data.modality);
+    e.currentTarget.reset(); persist();
+  });
+  $("discovery-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const data = formData(e.currentTarget);
+    data.id = crypto.randomUUID(); data.createdAt = now();
+    state.systems.unshift(data); log("Recurso tecnológico mapeado", data.category + " · " + (data.name || "Não identificado") + " · " + data.status);
+    e.currentTarget.reset(); persist();
+  });
+  $("occurrence-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const data = formData(e.currentTarget);
+    data.id = crypto.randomUUID(); data.createdAt = now();
+    state.occurrences.unshift(data); log("Ocorrência registrada", data.category + " · " + data.priority + " · " + (data.reference || "Sem carga vinculada"));
+    e.currentTarget.reset(); persist();
+  });
+  function download(filename, payload) {
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type:"application/json" });
+    const url = URL.createObjectURL(blob); const a = document.createElement("a");
+    a.href = url; a.download = filename; a.click(); URL.revokeObjectURL(url);
+  }
+  $("export-button").addEventListener("click", () => download("thl-logistics-data.json", { exportedAt:now(), ...state }));
+  $("export-audit").addEventListener("click", () => download("thl-audit-log.json", { exportedAt:now(), audit:state.audit }));
+  document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => openView(b.dataset.view)));
+  document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => openView(b.dataset.go)));
+  render();
+})();
