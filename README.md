@@ -2,6 +2,8 @@
 
 **Mauro Peters | AI Strategy, Product Development & Business Automation**
 
+[![Priority demo quality gate](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/workflows/priority-demo-quality-gate.yml/badge.svg?branch=main)](https://github.com/mauropetersbrcomstudio/ai-innovation-portfolio/actions/workflows/priority-demo-quality-gate.yml)
+
 A curated portfolio of independently developed AI demonstrations, reusable templates, tools, product prototypes, and separately documented client case studies.
 
 ## Delivery scope
@@ -33,7 +35,7 @@ The demonstration library currently contains **38 project directories across six
 | Marketing Intelligence & Business Automation | 3 | [Explore category](./Demo%20Templates/Marketing%20Intelligence%20%26%20Business%20Automation/) |
 | **Total** | **38** | [Open demonstration library](./Demo%20Templates/) |
 
-Start with the [Demo Guide](./DEMO-GUIDE.md) for orientation and local execution guidance.
+Start with the [Demo Guide](./DEMO-GUIDE.md) for orientation and local execution guidance. See the [Portfolio Audit](./PORTFOLIO-AUDIT.md) for the documentation review, known boundaries, and technical-verification priorities.
 
 ### Client Case Studies
 
