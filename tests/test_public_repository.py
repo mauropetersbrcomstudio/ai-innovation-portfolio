@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import sys
+import json
+import struct
 import tempfile
 import unittest
 from pathlib import Path
@@ -71,7 +73,37 @@ class PublicRepositoryPolicyTests(unittest.TestCase):
         def mutate(root: Path):
             old = root / "Client Case Studies" / "anonymized-example"
             old.rename(root / "Client Case Studies" / "named-client-case")
-        self.assertTrue(any("must be anonymized" in error for error in self.validate_temp(mutate)))
+        self.assertTrue(any("requires PUBLICATION.json" in error for error in self.validate_temp(mutate)))
+
+    def add_named_prototype(self, root: Path):
+        case = root / "Client Case Studies" / "named-prototype"
+        case.mkdir()
+        (case / "README.md").write_text("**Status: PROTOTYPE**\nSynthetic data for a future presentation.\n", encoding="utf-8")
+        (case / "index.html").write_text("<!doctype html><title>Prototype</title>", encoding="utf-8")
+        (case / "dashboard.png").write_bytes(b"\x89PNG\r\n\x1a\n" + b"\x00\x00\x00\rIHDR" + struct.pack(">II", 1440, 900))
+        (case / "PUBLICATION.json").write_text(json.dumps({
+            "schema_version": 1,
+            "attribution_source": "user_attestation",
+            "name_and_logo_authorized": True,
+            "stage": "prototype_for_future_presentation",
+            "workflow_validated_by_client": False,
+            "external_integration": False,
+            "outcomes_claimed": False,
+            "sample_data": "synthetic",
+        }), encoding="utf-8")
+        return case
+
+    def test_accepts_named_future_presentation_with_scope(self):
+        self.assertEqual(self.validate_temp(self.add_named_prototype), [])
+
+    def test_rejects_named_prototype_with_outcome_claim(self):
+        def mutate(root: Path):
+            case = self.add_named_prototype(root)
+            manifest = case / "PUBLICATION.json"
+            data = json.loads(manifest.read_text(encoding="utf-8"))
+            data["outcomes_claimed"] = True
+            manifest.write_text(json.dumps(data), encoding="utf-8")
+        self.assertTrue(any("future-presentation scope" in error for error in self.validate_temp(mutate)))
 
     def test_rejects_demo_project_without_maturity_label(self):
         def mutate(root: Path):
