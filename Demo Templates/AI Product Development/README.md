@@ -32,6 +32,6 @@ The [Healthcare Reception Assistant](./healthcare-reception-assistant/) is a loc
 
 ## Four Industry Workflow Prototypes
 
-The [Four Industry Workflow Prototypes](./four-industry-prototypes/) demonstrate separate local workflows for professional education enrollment, retail return exceptions, hospitality room maintenance, and manufacturing quality deviations. Each has sector-specific intake rules and a browser-local human-review queue. The scenarios are independently developed starting points awaiting client briefs and publication details.
+The [Four Industry Workflow Prototypes](./four-industry-prototypes/) demonstrate separate local workflows prepared for future presentations to FORMARE, CASA VIVA, AURORA HOTÉIS, and TECNOFLEX. They cover professional education enrollment, retail return exceptions, hospitality room maintenance, and manufacturing quality deviations. Each has sector-specific intake rules and a browser-local human-review queue. The workflows are starting points awaiting client validation.
 
 **Status: PROTOTYPE** — synthetic data and illustrative rules only; no live integrations or external actions. See the project README for run instructions, tests, and limitations.

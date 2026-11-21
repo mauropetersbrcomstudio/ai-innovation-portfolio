@@ -1,0 +1,14 @@
+.client-heading{display:flex;align-items:center;gap:16px;margin-top:9px;flex-wrap:wrap}
+.client-logo{width:220px;height:125px;flex:none;background-image:url("brand-sheet.jpg");background-repeat:no-repeat;background-size:640px 333px;border:1px solid #e9eef1;border-radius:10px;background-color:#fff}
+.logo-education{background-position:-65px -33px}
+.logo-retail{background-position:-370px -33px}
+.logo-hospitality{background-position:-55px -195px}
+.logo-manufacturing{background-position:-380px -195px}
+.client-name{display:block;font-size:20px;font-weight:850;letter-spacing:.04em;color:#16314a}
+.client-descriptor{display:block;margin-top:4px;color:#617784;font-size:11px;letter-spacing:.1em;font-weight:700}
+body.presentation #scenario-nav button:not(.active){display:none}
+body.presentation .side-label{display:none}
+body.presentation .sidebar{gap:20px}
+body.presentation .topbar>span{font-size:0}
+body.presentation .topbar>span:after{content:"APRESENTAÇÃO DE PROTÓTIPO · DADOS SINTÉTICOS";font-size:11px}
+@media(max-width:700px){.client-heading{gap:10px}.client-logo{width:220px;max-width:100%}body.presentation .sidebar nav{display:none}}

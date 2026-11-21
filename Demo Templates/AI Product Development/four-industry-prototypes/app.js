@@ -4,7 +4,9 @@
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   const key = s => `mp-sector-prototype-${s}-v1`;
-  let sector = names.includes(new URLSearchParams(location.search).get("sector")) ? new URLSearchParams(location.search).get("sector") : names[0];
+  const params = new URLSearchParams(location.search);
+  const presentation = params.get("presentation") === "1";
+  let sector = names.includes(params.get("sector")) ? params.get("sector") : names[0];
   let filter = "all";
   let state;
   function load() {
@@ -23,9 +25,14 @@
   }
   function setup() {
     const cfg = SCENARIOS[sector];
+    document.body.classList.toggle("presentation", presentation);
     document.title = `${cfg.workflow} · Protótipo`;
-    $("scenario-nav").innerHTML = names.map(s => `<button type="button" data-sector="${s}" class="${s === sector ? "active" : ""}"><span>${SCENARIOS[s].icon}</span>${esc(SCENARIOS[s].title)}</button>`).join("");
+    $("scenario-nav").innerHTML = names.map(s => `<button type="button" data-sector="${s}" class="${s === sector ? "active" : ""}"><span>${SCENARIOS[s].icon}</span>${esc(SCENARIOS[s].client)}</button>`).join("");
     $("eyebrow").textContent = cfg.title.toUpperCase() + " / " + cfg.workflow.toUpperCase();
+    $("client-name").textContent = cfg.client;
+    $("client-descriptor").textContent = cfg.descriptor;
+    $("client-logo").className = `client-logo logo-${sector}`;
+    $("client-logo").setAttribute("aria-label", `Logo ${cfg.client}`);
     $("title").textContent = cfg.workflow;
     $("intro").textContent = cfg.intro;
     $("fields").innerHTML = cfg.fields.map(field).join("");
@@ -48,6 +55,7 @@
   $("scenario-nav").addEventListener("click", e => {
     const button = e.target.closest("[data-sector]");
     if (!button) return;
+    if (presentation) return;
     sector = button.dataset.sector; filter = "all";
     history.replaceState(null, "", `?sector=${sector}`); setup();
   });

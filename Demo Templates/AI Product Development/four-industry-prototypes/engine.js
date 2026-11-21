@@ -3,7 +3,7 @@
 // Synthetic, illustrative rules. No client policy is represented here.
 const SCENARIOS = {
   education: {
-    title: "Educação profissional", workflow: "Triagem de matrículas", icon: "EDU",
+    title: "Educação profissional", client: "FORMARE", descriptor: "EDUCAÇÃO PROFISSIONAL", workflow: "Triagem de matrículas", icon: "EDU",
     intro: "Organize pedidos de matrícula de cursos para adultos e encaminhe exceções para revisão.",
     fields: [
       { key: "reference", label: "Referência do pedido", type: "text", required: true },
@@ -25,7 +25,7 @@ const SCENARIOS = {
     },
   },
   retail: {
-    title: "Varejo", workflow: "Exceções de devolução", icon: "RTL",
+    title: "Varejo", client: "CASA VIVA", descriptor: "DECORAÇÃO E UTILIDADES", workflow: "Exceções de devolução", icon: "RTL",
     intro: "Avalie solicitações de devolução com regras demonstrativas e decisão humana.",
     fields: [
       { key: "reference", label: "Referência da devolução", type: "text", required: true },
@@ -48,7 +48,7 @@ const SCENARIOS = {
     },
   },
   hospitality: {
-    title: "Hotelaria", workflow: "Manutenção de quartos", icon: "HSP",
+    title: "Hotelaria", client: "AURORA HOTÉIS", descriptor: "HOSPEDAGEM EXCLUSIVA", workflow: "Manutenção de quartos", icon: "HSP",
     intro: "Registre ocorrências de manutenção e destaque bloqueios e riscos para a equipe.",
     fields: [
       { key: "reference", label: "Referência da ocorrência", type: "text", required: true },
@@ -69,7 +69,7 @@ const SCENARIOS = {
     },
   },
   manufacturing: {
-    title: "Indústria", workflow: "Desvios de qualidade", icon: "MFG",
+    title: "Indústria", client: "TECNOFLEX", descriptor: "SOLUÇÕES INDUSTRIAIS", workflow: "Desvios de qualidade", icon: "MFG",
     intro: "Classifique desvios de lotes fictícios e registre uma decisão de contenção.",
     fields: [
       { key: "reference", label: "Referência do desvio", type: "text", required: true },
