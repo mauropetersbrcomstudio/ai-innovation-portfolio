@@ -17,7 +17,7 @@ Every project README must use exactly one maturity label: `CONCEPT`, `DEMO`, `PR
 The portfolio is organized into two distinct tracks:
 
 - **Demo Templates:** independently developed demonstrations and reusable building blocks.
-- **Client Case Studies:** anonymized or specifically authorized material from substantiated client engagements. Client attribution and client-specific details remain withheld until public-disclosure authorization is recorded.
+- **Client Case Studies:** anonymized client-context artifacts and named prototypes prepared for future client presentations. Each entry states its maturity and disclosure limits.
 
 ## Explore the portfolio
 
@@ -41,7 +41,7 @@ Start with the [Demo Guide](./DEMO-GUIDE.md) for orientation and local execution
 
 [Open Client Case Studies](./Client%20Case%20Studies/)
 
-This section is kept separate from independent demonstrations. Public entries are anonymized where client attribution or source details are not authorized. The current public artifacts omit client names, logos, identifiers, and client-specific baseline documents; their sample operational data is synthetic. No client outcomes, metrics, or testimonials are claimed.
+This section distinguishes anonymized artifacts from four named presentation prototypes. Names and logos for the new entries were supplied by the user, who stated that authorization exists. Their workflows remain unvalidated by the clients; prints and sample data are synthetic. No deployment, integration, client outcomes, metrics, or testimonials are claimed.
 
 ## Portfolio principles
 

@@ -15,6 +15,8 @@ The user supplied the four client names, descriptors, and a composite image of t
 
 See the [presentation guide](./PRESENTATION-GUIDE.md) for four isolated launch links and walkthroughs, and the [integration roadmap](./INTEGRATION-ROADMAP.md) for future platform connection points.
 
+The four presentation dashboards have separate structures and visual designs while sharing the deterministic workflow engine. Their project folders, launchers, and dashboard prints are in [Client Case Studies](../../../Client%20Case%20Studies/). To use those launchers, run `python -m http.server 8768` from the repository root.
+
 ## Run
 
 Requires Python 3.10+ and a modern browser. No packages, account, key, or network connection are needed.

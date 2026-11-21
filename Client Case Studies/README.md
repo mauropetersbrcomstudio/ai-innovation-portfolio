@@ -1,8 +1,21 @@
 # Client Case Studies
 
-This section is reserved for substantiated client engagements. Public material must be limited to the exact scope supported by evidence and permitted for disclosure.
+This section contains anonymized client-context artifacts and named functional prototypes prepared for future client presentations. Public material is limited to the stated stage and disclosure scope of each entry.
 
 Client names, logos, documents, operational baselines, data, screenshots, testimonials, and other identifying details must not be published without the appropriate authorization. Where public attribution is not authorized, the public artifact must remain anonymized and must omit client-specific source material. No outcomes, metrics, testimonials, or project details may be invented.
+
+## Named presentation prototypes
+
+The names and logos below were supplied by the user, who stated that authorization exists. Each print shows synthetic records created in a functional local prototype. These proposed workflows have **not yet been presented to or validated by the clients**. The four dashboards have distinct layouts and no external integrations or claimed business outcomes.
+
+| Client | Functional prototype | Print |
+|---|---|---|
+| [FORMARE](./formare-educacao-profissional/) | Adult-course enrollment intake and review | [Dashboard](./formare-educacao-profissional/dashboard.png) |
+| [CASA VIVA](./casa-viva-varejo/) | Return-exception intake and review | [Dashboard](./casa-viva-varejo/dashboard.png) |
+| [AURORA HOTÉIS](./aurora-hoteis-hotelaria/) | Room-maintenance intake and escalation | [Dashboard](./aurora-hoteis-hotelaria/dashboard.png) |
+| [TECNOFLEX](./tecnoflex-industria/) | Quality-deviation intake and review | [Dashboard](./tecnoflex-industria/dashboard.png) |
+
+Each folder contains a README, a local launcher, a dashboard print, and a machine-readable publication-scope declaration. The implementations share the [workflow engine](../Demo%20Templates/AI%20Product%20Development/four-industry-prototypes/) but use different client presentation layouts.
 
 ## Anonymized public artifacts
 

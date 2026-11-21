@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import json
 import re
+import struct
 import sys
 from pathlib import Path
 
@@ -87,8 +89,7 @@ def validate_repository(root: Path) -> list[str]:
     else:
         case_dirs = sorted(path for path in cases_root.iterdir() if path.is_dir())
         for case_dir in case_dirs:
-            if not case_dir.name.startswith("anonymized-"):
-                errors.append(f"Public case directory must be anonymized: {case_dir.relative_to(root)}")
+            anonymous = case_dir.name.startswith("anonymized-")
             readme = case_dir / "README.md"
             if not readme.is_file():
                 errors.append(f"Missing case README: {case_dir.relative_to(root)}")
@@ -97,15 +98,49 @@ def validate_repository(root: Path) -> list[str]:
             status_match = STATUS_PATTERN.search(text)
             if not status_match:
                 errors.append(f"Case README must contain one exact maturity label: {readme.relative_to(root)}")
-            has_identity = "identity" in text or "identidade" in text
-            has_withheld = "withheld" in text or "omitid" in text or "retirad" in text
-            if not (has_identity and has_withheld):
-                errors.append(f"Case README must state that client identity is withheld: {readme.relative_to(root)}")
             if not any(token in text for token in ("synthetic", "sintétic", "sintetic")):
                 errors.append(f"Case README must identify synthetic data: {readme.relative_to(root)}")
-            for asset in case_dir.rglob("*"):
-                if asset.is_file() and asset.suffix.lower() in IMAGE_SUFFIXES:
-                    errors.append(f"Image/brand asset must not be public in anonymized case: {asset.relative_to(root)}")
+            if anonymous:
+                has_identity = "identity" in text or "identidade" in text
+                has_withheld = "withheld" in text or "omitid" in text or "retirad" in text
+                if not (has_identity and has_withheld):
+                    errors.append(f"Case README must state that client identity is withheld: {readme.relative_to(root)}")
+                for asset in case_dir.rglob("*"):
+                    if asset.is_file() and asset.suffix.lower() in IMAGE_SUFFIXES:
+                        errors.append(f"Image/brand asset must not be public in anonymized case: {asset.relative_to(root)}")
+            else:
+                manifest_path = case_dir / "PUBLICATION.json"
+                if not manifest_path.is_file():
+                    errors.append(f"Named presentation prototype requires PUBLICATION.json: {case_dir.relative_to(root)}")
+                    continue
+                try:
+                    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                except (ValueError, UnicodeError):
+                    errors.append(f"Invalid publication manifest: {manifest_path.relative_to(root)}")
+                    continue
+                required = {
+                    "schema_version": 1,
+                    "attribution_source": "user_attestation",
+                    "name_and_logo_authorized": True,
+                    "stage": "prototype_for_future_presentation",
+                    "workflow_validated_by_client": False,
+                    "external_integration": False,
+                    "outcomes_claimed": False,
+                    "sample_data": "synthetic",
+                }
+                if manifest != required or not status_match or status_match.group(1).lower() != "prototype":
+                    errors.append(f"Named case must declare authorized, synthetic future-presentation scope: {case_dir.relative_to(root)}")
+                if not (case_dir / "index.html").is_file():
+                    errors.append(f"Named case missing local launcher: {case_dir.relative_to(root)}")
+                screenshot = case_dir / "dashboard.png"
+                try:
+                    header = screenshot.read_bytes()[:24]
+                    valid_png = header[:8] == b"\x89PNG\r\n\x1a\n" and header[12:16] == b"IHDR"
+                    width, height = struct.unpack(">II", header[16:24]) if valid_png else (0, 0)
+                    if width < 1000 or height < 600:
+                        raise ValueError("screenshot too small or invalid")
+                except (OSError, ValueError, struct.error):
+                    errors.append(f"Named case requires a valid dashboard screenshot: {screenshot.relative_to(root)}")
 
     return errors
 
@@ -126,7 +161,7 @@ def main() -> int:
         ]
     )
     case_count = len([path for path in (root / "Client Case Studies").iterdir() if path.is_dir()])
-    print(f"Repository publication scope passed: {workflow_count} workflow files, {project_count} demo projects, and {case_count} anonymized case directories inspected.")
+    print(f"Repository publication scope passed: {workflow_count} workflow files, {project_count} demo projects, and {case_count} case directories inspected.")
     return 0
 
 

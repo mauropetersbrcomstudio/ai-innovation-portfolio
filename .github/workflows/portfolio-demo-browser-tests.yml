@@ -6,6 +6,11 @@ on:
       - "Demo Templates/AI Product Development/operations-review-workspace/**"
       - "Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer/**"
       - "Demo Templates/AI Product Development/four-industry-prototypes/**"
+      - "Client Case Studies/formare-educacao-profissional/**"
+      - "Client Case Studies/casa-viva-varejo/**"
+      - "Client Case Studies/aurora-hoteis-hotelaria/**"
+      - "Client Case Studies/tecnoflex-industria/**"
+      - "tests/capture-client-case-screenshots.cjs"
       - "tests/portfolio-demos.e2e.mjs"
       - ".github/workflows/portfolio-demo-browser-tests.yml"
   workflow_dispatch:
@@ -34,8 +39,9 @@ jobs:
           python "Demo Templates/AI Product Development/operations-review-workspace/server.py" --database /tmp/portfolio-e2e.sqlite --events /tmp/portfolio-e2e.jsonl --port 8765 > /tmp/workspace.log 2>&1 &
           python -m http.server 8766 --directory "Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer" > /tmp/dashboard.log 2>&1 &
           python "Demo Templates/AI Product Development/four-industry-prototypes/server.py" > /tmp/sectors.log 2>&1 &
+          python -m http.server 8770 --directory . > /tmp/client-cases.log 2>&1 &
           for attempt in $(seq 1 30); do
-            if curl -fsS http://127.0.0.1:8765/api/health && curl -fsS http://127.0.0.1:8766/dashboard.html >/dev/null && curl -fsS http://127.0.0.1:8768/ >/dev/null; then break; fi
+            if curl -fsS http://127.0.0.1:8765/api/health && curl -fsS http://127.0.0.1:8766/dashboard.html >/dev/null && curl -fsS http://127.0.0.1:8768/ >/dev/null && curl -fsS http://127.0.0.1:8770/ >/dev/null; then break; fi
             sleep 1
           done
           curl -fsS http://127.0.0.1:8765/api/health
@@ -43,6 +49,7 @@ jobs:
         run: |
           node tests/portfolio-demos.e2e.mjs
           node "Demo Templates/AI Product Development/four-industry-prototypes/tests/browser.e2e.mjs"
+          node tests/capture-client-case-screenshots.cjs
       - name: Show demo server logs on failure
         if: failure()
         run: |
@@ -52,3 +59,5 @@ jobs:
           cat /tmp/dashboard.log || true
           echo "=== Four Industry Workflow Prototypes ==="
           cat /tmp/sectors.log || true
+          echo "=== Client Case Studies ==="
+          cat /tmp/client-cases.log || true
