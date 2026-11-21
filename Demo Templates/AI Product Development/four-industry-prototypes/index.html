@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quatro protótipos setoriais</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="brand.css"><link rel="stylesheet" href="layout.css"><script src="engine.js" defer></script><script src="app.js" defer></script></head>
+<body>
+  <div class="shell">
+    <aside class="sidebar"><div class="brand"><span class="mark">MP</span><div><strong>PROTÓTIPOS</strong><small>Operações setoriais</small></div></div><p class="side-label">SELECIONE O SETOR</p><nav id="scenario-nav" aria-label="Setores"></nav><div class="side-note">Ambiente local<br>Dados sintéticos<br>Sem integrações</div></aside>
+    <main><header class="topbar"><span>AI INNOVATION PORTFOLIO <b> / </b> PROTÓTIPOS FUNCIONAIS</span><div><button id="export" class="quiet" type="button">Exportar JSON</button><button id="reset" class="quiet" type="button">Reiniciar setor</button></div></header>
+      <div class="content"><div class="heading"><div><span class="eyebrow" id="eyebrow"></span><div class="client-heading"><div class="client-logo" id="client-logo" role="img"></div><div><span class="client-name" id="client-name"></span><small class="client-descriptor" id="client-descriptor"></small></div></div><h1 id="title"></h1><p id="intro"></p></div><span class="pill">PROTÓTIPO LOCAL</span></div>
+      <div class="notice">Fluxo demonstrativo baseado em regras ilustrativas. Nenhuma decisão altera sistemas, pedidos, reservas, matrículas ou lotes reais. Use apenas dados sintéticos.</div>
+      <div class="process-strip" aria-label="Etapas do protótipo"><span><b>01</b> Registrar pedido</span><span><b>02</b> Aplicar regras</span><span><b>03</b> Revisão humana</span><span><b>04</b> Exportar evidência</span></div>
+      <div class="metrics"><article><small>Solicitações</small><strong id="total">0</strong><span>Registros locais</span></article><article><small>Pendentes</small><strong id="pending">0</strong><span>Aguardam decisão</span></article><article><small>Prioritárias</small><strong id="urgent">0</strong><span>Atenção ou urgência</span></article><article><small>Decididas</small><strong id="decided">0</strong><span>Simulação local</span></article></div>
+      <div class="grid"><section class="panel"><div class="panel-head"><div><span class="eyebrow">01 / ENTRADA</span><h2>Nova solicitação</h2><p>Preencha os campos ou carregue um exemplo sintético.</p></div></div><form id="intake"><div id="fields"></div><button class="primary" type="submit">Analisar e adicionar à fila</button></form><div class="examples"><span>Exemplos:</span><button type="button" data-example="0">Fluxo padrão</button><button type="button" data-example="1">Exceção</button></div><p class="error" id="error" role="alert"></p></section>
+      <section class="panel"><div class="panel-head"><div><span class="eyebrow">02 / REVISÃO</span><h2>Fila de trabalho</h2><p>Regras locais sugerem fila e prioridade; a decisão é registrada por uma pessoa.</p></div><span id="queue-count" class="count">0</span></div><div class="filters"><button type="button" data-filter="all" class="selected">Todos</button><button type="button" data-filter="pending">Pendentes</button><button type="button" data-filter="decided">Decididos</button></div><div id="queue" class="queue"></div></section></div>
+      <section class="panel history-panel"><div class="panel-head"><div><span class="eyebrow">03 / RASTRO</span><h2>Histórico local</h2></div></div><div id="history" class="history"></div></section>
+      <footer>Dados guardados somente neste navegador. Sem autenticação, envio externo ou política de cliente validada.</footer></div>
+    </main>
+  </div>
+</body></html>

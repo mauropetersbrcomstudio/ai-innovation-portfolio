@@ -23,17 +23,17 @@ The portfolio is organized into two distinct tracks:
 
 ### Demo Templates
 
-The demonstration library currently contains **38 project directories across six technology categories**.
+The demonstration library currently contains **39 project directories across six technology categories**.
 
 | Technology category | Projects | Browse |
 |---|---:|---|
 | AI Agents & Agentic Systems | 9 | [Explore category](./Demo%20Templates/AI%20Agents%20%26%20Agentic%20Systems/) |
 | AI Automation & Workflows | 5 | [Explore category](./Demo%20Templates/AI%20Automation%20%26%20Workflows/) |
 | AI Skills & Tooling | 16 | [Explore category](./Demo%20Templates/AI%20Skills%20%26%20Tooling/) |
-| AI Product Development | 4 | [Explore category](./Demo%20Templates/AI%20Product%20Development/) |
+| AI Product Development | 5 | [Explore category](./Demo%20Templates/AI%20Product%20Development/) |
 | Web Applications & SaaS | 1 | [Explore category](./Demo%20Templates/Web%20Applications%20%26%20SaaS/) |
 | Marketing Intelligence & Business Automation | 3 | [Explore category](./Demo%20Templates/Marketing%20Intelligence%20%26%20Business%20Automation/) |
-| **Total** | **38** | [Open demonstration library](./Demo%20Templates/) |
+| **Total** | **39** | [Open demonstration library](./Demo%20Templates/) |
 
 Start with the [Demo Guide](./DEMO-GUIDE.md) for orientation and local execution guidance. See the [Portfolio Audit](./PORTFOLIO-AUDIT.md) for the documentation review, known boundaries, and technical-verification priorities.
 

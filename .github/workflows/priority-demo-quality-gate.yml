@@ -82,6 +82,22 @@ jobs:
         working-directory: Demo Templates/Marketing Intelligence & Business Automation/campaign-performance-analyzer
         run: node --test tests/dashboard-logic.test.js
 
+  four-industry-prototype-tests:
+    name: Four industry prototype logic tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Test rules and JavaScript syntax
+        working-directory: Demo Templates/AI Product Development/four-industry-prototypes
+        run: |
+          node --test tests/engine.test.cjs
+          node --check app.js
+
   kpi-workspace-tests:
     name: SME KPI workspace JavaScript tests
     runs-on: ubuntu-latest
