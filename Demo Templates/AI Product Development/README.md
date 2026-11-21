@@ -29,3 +29,9 @@ The [Operations Intake & Human Review Template](./operations-intake-review/) is 
 The [Healthcare Reception Assistant](./healthcare-reception-assistant/) is a local, browser-based product prototype for administrative reception workflows. It demonstrates synthetic appointment preferences, a browser-local human-review queue, and escalation for clinical, urgent, ambiguous, or unsupported requests.
 
 **Status: DEMO** — it has no live messaging, calendar, patient-record, or other external-system integrations. See the project README for run instructions and boundaries.
+
+## Four Industry Workflow Prototypes
+
+The [Four Industry Workflow Prototypes](./four-industry-prototypes/) demonstrate separate local workflows for professional education enrollment, retail return exceptions, hospitality room maintenance, and manufacturing quality deviations. Each has sector-specific intake rules and a browser-local human-review queue. The scenarios are independently developed starting points awaiting client briefs and publication details.
+
+**Status: PROTOTYPE** — synthetic data and illustrative rules only; no live integrations or external actions. See the project README for run instructions, tests, and limitations.
