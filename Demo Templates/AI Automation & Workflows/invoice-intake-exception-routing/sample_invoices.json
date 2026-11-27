@@ -1,0 +1,56 @@
+[
+  {
+    "invoice_id": "INV-1001",
+    "supplier_id": "SUP-001",
+    "invoice_date": "2026-11-01",
+    "due_date": "2026-11-30",
+    "amount": "1250.00",
+    "currency": "BRL",
+    "purchase_order": "PO-5001"
+  },
+  {
+    "invoice_id": "INV-1002",
+    "supplier_id": "SUP-002",
+    "invoice_date": "2026-11-02",
+    "due_date": "2026-12-01",
+    "amount": "7200.00",
+    "currency": "EUR",
+    "purchase_order": "PO-5002"
+  },
+  {
+    "invoice_id": "INV-1003",
+    "supplier_id": "SUP-003",
+    "invoice_date": "2026-11-03",
+    "due_date": "2026-12-02",
+    "amount": "850.00",
+    "currency": "BRL",
+    "purchase_order": ""
+  },
+  {
+    "invoice_id": "INV-1004",
+    "supplier_id": "SUP-004",
+    "invoice_date": "2026-11-04",
+    "due_date": "2026-12-03",
+    "amount": "900.00",
+    "currency": "USD",
+    "purchase_order": "PO-5004"
+  },
+  {
+    "invoice_id": "inv-1004",
+    "supplier_id": "sup-004",
+    "invoice_date": "2026-11-04",
+    "due_date": "2026-12-03",
+    "amount": "920.00",
+    "currency": "USD",
+    "purchase_order": "PO-5004"
+  },
+  {
+    "invoice_id": "INV-1005",
+    "supplier_id": "SUP-005",
+    "invoice_date": "2026-11-10",
+    "due_date": "2026-11-05",
+    "amount": "300.00",
+    "currency": "BRL",
+    "purchase_order": "PO-5005"
+  }
+]

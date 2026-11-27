@@ -1,0 +1,50 @@
+{
+  "template_id": "operations-intake-human-review",
+  "name": "Operations Intake & Human Review",
+  "status": "DEMO_TEMPLATE",
+  "version": "1.0",
+  "entrypoint": "Demo Templates/AI Product Development/operations-review-workspace/server.py",
+  "runtime": {
+    "language": "Python",
+    "minimum_version": "3.10",
+    "external_dependencies": [],
+    "hosting": "local-loopback"
+  },
+  "components": [
+    "Demo Templates/AI Automation & Workflows/lead-intake-pipeline",
+    "Demo Templates/AI Automation & Workflows/invoice-intake-exception-routing",
+    "Demo Templates/AI Automation & Workflows/intake-operations-hub",
+    "Demo Templates/AI Agents & Agentic Systems/durable-workflow-runner",
+    "Demo Templates/AI Skills & Tooling/agent-state-store",
+    "Demo Templates/AI Product Development/operations-review-workspace"
+  ],
+  "capabilities": [
+    "lead_intake_validation_and_routing",
+    "invoice_intake_validation_and_exception_routing",
+    "durable_workflow_checkpoints",
+    "consolidated_human_review_queue",
+    "durable_review_decision_capture",
+    "decision_and_event_history"
+  ],
+  "decision_outcomes": [
+    "ACCEPTED_FOR_NEXT_STAGE",
+    "REJECTED",
+    "REQUESTED_INFORMATION"
+  ],
+  "data_policy": {
+    "bundled_data": "synthetic",
+    "real_data_requires_explicit_authorization": true
+  },
+  "security_boundaries": {
+    "loopback_only": true,
+    "reviewer_authentication": false,
+    "role_authorization": false,
+    "tamper_proof_audit": false,
+    "external_side_effects": false
+  },
+  "limitations": [
+    "No CRM, accounting, email, payment, or external API integration.",
+    "An accepted invoice does not authorize payment or bank transfer.",
+    "Reviewer identity is not authenticated by this demo."
+  ]
+}

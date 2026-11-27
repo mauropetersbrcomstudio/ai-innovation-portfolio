@@ -1,0 +1,18 @@
+{
+  "qualification_threshold": 60,
+  "weights": {
+    "company_provided": 20,
+    "business_email": 15,
+    "need_provided": 25,
+    "budget_confirmed": 20,
+    "decision_role_confirmed": 20
+  },
+  "territory_teams": {
+    "north": "sales_north",
+    "south": "sales_south",
+    "east": "sales_east",
+    "west": "sales_west"
+  },
+  "follow_up_sla_calendar_days": 2,
+  "free_email_domains": ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com"]
+}

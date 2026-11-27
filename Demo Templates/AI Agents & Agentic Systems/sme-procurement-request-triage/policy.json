@@ -1,0 +1,11 @@
+{
+  "currency": "BRL",
+  "manager_review_limit": 1500,
+  "finance_review_limit": 5000,
+  "allowed_categories": [
+    "office_supplies",
+    "software",
+    "equipment",
+    "services"
+  ]
+}

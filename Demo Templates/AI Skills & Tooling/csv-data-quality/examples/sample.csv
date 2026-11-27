@@ -1,0 +1,6 @@
+record_id,company,email,region
+001,Northwind,northwind@example.test,South
+002,Contoso,contoso@example.test,North
+003,Adventure Works,,West
+003,Adventure Works,,West
+004,Fabrikam,fabrikam@example.test,East

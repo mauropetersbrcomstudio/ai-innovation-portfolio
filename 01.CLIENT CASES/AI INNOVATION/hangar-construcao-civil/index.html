@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HANGAR Engenharia e Perícias · Compras por obra | Protótipo</title>
+    <meta
+      name="description"
+      content="Protótipo local de triagem de solicitações de compra por obra."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="rail">
+        <div class="rail-brand">
+          <img src="./logo.png" alt="HANGAR Engenharia e Perícias" />
+        </div>
+        <p class="rail-caption">
+          CENTRAL DE OBRAS<br /><span>Protótipo operacional</span>
+        </p>
+        <nav aria-label="Áreas do protótipo">
+          <a class="active" href="#overview">Visão geral</a
+          ><a href="#requests">Solicitações</a
+          ><a href="#new-request">Nova requisição</a>
+        </nav>
+        <div class="rail-foot">
+          <span class="signal"></span> Ambiente local<br />Dados de demonstração
+        </div>
+      </aside>
+      <main>
+        <header class="topline">
+          <span>ENGENHARIA / SUPRIMENTOS</span
+          ><span>PAINEL 01 <i aria-hidden="true"></i> SIMULAÇÃO</span>
+        </header>
+        <section class="intro" id="overview">
+          <p class="kicker">CONTROLE DE SOLICITAÇÕES</p>
+          <h1>Compras por obra,<br /><em>com contexto.</em></h1>
+          <p>
+            Triagem demonstrativa de requisições, orçamento informado e
+            fornecedores para revisão humana.
+          </p>
+        </section>
+        <section class="snapshot" aria-label="Indicadores da demonstração">
+          <div>
+            <small>REQUISIÇÕES</small><strong id="total">00</strong
+            ><span>no navegador</span>
+          </div>
+          <div>
+            <small>EM REVISÃO</small><strong id="pending">00</strong
+            ><span>sem decisão</span>
+          </div>
+          <div>
+            <small>EXCEÇÕES</small><strong id="exceptions">00</strong
+            ><span>com alerta</span>
+          </div>
+          <div>
+            <small>DECIDIDAS</small><strong id="decided">00</strong
+            ><span>simulação local</span>
+          </div>
+        </section>
+        <div class="content-grid">
+          <section class="requests" id="requests">
+            <div class="section-head">
+              <div>
+                <p class="kicker">FLUXO DE REVISÃO</p>
+                <h2>Fila de requisições</h2>
+              </div>
+              <div class="actions">
+                <button type="button" data-export>Exportar JSON</button
+                ><button type="button" data-reset>Reiniciar</button>
+              </div>
+            </div>
+            <div class="column-head">
+              <span>REFERÊNCIA / OBRA</span><span>VALOR</span
+              ><span>ENCAMINHAMENTO</span>
+            </div>
+            <div id="request-list" class="request-list"></div>
+          </section>
+          <aside class="request-form" id="new-request">
+            <div class="form-title">
+              <span>+ NOVA SOLICITAÇÃO</span>
+              <h2>Registrar<br />necessidade</h2>
+              <p>Valores e limites usados apenas para demonstração.</p>
+            </div>
+            <div class="examples">
+              <button type="button" data-example-index="0">Fluxo padrão</button
+              ><button type="button" data-example-index="1">Exceção</button>
+            </div>
+            <form id="intake-form">
+              <label
+                >Referência<input
+                  name="reference"
+                  required
+                  maxlength="32"
+                  placeholder="HNG-201"
+              /></label>
+              <label
+                >Obra<select name="project" required>
+                  <option value="">Selecione</option>
+                  <option>Obra Alfa</option>
+                  <option>Obra Beta</option>
+                  <option>Obra Gama</option>
+                </select></label
+              >
+              <div class="pair">
+                <label
+                  >Categoria<select name="category" required>
+                    <option value="">Selecione</option>
+                    <option>Material</option>
+                    <option>Equipamento</option>
+                    <option>Serviço</option>
+                  </select></label
+                ><label
+                  >Código de custo<input
+                    name="costCode"
+                    required
+                    maxlength="18"
+                    placeholder="MAT-04"
+                /></label>
+              </div>
+              <div class="pair">
+                <label
+                  >Valor solicitado (R$)<input
+                    name="amount"
+                    type="number"
+                    min="1"
+                    step="0.01"
+                    required
+                    placeholder="2300" /></label
+                ><label
+                  >Saldo informado (R$)<input
+                    name="remaining"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    required
+                    placeholder="5000"
+                /></label>
+              </div>
+              <label
+                >Urgência<select name="urgency" required>
+                  <option value="">Selecione</option>
+                  <option>Normal</option>
+                  <option>Urgente</option>
+                </select></label
+              >
+              <label class="check"
+                ><input name="supplierVerified" type="checkbox" /> Fornecedor
+                verificado no exemplo</label
+              >
+              <label class="check"
+                ><input name="evidenceAttached" type="checkbox" /> Documento de
+                suporte informado</label
+              >
+              <button class="submit" type="submit">
+                Classificar solicitação
+              </button>
+            </form>
+          </aside>
+        </div>
+        <p id="live-status" role="status" aria-live="polite"></p>
+        <footer>
+          Fluxo demonstrativo · Nenhuma compra, pagamento ou pedido é criado
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

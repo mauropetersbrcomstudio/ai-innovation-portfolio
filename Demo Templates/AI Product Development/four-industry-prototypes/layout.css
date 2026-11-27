@@ -1,0 +1,44 @@
+:root{--ink:#1b2530;--paper:#f7f6f2;--panel:#fffefa;--accent:#1d6e86;--accent-soft:#e2f1f4}
+body{background:var(--paper);color:var(--ink)}
+.shell{display:block}
+.sidebar{min-height:88px;padding:14px 34px;background:#fffefa;color:var(--ink);display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #e8e4db}
+.brand{padding:0;min-width:205px}.brand strong{color:#1f3848}.brand small{color:#7b8b91}.mark{background:var(--accent);color:#fff;border-radius:50%}
+.side-label,.side-note{display:none}
+.sidebar nav{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+.sidebar nav button{color:#50616a;border-radius:30px;padding:11px 15px;white-space:nowrap}
+.sidebar nav button span{color:var(--accent);margin-right:4px}
+.sidebar nav button.active,.sidebar nav button:hover{background:var(--accent-soft);color:var(--accent)}
+.topbar{height:45px;background:#f3f2ed;border-bottom:0;padding:0 42px;color:#789096}
+.quiet{background:transparent;border:0;text-decoration:underline;text-underline-offset:3px;color:var(--accent)}
+.content{max-width:1400px;padding:35px 42px}
+.heading{border-bottom:1px solid #deded7;padding-bottom:28px;position:relative}
+.heading h1{font-family:Georgia,"Times New Roman",serif;font-size:42px;font-weight:500;letter-spacing:-.04em;margin-top:14px}
+.heading p{font-size:15px;max-width:720px;line-height:1.6}
+.client-heading{margin-top:16px}
+.client-logo{border-color:#e6e9e8;box-shadow:0 9px 30px #18394b12}
+.pill{border-radius:4px;background:var(--accent-soft);border:0;color:var(--accent)}
+.notice{margin:24px 0 0;border-left:0;background:#fff8e8;border-radius:7px;color:#7b5a28;font-size:12px;padding:12px 15px}
+.process-strip{display:grid;grid-template-columns:repeat(4,1fr);margin:20px 0 20px;background:#e9edea;border-radius:8px;overflow:hidden}
+.process-strip span{padding:13px 16px;border-right:1px solid #fff;display:flex;align-items:center;gap:10px;color:#45616a;font-size:12px;font-weight:700}
+.process-strip span:last-child{border:0}.process-strip b{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:#fff;color:var(--accent);font-size:10px}
+.metrics{gap:0;background:var(--ink);border-radius:9px;overflow:hidden;margin-bottom:20px}
+.metrics article{border:0;border-right:1px solid #46505a;border-radius:0;box-shadow:none;background:transparent;padding:18px 25px;color:#fff}
+.metrics article:last-child{border:0}.metrics strong{font-family:Georgia,"Times New Roman",serif;font-size:30px;font-weight:500;margin:4px 0}.metrics small,.metrics span{color:#b4c5c7}
+.grid{grid-template-columns:minmax(310px,.85fr) minmax(460px,1.4fr);gap:20px;align-items:start}
+.panel{border-radius:8px;background:var(--panel);box-shadow:none;border-color:#e6e4df}
+.panel-head .eyebrow{color:var(--accent)}
+.panel h2{font-family:Georgia,"Times New Roman",serif;font-size:26px;font-weight:500}
+.primary{background:var(--accent);border-radius:4px}.primary:hover{background:#154d62}
+input,select{border-radius:4px;background:#fff}.item{border-radius:5px;background:#fff}
+.tag{border-radius:3px}.tag.urgent{background:#fbe4d7;color:#a64828}
+.filters button,.examples button{border-radius:3px}.filters button.selected{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.history-panel{margin-top:20px}
+body.presentation .sidebar nav{display:none}
+body.presentation .brand strong:after{content:" / CLIENTE";color:var(--accent)}
+body.presentation .topbar>span:after{color:var(--accent)}
+body:has(.logo-education){--accent:#176d97;--accent-soft:#e1f2f9}
+body:has(.logo-retail){--accent:#617b35;--accent-soft:#edf3e1}
+body:has(.logo-hospitality){--accent:#a47630;--accent-soft:#f8efdd}
+body:has(.logo-manufacturing){--accent:#315e83;--accent-soft:#e6edf4}
+@media(max-width:1050px){.sidebar{flex-wrap:wrap}.sidebar nav{justify-content:flex-start}.grid{grid-template-columns:1fr}}
+@media(max-width:700px){.sidebar{padding:12px 17px;gap:12px}.sidebar nav{display:flex;overflow:auto;flex-wrap:nowrap;width:100%}.sidebar nav button{font-size:12px;padding:8px 10px}.topbar{padding:8px 17px}.content{padding:20px 17px}.heading h1{font-size:34px}.process-strip{grid-template-columns:repeat(2,1fr)}.process-strip span:nth-child(2){border-right:0}.metrics{grid-template-columns:repeat(2,1fr)}.metrics article:nth-child(2){border-right:0}.metrics article:nth-child(-n+2){border-bottom:1px solid #46505a}.metrics article{padding:13px}.pill{margin-top:15px}body.presentation .sidebar nav{display:none}}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Local Operations Review Workspace demonstration using synthetic intake data.">
+<title>Operations Review Workspace — Demo</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="shell">
+<header class="topbar"><a class="brand" href="/">OPERATIONS <span>/ REVIEW WORKSPACE</span></a><span class="tag">LOCAL PRODUCT DEMO</span></header>
+<section class="hero"><div><p class="eyebrow">INTAKE CONTROL / WORKFLOW REVIEW</p><h1>Decisions with<br><em>context.</em></h1><p class="lede">A single workspace for lead and invoice intake exceptions, review decisions, and workflow history.</p></div><div class="batch"><span>WORKFLOW ID</span><strong id="workflow-id">operations-review-demo</strong><small id="workflow-status">Connecting…</small></div></section>
+<div class="warning"><strong>DEMONSTRATION ENVIRONMENT</strong><span>Synthetic records only. Reviewer identity is not authenticated. Decisions do not trigger payments, outreach, or external actions.</span></div>
+<section class="stats" aria-label="Queue summary"><article><span>QUEUE ITEMS</span><strong id="total-count">—</strong></article><article><span>AWAITING REVIEW</span><strong id="pending-count">—</strong></article><article><span>DECISIONS RECORDED</span><strong id="decided-count">—</strong></article></section>
+<section class="workspace">
+<div class="queue panel"><div class="panel-head"><div><p class="eyebrow">01 / REVIEW QUEUE</p><h2>Items requiring attention</h2></div><select id="filter" aria-label="Filter queue"><option value="all">All sources</option><option value="lead_intake">Lead intake</option><option value="invoice_intake">Invoice intake</option><option value="pending">Pending only</option><option value="decided">Decided</option></select></div><div id="queue-list" class="queue-list" aria-live="polite"></div></div>
+<div class="detail panel"><p class="eyebrow">02 / ITEM DETAIL</p><div id="detail-empty" class="empty">Select a queue item to inspect its details and record a decision.</div><div id="detail" hidden><span id="detail-source" class="source"></span><h2 id="detail-reference"></h2><p id="detail-reason" class="reason"></p><pre id="detail-extra"></pre><form id="decision-form"><label>REVIEWER IDENTIFIER<input id="reviewer" name="reviewer" required maxlength="120" placeholder="Demo reviewer ID"></label><label>DECISION<select id="outcome" required><option value="REQUESTED_INFORMATION">Request information</option><option value="ACCEPTED_FOR_NEXT_STAGE">Accept for next stage</option><option value="REJECTED">Reject</option></select></label><label>REASON<textarea id="reason" required maxlength="1000" rows="3" placeholder="Explain the decision"></textarea></label><button type="submit" id="submit">Record decision</button><p id="form-message" role="status"></p></form><div id="existing-decision" class="existing" hidden></div></div></div>
+</section>
+<section class="panel history"><div class="panel-head"><div><p class="eyebrow">03 / TRACEABILITY</p><h2>Decision & event history</h2></div><button class="quiet" id="refresh">Refresh</button></div><div id="history-list" class="history-list"></div></section>
+<footer><span>OPERATIONS REVIEW WORKSPACE · PRODUCT DEMONSTRATION</span><span>LOCAL ONLY / NO AUTHENTICATION</span></footer>
+</main><script src="app.js"></script>
+</body></html>

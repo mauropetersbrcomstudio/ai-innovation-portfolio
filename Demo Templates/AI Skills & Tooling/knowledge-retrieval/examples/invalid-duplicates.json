@@ -1,0 +1,6 @@
+{
+  "sources": [
+    {"id": "DUP", "title": "One", "text": "First"},
+    {"id": "DUP", "title": "Two", "text": "Second"}
+  ]
+}

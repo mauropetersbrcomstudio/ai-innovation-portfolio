@@ -1,0 +1,22 @@
+{
+  "sources": [
+    {
+      "id": "HR-001",
+      "title": "Vacation Request Procedure",
+      "content": "Employees submit vacation requests to their direct manager at least 15 calendar days before the intended start date. The manager reviews team coverage and records an approval or rejection in the HR system. This demonstration does not submit or approve requests.",
+      "allowed_roles": ["employee", "manager", "hr"]
+    },
+    {
+      "id": "IT-001",
+      "title": "Password Reset Guidance",
+      "content": "Employees must use the company's approved password reset portal. IT support will never ask an employee to share their current password. Requests involving suspected account compromise must be escalated to IT security.",
+      "allowed_roles": ["employee", "manager", "it"]
+    },
+    {
+      "id": "FIN-001",
+      "title": "Expense Reimbursement Policy",
+      "content": "Employees submit expense receipts through the finance expense system within 30 days of the transaction. A manager reviews the business purpose before finance processes an eligible reimbursement.",
+      "allowed_roles": ["manager", "finance"]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "case_reference": "SYNTHETIC-NO-CASE",
+  "engagement_type": "client_engagement",
+  "attribution": {
+    "mode": "anonymized",
+    "case_publication_authorized": false,
+    "client_name_included": false,
+    "client_name_authorized": false,
+    "logo_included": false,
+    "logo_authorized": false
+  },
+  "authorization_reference": "",
+  "claims": [],
+  "data_review": {
+    "source_data_authorized": false,
+    "personal_data_review_complete": false,
+    "confidentiality_review_complete": false,
+    "third_party_assets_review_complete": false
+  }
+}

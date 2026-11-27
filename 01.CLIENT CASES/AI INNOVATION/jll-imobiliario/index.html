@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JLL · Inteligência de oportunidades | Protótipo</title>
+    <meta
+      name="description"
+      content="Protótipo local de triagem e distribuição de oportunidades imobiliárias."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./index.html" aria-label="JLL, início do protótipo"
+        ><img src="./logo.png" alt="JLL — See a Brighter Way"
+      /></a>
+      <span class="topbar-tag"
+        >PROTÓTIPO LOCAL <span aria-hidden="true">/</span> IMOBILIÁRIO</span
+      >
+      <span class="topbar-dot" aria-hidden="true"></span>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">01 / OPERATIONS DESK</p>
+          <h1>Uma visão clara de cada <em>oportunidade.</em></h1>
+          <p>
+            Triagem demonstrativa de interessados, detecção de duplicatas e
+            encaminhamento para revisão comercial.
+          </p>
+        </div>
+        <div class="hero-stamp">
+          <span>LEAD<br />INTELLIGENCE</span><strong>JLL</strong>
+        </div>
+      </section>
+      <section class="overview" aria-label="Resumo da demonstração">
+        <div>
+          <span>Oportunidades</span><strong id="total">0</strong
+          ><small>registradas neste navegador</small>
+        </div>
+        <div>
+          <span>Encaminhadas</span><strong id="routed">0</strong
+          ><small>para filas ilustrativas</small>
+        </div>
+        <div>
+          <span>Revisão</span><strong id="review">0</strong
+          ><small>com exceções identificadas</small>
+        </div>
+        <div>
+          <span>Decididas</span><strong id="decided">0</strong
+          ><small>com justificativa humana</small>
+        </div>
+      </section>
+      <div class="workspace">
+        <aside class="intake">
+          <div class="panel-heading">
+            <span>CAPTURA</span>
+            <h2>Nova oportunidade</h2>
+            <p>Use apenas registros de demonstração.</p>
+          </div>
+          <div class="examples">
+            <button type="button" data-example-index="0">Exemplo padrão</button
+            ><button type="button" data-example-index="1">Exceção</button>
+          </div>
+          <form id="intake-form">
+            <label
+              >Referência<input
+                name="reference"
+                required
+                maxlength="36"
+                placeholder="JLL-101"
+            /></label>
+            <label
+              >Empresa de demonstração<input
+                name="company"
+                required
+                maxlength="60"
+                placeholder="Empresa Exemplo"
+            /></label>
+            <label
+              >E-mail de demonstração<input
+                name="email"
+                type="email"
+                required
+                maxlength="80"
+                placeholder="contato@example.com"
+            /></label>
+            <div class="field-row">
+              <label
+                >Interesse<select name="purpose" required>
+                  <option value="">Selecione</option>
+                  <option>Locação</option>
+                  <option>Compra</option>
+                </select></label
+              ><label
+                >Tipo de imóvel<select name="propertyType" required>
+                  <option value="">Selecione</option>
+                  <option>Escritório</option>
+                  <option>Galpão</option>
+                  <option>Varejo</option>
+                </select></label
+              >
+            </div>
+            <div class="field-row">
+              <label
+                >Região<select name="city" required>
+                  <option value="">Selecione</option>
+                  <option>São Paulo</option>
+                  <option>Rio de Janeiro</option>
+                  <option>Belo Horizonte</option>
+                  <option>Outra região</option>
+                </select></label
+              ><label
+                >Prazo<select name="timeline" required>
+                  <option value="">Selecione</option>
+                  <option>Imediato</option>
+                  <option>Até 30 dias</option>
+                  <option>Até 90 dias</option>
+                </select></label
+              >
+            </div>
+            <div class="field-row">
+              <label
+                >Área estimada (m²)<input
+                  name="area"
+                  type="number"
+                  required
+                  min="1"
+                  step="1"
+                  placeholder="450" /></label
+              ><label
+                >Orçamento mensal (R$)<input
+                  name="budget"
+                  type="number"
+                  required
+                  min="1"
+                  step="1"
+                  placeholder="25000"
+              /></label>
+            </div>
+            <button class="submit" type="submit">
+              Registrar e classificar
+            </button>
+          </form>
+        </aside>
+        <section class="pipeline" aria-label="Fila de oportunidades">
+          <div class="pipeline-head">
+            <div>
+              <p class="eyebrow">TRIAGEM COMERCIAL</p>
+              <h2>Pipeline de revisão</h2>
+            </div>
+            <div class="tools">
+              <button type="button" data-export>Exportar JSON</button
+              ><button type="button" data-reset>Reiniciar</button>
+            </div>
+          </div>
+          <div class="territories">
+            <span>SP / COMERCIAL</span><span>RJ / COMERCIAL</span
+            ><span>MG / COMERCIAL</span><span>EXCEÇÕES</span>
+          </div>
+          <div class="lane-grid">
+            <div class="lane">
+              <h3>ENCAMINHADOS <span id="routed-count">0</span></h3>
+              <div id="routed-list" class="lane-body"></div>
+            </div>
+            <div class="lane lane-review">
+              <h3>REVISÃO NECESSÁRIA <span id="review-count">0</span></h3>
+              <div id="review-list" class="lane-body"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <p
+        id="live-status"
+        class="live-status"
+        role="status"
+        aria-live="polite"
+      ></p>
+      <footer>
+        Dados e critérios ilustrativos · Sem CRM conectado · Nenhum contato é
+        enviado
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BRCOM Studio · Campaign Launch QA | Protótipo</title>
+    <meta
+      name="description"
+      content="Protótipo local de verificação de campanhas e geração de links de acompanhamento."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <header class="masthead">
+      <img src="./logo.png" alt="BRCOM Studio" />
+      <div><span>CAMPAIGN</span><span>LAUNCH ROOM</span></div>
+      <span class="masthead-note"
+        >PROTÓTIPO LOCAL<br />DADOS DE DEMONSTRAÇÃO</span
+      >
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">CHECKPOINT / 01</p>
+          <h1>Antes de ir<br /><em>ao ar.</em></h1>
+          <p>
+            Metadados, destino e UTMs conferidos por regras transparentes. A
+            decisão de lançar continua humana.
+          </p>
+        </div>
+        <div class="hero-symbol" aria-hidden="true">
+          <span>GO</span><span>NO GO</span>
+        </div>
+      </section>
+      <section class="stats" aria-label="Resumo de campanhas">
+        <div><small>CAMPANHAS</small><strong id="total">00</strong></div>
+        <div><small>PARA REVISÃO</small><strong id="ready">00</strong></div>
+        <div><small>COM PENDÊNCIAS</small><strong id="blocked">00</strong></div>
+        <div><small>DECISÕES</small><strong id="decided">00</strong></div>
+        <div class="stats-caption">VERIFICAÇÃO<br /><b>LOCAL</b></div>
+      </section>
+      <section class="board" id="board">
+        <div class="board-head">
+          <div>
+            <p class="eyebrow">RELEASE BOARD</p>
+            <h2>Próximos lançamentos</h2>
+          </div>
+          <div class="tools">
+            <button type="button" data-export>Exportar JSON</button
+            ><button type="button" data-reset>Reiniciar</button>
+          </div>
+        </div>
+        <div class="board-layout">
+          <div id="campaign-list" class="campaign-list"></div>
+          <aside class="qa-guide">
+            <span>QA / CHECKLIST</span>
+            <h3>O que o protótipo verifica</h3>
+            <ul>
+              <li>Destino HTTP(S) válido</li>
+              <li>UTMs sem colisão</li>
+              <li>Datas em sequência</li>
+              <li>Orçamento válido</li>
+              <li>ID sem duplicata local</li>
+            </ul>
+            <p>
+              “Para revisão” significa apenas que os controles demonstrativos
+              passaram.
+            </p>
+          </aside>
+        </div>
+      </section>
+      <section class="creator" id="new-campaign">
+        <div class="creator-head">
+          <div>
+            <p class="eyebrow">INPUT / 02</p>
+            <h2>Preparar campanha</h2>
+            <p>Carregue um exemplo ou preencha com dados de demonstração.</p>
+          </div>
+          <div class="examples">
+            <button type="button" data-example-index="0">Exemplo padrão</button
+            ><button type="button" data-example-index="1">Exceção</button>
+          </div>
+        </div>
+        <form id="intake-form">
+          <label
+            >ID da campanha<input
+              name="campaignId"
+              maxlength="40"
+              required
+              placeholder="CMP-401"
+          /></label>
+          <label
+            >Nome<input
+              name="campaignName"
+              maxlength="80"
+              required
+              placeholder="Campanha Exemplo"
+          /></label>
+          <label
+            >URL de destino<input
+              name="destination"
+              type="url"
+              required
+              placeholder="https://example.com/campanha"
+          /></label>
+          <label
+            >utm_source<input
+              name="utmSource"
+              required
+              maxlength="50"
+              placeholder="newsletter"
+          /></label>
+          <label
+            >utm_medium<input
+              name="utmMedium"
+              required
+              maxlength="50"
+              placeholder="email"
+          /></label>
+          <label
+            >utm_campaign<input
+              name="utmCampaign"
+              required
+              maxlength="60"
+              placeholder="campanha_exemplo"
+          /></label>
+          <label>Início<input name="startDate" type="date" required /></label>
+          <label>Fim<input name="endDate" type="date" required /></label>
+          <label
+            >Orçamento (R$)<input
+              name="budget"
+              type="number"
+              min="0"
+              step="0.01"
+              required
+              placeholder="5000"
+          /></label>
+          <button type="submit" class="submit">Executar QA</button>
+        </form>
+      </section>
+      <p id="live-status" role="status" aria-live="polite"></p>
+      <footer>
+        Nenhuma campanha é publicada, agendada ou conectada a plataformas
+        externas.
+      </footer>
+    </main>
+  </body>
+</html>

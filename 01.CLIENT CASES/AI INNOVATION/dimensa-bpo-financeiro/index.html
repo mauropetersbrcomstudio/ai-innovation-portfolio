@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dimensa · Mesa de exceções financeiras | Protótipo</title>
+    <meta
+      name="description"
+      content="Protótipo local de conferência de contas a pagar e encaminhamento de exceções."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="brand">
+        <img src="./logo.png" alt="Dimensa, an Evertec company" />
+      </div>
+      <div class="masthead-center">
+        FINANCE OPERATIONS <span>/</span> PROTÓTIPO LOCAL
+      </div>
+      <div class="session">
+        AMBIENTE DE DEMONSTRAÇÃO <span aria-hidden="true"></span>
+      </div>
+    </header>
+    <main>
+      <section class="titlebar">
+        <div>
+          <p class="eyebrow">CONTAS A PAGAR / REVISÃO</p>
+          <h1>Exceções à vista.<br /><span>Decisões sob controle.</span></h1>
+        </div>
+        <p>
+          Conferência demonstrativa de lançamentos, referências de compra e
+          duplicatas, com encaminhamento humano.
+        </p>
+      </section>
+      <section class="numbers" aria-label="Indicadores da demonstração">
+        <div>
+          <small>REGISTROS RECEBIDOS</small><strong id="total">00</strong
+          ><span>no navegador</span>
+        </div>
+        <div>
+          <small>CONTAS PARA REVISÃO</small><strong id="ap">00</strong
+          ><span>fila operacional</span>
+        </div>
+        <div>
+          <small>EXCEÇÕES</small><strong id="exceptions">00</strong
+          ><span>dados ou duplicidade</span>
+        </div>
+        <div>
+          <small>DECISÕES REGISTRADAS</small><strong id="decided">00</strong
+          ><span>somente simulação</span>
+        </div>
+      </section>
+      <section class="entry" aria-labelledby="entry-title">
+        <div class="entry-top">
+          <div>
+            <p class="eyebrow">01 / CAPTURA</p>
+            <h2 id="entry-title">Novo lançamento</h2>
+          </div>
+          <div class="examples">
+            <button type="button" data-example-index="0">
+              Exemplo completo</button
+            ><button type="button" data-example-index="1">
+              Exceção documental
+            </button>
+          </div>
+        </div>
+        <form id="intake-form">
+          <label
+            >Referência da nota<input
+              name="invoiceRef"
+              required
+              maxlength="36"
+              placeholder="NF-301"
+          /></label>
+          <label
+            >Fornecedor de exemplo<input
+              name="supplier"
+              required
+              maxlength="60"
+              placeholder="Fornecedor Exemplo"
+          /></label>
+          <label
+            >Pedido de compra<input
+              name="purchaseOrder"
+              maxlength="36"
+              placeholder="OC-001"
+          /></label>
+          <label
+            >Valor (R$)<input
+              name="amount"
+              type="number"
+              min="0.01"
+              step="0.01"
+              required
+              placeholder="3200"
+          /></label>
+          <label>Emissão<input name="issueDate" type="date" required /></label>
+          <label>Vencimento<input name="dueDate" type="date" required /></label>
+          <button class="submit" type="submit">Conferir registro</button>
+        </form>
+      </section>
+      <section class="ledger" aria-label="Livro de revisão">
+        <div class="ledger-head">
+          <div>
+            <p class="eyebrow">02 / FILA DE TRABALHO</p>
+            <h2>Livro de revisão</h2>
+          </div>
+          <div class="tools">
+            <button type="button" data-export>Exportar JSON</button
+            ><button type="button" data-reset>Reiniciar</button>
+          </div>
+        </div>
+        <div class="ledger-grid">
+          <div class="ledger-main">
+            <div class="table-head">
+              <span>DOCUMENTO / FORNECEDOR</span><span>VALOR</span
+              ><span>SITUAÇÃO</span>
+            </div>
+            <div id="invoice-list"></div>
+          </div>
+          <aside class="guide">
+            <span class="guide-icon">!</span>
+            <h3>Verificações aplicadas</h3>
+            <ol>
+              <li>Campos e datas</li>
+              <li>Referência de compra</li>
+              <li>Duplicidade no lote local</li>
+              <li>Limite ilustrativo</li>
+            </ol>
+            <p>
+              Rotas são sugestões de revisão. Nenhuma nota é aprovada ou paga.
+            </p>
+          </aside>
+        </div>
+      </section>
+      <p id="live-status" role="status" aria-live="polite"></p>
+      <footer>
+        Dados sintéticos · Sem ERP conectado · Sem pagamento ou lançamento
+        contábil real
+      </footer>
+    </main>
+  </body>
+</html>

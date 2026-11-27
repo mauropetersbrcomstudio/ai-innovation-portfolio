@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#079da5">
+  <title>Clínica Pró Estética | Supply Operations Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-frame">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-image brand-monogram" aria-hidden="true">SO</div>
+        <div class="brand-copy"><strong>Operações</strong><span>Assistente interno</span></div>
+      </div>
+
+      <nav class="navigation" aria-label="Navegação principal">
+        <button class="nav-link is-active" type="button" data-view="dashboard"><span class="nav-icon">⌂</span>Visão geral</button>
+        <button class="nav-link" type="button" data-view="requests"><span class="nav-icon">▤</span>Solicitações <span class="nav-count" id="nav-pending">0</span></button>
+        <button class="nav-link" type="button" data-view="inventory"><span class="nav-icon">▦</span>Estoque e regras</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="local-storage-note"><span class="status-dot"></span><div><strong>Ambiente de demonstração</strong><span>Dados guardados somente neste navegador.</span></div></div>
+        <button class="text-button sidebar-reset" id="reset-demo" type="button">Reiniciar demonstração</button>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="crumb"><span>SUPPLY OPERATIONS</span><span class="crumb-slash">/</span><span>OPERAÇÕES INTERNAS</span></div>
+        <div class="top-actions">
+          <span class="environment-badge"><span></span>DEMO LOCAL · SEM INTEGRAÇÕES</span>
+          <button class="icon-button" id="export-data" type="button" title="Exportar dados desta demonstração" aria-label="Exportar dados">⇩</button>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <section class="page-heading">
+          <div>
+            <p class="eyebrow">COPILOTO DE EXECUÇÃO · REPOSIÇÃO DE INSUMOS</p>
+            <h1 id="page-title">Operações da rede</h1>
+            <p class="page-subtitle" id="page-subtitle">O assistente consulta regras e estoque demonstrativos, prepara o plano e deixa as decisões com a equipe.</p>
+          </div>
+          <div class="heading-unit"><span class="online-indicator"></span>17 unidades simuladas</div>
+        </section>
+
+        <div class="demo-notice" role="note">
+          <span class="notice-icon">i</span>
+          <p><strong>Protótipo com dados sintéticos.</strong> Estoques, solicitações e regras são fictícios e precisam ser validados com a clínica. Nenhum pedido é enviado a fornecedores ou sistemas reais; não insira dados de pacientes.</p>
+        </div>
+
+        <section class="view is-visible" id="view-dashboard" aria-labelledby="page-title">
+          <div class="metrics-grid" id="metrics-grid"></div>
+
+          <div class="dashboard-grid">
+            <section class="panel assistant-panel">
+              <div class="panel-heading">
+                <div><span class="panel-kicker">ENTRADA DE DEMANDA</span><h2>O que a unidade precisa?</h2></div>
+                <span class="rule-badge">REGRAS LOCAIS</span>
+              </div>
+              <p class="panel-description">Escreva como um colaborador escreveria. O protótipo identifica unidade, insumo e quantidade para montar uma sugestão revisável.</p>
+
+              <div class="example-prompts" aria-label="Exemplos de solicitação">
+                <button type="button" class="prompt-chip" data-example="A unidade Campinas 02 precisa de 12 rolos de lençol descartável. Estoque está baixo.">+ Reposição simples</button>
+                <button type="button" class="prompt-chip" data-example="ABC unidade 01 precisa de 18 pacotes de algodão, por favor.">+ Estoque insuficiente</button>
+                <button type="button" class="prompt-chip" data-example="Unidade Santos 01: precisamos urgentemente de 24 caixas de luva nitrílica P.">+ Exceção para revisão</button>
+              </div>
+
+              <form id="request-form">
+                <label class="field-label" for="request-message">Mensagem da unidade</label>
+                <textarea id="request-message" rows="4" placeholder="Ex.: Campinas unidade 02 precisa de 12 rolos de lençol descartável até sexta-feira." required></textarea>
+                <div class="form-bottom"><span class="field-hint">Sem nome, telefone ou dados de pacientes.</span><button class="button button-secondary" type="submit" id="analyze-request">Analisar pedido <span>→</span></button></div>
+              </form>
+
+              <div id="analysis-card" class="analysis-card" hidden aria-live="polite"></div>
+            </section>
+
+            <section class="panel queue-panel">
+              <div class="panel-heading">
+                <div><span class="panel-kicker">ACOMPANHAMENTO</span><h2>Fila de solicitações</h2></div>
+                <button class="link-button" type="button" data-open-view="requests">Ver todas <span>→</span></button>
+              </div>
+              <div class="queue-summary" id="queue-summary"></div>
+              <div class="compact-queue" id="compact-queue"></div>
+            </section>
+          </div>
+
+          <section class="panel how-panel">
+            <div class="how-icon">✳</div>
+            <div><span class="panel-kicker">FLUXO DA DEMONSTRAÇÃO</span><h2>Da mensagem à atualização local</h2><p>Interpretar → conferir saldo e regra → pedir aprovação → registrar movimentação simulada. A assistente não confirma compra nem altera qualquer plataforma externa.</p></div>
+            <button class="link-button how-link" type="button" data-open-view="inventory">Ver regra e estoque <span>→</span></button>
+          </section>
+        </section>
+
+        <section class="view" id="view-requests" aria-labelledby="page-title">
+          <div class="list-toolbar panel">
+            <div><span class="panel-kicker">GESTÃO DA FILA</span><h2>Solicitações da rede</h2></div>
+            <div class="filters">
+              <label class="sr-only" for="filter-status">Filtrar por status</label>
+              <select id="filter-status"><option value="all">Todos os status</option><option value="pending_manager">Aguardando aprovação</option><option value="pending_purchase_approval">Aguardando compras</option><option value="awaiting_receipt">Aguardando recebimento</option><option value="fulfilled">Concluídas</option><option value="rejected">Recusadas</option></select>
+              <label class="sr-only" for="filter-unit">Filtrar por unidade</label>
+              <select id="filter-unit"><option value="all">Todas as unidades</option></select>
+              <label class="sr-only" for="filter-search">Buscar solicitações</label>
+              <input id="filter-search" type="search" placeholder="Buscar insumo ou código">
+            </div>
+          </div>
+          <div class="requests-layout">
+            <div class="request-list panel" id="request-list" aria-label="Lista de solicitações"></div>
+            <aside class="request-detail panel" id="request-detail" aria-live="polite"></aside>
+          </div>
+        </section>
+
+        <section class="view" id="view-inventory" aria-labelledby="page-title">
+          <div class="inventory-intro panel">
+            <div><span class="panel-kicker">BASE DEMONSTRATIVA</span><h2>Estoque e regras de reposição</h2><p>Esta tela representa os dados que, em uma implantação, seriam consultados no sistema de estoque da clínica.</p></div>
+            <div class="policy-chip"><span>POLÍTICA</span><strong>DEMO-EST-01</strong><small>Fictícia · requer validação</small></div>
+          </div>
+          <div class="inventory-toolbar"><label for="inventory-unit">Ver saldo local de</label><select id="inventory-unit"></select><span id="inventory-count" class="muted"></span></div>
+          <div class="inventory-grid" id="inventory-grid"></div>
+          <div class="policy-grid">
+            <article class="panel policy-card"><span class="policy-number">01</span><div><h3>Conferência antes do pedido</h3><p>Verificar saldo da unidade, disponibilidade central e solicitações já abertas para evitar duplicidade.</p></div></article>
+            <article class="panel policy-card"><span class="policy-number">02</span><div><h3>Reposição com aprovação</h3><p>O sistema sugere transferência ou compra. A equipe autorizada decide; nenhuma ação ocorre automaticamente.</p></div></article>
+            <article class="panel policy-card"><span class="policy-number">03</span><div><h3>Exceções ficam visíveis</h3><p>Urgência, quantidade fora do limite ou falta de saldo exigem revisão humana antes da execução simulada.</p></div></article>
+          </div>
+          <p class="disclaimer">Limites, itens, saldos e procedimentos acima são dados de demonstração, não representam política oficial da qualquer organização.</p>
+        </section>
+
+        <footer class="page-footer"><span>SUPPLY OPERATIONS · PROTOTYPE DEMO</span><span>Local e demonstrativo · sem envio externo</span></footer>
+      </main>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
+

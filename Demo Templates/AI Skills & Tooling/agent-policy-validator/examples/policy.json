@@ -1,0 +1,18 @@
+{
+  "agents": [
+    {
+      "name": "support_triage",
+      "risk": "LOW",
+      "allowed_tools": ["classify_request", "retrieve_knowledge"],
+      "approval_required_for": [],
+      "max_steps": 8
+    },
+    {
+      "name": "ticket_operator",
+      "risk": "HIGH",
+      "allowed_tools": ["create_ticket"],
+      "approval_required_for": ["create_ticket"],
+      "max_steps": 4
+    }
+  ]
+}

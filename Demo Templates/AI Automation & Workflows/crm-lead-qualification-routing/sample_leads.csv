@@ -1,0 +1,6 @@
+lead_id,name,email,company,need,budget_confirmed,decision_role_confirmed,territory,created_date
+L-1001,Ana Costa,ana@acme.example,Acme Ltd,Workflow automation,true,true,south,2026-11-16
+L-1002,Bruno Lima,bruno@gmail.com,,Analytics dashboard,false,false,north,2026-11-16
+L-1003,Carla Mendes,carla@contoso.example,Contoso,CRM modernization,true,false,east,2026-11-17
+L-1004,Diego Alves,diego@globex.example,Globex,AI governance,true,true,central,2026-11-17
+L-1005,Eva Rocha,eva@initech.example,Initech,,false,false,west,2026-11-17

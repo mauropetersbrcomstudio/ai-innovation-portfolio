@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "publication_type": "named_identity_only",
+  "attribution_source": "user_attestation",
+  "name_authorized": true,
+  "brand_assets_authorized": false,
+  "stage": "demo",
+  "workflow_validated_by_client": false,
+  "external_integration": false,
+  "outcomes_claimed": false,
+  "sample_data": "synthetic"
+}

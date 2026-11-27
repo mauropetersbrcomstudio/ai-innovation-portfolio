@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "attribution_source": "user_attestation",
+  "name_and_logo_authorized": true,
+  "stage": "prototype_for_future_presentation",
+  "workflow_validated_by_client": false,
+  "external_integration": false,
+  "outcomes_claimed": false,
+  "sample_data": "synthetic"
+}

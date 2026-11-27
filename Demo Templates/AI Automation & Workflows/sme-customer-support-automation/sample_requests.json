@@ -1,0 +1,22 @@
+[
+  {
+    "request_id": "SYN-001",
+    "message": "Can you tell me where my order is?"
+  },
+  {
+    "request_id": "SYN-002",
+    "message": "I need a copy of my invoice."
+  },
+  {
+    "request_id": "SYN-003",
+    "message": "My order has not arrived and I want a refund."
+  },
+  {
+    "request_id": "SYN-004",
+    "message": "I cannot access my account."
+  },
+  {
+    "request_id": "SYN-005",
+    "message": "Do you offer weekend installation?"
+  }
+]

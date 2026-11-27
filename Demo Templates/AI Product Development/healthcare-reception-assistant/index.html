@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#251d2d">
+<title>Healthcare Reception Assistant | Demo</title>
+<style>
+:root{--ink:#28232d;--muted:#776f7c;--line:#ebe5ed;--bg:#f7f4f7;--panel:#fff;--plum:#6c4b70;--plum-dark:#503653;--lav:#f1e9f2;--rose:#b96f82;--green:#397257;--amber:#9a6b23;--red:#a84343;--shadow:0 12px 36px rgba(45,29,48,.07);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}.shell{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}.sidebar{background:#251d2d;color:#f9f5fa;padding:25px 18px;display:flex;flex-direction:column;gap:25px}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,#d9a3b2,#86618d);display:grid;place-items:center;font-weight:800;color:#fff;font-size:18px}.brand strong{display:block;font-size:16px;letter-spacing:.02em}.brand span{display:block;color:#c4b8c8;font-size:11px;margin-top:4px}.nav{display:grid;gap:7px}.nav button{border:0;background:transparent;color:#d3c9d5;border-radius:10px;text-align:left;padding:12px 13px;font-size:14px}.nav button:hover,.nav button.active{background:#403346;color:#fff}.nav .ico{display:inline-block;width:24px;color:#d7a5b5}.side-note{margin-top:auto;border:1px solid #4d4053;border-radius:13px;padding:13px;color:#d0c5d3;font-size:12px;line-height:1.55}.side-note strong{display:block;color:#fff;margin-bottom:5px}.main{padding:28px clamp(18px,4vw,54px);max-width:1520px;width:100%;margin:0 auto}.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:20px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--plum);font-weight:800}.topbar h1{font-size:clamp(24px,3vw,32px);letter-spacing:-.035em;margin:7px 0 4px}.topbar p{margin:0;color:var(--muted);font-size:14px}.badge{border:1px solid #e4ced9;background:#fff7fa;border-radius:99px;color:#7d425a;padding:8px 11px;font-size:11px;font-weight:800;white-space:nowrap}.notice{display:flex;gap:11px;align-items:flex-start;padding:13px 15px;background:#fff8e9;border:1px solid #f1e0b8;border-radius:12px;color:#6d5728;font-size:12px;line-height:1.5;margin-bottom:20px}.notice b{color:#59451c}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px 16px;box-shadow:0 4px 16px rgba(45,29,48,.025)}.stat span{font-size:12px;color:var(--muted)}.stat strong{display:block;font-size:23px;margin-top:5px}.view{display:none}.view.active{display:block}.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.8fr);gap:17px;align-items:start}.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);overflow:hidden}.card-head{padding:17px 19px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}.card-head h2,.card-head h3{font-size:15px;margin:0}.card-head p{margin:4px 0 0;color:var(--muted);font-size:11px}.tiny-pill{font-size:10px;color:var(--plum);background:var(--lav);padding:6px 8px;border-radius:99px;font-weight:800;white-space:nowrap}.messages{height:340px;overflow:auto;padding:18px;background:linear-gradient(180deg,#fff,#fcfafc);display:flex;flex-direction:column;gap:12px}.message{max-width:84%;font-size:13px;line-height:1.55;padding:11px 13px;border-radius:13px;white-space:pre-wrap;overflow-wrap:anywhere}.message.bot{background:#f2edf3;border:1px solid #e8deea;border-top-left-radius:4px;align-self:flex-start}.message.user{background:var(--plum);color:#fff;border-top-right-radius:4px;align-self:flex-end}.source{font-size:10px;color:#75657b;display:block;margin-top:6px}.quick{padding:11px 17px 0;display:flex;flex-wrap:wrap;gap:7px}.quick button{border:1px solid #e8dfe9;background:#fff;color:#604766;border-radius:99px;padding:7px 10px;font-size:11px}.quick button:hover{background:var(--lav)}.chat-form{display:flex;gap:8px;padding:13px 17px 17px}.chat-form input,.field input,.field select{width:100%;border:1px solid #ded6e0;border-radius:9px;padding:10px 11px;color:var(--ink);background:#fff;outline:0}.chat-form input:focus,.field input:focus,.field select:focus{border-color:#9d79a0;box-shadow:0 0 0 3px #f0e8f1}.btn{border:0;border-radius:9px;padding:10px 14px;font-weight:750;font-size:12px}.btn-primary{background:var(--plum);color:#fff}.btn-primary:hover{background:var(--plum-dark)}.btn-soft{background:var(--lav);color:var(--plum-dark)}.btn-line{background:#fff;border:1px solid #ded6e0;color:var(--ink)}.form-body{padding:17px 18px}.form-intro{font-size:12px;line-height:1.55;color:var(--muted);margin:0 0 14px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:11px;font-weight:750;color:#53495a}.field small{font-size:10px;color:var(--muted)}.form-body .btn{width:100%;margin-top:4px}.form-note{font-size:10px;color:var(--muted);line-height:1.5;margin:12px 0 0}.view-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:3px 0 14px}.view-head h2{margin:0;font-size:19px}.view-head p{margin:4px 0 0;color:var(--muted);font-size:12px}.filter-row{display:flex;gap:7px}.filter-row button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 10px;font-size:11px;color:var(--muted)}.filter-row button.active{background:var(--plum);border-color:var(--plum);color:#fff}.queue-list{display:grid;gap:10px;padding:14px}.queue-item{border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}.queue-item h3{font-size:13px;margin:0 0 6px}.queue-item p{font-size:11px;color:var(--muted);margin:3px 0;line-height:1.45}.queue-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.queue-meta span{font-size:10px;padding:5px 7px;border-radius:99px;background:#f5f1f5;color:#64586a}.status-pending{background:#fff5df!important;color:#845c1c!important}.status-reviewed{background:#eaf5ed!important;color:#35694e!important}.empty{padding:36px 18px;text-align:center;color:var(--muted);font-size:13px}.content-list{display:grid;gap:12px}.content-card{padding:16px 18px}.content-card h3{font-size:14px;margin:0 0 7px}.content-card p{margin:0;color:#5f5662;font-size:12px;line-height:1.6}.content-card .src{display:block;margin-top:10px;color:var(--muted);font-size:10px}.content-status{display:inline-flex;margin:0 0 11px;padding:5px 8px;border-radius:99px;background:#fff5df;color:#815b1c;font-size:10px;font-weight:800}.footnote{padding:12px 16px;color:var(--muted);font-size:10px;line-height:1.5;border-top:1px solid var(--line)}.reset{margin-top:12px}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:900px){.shell{grid-template-columns:1fr}.sidebar{padding:12px 14px;gap:12px}.brand{display:none}.nav{grid-template-columns:repeat(3,1fr);gap:5px}.nav button{text-align:center;padding:10px 5px;font-size:11px}.nav .ico{display:block;width:auto;margin-bottom:3px}.side-note{display:none}.main{padding:20px 15px}.grid{grid-template-columns:1fr}.messages{height:300px}}
+@media(max-width:560px){.stats{gap:7px}.stat{padding:11px 10px}.stat span{font-size:10px}.stat strong{font-size:20px}.topbar{display:block}.badge{display:inline-block;margin-top:11px}.queue-item{grid-template-columns:1fr}.queue-item .btn{justify-self:start}.view-head{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">P</div><div><strong>HEALTHCARE RECEPTION</strong><span>Demo de atendimento</span></div></div>
+    <nav class="nav" aria-label="Navegação principal">
+      <button class="active" data-view="atendimento"><span class="ico">◉</span>Atendimento</button>
+      <button data-view="fila"><span class="ico">▤</span>Fila da recepção</button>
+      <button data-view="conteudo"><span class="ico">▧</span>Conteúdo</button>
+    </nav>
+    <div class="side-note"><strong>Ambiente de demonstração</strong>Funciona neste navegador com cenários sintéticos. Não envia mensagens nem acessa sistemas da clínica.</div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div><div class="eyebrow">Demo template</div><h1>Assistente Administrativo de Recepção</h1><p>Modelo reutilizável para demonstração de atendimento administrativo em clínicas.</p></div>
+      <div class="badge">PROTÓTIPO LOCAL · SEM INTEGRAÇÕES</div>
+    </header>
+    <div class="notice"><span aria-hidden="true">ⓘ</span><div><b>Demonstração com dados sintéticos.</b> Endereços, horários, preços e agenda reais não estão cadastrados. Nenhuma mensagem é enviada, nenhum horário é confirmado e nenhum dado é sincronizado com a clínica. Não insira dados reais de pacientes.</div></div>
+    <section class="stats" aria-label="Resumo da fila">
+      <div class="stat"><span>Pedidos pendentes</span><strong id="stat-pending">0</strong></div>
+      <div class="stat"><span>Encaminhamentos</span><strong id="stat-escalated">0</strong></div>
+      <div class="stat"><span>Revisados nesta demo</span><strong id="stat-reviewed">0</strong></div>
+    </section>
+
+    <section class="view active" id="view-atendimento">
+      <div class="grid">
+        <article class="card">
+          <div class="card-head"><div><h2>Conversa simulada</h2><p>Classificação local por regras demonstrativas</p></div><span class="tiny-pill">SEM ENVIO EXTERNO</span></div>
+          <div class="messages" id="messages" aria-live="polite">
+            <div class="message bot">Olá! Posso orientar sobre o fluxo demonstrativo ou registrar um pedido de avaliação. A recepção confirma qualquer disponibilidade. Não compartilhe informações pessoais ou de saúde.</div>
+          </div>
+          <div class="quick" aria-label="Cenários prontos">
+            <button type="button" data-message="Quero agendar uma avaliação">Pedir avaliação</button>
+            <button type="button" data-message="Qual é o horário de atendimento?">Perguntar horário</button>
+            <button type="button" data-message="Estou com dor após um procedimento">Dúvida clínica</button>
+          </div>
+          <form class="chat-form" id="chat-form">
+            <label class="sr" for="chat-input">Digite uma mensagem de demonstração</label>
+            <input id="chat-input" autocomplete="off" placeholder="Digite uma mensagem sintética..." maxlength="400">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+          </form>
+        </article>
+        <article class="card">
+          <div class="card-head"><div><h2>Registrar pedido de avaliação</h2><p>Entra na fila como pendente</p></div><span class="tiny-pill">SEM CONFIRMAÇÃO</span></div>
+          <form class="form-body" id="request-form">
+            <p class="form-intro">Este formulário simula a captura de preferência. A recepção deve revisar o encaminhamento antes de qualquer resposta ao paciente.</p>
+            <div class="field"><label for="region">Cidade/região de preferência</label><select id="region" required><option value="">Selecione uma região</option><option>Região 1</option><option>Região 2</option><option>Região 3</option><option>Região 4</option><option>Região 5</option><option>Região 6</option></select><small>Lista demonstrativa; sem endereço ou unidade real.</small></div>
+            <div class="field"><label for="period">Período preferido</label><select id="period" required><option value="">Selecione uma preferência</option><option>Manhã</option><option>Tarde</option><option>Indiferente</option></select><small>Preferência não representa horário disponível.</small></div>
+            <button class="btn btn-primary" type="submit">Adicionar à fila de demonstração</button>
+            <p class="form-note">Não solicitamos nome, telefone, sintomas ou histórico médico. Em operação real, o fluxo precisaria de canal e tratamento de contato aprovados pela clínica.</p>
+          </form>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" id="view-fila">
+      <div class="view-head"><div><h2>Fila da recepção</h2><p>Itens locais de demonstração; uma revisão não confirma agendamento.</p></div><div class="filter-row"><button class="active" data-filter="pending">Pendentes</button><button data-filter="all">Todos</button></div></div>
+      <article class="card"><div class="queue-list" id="queue-list"></div><div class="footnote">A fila fica salva somente no armazenamento local deste navegador. Não há login, sincronização entre unidades ou notificação da equipe.</div></article>
+      <button class="btn btn-line reset" id="reset-demo" type="button">Restaurar cenários sintéticos</button>
+    </section>
+
+    <section class="view" id="view-conteudo">
+      <div class="view-head"><div><h2>Conteúdo e limites</h2><p>O protótipo não inventa fatos operacionais da clínica.</p></div></div>
+      <div class="content-list">
+        <article class="card content-card"><span class="content-status">REGRA DO PROTÓTIPO · VALIDAR COM A CLÍNICA</span><h3>Pedido de avaliação</h3><p>O assistente pode registrar uma preferência e encaminhar o pedido. A recepção deve conferir a unidade, disponibilidade e informações necessárias antes de responder ao cliente.</p><span class="src">Fonte: fluxo funcional desta demonstração; não é uma política publicada pela clínica.</span></article>
+        <article class="card content-card"><span class="content-status">NÃO CADASTRADO</span><h3>Endereços, horários, serviços e preços</h3><p>Não há fatos reais fornecidos ou aprovados no conteúdo deste protótipo. Perguntas sobre esses itens são encaminhadas à fila para resposta humana.</p><span class="src">Fonte: nenhuma base operacional foi conectada.</span></article>
+        <article class="card content-card"><span class="content-status">ESCALONAMENTO</span><h3>Dúvidas clínicas, ambíguas ou urgentes</h3><p>O protótipo não responde dúvidas clínicas. Ele registra uma sinalização genérica na fila local e orienta a equipe a revisar. A sinalização não gera alerta real nem monitora mensagens.</p><span class="src">A equipe clínica precisa definir e validar o procedimento de escalonamento antes de qualquer piloto real.</span></article>
+      </div>
+    </section>
+  </main>
+</div>
+<script>
+(function(){
+  "use strict";
+  const STORAGE_KEY="healthcare-reception-assistant-queue-v1";
+  const sampleQueue=[
+    {id:"SAMPLE-101",category:"Pedido de avaliação",region:"Região 6 (exemplo)",period:"Tarde (preferência sintética)",summary:"Cenário fictício. Nenhum contato ou dado de paciente.",status:"Pendente",createdAt:"Exemplo"},
+    {id:"SAMPLE-102",category:"Dúvida clínica encaminhada",region:"Unidade não informada",period:"—",summary:"Cenário fictício. O texto clínico não é armazenado.",status:"Pendente",createdAt:"Exemplo"}
+  ];
+  let queue=loadQueue();
+  let filter="pending";
+  const $=id=>document.getElementById(id);
+  const esc=value=>String(value).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+  function loadQueue(){
+    try{const saved=localStorage.getItem(STORAGE_KEY);return saved?JSON.parse(saved):JSON.parse(JSON.stringify(sampleQueue));}
+    catch(_){return JSON.parse(JSON.stringify(sampleQueue));}
+  }
+  function saveQueue(){
+    try{localStorage.setItem(STORAGE_KEY,JSON.stringify(queue));}
+    catch(_){/* The demo remains usable for this page session if local storage is unavailable. */}
+    render();
+  }
+  function addMessage(role,text,source){
+    const box=document.createElement("div");
+    box.className="message "+role;
+    box.textContent=text;
+    if(source){const tag=document.createElement("span");tag.className="source";tag.textContent="Referência: "+source;box.appendChild(tag);}
+    $("messages").appendChild(box);$("messages").scrollTop=$("messages").scrollHeight;
+  }
+  function enqueue(category,summary){
+    const item={id:"D-"+Date.now().toString(36).toUpperCase(),category:category,region:"A confirmar pela recepção",period:"—",summary:summary,status:"Pendente",createdAt:new Date().toLocaleString("pt-BR")};
+    queue.unshift(item);saveQueue();return item;
+  }
+  function switchView(view){
+    document.querySelectorAll(".view").forEach(el=>el.classList.toggle("active",el.id==="view-"+view));
+    document.querySelectorAll(".nav button").forEach(el=>el.classList.toggle("active",el.dataset.view===view));
+  }
+  function render(){
+    const pending=queue.filter(x=>x.status==="Pendente").length;
+    $("stat-pending").textContent=String(pending);
+    $("stat-escalated").textContent=String(queue.filter(x=>/encaminhada|encaminhado|sinalização/i.test(x.category)).length);
+    $("stat-reviewed").textContent=String(queue.filter(x=>x.status!=="Pendente").length);
+    const shown=queue.filter(x=>filter==="all"||x.status==="Pendente");
+    $("queue-list").innerHTML=shown.length?shown.map(item=>'<article class="queue-item"><div><h3>'+esc(item.category)+'</h3><p>'+esc(item.summary)+'</p><div class="queue-meta"><span>'+esc(item.region)+'</span><span>'+esc(item.period)+'</span><span class="'+(item.status==="Pendente"?"status-pending":"status-reviewed")+'">'+esc(item.status)+'</span><span>'+esc(item.createdAt)+'</span></div></div>'+(item.status==="Pendente"?'<button class="btn btn-soft" type="button" data-review="'+esc(item.id)+'">Marcar revisão simulada</button>':'<span class="tiny-pill">SEM AÇÃO EXTERNA</span>')+'</article>').join(""):'<div class="empty">Não há itens nesta visualização.</div>';
+    document.querySelectorAll("[data-review]").forEach(btn=>btn.addEventListener("click",()=>markReviewed(btn.dataset.review)));
+  }
+  function markReviewed(id){
+    queue=queue.map(item=>item.id===id?Object.assign({},item,{status:"Revisado (simulação)"}):item);
+    saveQueue();
+  }
+  function handleMessage(message){
+    const text=message.trim();if(!text)return;
+    addMessage("user",text);
+    const urgent=/(emerg[êe]ncia|urgente|falta de ar|desmaio|sangramento intenso)/i.test(text);
+    const clinical=/(dor|alergia|rea[cç][aã]o|incha[cç]o|queimadura|sangramento|diagn[oó]stico|medica[cç][aã]o|rem[eé]dio|contraindica[cç][aã]o|sintoma|infec[cç][aã]o|ard[eê]ncia)/i.test(text);
+    const appointment=/(agendar|agendamento|marcar|avalia[cç][aã]o|consulta|encaixe)/i.test(text);
+    const operational=/(hor[aá]rio|endere[cç]o|pre[cç]o|valor|servi[cç]o|unidade|localiza[cç][aã]o)/i.test(text);
+    if(urgent){
+      enqueue("Sinalização urgente encaminhada","Prioridade indicada para revisão humana. O conteúdo da mensagem não foi salvo.");
+      addMessage("bot","Marquei uma sinalização prioritária na fila local desta demonstração. Nenhum alerta foi enviado e esta página não é monitorada. Se houver risco imediato, procure o serviço de emergência local.","Regra de segurança do protótipo");
+    }else if(clinical){
+      enqueue("Dúvida clínica encaminhada","Revisão pela equipe necessária. O conteúdo da mensagem não foi salvo.");
+      addMessage("bot","Não posso responder dúvidas clínicas. Registrei uma sinalização genérica na fila local para revisão da equipe. Esta demonstração não envia notificações.","Regra de escalonamento do protótipo");
+    }else if(appointment){
+      addMessage("bot","Posso registrar uma preferência de avaliação no formulário ao lado. O pedido ficará pendente até a recepção revisar e confirmar disponibilidade; nenhum horário é confirmado automaticamente.","Fluxo de pedido do protótipo");
+    }else if(operational){
+      enqueue("Dúvida administrativa encaminhada","A informação solicitada não consta do conteúdo demonstrativo; precisa de resposta humana.");
+      addMessage("bot","Não encontrei essa informação em uma fonte operacional aprovada para esta demonstração. Encaminhei uma sinalização genérica para a fila local. Endereços, horários, serviços e preços reais não estão cadastrados.","Conteúdo demonstrativo disponível");
+    }else{
+      enqueue("Mensagem ambígua encaminhada","Revisão humana necessária. O conteúdo da mensagem não foi salvo.");
+      addMessage("bot","Não consigo classificar essa mensagem com segurança. Registrei uma sinalização genérica na fila local para revisão humana. O texto original não foi armazenado.","Regra de escalonamento do protótipo");
+    }
+  }
+  document.querySelectorAll(".nav button").forEach(btn=>btn.addEventListener("click",()=>switchView(btn.dataset.view)));
+  document.querySelectorAll("[data-message]").forEach(btn=>btn.addEventListener("click",()=>handleMessage(btn.dataset.message)));
+  document.querySelectorAll("[data-filter]").forEach(btn=>btn.addEventListener("click",()=>{
+    filter=btn.dataset.filter;document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("active",x===btn));render();
+  }));
+  $("chat-form").addEventListener("submit",event=>{
+    event.preventDefault();const input=$("chat-input");handleMessage(input.value);input.value="";input.focus();
+  });
+  $("request-form").addEventListener("submit",event=>{
+    event.preventDefault();const region=$("region").value;const period=$("period").value;if(!region||!period)return;
+    queue.unshift({id:"D-"+Date.now().toString(36).toUpperCase(),category:"Pedido de avaliação",region:region+" (região informada)",period:period+" (preferência)",summary:"Pedido sintético sem nome, contato ou informação de saúde. Aguardando revisão; não é agendamento confirmado.",status:"Pendente",createdAt:new Date().toLocaleString("pt-BR")});
+    saveQueue();event.target.reset();addMessage("bot","Pedido adicionado à fila local de demonstração. Está pendente de revisão da recepção; não representa horário disponível nem confirmação de agendamento.","Fila de revisão simulada");
+  });
+  $("reset-demo").addEventListener("click",()=>{
+    queue=JSON.parse(JSON.stringify(sampleQueue));filter="pending";
+    document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("active",x.dataset.filter==="pending"));
+    saveQueue();
+  });
+  render();
+})();
+</script>
+</body>
+</html>
